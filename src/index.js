@@ -3,11 +3,48 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
+import { FindStay } from './pages/FindStay';
+import { AccDetail } from './pages/AccDetail';
+import { RoomDetail } from './pages/RoomDetail';
+import { AccGallery } from './pages/AccGallery';
+import { NewStay } from './pages/NewStay';
+import { Notice } from './pages/Notice';
+import { Reservation } from './pages/Reservation';
+import { Join } from './pages/Join';
+import { Login } from './pages/Login';
+import { FindId } from './pages/FindId';
+import { FindPw } from './pages/FindPw';
+import { NotFound } from './pages/NotFound';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App></App>,
+    errorElement: <NotFound/>,
+    children : [
+      {path : '/',  element : <Home/>, index : true},
+      {path : '/findstay', element : <FindStay/>},
+      {path : '/findstay/acc/:accid', element : <AccDetail/>},
+      {path : '/findstay/acc/gallery/:accid', element : <AccGallery/>},  
+      {path : '/findstay/room/:roomid', element : <RoomDetail/>},
+      {path : '/newstay', element : <NewStay/>},
+      {path : '/notice', element : <Notice/>},
+      {path : '/reservation/:roomid', element : <Reservation/>},
+      {path : '/join', element : <Join/>},
+      {path : '/login', element : <Login/>},
+      {path : '/find/id', element : <FindId/>},
+      {path : '/find/pw', element : <FindPw/>}
+    ]
+  },
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
