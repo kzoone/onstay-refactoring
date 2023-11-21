@@ -1,0 +1,36 @@
+div.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div.header_left{
+        padding: 5px 20px;
+        img.header_logo{
+            width: 130px;
+        }
+    }
+    div.header_right{
+        display: flex;
+        font-size: 15px;
+        align-items: center;
+        nav{
+            border-right: 1px solid lightgray;
+            a.menu{
+                padding: 0 20px;
+                text-decoration: none;
+                color: #000;
+                font-weight: bold;
+            }
+        }
+        div.my{
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+            a{
+                padding-left: 20px;
+                text-decoration: none;
+                color: rgb(153,153,153);
+                font-weight: 600;
+            }
+        }
+    }
+}
