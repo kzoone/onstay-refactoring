@@ -2,20 +2,23 @@ div.header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
     div.header_left{
         padding: 5px 20px;
         img.main_logo{
-            width: 130px;
+            width: 120px;
         }
     }
     div.header_right{
         display: flex;
-        font-size: 15px;
         align-items: center;
+        margin-top: 15px;
+        font-size: 15px;
         nav{
             border-right: 1px solid lightgray;
             a.menu{
-                padding: 0 20px;
+                margin: 0 20px;
                 text-decoration: none;
                 color: #000;
                 font-weight: bold;
@@ -24,13 +27,28 @@ div.header{
         div.my{
             display: flex;
             align-items: center;
-            margin-right: 30px;
-            a{
-                padding-left: 20px;
+            padding: 0 30px;
+            a.mypage{
                 text-decoration: none;
                 color: rgb(153,153,153);
                 font-weight: 600;
             }
+            button.logout{
+                margin-left: 20px;
+                background: none;
+                border: none;
+                color: rgb(153,153,153);
+                font-weight: 600;
+                font-size: 15px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
         }
     }
+}
+
+div.footer{
+    background: #F5F5F5;
+
 }
