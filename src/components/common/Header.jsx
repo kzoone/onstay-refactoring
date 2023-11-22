@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
 
 export default function Header() {
+    const handleLogout = () => {
+        alert('로그아웃 모달 띄울 예정');
+    }
+
     return(
         <div className='header'>
             <div className='header_left'>
@@ -17,8 +21,8 @@ export default function Header() {
                     <Link className='menu' to='/notice'>NOTICE</Link>
                 </nav>
                 <div className='my'>
-                    <Link className='mypage' to='#'><FaRegUser /> MY PAGE</Link>
-                    <Link className='logout' to='#'>LOGOUT</Link>
+                    <Link className='mypage' to='/mypage'><FaRegUser /> MY PAGE</Link>
+                    <button type='button' className='logout' onClick={handleLogout}>LOGOUT</button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,49 @@
+div.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    div.header_left{
+        padding: 5px 20px;
+        img.main_logo{
+            width: 120px;
+        }
+    }
+    div.header_right{
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        font-size: 15px;
+        nav{
+            border-right: 1px solid lightgray;
+            a.menu{
+                margin: 0 20px;
+                text-decoration: none;
+                color: #000;
+                font-weight: bold;
+            }
+        }
+        div.my{
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            a.mypage{
+                text-decoration: none;
+                color: rgb(153,153,153);
+                font-weight: 600;
+            }
+            button.logout{
+                margin-left: 20px;
+                background: none;
+                border: none;
+                color: rgb(153,153,153);
+                font-weight: 600;
+                font-size: 15px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
