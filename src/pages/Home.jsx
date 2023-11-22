@@ -1,5 +1,7 @@
+import TimeAttackSection from '../components/home/TimeAttackSection';
+
 export default function Home() {
     return(
-        <h1>Home</h1>
+        <TimeAttackSection/>
     );
 }

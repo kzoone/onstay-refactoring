@@ -1,0 +1,66 @@
+section.home_timeattack_section {
+  background-color: #F5F5F5;
+  padding: 10vh 2vh;
+  div.timeattack_container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1300px;
+    min-width: 1025px;
+    height: 540px;
+    display: flex;
+    justify-content: space-between;
+    div.timeattack_text {
+      display: flex;
+      flex-direction: column;
+      // justify-content: space-between;
+      width: 30%;
+      padding-right: 1.5vh;
+      h4 {
+        font-size: 0.9em;
+        letter-spacing: 3px;
+        height: 15%;
+      }
+      span.acc_name {
+        height: 15%;
+        display: block;
+        font-size: 1.5em;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        // margin-bottom: 3vh;
+      }
+      span.timeattack_desc {
+        display: block;
+        color: #484848;
+        height: 55%;
+        font-size: 0.9em;
+        line-height: 20px;
+        // margin-bottom: 20vh;
+      }
+      small {
+        font-size: .9em;
+        color: #666;
+      }
+      div.timeattack_time {
+        padding: 1vh 0;
+        display: flex;
+        font-size: 1.3em;
+        align-items: center;
+        color: #333;
+        svg {
+          display: inline;
+          margin-right: 1vh;
+        }
+      }
+    }
+    div.timeattack_img {
+      flex: 1;
+      overflow: hidden;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+}
