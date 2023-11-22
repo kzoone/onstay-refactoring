@@ -17,6 +17,8 @@ import { Login } from './pages/Login';
 import { FindId } from './pages/FindId';
 import { FindPw } from './pages/FindPw';
 import { NotFound } from './pages/NotFound';
+import { MyPage } from './pages/MyPage';
+import { AdminPage } from './pages/AdminPage';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +37,9 @@ const router = createBrowserRouter([
       {path : '/join', element : <Join/>},
       {path : '/login', element : <Login/>},
       {path : '/find/id', element : <FindId/>},
-      {path : '/find/pw', element : <FindPw/>}
+      {path : '/find/pw', element : <FindPw/>},
+      {path : '/mypage', element : <MyPage/>},
+      {path : '/adminpage', element : <AdminPage/>}
     ]
   },
 ]);
