@@ -1,7 +1,7 @@
 .newstaysection {
   padding: 2rem;
   p {
-    @include pos_x($trans-x:0);
+    @include pos_x($trans-x: 0);
   }
   a {
     position: absolute;
