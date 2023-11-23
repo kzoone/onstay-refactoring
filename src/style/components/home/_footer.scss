@@ -22,6 +22,7 @@ div.footer{
             }
             div.copyright{
                 color: rgb(179, 179, 179);
+                font-size: 12px;
             }
         }
     }
@@ -30,7 +31,28 @@ div.footer{
         padding-top: 30px;
         p{
             color: rgb(153, 153, 153);
-            line-height: 30px;
+            line-height: 25px;
+            font-size: 12px;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        margin-bottom: 60px;
+    }
+    @include responsive(sm){
+        div.footer_top{
+            flex-direction: column;
+            div.right{
+                margin-top: 20px;
+                div.sns{
+                    float: none;
+                }
+            }
+        }
+        div.footer_bottom{
+            p{
+                line-height: 15px;
+                margin-bottom: 10px;
+            }
         }
     }
 }

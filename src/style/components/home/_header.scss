@@ -1,49 +1,118 @@
-div.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    div.header_left{
-        padding: 5px 20px;
-        img.main_logo{
-            width: 120px;
-        }
-    }
-    div.header_right{
+body{
+    padding-top: 70px;
+    div.header{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #FFF;
         display: flex;
+        height: 70px;
+        justify-content: space-between;
         align-items: center;
-        margin-top: 15px;
-        font-size: 15px;
-        nav{
-            border-right: 1px solid lightgray;
-            a.menu{
-                margin: 0 20px;
-                text-decoration: none;
-                color: #000;
-                font-weight: bold;
+        padding: 10px 0 20px 0;
+        div.header_left{
+            padding: 5px 20px;
+            img.main_logo{
+                width: 120px;
             }
         }
-        div.my{
+        div.header_right{
             display: flex;
             align-items: center;
-            padding: 0 30px;
-            a.mypage{
-                text-decoration: none;
-                color: rgb(153,153,153);
-                font-weight: 600;
+            margin-top: 15px;
+            font-size: 15px;
+            nav{
+                border-right: 1px solid lightgray;
+                ul{
+                    display: flex;
+                    li{
+                        a.menu{
+                            margin: 0 20px;
+                            text-decoration: none;
+                            color: #000;
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
-            button.logout{
-                margin-left: 20px;
-                background: none;
-                border: none;
-                color: rgb(153,153,153);
-                font-weight: 600;
-                font-size: 15px;
-                &:hover{
-                    cursor: pointer;
+            div.my{
+                display: flex;
+                align-items: center;
+                padding: 0 30px;
+                a.mypage{
+                    text-decoration: none;
+                    color: rgb(153,153,153);
+                    font-weight: 600;
+                    display: flex;
+                }
+                button.logout{
+                    margin-left: 20px;
+                    background: none;
+                    border: none;
+                    color: rgb(153,153,153);
+                    font-weight: 600;
+                    font-size: 15px;
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
             }
         }
+        div.menubar{
+            display: none;
+        }
+    }
+    div.header_mobile{
+        display: none;
+    }
+    @media screen and (max-width: 1024px) {
+        div.header{
+            div.header_right{
+                display: none;
+            }
+            div.menubar{
+                display: block;
+                font-size: 23px;
+                margin: 10px 20px 0 0;
+            }
+        }
+        div.header_mobile{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            display: block;
+            height: 60px;
+            background: #F5F5F5;
+            padding: 10px 20px;
+            border-top: 1px solid #E9E9E9;
+            nav{
+                ul{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    li{
+                        a{
+                            span.icon_mobile{
+                                display: block;
+                                font-size: 20px;
+                                svg{
+                                    margin: 0 auto;
+                                }
+                            }
+                            span.menu_mobile{
+                                font-size: 10px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    div.home{
+        background-color: lightblue;
     }
 }
