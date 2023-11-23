@@ -1,20 +1,12 @@
 section.home_timeattack_section {
   background-color: #F5F5F5;
-  padding: 10vh 2vh;
   div.timeattack_container {
     margin: 0 auto;
-    width: 100%;
-    max-width: 1300px;
-    min-width: 1025px;
-    height: 540px;
     display: flex;
     justify-content: space-between;
     div.timeattack_text {
       display: flex;
       flex-direction: column;
-      // justify-content: space-between;
-      width: 30%;
-      padding-right: 1.5vh;
       h4 {
         font-size: 0.9em;
         letter-spacing: 3px;
@@ -22,44 +14,114 @@ section.home_timeattack_section {
       }
       span.acc_name {
         height: 15%;
-        display: block;
         font-size: 1.5em;
         font-weight: 400;
-        text-overflow: ellipsis;
-        // margin-bottom: 3vh;
+        word-break: break-all;
       }
       span.timeattack_desc {
-        display: block;
         color: #484848;
         height: 55%;
         font-size: 0.9em;
         line-height: 20px;
-        // margin-bottom: 20vh;
       }
       small {
         font-size: .9em;
-        color: #666;
+        color: #999;
       }
       div.timeattack_time {
         padding: 1vh 0;
         display: flex;
-        font-size: 1.3em;
+        font-size: 1.5em;
         align-items: center;
-        color: #333;
+        justify-content: flex-start;
+        color: rgb(3, 36, 48);
         svg {
-          display: inline;
-          margin-right: 1vh;
+          width: 25px;
+          height: 25px;
+          margin-right: 5px;
         }
       }
     }
-    div.timeattack_img {
-      flex: 1;
+    a.timeattack_img {
       overflow: hidden;
+      @media (hover:hover) {
+        &:hover img {
+        transform: scale(1.05);
+        }
+      }
       img {
-        height: 100%;
         width: 100%;
         object-fit: cover;
         object-position: center;
+        transition: transform 1s;
+      }
+    }
+  }
+}
+
+@media screen and (min-width : $md-max-breakpoint) {
+  section.home_timeattack_section {
+    padding: 10vh 2rem;
+    div.timeattack_container {
+      max-width: 1300px;
+      height: 540px;
+      div.timeattack_text {
+        width: 30%;
+        box-sizing: border-box;
+        > *:not(div.timeattack_time) {
+          width: 70%;
+          min-width: 200px;
+        }
+      }
+      a.timeattack_img {
+        flex: 1;
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: $md-max-breakpoint) {
+  section.home_timeattack_section {
+    width: 100%;
+    padding: 5vh 2rem;
+    div.timeattack_container {
+      flex-direction: column;
+      height: 87%;
+      div.timeattack_text {
+        width: 100%;
+        text-align: center;
+        h4 {
+          margin-bottom: 1.5vh;
+        }
+        span.acc_name {
+          font-weight: 600;
+          font-size: 1.2em;
+          margin-bottom: 4vh;
+        }
+        span.timeattack_desc {
+          font-size: 0.8em;
+          margin-bottom: 2.5vh;
+          display: none;
+        }
+        small {
+          font-size: 0.9em;
+        }
+        div.timeattack_time {
+          margin: 0 auto;
+          font-weight: 300;
+          font-size: 1.2em;
+          margin-bottom: 2vh;
+        }
+      }
+      a.timeattack_img {
+        flex: 1;
+        img {
+          height: 50vw;
+        }
       }
     }
   }
