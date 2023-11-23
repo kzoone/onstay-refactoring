@@ -1,0 +1,141 @@
+section.category_section {
+  padding: 2rem;
+  text-align: center;
+  div.content_category {
+    &:first-child {
+      margin-bottom: 3rem;
+    }
+    p.title {
+      margin-bottom: 40px;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5rem;
+    }
+
+    div.swiper {
+      padding-bottom: 60px;
+
+      div.swiper-wrapper {
+        margin-bottom: 20px;
+        div.swiper-slide {
+          a img {
+            width: 100%;
+          }
+
+          div.acc_info {
+            margin-top: 20px;
+            p.name {
+              font-size: 1.3rem;
+              font-weight: 500;
+            }
+            p.area_price {
+              margin: 10px 0 15px 0;
+              font-size: 0.9rem;
+              span.area {
+                margin-right: 5px;
+              }
+              span.price_tag {
+                font-size: 0.85rem;
+                margin-right: 1.2px;
+              }
+            }
+            a.reservation {
+              border-bottom: 1px solid black;
+              font-size: 0.8rem;
+              letter-spacing: 0.1rem;
+              transition: all 0.3s;
+              &:hover {
+                @include text_hover;
+              }
+            }
+          }
+        }
+      }
+
+      div.swiper-pagination {
+        @include pos_x($trans-x: -100%);
+        width: 50px;
+        height: 17px;
+        bottom: 20px;
+        line-height: 17px;
+      }
+
+      button {
+        bottom: 20px;
+        width: 20px;
+        height: 20px;
+        padding: 2.5px;
+        border-radius: 3px;
+        background-color: #a28f72;
+        color: white;
+        transition: all 0.3s;
+        &.prev {
+          @include pos_x(calc(50% + 10px));
+        }
+        &.next {
+          @include pos_x(calc(50% + 35px));
+        }
+        &:hover {
+          @include btn_hover;
+        }
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        display: none;
+      }
+    }
+  }
+  @include responsive(md) {
+    & .content_category p {
+      margin-bottom: 20px;
+    }
+  }
+
+  @include responsive(sm) {
+    & {
+      padding: 10px 0;
+      div.content_category {
+        &:first-child {
+          margin-bottom: 1rem;
+        }
+        p.title {
+          margin-bottom: 10px;
+          letter-spacing: 0.2rem;
+        }
+
+        div.swiper {
+          padding-bottom: 30px;
+          div.swiper-wrapper {
+            div.swiper-slide {
+              div.acc_info {
+                p.name {
+                  font-size: 1rem;
+                }
+                p.area_price {
+                  margin: 10px 0 10px 0;
+                  span.price_tag {
+                    font-size: 0.8rem;
+                    margin-right: 2px;
+                  }
+                }
+              }
+            }
+          }
+
+          div.swiper-pagination {
+            display: none;
+          }
+
+          button {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
