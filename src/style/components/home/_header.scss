@@ -59,7 +59,10 @@ body{
                 }
             }
         }
-        div.menubar{
+        button.menubar{
+            display: none;
+        }
+        .menubar_list{
             display: none;
         }
     }
@@ -71,10 +74,78 @@ body{
             div.header_right{
                 display: none;
             }
-            div.menubar{
+            button.menubar{
                 display: block;
                 font-size: 23px;
                 margin: 10px 20px 0 0;
+            }
+            div.menubar_list{
+                display: block;
+                height: 100vh;
+                background: #FFF;
+                width: 320px;
+                padding: 30px 20px;
+                position: absolute;
+                right: -320px;
+                top: 0px;
+                transition: right 1s;
+                div.my_info{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    div.profile{
+                        display: flex;
+                        align-items: center;
+                        div.profile_img{
+                            width: 40px;
+                            height: 40px;
+                            border: 1px solid rgb(221, 221, 221);
+                            border-radius: 10px;
+                            margin-right: 10px;
+                        }
+                        div.name{
+                            font-weight: bold;
+                        }
+                    }
+                    div.close_btn{
+                        button.close{
+                            display: block;
+                            font-size: 23px;
+                        }
+                    }
+                }
+                div.mypage_list{
+                    border-top: 1px solid #E6E6E6;
+                    padding-top: 10px;
+                    ul{
+                        li{
+                            display: flex;
+                            align-items: center;
+                            a{
+                                display: block;
+                                width: 100%;
+                                font-size: 15px;
+                                line-height: 55px;
+                                &::after{
+                                    content: '>';
+                                    position: absolute;
+                                    right: 20px;
+                                }
+                            }
+                        }
+                        button.logout{
+                            border: 1px solid #000;
+                            width: 100%;
+                            padding: 15px 0;
+                            font-size: 15px;
+                            margin-top: 130px;
+                        }
+                    }
+                }
+            }
+            div.open{
+                right: 0;
             }
         }
         div.header_mobile{
