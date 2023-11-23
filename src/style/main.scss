@@ -9,7 +9,9 @@
 /* components */
 @import './components/home/header';
 @import './components/home/footer';
-@import './components/home/timeAttackSection'
+@import './components/home/timeAttackSection';
 
 
 /* pages */
+@import './pages/join';
+@import './pages/login'

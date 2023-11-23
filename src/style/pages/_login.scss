@@ -1,0 +1,17 @@
+.login_form {
+  input {
+    &:last-of-type {
+      margin-bottom: 4vh;
+    }
+  }
+  *:not(:last-child) {
+    margin-bottom: 1.5vh; 
+  } 
+  .login_form_links {
+    display: flex;
+    justify-content: space-between;
+    a {
+      font-size: .9em;
+    }
+  }
+}
