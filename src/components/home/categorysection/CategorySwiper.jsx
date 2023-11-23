@@ -11,20 +11,24 @@ import 'swiper/scss/navigation';
 
 export default function CategorySwiper({type}){
   const [ accList, setAccList ] = useState([]);
+  const categoryTitle = { only : '오직 온스테이하우스에서만' , price : '20만원 이하 가성비 하우스' };
+  
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/${type}`)
     .then(result => {
-      setAccList(result.data)
+      const resultSlice = result.data.splice(0, 12);
+      setAccList(resultSlice);
     })
     .catch(err => console.log(err));
   }, [])
-
+  
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   return(
-      <>
+    <div className='content_category'>
+      <p className="title">{`${categoryTitle[type]}`}</p>
         <Swiper
           modules={[Pagination, Navigation]}
           pagination={{
@@ -54,13 +58,13 @@ export default function CategorySwiper({type}){
           }}
         >
         {accList.map((list, idx) => (
-          <SwiperSlide key={`list.acc_id${idx}`} >
+          <SwiperSlide key={`list.acc_id${idx}`}>
             <CategorySwiperInner list={list}/>
           </SwiperSlide>
       ))}
         <button className='prev' ref={prevRef}><FiChevronLeft /></button>
         <button className='next' ref={nextRef}><FiChevronRight /></button>
       </Swiper>
-    </>
+    </div>
   );
 }

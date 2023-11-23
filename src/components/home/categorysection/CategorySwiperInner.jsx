@@ -6,7 +6,6 @@ export default function CategorySwiperInner({list}) {
   const [ accimg, setAccImg ] = useState({});
 
   const codeinfo = {
-    0: '지역 정보가 없습니다',
     1: '서울',
     2: '강원',
     3: '부산',
@@ -23,7 +22,7 @@ export default function CategorySwiperInner({list}) {
     14: '대구',
     15: '제주',
   };
-
+  
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/img/${list.acc_id}`)
     .then(result => {
@@ -40,14 +39,14 @@ export default function CategorySwiperInner({list}) {
         <p className='area_price'>
         { list.area_code
           ?
-            <span className='area'> {`${codeinfo[list.area_code]}`}</span>
+            <span className='area'>{`${codeinfo[list.area_code]}`}</span>
           : null
         }
           <span className='price_tag'>₩</span>
           <span className='price'>{list.room_price} ~</span>
         </p>
         <Link to={`/findstay/acc/${list.acc_id}`} className='reservation'>예약하기</Link>
-        </div>
+      </div>
     </>
   );
 }
