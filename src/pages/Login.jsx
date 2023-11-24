@@ -1,22 +1,25 @@
 import { Link } from 'react-router-dom';
+import PageTitle from '../components/common/PageTitle';
 
 export function Login() {
+
     return (
-        <div style={{ margin: '0 auto', width: '43vh', padding: '0 2vh', paddingBottom: '5vh' }}>
-            <div className="member_title">
-                <h2>LOGIN</h2>
-                <span>로그인</span>
-            </div>
+        <main className='member login'>
+            <PageTitle title={'LOGIN'} subtitle={'로그인'}/>
             <form className="login_form member_form" action="">
-                <input type="text" name="user_email" id="user_email" placeholder='이메일 아이디' />
-                <input type="password" name="user_pw" id="user_pw" placeholder='비밀번호' />
-                <button className='login_btn black_btn'>LOGIN</button>
-                <button className='join_btn white_btn'>회원가입</button>
-                <div className='login_form_links'>
-                    <Link>아이디 찾기</Link>
-                    <Link>비밀번호 찾기</Link>
+                <p>
+                    <input type="text" name="user_id" id="user_id" placeholder='아이디' aria-label='아이디' />
+                </p>
+                <p>
+                    <input type="password" name="user_pw" id="user_pw" placeholder='비밀번호' />
+                </p>
+                <button className='login_btn black_box'>로그인</button>
+                <Link to='/join' className='join_link white_box'>회원가입</Link>
+                <div className='find_links_box'>
+                    <Link to='/findId'>아이디 찾기</Link>
+                    <Link to='/findPw'>비밀번호 찾기</Link>
                 </div>
             </form>
-        </div>
+        </main>
     );
 }
