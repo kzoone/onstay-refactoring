@@ -10,6 +10,10 @@
 @import './components/common/pagetitle';
 @import './components/home/header';
 @import './components/home/footer';
+@import './components/home/timeAttackSection';
+
 @import './components/home/categorysection';
 
 /* pages */
+@import './pages/join';
+@import './pages/login'
