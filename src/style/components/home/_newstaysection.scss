@@ -1,0 +1,67 @@
+.newstaysection {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem;
+  @include responsive("sm") {
+    padding: 0;
+  }
+  & > div {
+    margin-bottom: 50px;
+    p {
+      @include pos_x();
+      letter-spacing: 8px;
+    }
+    a {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.8rem;
+    }
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+      width: 32%;
+      @include responsive("lg") {
+        width: 48%;
+      }
+      @include responsive("md") {
+        width: 100%;
+      }
+      @include responsive("sm") {
+        width: 100%;
+      }
+      a {
+        figure {
+          overflow: hidden;
+          margin-bottom: 2vh;
+          img {
+            width: 100%;
+          }
+        }
+        div {
+          display: flex;
+          align-items: center;
+          margin-bottom: 2vh;
+          p:nth-child(1) {
+            padding-right: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            @include responsive('sm') {
+              padding: 0 10px;
+              font-weight: 400;
+            }
+          }
+        }
+        p:nth-child(3) {
+          color: gray;
+          margin-bottom: 5vh;
+          @include responsive('sm'){
+            padding: 0 10px;
+          }
+        }
+      }
+    }
+  }
+}
