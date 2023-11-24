@@ -1,47 +1,190 @@
-div.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    div.header_left{
-        padding: 5px 20px;
-        img.main_logo{
-            width: 120px;
-        }
-    }
-    div.header_right{
+body{
+    padding-top: 70px;
+    div.header{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #FFF;
         display: flex;
+        height: 70px;
+        justify-content: space-between;
         align-items: center;
-        margin-top: 15px;
-        font-size: 15px;
-        nav{
-            border-right: 1px solid lightgray;
-            a.menu{
-                margin: 0 20px;
-                text-decoration: none;
-                color: #000;
-                font-weight: bold;
+        padding: 10px 0 20px 0;
+        div.header_left{
+            padding: 5px 20px;
+            img.main_logo{
+                width: 120px;
             }
         }
-        div.my{
+        div.header_right{
             display: flex;
             align-items: center;
-            padding: 0 30px;
-            a.mypage{
-                text-decoration: none;
-                color: rgb(153,153,153);
-                font-weight: 600;
+            margin-top: 15px;
+            font-size: 15px;
+            nav{
+                border-right: 1px solid lightgray;
+                ul{
+                    display: flex;
+                    li{
+                        a.menu{
+                            margin: 0 20px;
+                            text-decoration: none;
+                            color: #000;
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
-            button.logout{
-                margin-left: 20px;
-                background: none;
-                border: none;
-                color: rgb(153,153,153);
-                font-weight: 600;
-                font-size: 15px;
-                &:hover{
-                    cursor: pointer;
+            div.my{
+                display: flex;
+                align-items: center;
+                padding: 0 30px;
+                a.mypage{
+                    text-decoration: none;
+                    color: rgb(153,153,153);
+                    font-weight: 600;
+                    display: flex;
+                }
+                button.logout{
+                    margin-left: 20px;
+                    background: none;
+                    border: none;
+                    color: rgb(153,153,153);
+                    font-weight: 600;
+                    font-size: 15px;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        button.menubar{
+            display: none;
+        }
+        .menubar_list{
+            display: none;
+        }
+    }
+    div.header_mobile{
+        display: none;
+    }
+    @media screen and (max-width: 1024px) {
+        div.header{
+            div.header_right{
+                display: none;
+            }
+            button.menubar{
+                display: block;
+                font-size: 23px;
+                margin: 10px 20px 0 0;
+            }
+            div.menubar_list{
+                display: block;
+                height: 100vh;
+                background: #FFF;
+                width: 320px;
+                padding: 30px 20px;
+                position: absolute;
+                right: -320px;
+                top: 0px;
+                transition: right 1s;
+                div.my_info{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    div.profile{
+                        display: flex;
+                        align-items: center;
+                        div.profile_img{
+                            width: 40px;
+                            height: 40px;
+                            border: 1px solid rgb(221, 221, 221);
+                            border-radius: 10px;
+                            margin-right: 10px;
+                        }
+                        div.name{
+                            font-weight: bold;
+                        }
+                    }
+                    div.close_btn{
+                        button.close{
+                            display: block;
+                            font-size: 23px;
+                        }
+                    }
+                }
+                div.mypage_list{
+                    border-top: 1px solid #E6E6E6;
+                    padding-top: 10px;
+                    ul{
+                        margin-bottom: 30px;
+                        li{
+                            display: flex;
+                            align-items: center;
+                            a{
+                                display: block;
+                                width: 100%;
+                                font-size: 15px;
+                                line-height: 55px;
+                                &::after{
+                                    content: '>';
+                                    position: absolute;
+                                    right: 20px;
+                                }
+                            }
+                        }
+                    }
+                    div.logout_area{
+                        button.logout{
+                            border: 1px solid #000;
+                            width: 90%;
+                            height: 50px;
+                            padding: 15px 0;
+                            font-size: 15px;
+                            position: absolute;
+                            bottom: 80px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+            div.open{
+                right: 0;
+            }
+        }
+        div.header_mobile{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            display: block;
+            height: 60px;
+            background: #F5F5F5;
+            padding: 10px 20px;
+            border-top: 1px solid #E9E9E9;
+            nav{
+                ul{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    li{
+                        a{
+                            span.icon_mobile{
+                                display: block;
+                                font-size: 20px;
+                                svg{
+                                    margin: 0 auto;
+                                }
+                            }
+                            span.menu_mobile{
+                                font-size: 10px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
                 }
             }
         }
