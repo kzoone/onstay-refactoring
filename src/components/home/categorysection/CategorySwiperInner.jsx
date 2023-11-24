@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function CategorySwiperInner({list}) {
-  const [ accimg, setAccImg ] = useState({});
+  const [ accimg, setAccImg ] = useState('');
 
   const codeinfo = {
     1: '서울',
@@ -45,7 +45,7 @@ export default function CategorySwiperInner({list}) {
           <span className='price_tag'>₩</span>
           <span className='price'>{list.room_price} ~</span>
         </p>
-        <Link to={`/findstay/acc/${list.acc_id}`} className='reservation'>예약하기</Link>
+        <Link to={`/findstay/room/${list.room_id}`} className='reservation'>예약하기</Link>
       </div>
     </>
   );
