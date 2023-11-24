@@ -1,0 +1,15 @@
+@include pageTitle();
+form{
+    div.search_wrap{
+        div.line1{
+            div{
+                label{
+                    font-size: 0.85rem;
+                }
+                input{
+                    border: 1px solid rgb(215, 215, 215);
+                }
+            }
+        }
+    }
+}
