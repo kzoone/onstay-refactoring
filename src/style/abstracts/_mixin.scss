@@ -61,6 +61,29 @@
   border-color: $bg_color;
 }
 
+// common pageTile 
+@mixin pageTitle($dp : block, $ft_size : 1rem, $mb : 3rem) {
+  div.page_title_container {
+    display: $dp;
+    margin-top: 3rem;
+    margin-bottom: $mb;
+    text-align: center;
+    p.title {
+      font-size: $ft_size;
+      margin-bottom: 12px;
+      font-weight: bold;
+      letter-spacing: 0.8rem;
+      margin-left: 0.8rem;
+    }
+    p.sub_title {
+      font-size: $ft_size*0.85;
+      padding-right: 0.2rem;
+      letter-spacing: 0.1rem;
+      margin-left: 0.1rem;
+    }
+  }
+}
+
 /* responsive */
 @mixin responsive($screen) {
   @if ($screen == 'xlg') {
