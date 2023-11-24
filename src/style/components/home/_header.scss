@@ -119,6 +119,7 @@ body{
                     border-top: 1px solid #E6E6E6;
                     padding-top: 10px;
                     ul{
+                        margin-bottom: 30px;
                         li{
                             display: flex;
                             align-items: center;
@@ -134,12 +135,18 @@ body{
                                 }
                             }
                         }
+                    }
+                    div.logout_area{
                         button.logout{
                             border: 1px solid #000;
-                            width: 100%;
+                            width: 90%;
+                            height: 50px;
                             padding: 15px 0;
                             font-size: 15px;
-                            margin-top: 130px;
+                            position: absolute;
+                            bottom: 80px;
+                            left: 50%;
+                            transform: translateX(-50%);
                         }
                     }
                 }
@@ -181,9 +188,5 @@ body{
                 }
             }
         }
-    }
-
-    div.home{
-        background-color: lightblue;
     }
 }
