@@ -13,7 +13,7 @@ export function Join() {
                         <label htmlFor="user_id">아이디</label>
                         <input type="text" name='user_id' id='user_id' placeholder='아이디를 입력하세요' />
                         <small className="invalid_noti user_id">이메일 형식이 올바르지 않습니다</small>
-                        <button className='duplicate_check_btn black_box' type="button">중복체크</button>
+                        <button className='duplicate_check_btn white_box' type="button">중복체크</button>
                     </p>
                     <p>
                         <label htmlFor="user_email">이메일</label>

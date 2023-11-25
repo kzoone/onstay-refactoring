@@ -6,7 +6,7 @@ main.member {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 2rem 0 8rem 0;
     border-top: 1px solid black;
     width: 80%;
     @media screen and (min-width: $md-max-breakpoint) {
@@ -67,7 +67,12 @@ main.join {
       } // 유효성 체크 노티
     }
     button.duplicate_check_btn {
+      border: none;
+      background-color: #777;
+      color: white;
       font-size: 0.8rem;
+      padding: .8rem 0;
+      margin: .4rem 0;
     }
     
   }
