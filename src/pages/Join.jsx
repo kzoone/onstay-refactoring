@@ -39,26 +39,24 @@ export function Join() {
                     </p>
 
 
-                    <ul className='join_terms_container'>
-                        <li className='agree_all'>
-                            <input className='join_checkbox' type="checkbox" id='term_agree_all'/> 
+                    <ul className='terms_container'>
+                        <li className='term_agree_all'>
+                            <input className='join_checkbox required' type="checkbox" id='term_agree_all'/> 
                             <label htmlFor="term_agree_all">사용자 약관 전체동의</label>
                         </li>
-                        <li className='agree_all'>
-                            <input className='join_checkbox' type="checkbox" id='term_agree_all'/> 
-                            <label htmlFor="term_agree_all">서비스 이용 약관 동의 (필수)</label>
+                        <li className='term_service'>
+                            <input className='join_checkbox required' type="checkbox" id='term_service'/> 
+                            <label htmlFor="term_service">서비스 이용 약관 동의 (필수)</label>
                         </li>
-                        <li className='agree_all'>
-                            <input className='join_checkbox' type="checkbox" id='term_agree_all'/> 
-                            <label htmlFor="term_agree_all">개인정보 수집・이용 동의(필수)</label>
+                        <li className='term_personal'>
+                            <input className='join_checkbox required' type="checkbox" id='term_personal'/> 
+                            <label htmlFor="term_personal">개인정보 수집・이용 동의(필수)</label>
                         </li>
-                        <li className='agree_all'>
-                            <input className='join_checkbox' type="checkbox" id='term_agree_all'/> 
-                            <label htmlFor="term_agree_all">쿠폰,이벤트 등 혜택 알림 동의 (선택)</label>
+                        <li className='term_event'>
+                            <input className='join_checkbox option' type="checkbox" id='term_event'/> 
+                            <label htmlFor="term_event">쿠폰,이벤트 등 혜택 알림 동의 (선택)</label>
                         </li>
                     </ul>
-
-
 
                     <button className="join_btn black_box">회원가입</button>
                     <Link to='/login' className="login_link white_box">로그인</Link>
