@@ -91,9 +91,22 @@ section.category_section {
     }
   }
   @include responsive(md) {
-    & .content_category p {
-      margin-bottom: 20px;
-    }
+    & div.content_category {
+      p.title {
+        margin-bottom: 20px;
+      }
+      div.swiper {
+        div.swiper-wrapper {
+          div.swiper-slide {
+            div.acc_info {
+              p.area_price {
+                margin: 7px 0 20px 0;
+              }
+            }
+          }
+        }
+      }
+    } 
   }
 
   @include responsive(sm) {
@@ -106,6 +119,7 @@ section.category_section {
         p.title {
           margin-bottom: 10px;
           margin-left: 7px;
+          font-weight: 600;
           letter-spacing: 0.2rem;
         }
 
@@ -115,14 +129,22 @@ section.category_section {
             div.swiper-slide {
               div.acc_info {
                 p.name {
-                  font-size: 1rem;
+                  font-size: 1.1rem;
+                  font-weight: 600;
                 }
                 p.area_price {
-                  margin: 10px 0 10px 0;
+                  margin: 7px 0 20px 0;
                   span.price_tag {
                     font-size: 0.8rem;
                     margin-right: 2px;
                   }
+                }
+                a.reservation {
+                  border-bottom: 1px solid #a28f72;
+                  color: #a28f72;
+                  // font-size: 0.9rem;
+                  font-weight: 600;
+                  letter-spacing: 0.1rem;
                 }
               }
             }
