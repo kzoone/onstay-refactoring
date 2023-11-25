@@ -1,8 +1,20 @@
 import { Link } from 'react-router-dom';
 import PageTitle from './../components/common/PageTitle';
+import { useState } from 'react';
 
 
 export function Join() {
+    let [terms, setTerms] =  useState({term_service : false, term_personal : false, term_event : false})
+
+    const handleCheck = (e) => {
+        if (e.target.name === 'term_agree_all') {
+            setTerms(Object.values(terms).every(v=>v) 
+                ? {term_service : false, term_personal : false, term_event : false} 
+                : {term_service : true, term_personal : true, term_event : true})
+        } else {
+            setTerms({...terms, [e.target.name] : !terms[e.target.name]})
+        }
+    }
     
     return (
             <main className="member join">
@@ -41,19 +53,19 @@ export function Join() {
 
                     <ul className='terms_container'>
                         <li className='term_agree_all'>
-                            <input className='join_checkbox required' type="checkbox" id='term_agree_all'/> 
+                            <input onInput={handleCheck} checked={Object.values(terms).every(v=>v)} className='join_checkbox required' type="checkbox" id='term_agree_all' name='term_agree_all'/> 
                             <label htmlFor="term_agree_all">사용자 약관 전체동의</label>
                         </li>
                         <li className='term_service'>
-                            <input className='join_checkbox required' type="checkbox" id='term_service'/> 
+                            <input onInput={handleCheck} checked={terms.term_service} className='join_checkbox required' type="checkbox" id='term_service' name='term_service'/> 
                             <label htmlFor="term_service">서비스 이용 약관 동의 (필수)</label>
                         </li>
                         <li className='term_personal'>
-                            <input className='join_checkbox required' type="checkbox" id='term_personal'/> 
+                            <input onInput={handleCheck} checked={terms.term_personal} className='join_checkbox required' type="checkbox" id='term_personal' name='term_personal'/> 
                             <label htmlFor="term_personal">개인정보 수집・이용 동의(필수)</label>
                         </li>
                         <li className='term_event'>
-                            <input className='join_checkbox option' type="checkbox" id='term_event'/> 
+                            <input onInput={handleCheck} checked={terms.term_event} className='join_checkbox option' type="checkbox" id='term_event' name='term_event'/> 
                             <label htmlFor="term_event">쿠폰,이벤트 등 혜택 알림 동의 (선택)</label>
                         </li>
                     </ul>
