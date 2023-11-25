@@ -9,18 +9,22 @@ export default function Search(){
                         <button type='button'>전체</button>
                     </div>
                     <div>
-                        <label for='checkin'></label>
+                        <label for='checkin'>체크인</label>
                         {/* datepicker */}
                     </div>
                     <div>
-                        <label for=''></label>
-                        <input type='' id='' />
+                        <label for='checkin'>체크아웃</label>
+                        {/* datepicker */}
                     </div>
                 </div>
                 <div className='line2'>
                     <div>
-                        <label for=''></label>
-                        <input type='' id='' />
+                        <button className='personnel'>인원</button>
+                        <ul className="personnel_list">
+                            <li><button className="list">1</button></li>
+                            <li><button className="list">2</button></li>
+                            <li><button className="list">3</button></li>
+                        </ul>
                     </div>
                     <div>
                         <label for=''></label>
