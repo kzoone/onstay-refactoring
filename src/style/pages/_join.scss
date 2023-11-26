@@ -54,7 +54,7 @@ main.join {
       margin-bottom: 2.5vh;
       small {
         font-size: 0.9em;
-        // display: none;
+        text-wrap: nowrap;
         &.invalid_noti {
           color: rgba(231, 17, 17, 0.912);
         }
