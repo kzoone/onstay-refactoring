@@ -73,21 +73,6 @@ main.findstay{
                         
                     }
                 }
-                button{
-
-                }
-            }
-        }
-        div.line2{
-            div{
-                select.personnel{
-                    font-size: 0.85rem;
-                    border: 1px solid  rgb(215, 215, 215);
-                    border-radius: 5px;
-                    &:focus{
-                        color: red;
-                    }
-                }
             }
         }
     }
