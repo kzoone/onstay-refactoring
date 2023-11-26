@@ -54,9 +54,9 @@ main.join {
       margin-bottom: 2.5vh;
       small {
         font-size: 0.9em;
-        display: none;
+        // display: none;
         &.invalid_noti {
-          color: red;
+          color: rgba(231, 17, 17, 0.912);
         }
         &.valid_noti {
           color: blue;
@@ -77,9 +77,9 @@ main.join {
 
     ul.terms_container {
       padding: 0 0 1.5rem 0;
-      li {
+      li {  
         padding: 0.3rem;
-        font-size: .9rem;
+        font-size: 0.9rem;
         &.term_agree_all {
           font-size: 1.03rem;
           font-weight: 600;
@@ -93,14 +93,30 @@ main.join {
           padding-bottom: 0.8rem;
           border-bottom: 1px solid #ccc;
         }
-        > input {
+        input {
           margin-right: 0.5rem;
           accent-color: black;
         }
+        div:first-child {
+          position: relative;
+          button.term_detail_btn {
+            position: absolute;
+            top: -0.85rem;
+            right: .2rem;
+          }
+        }
+      }
+      div.term_detail {
+        margin-top: 1.5vh;
+        padding: 1.5vh;
+        height: 300px;
+        overflow: scroll;
+        background-color: #EEE;
+        transition: all .5s;
       }
     }
-  button.join_btn {
-  margin-bottom: 1.2vh;
-  }
+    button.join_btn {
+      margin-bottom: 1.2vh;
+    }
   }
 }
