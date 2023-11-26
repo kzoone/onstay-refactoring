@@ -1,15 +1,108 @@
-@include pageTitle();
-form{
-    div.search_wrap{
-        div.line1{
+main.findstay{
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+    @include pageTitle();
+    font-size: 0.7rem;
+    form.search_container{
+        border-top: 2px solid #000;
+        div.filter_section{
+            margin-bottom: 30px;
             div{
-                label{
-                    font-size: 0.85rem;
-                }
-                input{
-                    border: 1px solid rgb(215, 215, 215);
+                border-bottom: 1px solid rgb(215, 215, 215);
+                display: flex;
+                align-items: center;
+                padding: 5px 0;
+                div{
+                    border: none;
+                    margin-right: 30px;
+                    label{
+                        margin-right: 10px;
+                        font-weight: bold;
+                    }
+                    input{
+                        width: 130px;
+                        border: 1px solid rgb(215, 215, 215);
+                        padding: 5px;
+                    }
+                    button{
+                        margin-left: 10px;
+                        background-color: rgb(215, 215, 215);
+                        width: 70px;
+                        padding: 5px;
+                    }
                 }
             }
+        } //filter_section
+        div.btn_section{
+            text-align: center;
+            button.btn{
+                background: #000;
+                color: #FFF;
+                padding: 7px 17px;
+                border-radius: 20px;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    div.sort{
+        margin-top: 70px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #000;
+        ul{
+            display: flex;
+            justify-content: end;
+            li{
+                list-style-type: disc;
+                margin-left: 40px;
+                &::marker{
+                    color: #999;
+                }
+                &:hover{
+                    &::marker{
+                        color: #000;
+                    }
+                }
+                button{
+                    font-weight: bold;
+                    color: #999;
+                    margin-left: -5px;
+                    &:hover{
+                        color: #000;
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    div.acc_list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        div.acc{
+            border: 3px solid orange;
+            div.acc_title{
+                font-size: 32px;
+            }
+            div.acc_content{
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                div.acc_info{
+                    p{
+                        font-size: 14px;
+                        line-height: 25px;
+                    }
+                }
+                div.acc_imgs{
+                    width: 350px;
+                    min-width: 350px;;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }   
         }
     }
 }
