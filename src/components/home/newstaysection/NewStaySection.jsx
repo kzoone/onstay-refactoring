@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import NewStayAvata from './NewStayAvata';
-import { SlArrowRight } from "react-icons/sl";
+import { SlArrowRight } from 'react-icons/sl';
 import NewStayContent from './NewStayContent';
 
 export default function NewStaySection() {

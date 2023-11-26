@@ -35,7 +35,7 @@ export default function Header() {
             let logoutAreaOffset = $('.logout_area').offset().top; 
             let logoutOffset = $('.menubar_list .logout').offset().top;
             let logoutH = document.querySelector('.menubar_list .logout').offsetHeight; 
-            console.log(logoutOffset);
+            
             if(logoutOffset <= logoutAreaOffset){
                 $('.menubar_list .logout').css({'bottom': `${winH-logoutAreaOffset-logoutH}px`});
             }else if(logoutOffset > logoutAreaOffset){
