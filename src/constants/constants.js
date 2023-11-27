@@ -24,7 +24,7 @@ export const MEMBER_REGEX = {
 // 회원가입 submit 시 유효성 통과 실패한 경우 띄워주는 alert 메시지
 export const INVALID_NOTI_ALERT = {
     user_id: '아이디를 형식에 맞게 입력해주세요.',
-    user_id_duplicate: '아이디 중복체크를 진행해주세요.',
+    user_id_unique: '아이디 중복체크를 진행해주세요.',
     user_email: '이메일을 형식에 맞게 입력해주세요.',
     user_name: '이름을 형식에 맞게 입력해주세요.',
     user_pw: '비밀번호를 형식에 맞게 입력해주세요.',

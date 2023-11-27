@@ -20,27 +20,28 @@ import { FindPw } from './pages/FindPw';
 import { NotFound } from './pages/NotFound';
 import { MyPage } from './pages/MyPage';
 import { AdminPage } from './pages/AdminPage';
+import { CookiesProvider } from 'react-cookie';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App></App>,
-    errorElement: <NotFound/>,
-    children : [
-      {path : '/',  element : <Home/>, index : true},
-      {path : '/findstay', element : <FindStay/>},
-      {path : '/findstay/acc/:accid', element : <AccDetail/>},
-      {path : '/findstay/acc/gallery/:accid', element : <AccGallery/>},  
-      {path : '/findstay/room/:roomid', element : <RoomDetail/>},
-      {path : '/newstay', element : <NewStay/>},
-      {path : '/notice', element : <Notice/>},
-      {path : '/reservation/:roomid', element : <Reservation/>},
-      {path : '/join', element : <Join/>},
-      {path : '/login', element : <Login/>},
-      {path : '/find/id', element : <FindId/>},
-      {path : '/find/pw', element : <FindPw/>},
-      {path : '/mypage', element : <MyPage/>},
-      {path : '/adminpage', element : <AdminPage/>}
+    errorElement: <NotFound />,
+    children: [
+      { path: '/', element: <Home />, index: true },
+      { path: '/findstay', element: <FindStay /> },
+      { path: '/findstay/acc/:accid', element: <AccDetail /> },
+      { path: '/findstay/acc/gallery/:accid', element: <AccGallery /> },
+      { path: '/findstay/room/:roomid', element: <RoomDetail /> },
+      { path: '/newstay', element: <NewStay /> },
+      { path: '/notice', element: <Notice /> },
+      { path: '/reservation/:roomid', element: <Reservation /> },
+      { path: '/join', element: <Join /> },
+      { path: '/login', element: <Login /> },
+      { path: '/find/id', element: <FindId /> },
+      { path: '/find/pw', element: <FindPw /> },
+      { path: '/mypage', element: <MyPage /> },
+      { path: '/adminpage', element: <AdminPage /> }
     ]
   },
 ]);
@@ -49,7 +50,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CookiesProvider>
+      <RouterProvider router={router} />
+    </CookiesProvider>
   </React.StrictMode>
 );
 

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from './../components/common/PageTitle';
 import { useEffect, useRef, useState } from 'react';
 import JoinTerm from '../components/join/JoinTerm';
@@ -16,33 +16,34 @@ export function Join() {
         user_name: false, user_pw: false, user_pw_repeat: false, phone: false,
         terms_required: false
     }) // submit 시, 회원가입이 가능한지 체크하는 항목들을 관리하는 state
- 
+
     const refElement = useRef(null);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
         if (e.target.name === 'user_id') {
-            setValid({...valid, user_id_unique:false})
+            setValid({ ...valid, user_id_unique: false })
         }
     } // input change 이벤트
 
     const userIdDuplicateCheck = () => {
         if (!valid.user_id) return alert(INVALID_NOTI_ALERT.user_id) // 아이디 형식 안맞으면 중지
-        
+
         axios.get('http://localhost:8000/member/duplication/' + form.user_id)
-        .then(res => {
-            let {isUnique} = res.data
-            if (isUnique) {
-                setValid({...valid, user_id_unique : true})
-            } else {
-                setValid({...valid, user_id_unique : false})
-                alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.')
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            alert(UNKNOWN_ERROR_ALERT)
-        })
+            .then(res => {
+                let { isUnique } = res.data
+                if (isUnique) {
+                    setValid({ ...valid, user_id_unique: true })
+                } else {
+                    setValid({ ...valid, user_id_unique: false })
+                    alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                alert(UNKNOWN_ERROR_ALERT)
+            })
     } // 아이디 중복체크
 
     useEffect(() => {
@@ -59,9 +60,9 @@ export function Join() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+
         // valid 객체 안의 항목들이 모두 true인지 체크하여, 회원 가입이 가능한지 여부를 반환
-        let isJoinPossible = Object.values(valid).every(checkType=>checkType===true)
+        let isJoinPossible = Object.values(valid).every(checkType => checkType === true)
 
         // 회원가입 불가능한 경우 (valid 안의 항목 중 하나라도 false인 경우)
         if (!isJoinPossible) {
@@ -73,18 +74,34 @@ export function Join() {
                     break;
                 }
             }
-            try {refElement.current.focus()} // 참조 엘리먼트가 input인 경우
-            catch {refElement.current.scrollIntoView({ behavior: 'smooth' })} // 참조 엘리먼트가 input이 아닌 경우
+            try { refElement.current.focus() } // 참조 엘리먼트가 input인 경우
+            catch { refElement.current.scrollIntoView({ behavior: 'smooth' }) } // 참조 엘리먼트가 input이 아닌 경우
             return alert(invalidNotiMsg)
         }
-        
-       // 회원가입 가능한 경우 (valid 안의 항목들이 모두 true)
-       let {user_id, user_email, user_name, user_pw, phone} = form
-    //    axios({
-    //     url : 'http://localhost:8000/',
-    //     method : 'post',
-    //     data : {user_id, user_email, user_name, user_pw, phone}
-    //    })
+
+        // 회원가입 가능한 경우 (valid 안의 항목들이 모두 true)
+        let { user_id, user_email, user_name, user_pw, phone } = form
+        axios({
+            url: 'http://localhost:8000/member/join',
+            method: 'post',
+            data: { user_id, user_email, user_name, user_pw, phone }
+        })
+            .then(res => {
+                alert('회원가입이 완료되었습니다.')
+                setForm({
+                    user_id: '', user_email: '',
+                    user_name: '', user_pw: '', user_pw_repeat: '', phone: ''
+                })
+                setValid({
+                    user_id: false, user_id_unique: false, user_email: false,
+                    user_name: false, user_pw: false, user_pw_repeat: false, phone: false,
+                    terms_required: false
+                })
+                navigate('/login')
+            })
+            .catch(() => {
+                alert(UNKNOWN_ERROR_ALERT)
+            })
     }
 
     return (
