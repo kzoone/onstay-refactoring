@@ -31,8 +31,8 @@ export default function TopButton() {
     };
   }, []);
 
-  return showButton && (
-    <div className='top_btn'>
+  return  (
+    <div className={`top_btn ${showButton && 'active'}`}>
       <button type='button' onClick={handleScrollToTop}><SlArrowUp /></button>
     </div>
   );
