@@ -6,7 +6,8 @@ import { SlArrowRight } from 'react-icons/sl';
 import NewStayContent from './NewStayContent';
 
 export default function NewStaySection() {
-  const [newStayList, setNewStayList] = useState([])
+  const [newStayList, setNewStayList] = useState([]);
+  const [newStayAllList, setnewStayAllList] = useState([]);
 
   /**
    * 무작위 배열
@@ -28,6 +29,7 @@ export default function NewStaySection() {
       .then(result => {
         const newArr = shuffle(result.data, 6);
         setNewStayList(newArr);
+        setnewStayAllList(result.data);
       });
   }, []);
 
@@ -35,11 +37,11 @@ export default function NewStaySection() {
     <div className='newstaysection'>
       <div>
         <p>NEW STAY</p>
-        <Link to='/newstay'>전체보기 <SlArrowRight /></Link>
+        <Link to='/newstay' state={{ newStayAllList: newStayAllList }}>전체보기 <SlArrowRight /></Link>
       </div>
       <ul>
         {newStayList.map(newStay =>
-          <li key={newStay.acc_img}>
+          <li key={'newStaySection' + `${newStay.acc_id}`}>
             <Link to={`/findstay/acc/${newStay.acc_id}`}>
               <NewStayAvata acc_img={newStay.acc_img} />
               <NewStayContent acc_name={newStay.acc_name} area_code={newStay.area_code}
