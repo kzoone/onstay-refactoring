@@ -79,9 +79,10 @@ main.findstay{
 
     div.acc_list{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(400px, auto));
+        grid-column-gap: 100px;
         div.acc{
-            border: 3px solid orange;
+            padding-top: 70px;
             div.acc_title{
                 font-size: 32px;
             }
@@ -96,10 +97,24 @@ main.findstay{
                     }
                 }
                 div.acc_imgs{
-                    width: 350px;
-                    min-width: 350px;;
-                    img{
-                        width: 100%;
+                    width: 70%;
+                    div.swiper{
+                        div.swiper-wrapper{
+                            .swiper-slide{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                img{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    .swiper-button-next::after,
+                    .swiper-button-prev::after { 
+                        color: #FFF;
+                        font-size: 20px;
+                        font-weight: bold;
                     }
                 }
             }   
