@@ -12,7 +12,7 @@ main.roomdetail_section {
     @include flexbox($jc: space-between, $ai: normal);
     padding: 1.5rem 0.5rem;
     margin-bottom: 4.2rem;
-    
+
     div.room_info_container {
       @include flexbox($fd: column, $jc: space-between, $ai: flex-start);
       width: 40%;
@@ -88,30 +88,70 @@ main.roomdetail_section {
     }
       
       div.checkdate_container {
-        @include flexbox($jc: space-between, $ai:flex-start);
+        @include flexbox($jc: space-between);
         border-bottom: 1px solid black;
         font-size: 0.8rem;
         div.input_wrap {
-          width: 60%;
+          display: flex;
           padding-bottom: 5px;
-          input {
-            position: relative;
-            width: 47.5%;
-            height: 25px;
-            padding: 3px 10px;
-            border: 1px solid black;
-            border-radius: 3px;
-            background: no-repeat right 5px center;
-            background-size: 15px 15px;
-            line-height: 19px;
+          div.react-datepicker-wrapper {
+            div.react-datepicker__input-container {
+              input {
+                width: 90%;
+                height: 25px;
+                padding: 3px 10px;
+                border: 1px solid black;
+                border-radius: 3px;
+                background-size: 15px 15px;
+                line-height: 19px;
+                margin-right: 5px;
+              }
+            }
           }
-          input.checkin {
-            margin-right: 5px;
+
+          div.react-datepicker {
+            button {
+              margin: 10px;
+            }
+            div.react-datepicker__month-container {
+
+              div.react-datepicker__header {
+                background-color: #fff;
+                div.react-datepicker__current-month {
+                  margin: 10px;
+                  color: #867357;
+                }
+                div.react-datepicker__day-names {
+                  div.react-datepicker__day-name {
+                    color: #a28f72;
+                  }
+                }
+              }
+              div.react-datepicker__month {
+                div.react-datepicker__week {
+                  div.react-datepicker__day--selected {
+                    color: #a28f72;
+                    background-color: #fff;
+                    border: 1px solid #867357;
+                  }
+                  div.react-datepicker__day--in-selecting-range {
+                    background-color: #f3ece1;
+                    border: 1px solid #867357;
+                    color: #a28f72;
+                    
+                  }
+                  div.react-datepicker__day--in-range {
+                    color: #a28f72;
+                  }
+                }
+              }
+            }
           }
         }
         button.reservation_btn {
+          margin-bottom: 5px;
           padding: 4px;
-          width: 20%;
+          width: 30%;
           border-radius: 3px;
           background-color: #a28f72;
           border: 1px solid #a28f72;
@@ -125,24 +165,8 @@ main.roomdetail_section {
           }
         }
       }
-      
-        input[type='date']::-webkit-calendar-picker-indicator {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background: transparent;
-          color: transparent;
-        }
-
-        input[type='date']::before {
-          content: attr(placeholder);
-          width: 100%;
-          height: 100%;
-        }
     }
-
+    /* features container */
     div.common_container {
       @include flexbox($jc: space-between);
       flex-wrap: nowrap; 
@@ -190,6 +214,61 @@ main.roomdetail_section {
       }
     }
 
+    div.modal_container {
+      @include pos_center(fixed);
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      div.modal_content {
+        @include pos_center(fixed);
+        @include flexbox($fd: column);
+        width: 500px;
+        height: 300px;
+        background-color: white;
+        border-radius: 5px;
+        text-align: center;
+        img {
+          width: 30%;
+          margin-bottom: 5%;
+        }
+        div.text_wrap {
+            width: 100%;
+            margin-bottom: 5%;
+            padding: 1.5rem;
+            background-color: #a28f72;
+            color: white;
+            p:first-child {
+              margin-bottom: 10px;
+            }
+        }
+        div.btn_wrap {
+          width: 100%;
+          button {
+            width: 35%;
+            height: 35px;
+            padding: 4px;
+            border: 1px solid #a28f72;
+            border-radius: 3px;
+            background-color: white;
+            color: #a28f72;
+            text-align: center;
+            transition: padding, border-radius, background-color, border, color 0.5s;
+            &:hover {
+              border-width: 10px;
+              border-width: 1.3px;
+              background-color: white;
+              font-weight: 900;
+            }
+            &:first-child {
+              margin-right: 5%;
+            }
+          }
+        }
+      }
+    }
+
+    /*  other room 컨테이너 */
     div.other_room_container {
       @include flexbox(column);
       margin-bottom: 4rem;
@@ -212,6 +291,7 @@ main.roomdetail_section {
 
   @media screen and (max-width : $md-max-breakpoint) {
     & {
+      // padding: 1rem;
         p.acc_name {
           margin-bottom: 20px;
         }
@@ -240,10 +320,15 @@ main.roomdetail_section {
               border-bottom: none;
               div.input_wrap {
                 width: 100%;
+                justify-content: space-between;
                 margin-bottom: 10px;
-                input.checkin {
-                  width: 47.5%;
-                  margin-right: 5%;
+                div.react-datepicker-wrapper {
+                    width: 47.5%;
+                  div.react-datepicker__input-container {
+                    input {
+                      width: 100%;
+                    }
+                  }
                 }
               }
 
