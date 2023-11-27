@@ -4,7 +4,7 @@ div.footer{
     div.footer_top{
         display: flex;
         justify-content: space-between;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
         div.left{
             img.main_logo{
                 width: 120px;
@@ -13,19 +13,32 @@ div.footer{
         div.right{
             div.sns{
                 display: flex;
-                float: right;
+                justify-content: space-around;
                 padding: 10px 0;
                 a{
+                    width: 13%;
+                    margin: 0;
                     color: rgb(102, 102, 102);
-                    margin-left: 7px;
+                    &:first-child svg {
+                        width: 9.5px;
+                    }
+                    &:nth-of-type(4) svg,
+                    &:nth-of-type(5) svg {
+                        width: 20px;
+                    }
+                    svg {
+                        width: 13px;
+                    }
                 }
             }
             div.copyright{
                 color: rgb(179, 179, 179);
                 font-size: 12px;
+                letter-spacing: 0.03rem;
             }
         }
     }
+
     div.footer_bottom{
         border-top: 1px solid rgb(204, 204, 204);
         padding-top: 30px;
@@ -39,19 +52,31 @@ div.footer{
         margin-bottom: 60px;
     }
     @include responsive(sm){
-        div.footer_top{
-            flex-direction: column;
-            div.right{
-                margin-top: 20px;
-                div.sns{
-                    float: none;
+        & {
+            padding: 30px 50px;
+            div.footer_top{
+                align-items: center;
+                margin-bottom: 15px;
+                div.left {
+                    margin-top: 10px;
+                    img.main_logo {
+                        width: 100px;
+                        display: none;
+                    }
+                }
+                div.right{
+                    margin-top: 10px;
+                    div.copyright {
+                        letter-spacing: 0.05rem;
+                    }
                 }
             }
-        }
-        div.footer_bottom{
-            p{
-                line-height: 15px;
-                margin-bottom: 10px;
+            div.footer_bottom{
+                text-align: center;
+                p{
+                    line-height: 15px;
+                    margin-bottom: 10px;
+                }
             }
         }
     }
