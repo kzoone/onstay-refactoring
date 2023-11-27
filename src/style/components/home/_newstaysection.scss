@@ -2,7 +2,7 @@
   max-width: 1300px;
   margin: 8vh auto;
   padding: 2rem;
-  @include responsive("sm") {
+  @include responsive('sm') {
     padding: 0;
   }
   & > div {
@@ -28,13 +28,13 @@
     justify-content: space-between;
     li {
       width: 32%;
-      @include responsive("lg") {
+      @include responsive('lg') {
         width: 48%;
       }
-      @include responsive("md") {
+      @include responsive('md') {
         width: 100%;
       }
-      @include responsive("sm") {
+      @include responsive('sm') {
         width: 100%;
       }
       a {

@@ -35,7 +35,7 @@
 }
 
 // button style, hover
-@mixin btn($fs: 16px) {
+@mixin btn($border, $fs: 16px) {
   width: 100%;
   height: 36px;
   border: 1px solid $border;
