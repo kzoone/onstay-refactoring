@@ -1,3 +1,5 @@
+import tokenCheck from './tokenCheck'
+
 export function getUserInfo() {
   return JSON.parse(localStorage.getItem('user_info'))
 }

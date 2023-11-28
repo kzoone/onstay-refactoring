@@ -16,12 +16,14 @@ axiosAuth.interceptors.request.use(
       method: 'get',
       withCredentials: true,
     })
-      .then(() => {
+      .then(res => {
+        localStorage.setItem('user_info', JSON.stringify(res.data.userInfo))
         return config;
       })
       .catch((err) => {
         source.cancel('토큰 만료로 인한 요청 취소');
         alert('토큰이 만료되어 로그인 페이지로 이동합니다.');
+        localStorage.removeItem('user_info') // 로컬스토리지에서 유저 정보 삭제
         window.location.href = '/login';
         return Promise.reject(err);
       });

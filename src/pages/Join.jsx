@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import JoinTerm from '../components/join/JoinTerm';
 import { MEMBER_REGEX, INVALID_NOTI_ALERT, INVALID_NOTI_TEXT, UNKNOWN_ERROR_ALERT } from '../constants/constants';
 import axios from 'axios';
+import { getCookie } from '../util/cookie';
 
 
 export function Join() {
