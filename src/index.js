@@ -22,6 +22,7 @@ import { MyPage } from './pages/MyPage';
 import { AdminPage } from './pages/AdminPage';
 import { CookiesProvider } from 'react-cookie';
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
     ]
   },
 ]);
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

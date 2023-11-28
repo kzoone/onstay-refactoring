@@ -5,6 +5,7 @@ import axios from 'axios';
 import { removeCookie, setCookie } from '../util/cookie';
 import { jwtDecode } from 'jwt-decode';
 import { getUserInfo } from '../util/user';
+import axiosAuth from '../services/axiosAuth';
 
 export function Login() {
     const [form, setForm] = useState({ user_id: '', user_pw: '' })
@@ -33,7 +34,7 @@ export function Login() {
             withCredentials: true
         })
             .then(res => {
-                // 서버단에서 액세스 토큰, 리프레쉬 토큰을 각각 쿠키에 직접 세팅해줌 (httpOnly 옵션)
+                // 서버단에서 액세스 토큰, 리프레쉬 토큰을 각각 쿠키에 직접 세팅해줌 (refresh만 httponly)
                 // 또한 간단한 유저 정보(아이디, 이름)은 json 객체로 받아 로컬 스토리지에 저장해둠
                 localStorage.setItem('user_info', JSON.stringify(res.data))
                 alert('로그인 성공하였습니다.')
@@ -51,7 +52,7 @@ export function Login() {
     return (
         <main className='member login'>
             <PageTitle title={'LOGIN'} subtitle={'로그인'} />
-            {userInfo ? alreadyLogin() :
+            {!userInfo ? alreadyLogin() :
              <form onSubmit={handleSubmit} className="login_form member_form" action="">
                 <p>
                     <input type="text" name="user_id" id="user_id" onChange={handleChange} value={form.user_id} placeholder='아이디' aria-label='아이디' />
@@ -61,7 +62,6 @@ export function Login() {
                 </p>
                 <button className='login_btn black_box'>로그인</button>
                 <Link to='/join' className='join_link white_box'>회원가입</Link>
-                <button className='black_box'>토큰체크(임시)</button>
                 <div className='find_links_box'>
                     <Link to='/findId'>아이디 찾기</Link>
                     <Link to='/findPw'>비밀번호 찾기</Link>
