@@ -31,7 +31,133 @@ main.findstay{
                         width: 70px;
                         padding: 5px;
                     }
+                    div.location_modal, 
+                    div.personnel_modal{
+                        position: absolute;
+                        background: #FFF;
+                        width: 300px;
+                        height: 200px;
+                        display: block;
+                        text-align: end;
+                        border-radius: 0.3rem;
+                        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+                        &.location_modal{
+                            top: 250px;
+                            left: 245px;
+                        }
+                        &.personnel_modal{
+                            top: 300px;
+                            left: 40px;
+                        }
+                        button.close{
+                            background: none;
+                            width: 30px;
+                        }
+                        div.quantity_controls{
+                            button{
+                                width: 30px;
+                            }
+                            span{
+                                margin: 0 10px;
+                            }
+                        }
+                    }
+
+                    &.tilde{
+                        margin-right: 10px;
+                    }
+
+                    /* 체크인, 체크아웃 */
+                    &.checkin, &.checkout{
+                        margin-right: 10px;
+                        .react-datepicker-wrapper{
+                            .react-datepicker__input-container{
+                                justify-content: start;
+                                button.react-datepicker__close-icon{
+                                    background: none;
+                                    display: flex;
+                                    justify-content: flex-end;
+                                    align-items: center;
+                                    width: 30px;
+                                    &::after{
+                                        background: none;
+                                        color: #000;
+                                        font-size: 15px;
+                                    }
+                                }
+                            }
+                        }
+                        input{
+                            padding-left: 25px;
+                        }
+                        div{
+                            display: flex;
+                            justify-content: center;
+                            padding: 0;
+                            margin: 0;
+                            .react-datepicker{
+                                box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+                                padding: 15px;
+                                margin-top: 10px;
+                                .react-datepicker__triangle{
+                                    margin: -7px;
+                                    &::before{
+                                        border-bottom: none;
+                                    }
+                                    &::after{
+                                        border-bottom-color: #FFF;
+                                    }
+                                }
+                                button{
+                                    background: none;
+                                    width: 20px;
+                                    top: 12px;
+                                }
+                                .react-datepicker__month-container{
+                                    display: flex;
+                                    flex-direction: column;
+                                    .react-datepicker__header{
+                                        background: none;
+                                        display: flex;
+                                        flex-direction: column;
+                                        .react-datepicker__current-month{
+                                            padding: 10px;
+                                        }
+                                        .react-datepicker__day-names{
+                                            .react-datepicker__day-name{
+                                                font-weight: bold;
+                                                padding: 5px 20px;
+                                            }
+                                        }
+                                    }
+                                    .react-datepicker__month{
+                                        display: flex;
+                                        flex-direction: column;
+                                        .react-datepicker__week{
+                                            .react-datepicker__day{
+                                                padding: 5px 20px;
+                                            }
+                                            .react-datepicker__day--selected{
+                                                background: #a28f72;
+                                                border-radius: 50%;
+                                            }
+                                            .react-datepicker__day--today{
+                                                font-weight: normal;
+                                            }
+                                            .react-datepicker__day--keyboard-selected{
+                                                background: none;
+                                            }
+                                            .react-datepicker__day--outside-month{
+                                                color: #CCC;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+                
             }
         } //filter_section
         div.btn_section{
