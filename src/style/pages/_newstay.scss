@@ -131,4 +131,12 @@ div.new_stay_page {
       }
     }
   }
+  & > .new_acc_prepare {
+    max-width: 1300px;
+    margin: 15vh auto 0 auto;
+    padding: 2rem;
+    & > p {
+      text-align: center;
+    }
+  }
 }
