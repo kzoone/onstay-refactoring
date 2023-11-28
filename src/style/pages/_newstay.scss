@@ -41,6 +41,7 @@ div.new_stay_page {
     flex-wrap: wrap;
     justify-content: space-between;
     li {
+      position: relative;
       width: 49%;
       @include responsive("lg") {
         width: 49%;
@@ -51,28 +52,27 @@ div.new_stay_page {
       @include responsive("sm") {
         width: 100%;
       }
-      a {
+      figure {
         position: relative;
-        figure {
-          position: relative;
-          margin: 5vh 0;
-          height: 96%;
-          filter: brightness(80%);
-          transition: filter 1s;
-          &::after {
-            content: "";
-            display: block;
-            padding-bottom: 90%;
-          }
-          &:hover {
-            filter: brightness(100%);
-          }
-          img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          }
+        margin: 5vh 0;
+        height: 96%;
+        filter: brightness(80%);
+        transition: filter 1s;
+        &::after {
+          content: "";
+          display: block;
+          padding-bottom: 90%;
         }
+        &:hover {
+          filter: brightness(100%);
+        }
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      a {
         .new_acc_content {
           position: absolute;
           top: 26%;
@@ -81,10 +81,51 @@ div.new_stay_page {
           height: 55%;
           background: white;
           @include flexbox($fd: column);
-          p:nth-child(1) {
+          & > p {
+            @include responsive('lg') {
+              font-size: .8rem;
+            }
+            @include responsive('md') {
+              font-size: .75rem;
+            }
+            @include responsive('sm') {
+              font-size: .65rem;
+            }
+          }
+          & > p:nth-child(1) {
+            overflow: hidden;
+            width: 70%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
             font-size: 1.1rem;
             letter-spacing: 5px;
             font-weight: 600;
+            @include responsive('lg') {
+              font-size: .9rem;
+            }
+            @include responsive('lg') {
+              font-size: .85rem;
+            }
+            @include responsive('sm') {
+              font-size: .75rem;
+            }
+          }
+          & > :nth-child(2) {
+            margin-top: 3vh;
+          }
+          & > :nth-child(n+2):nth-child(-n+4) {
+            line-height: 150%;
+          }
+          & > :nth-child(n+2):nth-child(-n+5) {
+            color: gray;
+          }
+          & > p:last-child {
+            margin-top: 4.5vh;
+            padding-top: 3vh;
+            width: 70%;
+            border-top: .5px solid rgb(187, 187, 187);
+            text-align: center;
           }
         }
       }

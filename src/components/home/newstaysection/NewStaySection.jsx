@@ -25,7 +25,7 @@ export default function NewStaySection() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8000/newstay/')
+    axios.get('http://localhost:8000/newstay/home')
       .then(result => {
         const newArr = shuffle(result.data, 6);
         setNewStayList(newArr);

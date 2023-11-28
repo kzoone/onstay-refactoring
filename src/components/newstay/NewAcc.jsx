@@ -9,9 +9,9 @@ export default function NewAcc(props) {
     <ul className='new_acc_wrap'>
       {newStayAllList.map(newStay =>
         <li key={'newAcc' + `${newStay.acc_id}`}>
+          <NewStayAvata acc_img={newStay.acc_img} />
           <Link to={`/findstay/acc/${newStay.acc_id}`}>
-            <NewStayAvata acc_img={newStay.acc_img} />
-            <NewAccContent acc_name={newStay.acc_name} area_code={newStay.area_code} />
+            <NewAccContent acc_id={newStay.acc_id} acc_name={newStay.acc_name} area_code={newStay.area_code} />
           </Link>
         </li>)}
     </ul>
