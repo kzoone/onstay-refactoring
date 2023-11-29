@@ -104,7 +104,7 @@ div.new_stay_page {
             @include responsive('lg') {
               font-size: .9rem;
             }
-            @include responsive('lg') {
+            @include responsive('md') {
               font-size: .85rem;
             }
             @include responsive('sm') {

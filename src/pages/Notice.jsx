@@ -1,5 +1,7 @@
+import PageTitle from '../components/common/PageTitle';
+
 export function Notice() {
-    return(
-        <h1>Notice</h1>
-    );
+  return(
+    <PageTitle title='NOTICE' />
+  );
 }
