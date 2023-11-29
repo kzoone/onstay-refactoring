@@ -1,4 +1,6 @@
 main.roomdetail_section {
+  max-width: 1300px;
+  margin: 0 auto;
   padding: 0 2rem;
   @include pageTitle($mb: 4rem);
   p.acc_name{

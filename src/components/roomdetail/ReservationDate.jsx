@@ -15,7 +15,7 @@ export default function ReservationDate({param, price}) {
   const [ isModal, setIsModal ] = useState(false);
   const [ textBtn, setTextBtn ] = useState('예 약 하 기');
   const navigate = useNavigate();
-  let isLogin = true; // 로그인 구현 중으로 테스트 용도
+  const userInfo = {'id' : 'user'}; // 로그인 테스트 용도
 
 
   // 예약 정보 가져오기
@@ -108,8 +108,8 @@ export default function ReservationDate({param, price}) {
   // 예약하기 버튼 클릭
   const handleClick = () => {
     if ( !btnDisabled ) {
-      if( isLogin ) { // 로그인 함수를 실행한 id 결과 값이 있으면 : 로그인 회원
-        if( startDate && endDate ) { // 로그인 회원 체크아웃, 체크인 날짜가 모두 있으면 
+      if ( userInfo ) { // 로그인 함수를 실행한 id 결과 값이 있으면 : 로그인 회원
+        if ( startDate && endDate ) { // 로그인 회원 체크아웃, 체크인 날짜가 모두 있으면 
             const nightCnt = fnNightCnt(startDate, endDate);
             navigate(`/reservation/${param}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCnt': nightCnt }});
           } else { // 체크인, 체크아웃 날짜가 하나라도 없으면
@@ -132,20 +132,22 @@ export default function ReservationDate({param, price}) {
         onChange={onChange}
         ref={ref}
         placeholder='체크인'
+        readOnly
         style={{ backgroundImage: 'url(/assets/images/calendar.png)'}}
-      />
-    );
-  });
-
-  const CustomCheckoutInput = forwardRef(({ value, onClick, onChange }, ref) => {
-    return (  
-      <input
+        />
+      );
+    });
+      
+    const CustomCheckoutInput = forwardRef(({ value, onClick, onChange }, ref) => {
+      return (  
+        <input
         type='text'
         value={value}
         onClick={onClick}
         onChange={onChange}
         ref={ref}
         placeholder='체크아웃'
+        readOnly
         style={{ backgroundImage: 'url(/assets/images/calendar.png)'}}
       />
     );
