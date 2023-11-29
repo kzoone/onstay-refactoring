@@ -1,0 +1,57 @@
+.notice_page {
+  max-width: 1300px;
+  margin: 10vh auto;
+  div.page_title_container {
+    p.title {
+      margin-left: 0;
+    }
+  }
+  table {
+    table-layout: fixed;
+    margin: 10vh auto 0 auto;
+    width: 90%;
+    text-align: center;
+    @include responsive("sm") {
+      font-size: 0.85rem;
+    }
+    & tr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 2%;
+    }
+    & > thead {
+      padding: 0 30px;
+      border-bottom: 5px double black;
+    }
+    & > tbody {
+      border-bottom: 1px solid rgb(160, 160, 160);
+    }
+    & > thead > tr > th:nth-child(1),
+    & > tbody > tr > th:nth-child(1) {
+      width: 8%;
+    }
+    & > thead > tr > th:nth-child(2),
+    & > tbody > tr > td:nth-child(2) {
+      width: 45%;
+    }
+    & > thead > tr > th:nth-child(3),
+    & > tbody > tr > td:nth-child(3) {
+      width: 25%;
+    }
+    & > thead > tr > th:nth-child(4),
+    & > tbody > tr > td:nth-child(4) {
+      width: 15%;
+    }
+    & > tbody > tr > td:nth-child(2) {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+    th,
+    td {
+      padding: 20px 0;
+    }
+  }
+}

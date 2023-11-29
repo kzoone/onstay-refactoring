@@ -28,7 +28,7 @@ export default function NewStaySection() {
       .then(result => {
         const newArr = shuffle(result.data, 6);
         setNewStayList(newArr);
-      });
+      }).catch(error => console.log(error));
   }, []);
 
   return (
