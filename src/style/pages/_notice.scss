@@ -24,7 +24,7 @@
       padding: 0 30px;
       border-bottom: 5px double black;
     }
-    & > tbody {
+    & > tbody > tr {
       border-bottom: 1px solid rgb(160, 160, 160);
     }
     & > thead > tr > th:nth-child(1),
@@ -49,9 +49,34 @@
       text-overflow: ellipsis;
       text-align: left;
     }
+    & > tbody > tr > td:nth-child(2) > a:hover {
+      border-bottom: 1px solid black;
+      font-weight: 600;
+    }
     th,
     td {
       padding: 20px 0;
+    }
+  }
+  ul.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5vh auto 0 auto;
+    width: 30%;
+    @include responsive("lg") {
+      width: 40%;
+    }
+    @include responsive("md") {
+      width: 50%;
+    }
+    @include responsive("sm") {
+      width: 70%;
+    }
+    li {
+      &.active {
+        font-weight: 600;
+      }
     }
   }
 }
