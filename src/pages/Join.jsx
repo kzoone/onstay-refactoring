@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import JoinTerm from '../components/join/JoinTerm';
 import { MEMBER_REGEX, INVALID_NOTI_ALERT, INVALID_NOTI_TEXT, UNKNOWN_ERROR_ALERT } from '../constants/constants';
 import axios from 'axios';
-import { getCookie } from '../util/cookie';
 
 
 export function Join() {
@@ -20,6 +19,7 @@ export function Join() {
 
     const refElement = useRef(null);
     const navigate = useNavigate();
+
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -42,7 +42,7 @@ export function Join() {
                 }
             })
             .catch(err => {
-                console.log(err);
+                console.log(err); 
                 alert(UNKNOWN_ERROR_ALERT)
             })
     } // 아이디 중복체크
@@ -105,6 +105,8 @@ export function Join() {
             })
     }
 
+
+
     return (
         <main className="member join">
             <PageTitle title={'JOIN'} subtitle={'회원가입'} />
@@ -152,6 +154,7 @@ export function Join() {
 
                 <button className="join_btn black_box">회원가입</button>
                 <Link to='/login' className="login_link white_box">로그인</Link>
+                <button className='black_box' type='button'>테스트</button>
             </form>
         </main>
     );

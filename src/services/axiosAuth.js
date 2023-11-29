@@ -7,6 +7,7 @@ const source = axios.CancelToken.source();
  */
 const axiosAuth = axios.create({
   cancelToken: source.token,
+  withCredentials : true
 });
 
 axiosAuth.interceptors.request.use(
@@ -14,7 +15,7 @@ axiosAuth.interceptors.request.use(
     return axios({
       url: 'http://localhost:8000/member/tokenCheck',
       method: 'get',
-      withCredentials: true,
+      withCredentials : true
     })
       .then(res => {
         localStorage.setItem('user_info', JSON.stringify(res.data.userInfo))

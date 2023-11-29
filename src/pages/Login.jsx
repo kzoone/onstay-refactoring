@@ -2,15 +2,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../components/common/PageTitle';
 import { useState } from 'react';
 import axios from 'axios';
-import { removeCookie, setCookie } from '../util/cookie';
-import { jwtDecode } from 'jwt-decode';
-import { getUserInfo } from '../util/user';
-import axiosAuth from '../services/axiosAuth';
+import useUserInfo from '../util/useUserInfo';
 
 export function Login() {
     const [form, setForm] = useState({ user_id: '', user_pw: '' })
     const navigate = useNavigate('/')
-    const userInfo = getUserInfo();
+    const userInfo = useUserInfo()
 
     const alreadyLogin = () => {
         alert('이미 로그인 상태입니다.')
