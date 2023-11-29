@@ -111,43 +111,46 @@ main.roomdetail_section {
             }
           }
 
-          div.react-datepicker {
-            button {
-              margin: 10px;
-            }
-            div.react-datepicker__month-container {
-              div.react-datepicker__header {
-                background-color: #fff;
-                div.react-datepicker__current-month {
-                  margin: 10px;
-                  color: #867357;
-                }
-                div.react-datepicker__day-names {
-                  div.react-datepicker__day-name {
-                    color: #a28f72;
-                  }
-                }
+          div.react-datepicker__tab-loop {
+            position: absolute;
+            div.react-datepicker {
+              button {
+                margin: 10px;
               }
-              div.react-datepicker__month {
-                div.react-datepicker__week {
-                  div.react-datepicker__day--selected {
-                    border: 1px solid #867357;
-                    background-color: #fff;
-                    color: #a28f72;
+              div.react-datepicker__month-container {
+                div.react-datepicker__header {
+                  background-color: #fff;
+                  div.react-datepicker__current-month {
+                    margin: 10px;
+                    color: #867357;
                   }
-                  div.react-datepicker__day--in-selecting-range {
-                    border: none;
-                    background-color: #f0f0f0;
-                    color: #a28f72;
+                  div.react-datepicker__day-names {
+                    div.react-datepicker__day-name {
+                      color: #a28f72;
+                    }
                   }
-                  div.react-datepicker__day--in-range {
-                    border: 1px solid #867357;
-                    background-color: #f3ece1;
-                    color: #a28f72;
-                  }
-                  div.react-datepicker__day--keyboard-selected {
-                    background-color: #867357;
-                    color: white;
+                }
+                div.react-datepicker__month {
+                  div.react-datepicker__week {
+                    div.react-datepicker__day--selected {
+                      border: 1px solid #867357;
+                      background-color: #fff;
+                      color: #a28f72;
+                    }
+                    div.react-datepicker__day--in-selecting-range {
+                      border: none;
+                      background-color: #f0f0f0;
+                      color: #a28f72;
+                    }
+                    div.react-datepicker__day--in-range {
+                      border: 1px solid #867357;
+                      background-color: #f3ece1;
+                      color: #a28f72;
+                    }
+                    div.react-datepicker__day--keyboard-selected {
+                      background-color: #867357;
+                      color: white;
+                    }
                   }
                 }
               }

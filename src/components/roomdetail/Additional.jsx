@@ -11,13 +11,13 @@ export default function Additional({str, type, title}) {
           { type === 'features' ? 
             ( str.map((code, idx) => (
               code ? (
-                <div key={idx}>
+                <div key={code}>
                   <img src={`/assets/images/features/${parseInt(code)}.png`} alt="" />
                   <p className="features">{features[parseInt(code - 1)]}</p>
                 </div>
                 ) : null
               ))) 
-            : ( str.map(p => ( <p className="amenities">{p}</p> )))
+            : ( str.map(p => ( <p className="amenities" key={p}>{p}</p> )))
           } 
         </div>
       </div>
