@@ -12,6 +12,7 @@ import { RoomDetail } from './pages/RoomDetail';
 import { AccGallery } from './pages/AccGallery';
 import { NewStay } from './pages/NewStay';
 import { Notice } from './pages/Notice';
+import { NoticeDetail } from './pages/NoticeDetail';
 import { Reservation } from './pages/Reservation';
 import { Join } from './pages/Join';
 import { Login } from './pages/Login';
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       {path : '/findstay/room/:roomid', element : <RoomDetail/>},
       {path : '/newstay', element : <NewStay/>},
       {path : '/notice', element : <Notice/>},
+      {path : '/notice/:notice_id/:page', element : <NoticeDetail/>},
       {path : '/reservation/:roomid', element : <Reservation/>},
       {path : '/join', element : <Join/>},
       {path : '/login', element : <Login/>},

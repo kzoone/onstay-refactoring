@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import PagiNation from 'react-js-pagination';
@@ -23,9 +23,14 @@ export default function NoticeContent() {
     setPage(page);
   }
 
+  const handleViewCount = (noticeId) => {
+    axios.get(`http://localhost:8000/notice/increase/${noticeId}`)
+      .catch(error => console.error(error));
+  };
+
   return (
     <>
-      <table>
+      <table className='notice_content'>
         <thead>
           <tr>
             <th>NO</th>
@@ -39,7 +44,10 @@ export default function NoticeContent() {
             <tr key={notice.notice_id}>
               <th>{notice.no}</th>
               <td>
-                <Link to={`/notice/${notice.notice_id}`}>{notice.notice_title}</Link>
+                <Link to={`/notice/${notice.notice_id}/${page}`}
+                  onClick={() => handleViewCount(notice.notice_id)}>
+                  {notice.notice_title}
+                </Link>
               </td>
               <td>{notice.notice_date}</td>
               <td>{notice.notice_views}</td>
