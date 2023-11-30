@@ -34,7 +34,7 @@ export default function ReservationDate({param, price}) {
   }, []);
 
 
-  // 예약된 날짜 따른 비활성화 날짜 범위 계산
+  // 예약된 날짜에 따른 비활성화 날짜 범위 계산
   const filterReverseDate = (date) => {
     const isReserved = reservationDate.some(reservation => {
       const checkinDate = reservation.checkin;
@@ -42,7 +42,7 @@ export default function ReservationDate({param, price}) {
       return date >= checkinDate && date < checkoutDate;
     });
     return !isReserved;
-  } ;
+  };
 
 
   // 선택한 날짜 사이의 몇 박 계산
@@ -58,18 +58,19 @@ export default function ReservationDate({param, price}) {
 
 
   // 선택한 기간에 따른 가격 구하기
-  const PriceCalc = (checkin, checkout) => {
-    const isCheck = validateDates(checkin, checkout)
-    if (isCheck) {
+  const priceCalc = (checkin, checkout) => {
+    const isPossible = validateDates(checkin, checkout);
+    if (isPossible) {
       const nightCnt = fnNightCnt(checkin, checkout);
       const roomPrice = nightCnt * price;
       const priceView = `₩${roomPrice.toLocaleString()}원 결제하기`;
+      console.log('sd');
       setTextBtn(priceView);
     };
   };
 
   useEffect(() => {
-    PriceCalc(startDate, endDate);
+    priceCalc(startDate, endDate);
   }, [startDate, endDate, price]);
   
 
@@ -84,39 +85,55 @@ export default function ReservationDate({param, price}) {
     validateDates(startDate, date);
   };
 
+  // 예약된 날짜에 선택한 날짜 포함 여부 체크
+  const includeReservation = (checkin, checkout) => {
+    const isReserved = reservationDate.some(reservation => {
+      const checkinDate = reservation.checkin; 
+      const checkoutDate = reservation.checkout;
+      return checkin < checkoutDate && checkout > checkinDate
+    });
+    return !isReserved;
+  }
+  
 
   // input 유효성 검사
   const validateDates = (checkin, checkout) => {
-    if (checkin && checkout && checkin.getTime() === checkout.getTime()) {
+    if (checkin && checkout) {
+      // 체크인 체크아웃 날짜가 모두 있을 때 예약 되어있는 날짜가 포함되는지 체크하는 함수 실행
+      const checkReserved = includeReservation(checkin, checkout);
+      if (checkin.getTime() === checkout.getTime()) {
         setBtnDisabled(true);
         setTextBtn('같은 날짜는 예약 불가능합니다');
         return false;
-      } else if ( checkin && checkout && checkin.getTime() >= checkout.getTime()) {
+      } else if (checkin.getTime() >= checkout.getTime()) {
         setBtnDisabled(true);
         setTextBtn('체크아웃 날짜는 체크인 날짜 이후로 선택해주세요');
         return false;
-      } else if ( !checkin || !checkout ) {
-        setBtnDisabled(false);
-        setTextBtn('예 약 하 기');
-        return false;
+      } else if (!checkReserved) {
+        setBtnDisabled(true);
+        setTextBtn('예약 불가한 날짜가 포함되어 있습니다');
+      } else {
+        return true;
       }
+    } else {
       setBtnDisabled(false);
-      return true;
+      setTextBtn('예 약 하 기');
+      return false;
+    } 
   };
-
 
   // 예약하기 버튼 클릭
   const handleClick = () => {
     if ( !btnDisabled ) {
-      if ( userInfo ) { // 로그인 함수를 실행한 id 결과 값이 있으면 : 로그인 회원
-        if ( startDate && endDate ) { // 로그인 회원 체크아웃, 체크인 날짜가 모두 있으면 
+      if ( userInfo ) { // 추후 로그인 정보 가져와서 변동 진행
+        if ( startDate && endDate ) {
             const nightCnt = fnNightCnt(startDate, endDate);
             navigate(`/reservation/${param}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCnt': nightCnt }});
-          } else { // 체크인, 체크아웃 날짜가 하나라도 없으면
+          } else {
             setBtnDisabled(true);
             navigate(`/reservation/${param}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCnt': '' }});
             }
-        } else { // 로그인 회원이 아니면 : 모달창
+        } else {
           setIsModal(true);
         }
       } 
@@ -179,6 +196,7 @@ export default function ReservationDate({param, price}) {
                 fixedHeight 
                 customInput={<CustomCheckinInput />}
                 filterDate={filterReverseDate}
+                isClearable
                 />
             <DatePicker
                 locale={ko}
@@ -192,6 +210,7 @@ export default function ReservationDate({param, price}) {
                 fixedHeight 
                 customInput={<CustomCheckoutInput />}
                 filterDate={filterReverseDate}
+                isClearable
                 />
         </div>
         <button className='reservation_btn' type='button' onClick={handleClick} disabled={btnDisabled}>{textBtn}</button>

@@ -93,9 +93,11 @@ main.roomdetail_section {
         @include flexbox($jc: space-between);
         border-bottom: 1px solid black;
         font-size: 0.8rem;
+
         div.input_wrap {
           display: flex;
           padding-bottom: 5px;
+
           div.react-datepicker-wrapper {
             div.react-datepicker__input-container {
               input {
@@ -109,6 +111,32 @@ main.roomdetail_section {
                 background: no-repeat right 5px center; 
                 background-size: 15px 15px;
                 line-height: 19px;
+              }
+
+              input[type='date']::-webkit-calendar-picker-indicator {
+                position: absolute; 
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: transparent;
+                color: transparent;
+              }
+          
+              input[type='date']::before {
+                content: attr(placeholder);
+                width: 100%;
+                height: 100%;
+              }
+
+              button.react-datepicker__close-icon {
+                left: 75%;
+                &::after {
+                  border-radius: 0;
+                  background-color: white;
+                  font-size: 13px;
+                  color: black;
+                }
               }
             }
           }
@@ -150,8 +178,8 @@ main.roomdetail_section {
                       color: #a28f72;
                     }
                     div.react-datepicker__day--keyboard-selected {
-                      background-color: #867357;
-                      color: white;
+                      border: 1px solid #867357;
+                      background-color: white;
                     }
                   }
                 }
@@ -178,22 +206,6 @@ main.roomdetail_section {
         }
       }
     }
-
-        input[type='date']::-webkit-calendar-picker-indicator {
-          position: absolute; 
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background: transparent;
-          color: transparent;
-        }
-
-        input[type='date']::before {
-          content: attr(placeholder);
-          width: 100%;
-          height: 100%;
-        }
 
     div.common_container {
       @include flexbox($jc: space-between);
@@ -333,6 +345,9 @@ main.roomdetail_section {
                   input {
                     width: 100%;
                   }
+                  button.react-datepicker__close-icon {
+                    left: auto;
+                  }
                 }
               }
             }
@@ -351,56 +366,56 @@ main.roomdetail_section {
     
   @media screen and (max-width : $md-max-breakpoint) {
     & {
-        p.acc_name {
+      p.acc_name {
+        margin-bottom: 20px;
+      }
+      div.content_container {
+        flex-direction: column;
+        margin-bottom: 2rem;
+        padding: 2rem 0.5rem;
+        
+        div.room_info_container {
+          width: 100%;
           margin-bottom: 20px;
-        }
-        div.content_container {
-          flex-direction: column;
-          margin-bottom: 2rem;
-          padding: 2rem 0.5rem;
-          
-          div.room_info_container {
-            width: 100%;
-            margin-bottom: 20px;
-            div.info_top_wrap {
-              margin-bottom: 50px;
-            }
-            div.info_bottom_wrap {
-              margin-bottom: 15px;
-              p {
-                font-size: 0.9rem;
-              }
+          div.info_top_wrap {
+            margin-bottom: 50px;
+          }
+          div.info_bottom_wrap {
+            margin-bottom: 15px;
+            p {
+              font-size: 0.9rem;
             }
           }
-          div.room_swiper_container {
-            width: 100%;
-            div.checkdate_container {
-              flex-direction: column;
-              border-bottom: none;
-              div.input_wrap {
-                justify-content: space-between;
-                width: 100%;
-                margin-bottom: 10px;
-                div.react-datepicker-wrapper {
-                    width: 47.5%;
-                  div.react-datepicker__input-container {
-                    input {
-                      width: 100%;
-                    }
+        }
+        div.room_swiper_container {
+          width: 100%;
+          div.checkdate_container {
+            flex-direction: column;
+            border-bottom: none;
+            div.input_wrap {
+              justify-content: space-between;
+              width: 100%;
+              margin-bottom: 10px;
+              div.react-datepicker-wrapper {
+                  width: 47.5%;
+                div.react-datepicker__input-container {
+                  input {
+                    width: 100%;
                   }
                 }
               }
+            }
 
-              button.reservation_btn {
-                width: 100%;
-                height: 30px;
-                padding: 5px;
-                line-height: 20px;
-              }
+            button.reservation_btn {
+              width: 100%;
+              height: 30px;
+              padding: 5px;
+              line-height: 20px;
             }
           }
         }
-        div.common_container {
+      }
+      div.common_container {
           flex-direction: column;
           align-items: flex-start;
 
