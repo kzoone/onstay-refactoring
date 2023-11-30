@@ -4,7 +4,7 @@ import { getCookie } from "./cookie"
 
 // 유저 정보를 가져오는 커스텀 훅
 const useUserInfo = () => {
-  const [userInfo, setUserInfo] = useState(null)
+  const [userInfo, setUserInfo] = useState({user_id:null, user_name:null, isAdmin:null});
   useEffect(()=>{
     const storedUserInfo = JSON.parse(localStorage.getItem('user_info'));
     // 로컬스토리지가 유실되거나, 액세스 토큰이 만료된 경우 재발급api 호출
@@ -20,8 +20,7 @@ const useUserInfo = () => {
       })
       .catch(err=> {
         localStorage.removeItem('user_info')
-        setUserInfo(null)
-        // console.error(err)
+        setUserInfo({user_id:null, user_name:null, isAdmin:null})
       })
     } else {
       setUserInfo(storedUserInfo)

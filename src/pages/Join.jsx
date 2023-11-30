@@ -67,15 +67,15 @@ export function Join() {
 
         // 회원가입 불가능한 경우 (valid 안의 항목 중 하나라도 false인 경우)
         if (!isJoinPossible) {
-            let invalidNotiMsg = '폼 작성 내용을 다시 확인해주세요.';
-            for (let checkType of Object.keys(valid)) {
+            let invalidNotiMsg = '폼 작성 내용을 다시 확인해주세요.'; // 혹시 몰라서 설정해놓은 디폴트값
+            for (let checkType of Object.keys(valid)) { // 체크할 항목들을 하나하나 확인함
                 if (!valid[checkType]) {
-                    refElement.current = document.getElementById(checkType)
-                    invalidNotiMsg = INVALID_NOTI_ALERT[checkType];
-                    break;
+                    refElement.current = document.getElementById(checkType) // submit 실패 시 focus 또는 스크롤이동할 엘리먼트
+                    invalidNotiMsg = INVALID_NOTI_ALERT[checkType]; // submit 실패 시 띄워줄 에러 메시지 설정
+                    break; 
                 }
             }
-            try { refElement.current.focus() } // 참조 엘리먼트가 input인 경우
+            try { refElement.current.focus() } // 참조 엘리먼트가 input인 경우 (아닐 경우 .focus가 에러나기 때문에 try-catch)
             catch { refElement.current.scrollIntoView({ behavior: 'smooth' }) } // 참조 엘리먼트가 input이 아닌 경우
             return alert(invalidNotiMsg)
         }

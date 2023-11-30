@@ -48,7 +48,7 @@ export function Login() {
     return (
         <main className='member login'>
             <PageTitle title={'LOGIN'} subtitle={'로그인'} />
-            {userInfo ? alreadyLogin() :
+            {userInfo.user_id ? alreadyLogin() :
                 <form onSubmit={handleSubmit} className="login_form member_form" action="">
                     <p>
                         <input type="text" name="user_id" id="user_id" onChange={handleChange} value={form.user_id} placeholder='아이디' aria-label='아이디' />
