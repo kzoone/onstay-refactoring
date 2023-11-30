@@ -10,7 +10,7 @@ export function FindStay() {
     /**
      * 숙소 리스트 출력
      */
-    const [accList, setAccList] = useState([]);
+    const [accList, setAccList] = useState([]); //페이지가 로드될 때 서버에서 숙소리스트를 가져오고, 상태 변수 accList에 담아서 페이지에 출력한다.
 
     useEffect(() => {
         axios
@@ -19,13 +19,27 @@ export function FindStay() {
             setAccList(res.data);
         })
         .catch((err) => {
-            console.error('axios 에러 발생 => ',err);
+            console.error('axios 에러 발생 => ' + err);
         })
     }, []);
 
     /**
-     * 지역코드를 지역명으로 변환
+     * 입력한 검색어
      */
+    const [searched, setSearched] = useState('');
+    const handleSearch = (inputText) => {
+        setSearched(inputText);
+    }
+
+    /**
+     *  선택 지역
+    */
+   
+   const [location, setLocation] = useState('전체');
+   const handleLocation = (selectedLocation) => {
+       setLocation(selectedLocation);
+    }
+    
     const codeinfo = {
         1: '서울',
         2: '강원',
@@ -44,16 +58,17 @@ export function FindStay() {
         15: '제주',
     };
 
-    const area = (area_code) => {
+    const locationName = (area_code) => {
         return codeinfo[area_code];
     };
-
+ 
+     
     return(
         <main className="findstay">
             <PageTitle title={'FIND STAY'} subtitle={'머무는 것 자체로 여행이 되는 공간'} />
-            <Filter />
+            <Filter onSearch={handleSearch} onLocation={handleLocation} codeinfo={codeinfo} locationName={locationName} />
             <Sort /> 
-            <AccList accs={accList} area={area} />
+            <AccList accs={accList} searched={searched} location={location} codeinfo={codeinfo} locationName={locationName} />
         </main>
     );
 }

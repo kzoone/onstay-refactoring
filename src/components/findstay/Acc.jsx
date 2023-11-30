@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-export default function Acc({acc, area}){
+export default function Acc({acc, codeinfo, locationName}){
      // Swiper 컴포넌트의 ref를 생성
     const swiperRef = useRef(null);
 
@@ -22,12 +22,16 @@ export default function Acc({acc, area}){
         };
     }, []);
 
+    
+    
+    
+
     return(
         <div className="acc">
             <div className="acc_title">{acc.acc_name}</div>
             <div className="acc_content">
                 <div className="acc_info">
-                    <p>{area(acc.area_code)}</p>
+                    <p>{locationName(acc.area_code)}</p>
                     <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
                     <p>￦{acc.room_price} ~</p>
                     <p>예약하기</p>
@@ -40,8 +44,8 @@ export default function Acc({acc, area}){
                     ref={swiperRef}
                     >
                         {acc.acc_img.split(',').filter(img => !img.startsWith('swiperImage')).map((img, index) => (
-                            <SwiperSlide>
-                                <img key={index} src={`assets/images/acc/${img.trim()}`} />
+                            <SwiperSlide key={index}>
+                                <img src={`assets/images/acc/${img.trim()}`} />
                             </SwiperSlide>
                         ))}
                     </Swiper>

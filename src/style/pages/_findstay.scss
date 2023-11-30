@@ -4,7 +4,7 @@ main.findstay{
     margin: 0 auto;
     @include pageTitle();
     font-size: 0.7rem;
-    form.search_container{
+    form.filter_container{
         border-top: 2px solid #000;
         div.filter_section{
             margin-bottom: 30px;
@@ -31,8 +31,7 @@ main.findstay{
                         width: 70px;
                         padding: 5px;
                     }
-                    div.location_modal, 
-                    div.personnel_modal{
+                    div.modal{
                         position: absolute;
                         background: #FFF;
                         width: 300px;
@@ -41,25 +40,29 @@ main.findstay{
                         text-align: end;
                         border-radius: 0.3rem;
                         box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-                        &.location_modal{
-                            top: 250px;
-                            left: 245px;
-                        }
-                        &.personnel_modal{
-                            top: 300px;
-                            left: 40px;
-                        }
-                        button.close{
+                        // &.personnel_modal{
+                        //     top: 300px;
+                        //     left: 40px;
+                        // }
+                        button{
                             background: none;
                             width: 30px;
+                            font-size: 16px;
                         }
-                        div.quantity_controls{
-                            button{
-                                width: 30px;
-                            }
-                            span{
-                                margin: 0 10px;
-                            }
+                        div.location_list{
+                            background: blue;
+                        }
+                        // div.quantity_controls{
+                        //     button{
+                        //         width: 30px;
+                        //     }
+                        //     span{
+                        //         margin: 0 10px;
+                        //     }
+                        // }
+                        &.location_modal{
+                                top: 260px;
+                                left: 245px;
                         }
                     }
 
