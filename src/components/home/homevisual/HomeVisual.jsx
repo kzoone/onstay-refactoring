@@ -1,0 +1,88 @@
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+import '../../../style/components/home/_homeVisual.scss';
+
+
+const HomeVisual = () => {
+  // Define getRandomImages function first
+  const getRandomImages = (count) => {
+    const selectedImages = [];
+    while (selectedImages.length < count) {
+      const randomIndex = Math.floor(Math.random() * imageNames.length);
+      const randomImage = imageNames[randomIndex];
+      if (!selectedImages.includes(randomImage)) {
+        selectedImages.push(randomImage);
+      }
+    }
+    return selectedImages;
+  };
+
+  const imageNames = Array.from({ length: 200 }, (_, index) => `swiperImage${index + 1}.webp`);
+
+  const randomImages = getRandomImages(5);
+  return (
+    <>
+      <section className='visual-section'>
+        <MediaQuery className='lg-size' minWidth={767}>
+          {/* 화면 너비가 767px 이상일 때 보이는 내용 */}
+          <Swiper
+            pagination={{
+              type: 'fraction',
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="visualSwiper"
+          >
+            {randomImages.map((imageName, index) => (
+              <SwiperSlide className='slide' key={index}>
+                <Link className="link"to="/findstay">
+                  <div>
+                    <div className='bg-img-container'><img className='img-size' src={`./assets/images/swiper/${imageName}`} alt={`Slide ${index + 1}`} /></div>
+                    <div className='swiper-text'>
+                      <div><img className='text-img' src="./assets/images/main_logo.png" alt="" /></div>
+                      <div className='content'>마음에 드는 한옥 숙소를 예약해 보세요</div>
+                      <div className='more'>read me</div>
+                    </div>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </MediaQuery>        
+        <MediaQuery className="sm-size" maxWidth={766}>
+          {/* 화면 너비가 766px 이하일 때 보이는 내용 */}
+          {/* 여기에 작은 화면에 보여질 컨텐츠를 추가할 수 있습니다. */}
+          <Swiper
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="visualSwiper"
+          >
+            {randomImages.map((imageName, index) => (
+              <SwiperSlide className='slide' key={index}>
+                <Link className='sm-link' to="/findstay">
+                    <div className='sm-img-container'>
+                      <img className='img-size' src={`./assets/images/swiper/${imageName}`} alt={`Slide ${index + 1}`} />
+                    </div>
+                    <div className='sm-swiper-text'>
+                      <div className='comment'>마음에 드는 한옥 숙소를 예약해 보세요</div>
+                      <div className='more'>read me</div>
+                    </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </MediaQuery>
+      </section> 
+    </>  );
+};
+
+export default HomeVisual;
