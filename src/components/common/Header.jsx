@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
 import { SlMagnifier } from "react-icons/sl";
 import { SlHome } from "react-icons/sl";
@@ -8,9 +8,14 @@ import { SlBell } from "react-icons/sl";
 import { SlMenu } from "react-icons/sl";
 import { TfiClose } from "react-icons/tfi";
 import { LuLogIn } from "react-icons/lu";
+import useUserInfo from "../../util/useUserInfo.js"
 import $ from 'jquery';
+import ConfirmModal from './ConfirmModal.jsx';
+import axios from 'axios';
 
 export default function Header() {
+    const user = useUserInfo();
+    let [showModal, setShowModal] = useState(false);
 
     /* menubar 제어 */
     function menubarOpen(){ //menubar 버튼을 누르면 menubar_list를 OPEN
@@ -27,7 +32,8 @@ export default function Header() {
         
         if (!isMenubarListArea && !isMenubarBtnArea) { //menubar_list 영역 외부를 클릭한 경우에만 menubarClose 함수가 실행
             menubarClose();
-        }
+        } 
+
         
         //menubar_list가 open되었을때 배경 어둡게, 스크롤바 사라짐
         if(document.querySelector('.menubar_list').classList.contains('open')){
@@ -39,10 +45,38 @@ export default function Header() {
         }
     })
 
+    try {
+        document.querySelector('.menu_login').addEventListener('click',() => {
+            menubarClose();
+        })
+        document.querySelector('.menu_join').addEventListener('click',() => {
+            menubarClose();
+        })
+    } catch {
+        
+    }
+
 
     /* LOGOUT 버튼 눌렀을 때 */
+    const handleModal = () => {
+        setShowModal(!showModal)
+    }
+    
     const handleLogout = () => {
-        alert('로그아웃 모달 띄울 예정');
+        axios({
+            url : 'http://localhost:8000/member/logout/',
+            method : 'post',
+            data : { user_id :user.user_id},
+            withCredentials : true
+        })
+        .then(res => {
+            localStorage.removeItem('user_info')
+            alert('로그아웃 되었습니다.')
+            window.location.href = '/'
+        })
+        .catch(err => {
+            throw err
+        })
     }
 
     /* 스크롤 모션 */
@@ -85,6 +119,10 @@ export default function Header() {
 
     return(
         <>
+            {showModal && <ConfirmModal handelModal={handleModal}
+                                        handleConfirm={handleLogout} 
+                                        noti_1={`${user.user_name}님! 아직 둘러볼 한옥 스테이가 많아요!`} 
+                                        noti_2={`정말 로그아웃 하실거에요?`}/>}
         <div className='header'>
             <div className='header_left'>
                 <Link to='/'>
@@ -102,14 +140,20 @@ export default function Header() {
                 </nav>
                 <div className='my'>
                     {/* 일반 회원 로그인 시 */}
-                    {/* <Link className='mypage' to='/mypage'><FaRegUser />&nbsp;MY PAGE</Link>
-                    <button type='button' className='logout' onClick={handleLogout}>LOGOUT</button> */}
+                    {(user.user_id && !user.isAdmin) && <> 
+                    <Link className='mypage' to='/mypage'><FaRegUser />&nbsp;MY PAGE</Link>
+                    <button type='button' className='logout' onClick={handleModal}>LOGOUT</button>
+                    </>}
                     {/* 관리자 로그인 시 */}
-                    {/* <Link className='adminpage' to='/adminpage'><FaRegUser />&nbsp;ADMIN</Link>
-                    <button type='button' className='logout' onClick={handleLogout}>LOGOUT</button> */}
+                    {(user.user_id && user.isAdmin) && <> 
+                    <Link className='adminpage' to='/adminpage'><FaRegUser />&nbsp;ADMIN</Link>
+                    <button type='button' className='logout' onClick={handleModal}>LOGOUT</button> 
+                    </>}
                     {/* 비로그인 시 */}
+                    { !user.user_id && <>
                     <Link className='login' to='/login'><LuLogIn  />&nbsp;LOGIN</Link>
-                    <Link className='join' to='/join'>&nbsp;SIGNUP</Link>
+                    <Link className='join' to='/join'>&nbsp;JOIN</Link> 
+                    </>}
                 </div>
             </div>
             <button className='menubar' onClick={menubarOpen}>
@@ -120,14 +164,22 @@ export default function Header() {
                 <div className='my_info'>
                     <div className='profile'>
                         {/* 회원 로그인 시에만 */}
-                        {/* <div className='profile_img' />
-                        <div className='name'>닉네임 님</div> */}
+                        {(user.user_id && !user.isAdmin) && <>
+                            <div className='profile_img' />
+                            <div className='name'>{user.user_name} 님</div>
+                        </>}
+
                         {/* 관리자 로그인 시 */}
-                        {/* <div className='name'>ADMIN</div> */}
+                        {(user.user_id && user.isAdmin) && <> 
+                            <div className='name'>ADMIN</div>
+                        </>}
+
                         {/* 비로그인 시 */}
-                        <div className='non_login'>
-                            <p>로그인 후 서비스를 이용해보세요</p>
-                        </div>
+                        {!user.user_id && <>
+                            <div className='non_login'>
+                                <p>로그인 후 서비스를 이용해보세요</p>
+                             </div>
+                        </>}
                     </div>
                     <div className='close_btn'>
                         <button type='button' className='close' onClick={menubarClose}><TfiClose /></button>
@@ -135,30 +187,48 @@ export default function Header() {
                 </div>
                 <div className='mypage_list'>
                     {/* 회원 로그인 시 */}
-                    {/* <ul>
-                        <li><Link className='menu' to='/mypage'>예약 정보</Link></li>
-                        <li><Link className='menu' to='/mypage'>보유 쿠폰</Link></li>
-                        <li><Link className='menu' to='/mypage'>관심 스테이</Link></li>
-                        <li><Link className='menu' to='/mypage'>회원 정보 수정</Link></li>
-                        <li><Link className='menu' to='/mypage'>1:1 문의</Link></li>
-                    </ul>
-                    <div className='logout_area'>
-                        <button type='button' className='logout' onClick={handleLogout}>로그아웃</button>
-                    </div> */}
+                    {(user.user_id && !user.isAdmin) && <>
+                        <ul>
+                            <li>
+                                <a className='menu' href="/mypage?showContent=MyReservation">예약 정보</a>
+                            </li>
+                            <li>
+                                <a className='menu' href="/mypage?showContent=MyCoupon">보유 쿠폰</a>
+                            </li>
+                            <li>
+                                <a className='menu' href="/mypage?showContent=MyLoveStay">관심 스테이</a>
+                            </li>
+                            <li>
+                                <a className='menu' href="/mypage?showContent=MyEdit">회원 정보 수정</a>
+                            </li>
+                            <li>
+                                <a className='menu' href="/mypage?showContent=MyQNA">1:1 문의</a>
+                            </li>
+                        </ul>
+                        <div className='logout_area'>
+                            <button type='button' className='logout' onClick={handleModal}>로그아웃</button>
+                        </div>   
+                    </>}
+
                     {/* 관리자 로그인 시 */}
-                    {/* <ul>
+
+                    {(user.user_id && user.isAdmin) && <> 
+                    <ul>
                         <li><Link className='menu' to='/mypage'>회원 관리</Link></li>
                         <li><Link className='menu' to='/mypage'>1:1 문의글 관리</Link></li>
                     </ul>
                     <div className='logout_area'>
-                        <button type='button' className='logout' onClick={handleLogout}>로그아웃</button>
+                        <button type='button' className='logout' onClick={handleModal}>로그아웃</button>
                     </div>
-                    */}
+                    </>}
+                   
                     {/* 비로그인 시 */}
-                    <ul>
-                        <li><Link className='menu' to='/login'>로그인</Link></li>
-                        <li><Link className='menu' to='/signup'>회원가입</Link></li>
-                    </ul>
+                    { !user.user_id && 
+                      <ul>
+                        <li><Link className='menu menu_login' to='/login'>로그인</Link></li>
+                        <li><Link className='menu menu_join' to='/join'>회원가입</Link></li>
+                     </ul>
+                    }
                 </div>
             </div>
         </div>

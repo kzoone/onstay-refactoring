@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { MyPageGreet } from '../components/mypage/MyPageGreet';
 import PageTitle from './../components/common/PageTitle';
 import useUserInfo from './../util/useUserInfo';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { MyPageNavbar } from './../components/mypage/MyPageNavbar';
 import { MyPageContent } from '../components/mypage/MyPageContent';
 
 export function MyPage() {
     const location = useLocation();
-    let [showContent, setShowContent] = useState(location.state?.showContent || 'MyReservation')
+    let defaultShowContent = new URLSearchParams(location.search).get('showContent') || 'MyReservation'
+    let [showContent, setShowContent] = useState(defaultShowContent)
     const user = useUserInfo();
 
     return (

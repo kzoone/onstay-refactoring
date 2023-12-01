@@ -154,7 +154,6 @@ export function Join() {
 
                 <button className="join_btn black_box">회원가입</button>
                 <Link to='/login' className="login_link white_box">로그인</Link>
-                <button className='black_box' type='button'>테스트</button>
             </form>
         </main>
     );

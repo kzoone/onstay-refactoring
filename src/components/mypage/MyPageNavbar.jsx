@@ -5,6 +5,7 @@ export function MyPageNavbar(props) {
 
   const handleClick = (e) => {
     setShowContent(e.target.dataset.content)
+    window.scrollTo({top : 0})
   }
 
   return (
@@ -27,9 +28,3 @@ export function MyPageNavbar(props) {
     </ul>
   )
 }
-
-// showContent==='mypage_reservation'
-// showContent==='mypage_coupon'
-// showContent==='mypage_love'
-// showContent==='mypage_edit'
-// showContent==='mypage_qna'
