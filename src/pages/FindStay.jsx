@@ -62,11 +62,33 @@ export function FindStay() {
         return codeinfo[area_code];
     };
  
+    /**
+     * 선택 인원
+     */
+    const [personnel, setPersonnel] = useState(1);
+    const handlePersonnel = (selectedPersonnel) => {
+        setPersonnel(selectedPersonnel);
+    }
+
+    const params = {
+        personnel
+    }
+
+    const handleFilterSubmit = () => {
+        axios
+        .get('http://localhost:8000/findstay/',{params})
+        .then((res) => {
+            setAccList(res.data);
+        })
+        .catch((err) => {
+            console.error('axios 에러 발생 => ' + err);
+        })
+    }
      
     return(
         <main className="findstay">
             <PageTitle title={'FIND STAY'} subtitle={'머무는 것 자체로 여행이 되는 공간'} />
-            <Filter onSearch={handleSearch} onLocation={handleLocation} codeinfo={codeinfo} locationName={locationName} />
+            <Filter onSearch={handleSearch} onLocation={handleLocation} codeinfo={codeinfo} locationName={locationName} onPersonnel={handlePersonnel} onFilterSubmit={handleFilterSubmit} />
             <Sort /> 
             <AccList accs={accList} searched={searched} location={location} codeinfo={codeinfo} locationName={locationName} />
         </main>

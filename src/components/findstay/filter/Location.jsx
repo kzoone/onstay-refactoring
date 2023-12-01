@@ -23,20 +23,12 @@ export default function Location({ onLocation, codeinfo, locationName }){
         if (isLocationModalOpen && locationModalRef.current && !locationModalRef.current.contains(e.target)) {
             closeModal();   
         }};
-        const handleFocus = () => { //컴포넌트가 포커스를 받을 때 모달에 포커스를 맞추는 함수
-            if (isLocationModalOpen) {
-                locationModalRef.current.focus();
-            }
-        };
-        handleFocus();  //컴포넌트가 처음 마운트될 때 포커스 설정
         
         // 마우스 클릭 이벤트와 포커스 이벤트 리스너 등록
         document.addEventListener('mousedown', handleClick);
-        document.addEventListener('focusin', handleFocus);
 
         return () => {  //컴포넌트가 언마운트될 때 이벤트 리스너 해제
             document.removeEventListener('mousedown', handleClick);
-            document.removeEventListener('focusin', handleFocus);
         };
     }, [locationModalRef, closeModal, isLocationModalOpen]);
 
