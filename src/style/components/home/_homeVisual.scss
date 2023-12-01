@@ -1,0 +1,131 @@
+.visual-section{
+  margin-bottom: 30px;
+  .swiper-slide {
+    text-align: center;     
+    /* Center slide text vertically */
+    display: flex;
+  }
+  .swiper-slide img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .link{
+    width: 100%;
+    div.bg-img-container{
+      width: 100%;
+      height: 60vw;
+      .img-size{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next
+  {
+    background: black;
+    position: absolute;
+    top: 97%;
+    z-index: 100;
+    color: white;  
+  }
+  .swiper-button-prev{
+    left:48%;
+  }
+  .swiper-button-next{
+    left:51%;
+  }      
+  .swiper-button-next::after,
+  .swiper-button-prev::after{
+    font-size :1rem;
+  }
+  .swiper-pagination-fraction{
+    color: white;
+    background-color: black;
+    width: 50px;
+    margin : 10 auto;
+    padding : 10px 0;
+  }
+  .swiper-text{
+    position: absolute;
+    width: 300px;
+    height: 300px;  
+    background-color:white;
+    right:10%;
+    font-size: 1.1rem;
+    color:black;
+    background-color: white;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    div{
+      padding: 30px;
+    }
+    div img.text-img{
+      width: 200px;
+      height: 50px;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+    div.more{
+        font-size:0.9rem;
+        text-decoration: underline;
+        text-underline-offset: 10px;
+    }
+  }
+  a.sm-link{
+    margin-bottom: 20px;
+    div.sm-img-container{
+      width: 100%;
+      height: 60vh;
+      .img-size{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .swiper-pagination-fraction, 
+  .swiper-pagination-custom, 
+  .swiper-horizontal > .swiper-pagination-bullets, 
+  .swiper-pagination-bullets.swiper-pagination-horizontal{
+    bottom: -30px;
+    margin-bottom: 40px;
+  }
+
+  .sm-swiper-text{
+    margin: 43px 40px;
+    div{
+      padding:15px;
+    }
+    div.comment{
+      font-size: 1.5rem;
+    }
+
+    div.more{
+      font-size : 0.9rem;
+      text-decoration: underline;
+      text-underline-offset: 10px;
+      margin-bottom: 20px;
+    }
+  }
+  @media screen and (max-width:500px) {
+    .sm-swiper-text{
+      margin: 43px 40px;
+      div{
+        padding:13px;
+      }
+      div.comment{
+        font-size: 0.9rem;
+        margin-bottom:10px
+      }
+  
+      div.more{
+        font-size : 0.9rem;
+        text-decoration: underline;
+        text-underline-offset: 10px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
