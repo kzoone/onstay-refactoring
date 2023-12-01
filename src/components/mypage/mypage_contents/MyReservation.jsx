@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosAuth from './../../../services/axiosAuth';
+import { Link } from 'react-router-dom';
 
 export function MyReservation({ user_id }) {
   let [category, setCategory] = useState('upcoming');
@@ -20,7 +21,7 @@ export function MyReservation({ user_id }) {
 
   useEffect(() => {
     axiosAuth({
-      url: 'http://localhost:8000/mypage/reservation/' + user_id,
+      url: 'http://localhost:8000/mypage/reservation/' + 'user',
       method: 'get',
     })
       .then((res) => {
@@ -72,49 +73,61 @@ export function MyReservation({ user_id }) {
       <div className="my_reservation_list">
         {reservations.length ? (
           reservations.map((res) => (
-            <div className="my_reservation_wrapper">
+            <div className="my_reservation_wrapper" key={res.reservation_id}>
               <div className="reservation_info">
                 <h4 className="acc_name">{res.acc_name}</h4>
                 <span className="room_name">{res.room_name}</span>
-                <div className="stay_info">
-                  <b>예약 정보</b>
-                  <small className="checkin">
-                    체크인 : {res.checkin} {res.checkin_time}
-                  </small>
-                  <small className="checkout">
-                    체크아웃 : {res.checkout} {res.checkout_time}
-                  </small>
+                <div className="acc_img_mobile">
+                  <img src={`assets/images/acc/${res.images[0].acc_img}`} alt="" />
                 </div>
-                <div className="pay_info">
-                  <b>결제 정보</b>
-                  <small className="pay_price">
-                    결제 금액 : {res.room_price.toLocaleString()}원
-                  </small>
-                  <small className="pay_date">결제 일자 : {res.pay_date}</small>
+                <div className='detail_infos'>
+                  <div className="stay_info">
+                    <b>예약 정보</b>
+                    <small className="checkin">
+                      체크인 : {res.checkin} {res.checkin_time}
+                    </small>
+                    <small className="checkout">
+                      체크아웃 : {res.checkout} {res.checkout_time}
+                    </small>
+                  </div>
+                  <div className="pay_info">
+                    <b>결제 정보</b>
+                    <small className="pay_price">
+                      결제 금액 : {res.room_price.toLocaleString()}원
+                    </small>
+                    <small className="pay_date">결제 일자 : {res.pay_date}</small>
+                  </div>
                 </div>
                 <div className="btns">
                   {category === 'upcoming' && res.dayDiff >= 2 && (
                     <button>예약 취소</button>
                   )}
                   {category === 'upcoming' && res.dayDiff < 2 && (
-                    <small>취소 불가능</small>
+                    <small style={{color:'red'}}>취소 불가능</small>
                   )}
                   {category === 'complete' && res.dayDiff <= 0 && (
                     <button>후기 남기기</button>
                   )}
                 </div>
               </div>
-              <div className="acc_img">
-                <img src="assets/images/acc/accImage11.jpg" alt="" />
+              <div className="acc_img_pc">
+                <img src={`assets/images/acc/${res.images[0].acc_img}`} alt="" />
               </div>
             </div>
           ))
         ) : (
-          <div>no</div>
+          <div className='no_list'>
+            <div className='no_list_img'>
+              <img src="assets/images/etc/mypage_no_list.png" alt="" />            
+            </div>
+            <div>
+              <span>아직 예약 정보가 없습니다.</span>
+              <span>새로운 스테이를 찾아 떠나보세요.</span>
+            </div>
+            <Link to='/findstay'>FIND STAY</Link>
+          </div>
         )}
       </div>
     </div>
   );
 }
-
-// 숙소명 , 객실명, 체크인 ~ 체크아웃 , 버튼들
