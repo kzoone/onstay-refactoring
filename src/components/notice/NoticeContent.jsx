@@ -12,25 +12,64 @@ export default function NoticeContent() {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [noticeList, setNoticeList] = useState([]);
-  const noticePage = { page: page, pageItem: 5 }
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectOption, setSelectOption] = useState('title');
+  const [noSearchResults, setNoSearchResults] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  // detailPage 값을 기반으로 초기 페이지 상태 설정
+  const searchParams = {
+    page: page,
+    pageItem: 5,
+    searchTerm: searchTerm,
+    selectOption: selectOption,
+    startDate: startDate,
+    endDate: endDate
+  };
+
+  // detailPage 값을 기반으로 이전 페이지 상태를 detailPage 값으로 page 설정
   useEffect(() => {
     if (detailPage) {
       setPage(parseInt(detailPage));
     } else {
-      setPage(page);
+      setPage(1);
     }
   }, [detailPage]);
 
-  // 각 page 별 pageItem 값 만큼 데이터 요청
+  // 데이터 요청을 처리하는 함수
+  const fetchData = () => {
+    axios
+      .post('http://localhost:8000/notice/', searchParams)
+      .then((result) => {
+        if (result.data && result.data.length > 0) {
+          setNoticeList(result.data);
+          setTotalCount(result.data[0].total_rows);
+          setNoSearchResults(false);
+        } else {
+          setNoticeList([]);
+          setTotalCount(0);
+          setNoSearchResults(true);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // 최초 렌더링 시 전체 데이터를 가져오도록 useEffect 설정
   useEffect(() => {
-    axios.post('http://localhost:8000/notice/', noticePage)
-      .then(result => {
-        setNoticeList(result.data);
-        setTotalCount(result.data[0].total_rows);
-      }).catch(error => console.log(error))
+    fetchData();
   }, [page]);
+
+  // 검색어 또는 페이지 변경 시에만 데이터 요청
+  useEffect(() => {
+    const delaySearch = setTimeout(() => {
+      if (searchTerm.trim() !== '') {
+        fetchData();
+      } else if (startDate && endDate) {
+        fetchData();
+      }
+    }, 1000);
+    return () => clearTimeout(delaySearch);
+  }, [page, searchTerm, startDate, endDate]);
 
   // 페이지 변경을 처리하는 함수
   const handleChange = (page) => {
@@ -38,40 +77,52 @@ export default function NoticeContent() {
   }
 
   return (
-    <>
-      <table className='notice_content'>
-        <thead>
-          <tr>
-            <th>NO</th>
-            <th>TITLE</th>
-            <th>DATE</th>
-            <th>VIEW COUNT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {noticeList.map(notice =>
-            <NoticeTable
-              key={notice.notice_id}
-              notice_id={notice.notice_id}
-              no={notice.no}
-              page={page}
-              notice_title={notice.notice_title}
-              notice_date={notice.notice_date}
-              notice_views={notice.notice_views}
-            />)}
-        </tbody>
-      </table>
-      <PagiNation
-        activePage={page} // 현재 페이지
-        itemsCountPerPage={noticePage.pageItem} // 현재 페이지당 보여줄 아이템 개수
-        totalItemsCount={totalCount} // 총 아이템 개수
-        pageRangeDisplayed={5} // 보여줄 페이지 범위
-        prevPageText={'<'} // 이전을 나타낼 텍스트
-        nextPageText={'>'} // 다음을 나타낼 텍스트
-        onChange={handleChange} // 함수 호출
-      />
-      <NoticeSearch 
-      noticeList={noticeList}
+        <>
+          <table className='notice_content'>
+            <thead>
+              <tr>
+                <th>NO</th>
+                <th>TITLE</th>
+                <th>DATE</th>
+                <th>VIEW COUNT</th>
+              </tr>
+            </thead>
+            <tbody>
+              {noSearchResults ? <div><p>검색 결과가 없습니다.</p></div> :
+              noticeList.map(notice =>
+                <NoticeTable
+                key={notice.notice_id}
+                notice_id={notice.notice_id}
+                no={notice.no}
+                page={page}
+                notice_title={notice.notice_title}
+                notice_date={notice.notice_date}
+                notice_views={notice.notice_views} 
+                />)}
+            </tbody>
+          </table>
+                {noSearchResults ? null
+                : (
+          <PagiNation
+            activePage={page} // 현재 페이지
+            itemsCountPerPage={searchParams.pageItem} // 현재 페이지당 보여줄 아이템 개수
+            totalItemsCount={totalCount} // 총 아이템 개수
+            pageRangeDisplayed={5} // 보여줄 페이지 범위
+            prevPageText={'<'} // 이전을 나타낼 텍스트
+            nextPageText={'>'} // 다음을 나타낼 텍스트
+            onChange={handleChange} // 함수 호출
+          />)}
+      <NoticeSearch
+        setSearchTerm={setSearchTerm}
+        searchTerm={searchTerm}
+        setPage={setPage}
+        setSelectOption={setSelectOption}
+        selectOption={selectOption}
+        setStartDate={setStartDate}
+        startDate={startDate}
+        setEndDate={setEndDate}
+        endDate={endDate}
+        fetchData={fetchData}
       />
     </>
   );

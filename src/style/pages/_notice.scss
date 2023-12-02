@@ -6,6 +6,9 @@
       margin-left: 0;
     }
   }
+  & > div > p {
+    text-align: center;
+  }
   table.notice_content {
     table-layout: fixed;
     margin: 8vh auto 0 auto;
@@ -22,6 +25,9 @@
     & > thead {
       padding: 0 30px;
       border-bottom: 5px double black;
+    }
+    & > tbody > div {
+      padding: 19.5vh 0;
     }
     & > tbody > tr {
       border-bottom: 1px solid rgb(160, 160, 160);
@@ -105,39 +111,44 @@
         width: 90%;
       }
     }
-    & > div {
+    & > form {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 70%;
+      width: 72%;
     }
-    & > div > select,
-    & > div > div > input,
-    & > button {
-      height: 40px;
-    }
-    & > div > select {
+    & > form > select {
       width: 28%;
     }
-    & > div > div {
-      width: 65%;
+    & > form > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6%;
+      width: 68%;
     }
-    & > div > select,
-    & > div > div {
+    & > form > select,
+    & > form > div > input, & > form > div > div.react-datepicker-wrapper > div {
+      height: 40px;
       padding-left: 10px;
       border-radius: 50px;
       background: rgb(234, 234, 234);
     }
-    & > div {
+    & > form > div > div.react-datepicker__tab-loop {
+      position: absolute;
+    }
+    & > form {
       border-radius: 50px;
       @media screen and (max-width: $lg-max-breakpoint) {
         width: 100%;
       }
       input {
+        height: 100%;
         width: 100%;
       }
     }
     & > button {
+      height: 40px;
       width: 25%;
       border-radius: 50px;
       background: black;
