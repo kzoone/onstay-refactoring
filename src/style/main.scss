@@ -1,6 +1,6 @@
 /* abstracts */ 
 @import './abstracts/variables';
-@import './abstracts//mixin';
+@import './abstracts/mixin';
 
 /* base */
 @import './base/normallize';
@@ -9,6 +9,7 @@
 /* components */
 @import './components/home/header';
 @import './components/home/footer';
+@import './components/common/confirmmodal';
 @import './components/home/categorysection';
 @import './components/home/timeAttackSection';
 @import './components/home/newstaysection';
@@ -17,3 +18,4 @@
 @import './pages/join';
 @import './pages/login';
 @import './pages/roomdetail';
+@import './pages/reservation';
