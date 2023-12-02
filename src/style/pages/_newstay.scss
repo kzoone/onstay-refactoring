@@ -4,7 +4,7 @@ div.new_stay_page {
   max-width: 1300px;
   margin: 0 auto 20vh auto;
   padding: 2rem;
-  @include responsive("sm") {
+  @include responsive('sm') {
     padding: 10px;
   }
   div.page_title_container {
@@ -23,7 +23,7 @@ div.new_stay_page {
       button {
         font-size: 1.2rem;
         color: grey;
-        @include responsive("sm") {
+        @include responsive('sm') {
           font-size: 0.95rem;
         }
       }
@@ -43,13 +43,13 @@ div.new_stay_page {
     li {
       position: relative;
       width: 49%;
-      @include responsive("lg") {
+      @include responsive('lg') {
         width: 49%;
       }
-      @include responsive("md") {
+      @include responsive('md') {
         width: 100%;
       }
-      @include responsive("sm") {
+      @include responsive('sm') {
         width: 100%;
       }
       figure {
@@ -59,7 +59,7 @@ div.new_stay_page {
         filter: brightness(80%);
         transition: filter 1s;
         &::after {
-          content: "";
+          content: '';
           display: block;
           padding-bottom: 90%;
         }

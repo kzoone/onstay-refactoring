@@ -69,7 +69,7 @@ export default function NoticeContent() {
       }
     }, 1000);
     return () => clearTimeout(delaySearch);
-  }, [page, searchTerm, startDate, endDate]);
+  }, [page, searchTerm, startDate, endDate, selectOption]);
 
   // 페이지 변경을 처리하는 함수
   const handleChange = (page) => {

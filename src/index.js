@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       {path : '/findstay/room/:roomid', element : <RoomDetail/>},
       {path : '/newstay', element : <NewStay/>},
       {path : '/notice', element : <Notice/>},
-      {path : '/notice/:notice_id/:page', element : <NoticeDetail/>},
+      {path : '/notice/:noticeid/:page', element : <NoticeDetail/>},
       {path : '/reservation/:roomid', element : <Reservation/>},
       {path : '/join', element : <Join/>},
       {path : '/login', element : <Login/>},

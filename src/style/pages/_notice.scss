@@ -26,12 +26,14 @@
       padding: 0 30px;
       border-bottom: 5px double black;
     }
-    & > tbody > div {
-      padding: 19.5vh 0;
-    }
-    & > tbody > tr {
-      border-bottom: 1px solid rgb(160, 160, 160);
-    }
+    & > tbody{
+      & > div {
+        padding: 19.5vh 0;
+      }
+      & > tr {
+        border-bottom: 1px solid rgb(160, 160, 160);
+      }
+    } 
     & > thead > tr > th:nth-child(1),
     & > tbody > tr > th:nth-child(1) {
       width: 8%;

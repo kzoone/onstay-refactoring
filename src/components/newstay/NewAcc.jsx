@@ -16,7 +16,6 @@ export default function NewAcc() {
       axios.post('http://localhost:8000/newstay/', pageData)
         .then(result => {
           setNewAccList(prevData => [...prevData, ...result.data]);
-          console.log(newAccList);
         }).catch(error => console.log(error));
     } else {
       isMounted.current = true;

@@ -20,7 +20,6 @@ export default function NoticeFilter(props) {
     }
   }
 
-  console.log(startDate, endDate);
   // 클릭 이벤트
   const handleSearch = () => {
     search();
