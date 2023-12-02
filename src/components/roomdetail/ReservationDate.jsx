@@ -4,19 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import axios from 'axios';
-import Modal from './Modal';
+import ConfirmModal from '../common/ConfirmModal';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export default function ReservationDate({param, price}) {
-  const [ reservationDate, setReservationDate ] = useState([]);
+  const [ reservationData, setReservationData ] = useState([]);
   const [ startDate, setStartDate ] = useState(null);
   const [ endDate, setEndDate ] = useState(null);
-  const [ btnDisabled, setBtnDisabled ] = useState(false);
   const [ isModal, setIsModal ] = useState(false);
+  const [ btnDisabled, setBtnDisabled ] = useState(false);
   const [ textBtn, setTextBtn ] = useState('예 약 하 기');
   const navigate = useNavigate();
+  // const userInfo = false; // 로그인 모달 테스트 용도
   const userInfo = {'id' : 'user'}; // 로그인 테스트 용도
-
 
   // 예약 정보 가져오기
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function ReservationDate({param, price}) {
           checkin : new Date(date.checkin),
           checkout : new Date(date.checkout)
         }));
-        setReservationDate(mapArr);
-      }
+        setReservationData(mapArr);
+      };
     })
     .catch(error => console.log(error));
   }, []);
@@ -36,7 +36,7 @@ export default function ReservationDate({param, price}) {
 
   // 예약된 날짜에 따른 비활성화 날짜 범위 계산
   const filterReverseDate = (date) => {
-    const isReserved = reservationDate.some(reservation => {
+    const isReserved = reservationData.some(reservation => {
       const checkinDate = reservation.checkin;
       const checkoutDate = reservation.checkout;
       return date >= checkinDate && date < checkoutDate;
@@ -46,80 +46,72 @@ export default function ReservationDate({param, price}) {
 
 
   // 선택한 날짜 사이의 몇 박 계산
-  const fnNightCnt = (checkin, checkout) => {
-    if (!checkin || !checkout) {
-      return null;
-    };
-
-    const diff = Math.abs(checkout - checkin);
-    const nightCalc = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    return nightCalc;
+  const fnNightCnt = (startDate, endDate) => {
+    const diff = Math.abs(startDate - endDate);
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
   };
 
 
   // 선택한 기간에 따른 가격 구하기
-  const priceCalc = (checkin, checkout) => {
-    const isPossible = validateDates(checkin, checkout);
-    if (isPossible) {
-      const nightCnt = fnNightCnt(checkin, checkout);
+  const priceCalc = (startDate, endDate) => {
+      const nightCnt = fnNightCnt(startDate, endDate);
       const roomPrice = nightCnt * price;
-      const priceView = `₩${roomPrice.toLocaleString()}원 결제하기`;
-      console.log('sd');
-      setTextBtn(priceView);
-    };
+      const payPrice = roomPrice.toLocaleString();
+      return { payPrice, nightCnt }
   };
 
   useEffect(() => {
-    priceCalc(startDate, endDate);
+    validateDates(startDate, endDate);
   }, [startDate, endDate, price]);
   
 
   // input onchange 이벤트
   const handleChangeCheckin = (date) => {
     setStartDate(date);
-    validateDates(date, endDate);
   };
   
   const handleChangeCheckout = (date) => {
     setEndDate(date);
-    validateDates(startDate, date);
   };
 
   // 예약된 날짜에 선택한 날짜 포함 여부 체크
-  const includeReservation = (checkin, checkout) => {
-    const isReserved = reservationDate.some(reservation => {
+  const includeReservation = (startDate, endDate) => {
+    const isReserved = reservationData.some(reservation => {
       const checkinDate = reservation.checkin; 
       const checkoutDate = reservation.checkout;
-      return checkin < checkoutDate && checkout > checkinDate
+      return startDate < checkoutDate && endDate > checkinDate
     });
-    return !isReserved;
-  }
+    return !isReserved
+  };
   
 
   // input 유효성 검사
-  const validateDates = (checkin, checkout) => {
-    if (checkin && checkout) {
+  const validateDates = (startDate, endDate) => {
+    if (startDate && endDate) {
       // 체크인 체크아웃 날짜가 모두 있을 때 예약 되어있는 날짜가 포함되는지 체크하는 함수 실행
-      const checkReserved = includeReservation(checkin, checkout);
-      if (checkin.getTime() === checkout.getTime()) {
+      const checkReserved = includeReservation(startDate, endDate);
+      if (startDate.getTime() === endDate.getTime()) {
         setBtnDisabled(true);
         setTextBtn('같은 날짜는 예약 불가능합니다');
-        return false;
-      } else if (checkin.getTime() >= checkout.getTime()) {
+        return false
+      } else if (startDate.getTime() >= endDate.getTime()) {
         setBtnDisabled(true);
         setTextBtn('체크아웃 날짜는 체크인 날짜 이후로 선택해주세요');
-        return false;
+        return false
       } else if (!checkReserved) {
         setBtnDisabled(true);
         setTextBtn('예약 불가한 날짜가 포함되어 있습니다');
       } else {
-        return true;
+        setBtnDisabled(false);
+        const { payPrice, nightCnt } = priceCalc(startDate, endDate);
+        setTextBtn(`${nightCnt}박 : ₩${payPrice}원 결제하기`);
+        return true
       }
     } else {
       setBtnDisabled(false);
       setTextBtn('예 약 하 기');
-      return false;
-    } 
+      return false
+    }
   };
 
   // 예약하기 버튼 클릭
@@ -128,15 +120,16 @@ export default function ReservationDate({param, price}) {
       if ( userInfo ) { // 추후 로그인 정보 가져와서 변동 진행
         if ( startDate && endDate ) {
             const nightCnt = fnNightCnt(startDate, endDate);
-            navigate(`/reservation/${param}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCnt': nightCnt }});
+            navigate(`/reservation/${param}`, { state: { reservationData, 'checkin': startDate, 'checkout': endDate, 'nightCntparam': nightCnt, price }});
+            
           } else {
             setBtnDisabled(true);
-            navigate(`/reservation/${param}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCnt': '' }});
-            }
+            navigate(`/reservation/${param}`, { state: { reservationData, 'checkin': startDate, 'checkout': endDate, 'nightCntparam': '', price }});
+            };
         } else {
           setIsModal(true);
-        }
-      } 
+        };
+      };
   };
 
   // 커스텀 input
@@ -171,12 +164,12 @@ export default function ReservationDate({param, price}) {
   });
 
   // 모달 함수 : 로그인 버튼 클릭시
-  const isModalLogin = (e) => {
+  const handleConfirm = (e) => {
     navigate('/login');
   };
   
   // 모달 함수 : 닫기 클릭 + 모달 외 영역 클릭
-  const isModalClose = (e)  => {
+  const handleModal = (e)  => {
     setIsModal(false);
   };
 
@@ -217,7 +210,8 @@ export default function ReservationDate({param, price}) {
       </div>
       {
         isModal &&
-        <Modal isModalClose={isModalClose} isModalLogin={isModalLogin} />
+        <ConfirmModal handleModal={handleModal} handleConfirm={handleConfirm} 
+                      noti_1='로그인이 필요한 서비스입니다' noti_2='로그인 창으로 이동하시겠습니까?'/>
       }
     </>
   );
