@@ -13,7 +13,7 @@ export default function NoticeTable(props) {
 
   return (
         <tr>
-          <th>{no}</th>
+          {userInfo ? <th>{no}</th> : <th><input type="checkbox" id={`notice_check${no}`} /><label htmlFor={`notice_check${no}`} ></label></th>}
           <td>
             <Link to={`/notice/${notice_id}/${page}`}
               onClick={() => handleViewCount(notice_id)}>
@@ -21,7 +21,7 @@ export default function NoticeTable(props) {
             </Link>
           </td>
           <td>{notice_date}</td>
-          {userInfo ? <td>{notice_views}</td> : <td><button type='button'><SlNote /></button></td>}
+          {userInfo ? <td>{notice_views}</td> : <td><button type='button'><SlNote className='slnote' /></button></td>}
         </tr>
   );
 };

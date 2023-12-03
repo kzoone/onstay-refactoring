@@ -1,14 +1,40 @@
-.notice_page, .notice_admin {
+.notice_page,
+.notice_admin {
   max-width: 1300px;
   margin: 10vh auto;
   div.page_title_container {
+    margin-bottom: 8vh;
     p.title {
       margin-left: 0;
     }
   }
+  .notice_admin_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto 5vh auto;
+    gap: 2%;
+    p {
+      width: 80%;
+      font-size: 1.1rem;
+      b{
+        font-size: 1.2rem;
+      }
+    }
+    button {
+      padding: 10px 30px;
+      border: 1px solid black;
+      border-radius: 50px;
+      &:hover {
+        background: black;
+        color: white;
+      }
+    }
+  }
   table.notice_table {
     table-layout: fixed;
-    margin: 8vh auto 0 auto;
+    margin: 0 auto;
     width: 90%;
     text-align: center;
     @include responsive("sm") {
@@ -35,12 +61,52 @@
       }
       & > tr {
         border-bottom: 1px solid rgb(160, 160, 160);
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"] + label {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 1px solid gray;
+          position: relative;
+        }
+        input[type="checkbox"]:checked + label::after {
+          content: "✔";
+          font-size: 15px;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        button {
+          padding: 5px;
+          background: white;
+          border-radius: 50px;
+          &:hover {
+            padding: 5px;
+            background: black;
+            border-radius: 50px;
+            svg{
+              fill: white;
+            }
+          }
+        }
       }
     }
     & > thead > tr > th:nth-child(1),
     & > tbody > tr > th:nth-child(1) {
       width: 8%;
+      @include responsive("md") {
+        width: 15%;
+      }
+      @include responsive("sm") {
+        width: 20%;
+      }
     }
+
     & > thead > tr > th:nth-child(2),
     & > tbody > tr > td:nth-child(2) {
       width: 45%;
@@ -163,7 +229,7 @@
       }
       //시작~종료 달력일자 구간 선택 컬러
       .react-datepicker__day--in-selecting-range,
-      .react-datepicker__day--in-range, 
+      .react-datepicker__day--in-range,
       .react-datepicker__day--keyboard-selected {
         background-color: rgb(234, 234, 234);
         color: black;
@@ -197,5 +263,17 @@
 }
 
 .notice_admin {
-
+  .notice_table {
+    tbody {
+      tr {
+        td {
+          button {
+            .slnote:hover {
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
 }

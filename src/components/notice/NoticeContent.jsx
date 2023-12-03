@@ -84,7 +84,7 @@ useEffect(() => {
       <table className='notice_table'>
         <thead>
           <tr>
-            <th>NO</th>
+            {props.userInfo ? <th>NO</th> : <th>CHECK</th>}
             <th>TITLE</th>
             <th>DATE</th>
             {props.userInfo ? <th>VIEW COUNT</th> : <th>ALTER</th>}
