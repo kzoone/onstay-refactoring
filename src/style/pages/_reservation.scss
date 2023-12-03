@@ -136,7 +136,7 @@ main.reservation_section {
   
   form.payment_form {
     margin: 0 auto 5rem auto;
-    padding: 0 3rem;
+    padding: 0 3rem 3rem 3rem;
     border: 1px solid rgba(139, 138, 138, 0.3);
     dl.form_info_container {
       padding: 4rem 3rem 3rem 3rem;
@@ -273,7 +273,7 @@ main.reservation_section {
 
     div.agreement_container {
       margin: 0 auto;
-      padding: 2rem;
+      padding: 2rem 4rem;
       > p {
         margin-bottom: 15px;
         font-size: 1.1rem;
@@ -289,16 +289,52 @@ main.reservation_section {
           font-size: 0.8rem;
         }
 
-      &.all_checkbox {
+        &.all_checkbox {
           background-color: #e4e2e2;
           label {
             font-size: 0.9rem;
             font-weight: 500;
           }
+          ~ div {
+            border-bottom: 1px solid #d4d2d2;
+            div.check_box {
+              @include flexbox;
+              padding: 0;
+              div {
+                width: 60%;
+                padding: 0;
+              }
+              span {
+                width: 40%;
+                font-size: 0.7rem;
+                text-align: right;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover {
+                  @include text_hover;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
         }
 
-        &:not(:nth-of-type(1)) {
-          border-bottom: 1px solid #d4d2d2;
+        div.detail_content {
+          display: none;
+          &.show_content {
+            display: block;
+          }
+          p {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            &.show {
+              display: block;
+            }
+            span {
+              display: block;
+              margin-bottom: 3px;
+            }
+          }
         }
       }
     }
@@ -397,6 +433,23 @@ main.reservation_section {
             }
           }
         }
+        div.agreement_container {
+          padding: 2rem;
+          div {
+            &.all_checkbox {
+              ~ div {
+                div.check_box {
+                  div {
+                    width: 60%;
+                  }
+                  span {
+                    width: 40%;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -420,7 +473,9 @@ main.reservation_section {
         }
       }
       form.payment_form {
+        margin-bottom: 4rem;
         padding: 0 1rem;
+        border-bottom: none;
         dl.form_info_container {
           padding: 0.5rem;
           input {
@@ -472,7 +527,21 @@ main.reservation_section {
         }
 
         div.agreement_container {
-          padding: 1rem;
+          padding: 1.5rem 0.5rem;
+          div {
+            &.all_checkbox {
+              ~ div {
+                div.check_box {
+                  div {
+                    width: 85%;
+                  }
+                  span {
+                    width: 25%;
+                  }
+                }
+              }
+            }
+          }
         }
     
         div.btn_box {

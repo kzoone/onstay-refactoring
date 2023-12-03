@@ -5,7 +5,7 @@ export default function FormInfo(props) {
   let { roomInfoData, isValidDate, 
         startDate, endDate,
         price, nightCnt, payPrice,
-        totalPayPrice, setTotalPayPrice, seletedCouponId, setSeletedCouponId } = props;
+        totalPayPrice, setTotalPayPrice, selectedCouponId, setSelectedCouponId } = props;
   const [ userData, setUserData ] = useState([]);
   const [ couponPrice, setCouponPrice ] = useState('');
   const isValidDateText = <p>-</p>;
@@ -40,19 +40,19 @@ export default function FormInfo(props) {
       const selectedOption = e.target.options[e.target.selectedIndex];
       const parsedValue = parseInt(selectedOption.dataset.price);
       setCouponPrice(isNaN(parsedValue) ? '' : parsedValue);
-      setSeletedCouponId(e.target.value); // 쿠폰 id state 설정
+      setSelectedCouponId(e.target.value); // 쿠폰 id state 설정
 
       // 쿠폰 선택에 따른 가격 적용
-      (e.target.value !== 'false')  ? setTotalPayPrice(payPrice - parsedValue) : setSeletedCouponId('');
+      (e.target.value !== 'false')  ? setTotalPayPrice(payPrice - parsedValue) : setSelectedCouponId('');
     } else {
       alert('체크인 체크아웃 날짜를 모두 선택 후 적용시켜주세요');
-      e.target.value = seletedCouponId;
+      e.target.value = selectedCouponId;
     }
   };
 
   // 쿠폰 선택 여부, 날짜 선택 관련 변동에 따른 최종 가격 텍스트 조건문에 따른 리턴
   const fntotalView = () => {
-    return isValidDate ? `₩${seletedCouponId ? totalPayPrice.toLocaleString() : payPrice.toLocaleString()}` : '-';
+    return isValidDate ? `₩${selectedCouponId ? totalPayPrice.toLocaleString() : payPrice.toLocaleString()}` : '-';
   };
   
     // 숙소 최대 인원에 맞춘 select option 태그 출력
@@ -67,7 +67,7 @@ export default function FormInfo(props) {
       <dl className='form_info_container'>
         <div className='room_box'>
           <dt>예약스테이</dt>
-          <dd>{roomInfoData.room_name}</dd>
+          <dd>{roomInfoData.acc_name} / {roomInfoData.room_name}</dd>
         </div>
         <div className='reservation_box'>
           <dt>예약일</dt>
@@ -99,7 +99,7 @@ export default function FormInfo(props) {
           <dt>이메일</dt>
           <dd>
             <label htmlFor='email' className='hidden_label'>이메일</label>
-            {userData.length > 0 && <input type='email' id='eamil' readOnly value={userData[0].user_email} />}
+            {userData.length > 0 && <input type='email' id='email' readOnly value={userData[0].user_email} />}
           </dd>
         </div>
         <div className='capa_box'>
@@ -109,7 +109,7 @@ export default function FormInfo(props) {
           </dt>
           <dd>
             <label htmlFor='capa' className='hidden_label'>인원</label>
-            <select name='capa' id='capa'>
+            <select name='capa' id='capa'> 
               {capaOption}
             </select>
           </dd>
@@ -119,7 +119,7 @@ export default function FormInfo(props) {
           <dd>
             <div className='coupon_select'>
               <label htmlFor='coupon'>쿠폰할인</label>
-              <select name='coupon' id='coupon' value={seletedCouponId} onChange={handleSelectChange}>
+              <select name='coupon' id='coupon' value={selectedCouponId} onChange={handleSelectChange}>
                 <option value='false'>선택 안함</option>
                 { userData.length > 0 && userData[0].coupon_id ? (
                   userData.map(coupon => (
@@ -133,7 +133,7 @@ export default function FormInfo(props) {
             </div>
             <div className='coupon_price'>
               <p>총 할인금액</p>
-              { seletedCouponId && isValidDate ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
+              { selectedCouponId && isValidDate ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
             </div>
           </dd>
         </div>
@@ -149,7 +149,7 @@ export default function FormInfo(props) {
             </div>
             <div className='room_discount'>
               <p>할인금액</p>
-              { seletedCouponId && isValidDate ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
+              { selectedCouponId && isValidDate ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
             </div>
             <div className='total_box'>
               <p>총 결제 금액</p>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import FixDate from './FixDate'
 import FormInfo from './FormInfo';
 import Agreement from './Agreement';
-import ConfirmModal from '../common/ConfirmModal';
+import ConfirmModal from '../common/ConfirmModal'; // 로그인 여부에 따른 처리 예정
 
 export default function ReservationContent() {
   const location = useLocation();
@@ -18,48 +18,26 @@ export default function ReservationContent() {
   const [ nightCnt, setNightCnt ] = useState(nightCntparam);
   const [ payPrice, setPayPrice ] = useState(0);
   const [ totalPayPrice, setTotalPayPrice ] = useState(0);
-  const [ seletedCouponId, setSeletedCouponId ] = useState('');
+  const [ selectedCouponId, setSelectedCouponId ] = useState('');
+  const [ isAgree, setIsAgree ] = useState(false);
   const userInfo = { 'id': 'user' }; // 테스트용 
 
   // 객실 정보 리스트 조회 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/reservation/${roomid}`)
       .then(result => {
-        setRoomInfoData(result.data)
+        setRoomInfoData(result.data);
       })
       .catch(error => console.log(error));
   }, []);
 
 
-  // 선택한 날짜에 따른 날짜 차이를 일수로 반환
-  const fnNightCnt = (startDate, endDate) => {
-    const diff = Math.abs(startDate - endDate);
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
-  };
-
-
-  // 선택한 날짜에 따른 숙박 가격 반환
-  const fnPrice = (startDate, endDate, price) => {
-    const nightCnt = fnNightCnt(startDate, endDate);
-    const payPrice = nightCnt * price;
-    setNightCnt(nightCnt);
-    setPayPrice(payPrice);
-    return { nightCnt, payPrice };
-  };
-
-
-  // 선택한 날짜가 예약된 날짜에 포함되는지 확인
-  const includeReservation = (startDate, endDate) => {
-    const isDateInclude = reservationData.some(reservation => {
-      const checkinDate = reservation.checkin;
-      const checkoutDate = reservation.checkout;
-      return startDate < checkoutDate && endDate > checkinDate;
-    });
-    return isDateInclude;
-  };
-
-  
   // 날짜 유효성 검사
+  useEffect(() => {
+    validateDates(startDate, endDate);
+  }, [startDate, endDate]);
+
+  // 날짜 유효성 검사 함수
   const validateDates = (startDate, endDate) => {
     if (startDate && endDate) {
       const isDateInclude = includeReservation(startDate, endDate);
@@ -88,9 +66,33 @@ export default function ReservationContent() {
     }
   };
 
-  useEffect(() => {
-    validateDates(startDate, endDate)
-  }, [startDate, endDate]);
+  
+  // 선택한 날짜에 따른 날짜 차이를 일수로 반환
+  const fnNightCnt = (startDate, endDate) => {
+    const diff = Math.abs(startDate - endDate);
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  };
+
+
+  // 선택한 날짜에 따른 숙박 가격 반환
+  const fnPrice = (startDate, endDate, price) => {
+    const nightCnt = fnNightCnt(startDate, endDate);
+    const payPrice = nightCnt * price;
+    setNightCnt(nightCnt);
+    setPayPrice(payPrice);
+    return { nightCnt, payPrice };
+  };
+
+
+  // 선택한 날짜가 예약된 날짜에 포함되는지 확인
+  const includeReservation = (startDate, endDate) => {
+    const isDateInclude = reservationData.some(reservation => {
+      const checkinDate = reservation.checkin;
+      const checkoutDate = reservation.checkout;
+      return startDate < checkoutDate && endDate > checkinDate;
+    });
+    return isDateInclude;
+  };
 
   return (
     <>
@@ -115,9 +117,12 @@ export default function ReservationContent() {
           payPrice={payPrice}
           totalPayPrice={totalPayPrice} 
           setTotalPayPrice={setTotalPayPrice}
-          seletedCouponId={seletedCouponId} 
-          setSeletedCouponId={setSeletedCouponId} />
-        <Agreement />
+          selectedCouponId={selectedCouponId} 
+          setSelectedCouponId={setSelectedCouponId} />
+        <Agreement 
+          isAgree={isAgree} 
+          setIsAgree={setIsAgree} 
+          acc_name={roomInfoData.acc_name} />
         <div className='btn_box'>
           <button type='button' className='payment_btn' disabled={!isValidDate}>{btnText}</button>
         </div>
