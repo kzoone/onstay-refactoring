@@ -32,6 +32,52 @@ export default function ReservationDate({param, price}) {
       })
       .catch(error => console.log(error));
   }, []);
+  
+
+  // 날짜 유효성 검사
+  useEffect(() => {
+    validateDates(startDate, endDate);
+  }, [startDate, endDate, price]);
+
+
+  // 예약된 날짜에 선택한 날짜 포함 여부 체크
+  const includeReservation = (startDate, endDate) => {
+    const isDateInclude = reservationData.some(reservation => {
+      const checkinDate = reservation.checkin; 
+      const checkoutDate = reservation.checkout;
+      return startDate < checkoutDate && endDate > checkinDate;
+    });
+    return !isDateInclude;
+  };
+  
+  // input 유효성 검사 함수
+  const validateDates = (startDate, endDate) => {
+    if (startDate && endDate) {
+      // 체크인 체크아웃 날짜가 모두 있을 때 예약 되어있는 날짜가 포함되는지 체크하는 함수 실행
+      const checkReserved = includeReservation(startDate, endDate);
+      if (startDate.getTime() === endDate.getTime()) {
+        setBtnDisabled(true);
+        setTextBtn('같은 날짜는 예약 불가능합니다');
+        return false;
+      } else if (startDate.getTime() >= endDate.getTime()) {
+        setBtnDisabled(true);
+        setTextBtn('체크아웃 날짜는 체크인 날짜 이후로 선택해주세요');
+        return false;
+      } else if (!checkReserved) {
+        setBtnDisabled(true);
+        setTextBtn('예약 불가한 날짜가 포함되어 있습니다');
+      } else {
+        setBtnDisabled(false);
+        const { payPrice, nightCnt } = priceCalc(startDate, endDate);
+        setTextBtn(`${nightCnt}박 : ₩${payPrice}원 결제하기`);
+        return true;
+      }
+    } else {
+      setBtnDisabled(false);
+      setTextBtn('예 약 하 기');
+      return false;
+    }
+  };
 
 
   // 예약된 날짜에 따른 비활성화 날짜 범위 계산
@@ -60,11 +106,6 @@ export default function ReservationDate({param, price}) {
       return { payPrice, nightCnt };
   };
 
-  useEffect(() => {
-    validateDates(startDate, endDate);
-  }, [startDate, endDate, price]);
-  
-
   // input onchange 이벤트
   const handleChangeCheckin = (date) => {
     setStartDate(date);
@@ -74,45 +115,6 @@ export default function ReservationDate({param, price}) {
     setEndDate(date);
   };
 
-  // 예약된 날짜에 선택한 날짜 포함 여부 체크
-  const includeReservation = (startDate, endDate) => {
-    const isDateInclude = reservationData.some(reservation => {
-      const checkinDate = reservation.checkin; 
-      const checkoutDate = reservation.checkout;
-      return startDate < checkoutDate && endDate > checkinDate;
-    });
-    return !isDateInclude;
-  };
-  
-
-  // input 유효성 검사
-  const validateDates = (startDate, endDate) => {
-    if (startDate && endDate) {
-      // 체크인 체크아웃 날짜가 모두 있을 때 예약 되어있는 날짜가 포함되는지 체크하는 함수 실행
-      const checkReserved = includeReservation(startDate, endDate);
-      if (startDate.getTime() === endDate.getTime()) {
-        setBtnDisabled(true);
-        setTextBtn('같은 날짜는 예약 불가능합니다');
-        return false;
-      } else if (startDate.getTime() >= endDate.getTime()) {
-        setBtnDisabled(true);
-        setTextBtn('체크아웃 날짜는 체크인 날짜 이후로 선택해주세요');
-        return false;
-      } else if (!checkReserved) {
-        setBtnDisabled(true);
-        setTextBtn('예약 불가한 날짜가 포함되어 있습니다');
-      } else {
-        setBtnDisabled(false);
-        const { payPrice, nightCnt } = priceCalc(startDate, endDate);
-        setTextBtn(`${nightCnt}박 : ₩${payPrice}원 결제하기`);
-        return true;
-      }
-    } else {
-      setBtnDisabled(false);
-      setTextBtn('예 약 하 기');
-      return false;
-    }
-  };
 
   // 예약하기 버튼 클릭
   const handleClick = () => {
