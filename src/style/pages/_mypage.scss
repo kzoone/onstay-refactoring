@@ -1,3 +1,5 @@
+@import '../components/mypage/myedit';
+
 main.mypage {
   @include pageTitle($ft-size: 1.2rem, $mb: 5rem);
   margin: 0 auto;
@@ -23,7 +25,7 @@ main.mypage {
 
   > div.mypage_main_container {
     display: flex;
-    padding-top: 7vh;
+    padding-top: 5vh;
     ul.mypage_navbar {
       display: flex;
       flex-direction: column;
@@ -83,34 +85,24 @@ div.mypage_content {
   div.my_reservation {
     ul.my_reservation_navbar {
       margin-bottom: 3vh;
+      display: flex;
+      justify-content: flex-start;
       li {
         cursor: pointer;
-        display: inline-block;
-        color: #888;
+        color: #AAA;
         &.active {
           color: #000;
           font-weight: 600;
-        }
-        &:not(:last-child) {
-          margin-right: 3rem;
-          &::after {
-            content: "|";
-            font-size: 0.9em;
-            color: #ccc;
-            display: inline-block;
-            transform: translate(1.5rem, -0.1em);
-          }
         }
       }
     }
     div.my_reservation_list {
       display: flex;
       flex-direction: column;
-      padding: 3vh 0;
+      padding: 3vh 0 0 0;
       div.my_reservation_wrapper {
         display: flex;
         justify-content: space-between;
-
         &:not(:last-of-type) {
           margin-bottom: 8vh;
         }
@@ -207,6 +199,12 @@ div.mypage_content {
 
 @media screen and (min-width: $md-max-breakpoint) {
   div.mypage_content {
+    ul.my_reservation_navbar {
+      li {
+        margin-right: 2.5vh;
+      }
+    }
+
     div.my_reservation_list {
       div.my_reservation_wrapper {
         div.reservation_info {
@@ -230,10 +228,16 @@ div.mypage_content {
   div.mypage_content {
     div.my_reservation {
       ul.my_reservation_navbar {
+        justify-content: space-between;
         li {
+          width: 50%;
+          border-right: none;
+          text-align: center;
+          border-bottom: 2px solid #AAA;
+          padding-bottom: 1.5vh;
           &.active {
-          }
-          &:not(:last-child) {
+            font-size: 1.05em;
+            border-bottom: 2px solid #000;
           }
         }
       }
@@ -253,14 +257,11 @@ div.mypage_content {
 
         }
         div.detail_infos {
-          height: 10vh;
-          overflow: scroll;
-          padding-top: 1vh;
+          padding: 2vh 0 1.5vh 0;
           background-color: #EEE;
           margin-bottom: 1vh;
           div.stay_info,
           div.pay_info {
-            padding: 0 1rem;
             b {
             }
             small {

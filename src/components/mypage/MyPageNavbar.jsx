@@ -1,16 +1,16 @@
 import { useState } from "react"
 
 export function MyPageNavbar(props) {
-  const {showContent, setShowContent} = props
+  const {showContent, setShowContent} = props;
 
   const handleClick = (e) => {
-    setShowContent(e.target.dataset.content)
-    window.scrollTo({top : 0})
+    setShowContent(e.target.dataset.content);
+    window.scrollTo({top : 0});
   }
 
   return (
     <ul className='mypage_navbar'>
-      <li onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' && 'active'}>
+      <li  onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' && 'active'}>
         예약 정보
       </li>
       <li onClick={handleClick} data-content='MyCoupon' className={showContent==='MyCoupon' && 'active'}>

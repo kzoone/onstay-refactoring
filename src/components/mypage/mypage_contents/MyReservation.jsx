@@ -21,7 +21,7 @@ export function MyReservation({ user_id }) {
 
   useEffect(() => {
     axiosAuth({
-      url: 'http://localhost:8000/mypage/reservation/' + user_id,
+      url: 'http://localhost:8000/mypage/reservation/' + 'user',
       method: 'get',
     })
       .then((res) => {
@@ -29,10 +29,13 @@ export function MyReservation({ user_id }) {
           .map((reservation) => {
             const now = new Date().getTime();
             const checkin = new Date(reservation.checkin).getTime();
+            const checkout = new Date(reservation.checkout).getTime()
+            const totalPrice = reservation.room_price * parseInt((checkout - checkin) / (24*60*60*1000)) 
             const dayDiff = parseInt((checkin - now) / (24 * 60 * 60 * 1000)); // 현재 날짜와 체크인 날짜간의 간격을 구함
             return {
               ...reservation,
               dayDiff,
+              totalPrice,
               checkin: convertDateForm(reservation.checkin),
               checkout: convertDateForm(reservation.checkout),
               pay_date: convertDateForm(reservation.pay_date),
@@ -93,7 +96,7 @@ export function MyReservation({ user_id }) {
                   <div className="pay_info">
                     <b>결제 정보</b>
                     <small className="pay_price">
-                      결제 금액 : {res.room_price.toLocaleString()}원
+                      결제 금액 : {res.totalPrice.toLocaleString()}원
                     </small>
                     <small className="pay_date">결제 일자 : {res.pay_date}</small>
                   </div>

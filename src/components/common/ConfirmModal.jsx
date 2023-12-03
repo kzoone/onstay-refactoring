@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function ConfirmModal({handelModal, handleConfirm, noti_1, noti_2, btnText}){
+export default function ConfirmModal({handleModal, handleConfirm, noti_1, noti_2, btnText}){
 
   const handleModalBackground = (e) => {
-    handelModal();
+    handleModal();
     e.stopPropagation();
   }
 
@@ -17,12 +17,11 @@ export default function ConfirmModal({handelModal, handleConfirm, noti_1, noti_2
         </div>
         <div className='btn_wrap'>
           <button type='button' className='close_btn'
-                  onClick={handelModal}>닫기</button>
+                  onClick={handleModal}>닫기</button>
           <button type='button' className='login_btn'
                   onClick={handleConfirm}>{btnText || '확인'}</button>
         </div>
       </div>
     </div>    
   );
-}
-
+};

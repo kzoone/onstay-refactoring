@@ -119,9 +119,9 @@ export default function Header() {
 
     return(
         <>
-            {showModal && <ConfirmModal handelModal={handleModal}
+            {showModal && <ConfirmModal handleModal={handleModal}
                                         handleConfirm={handleLogout} 
-                                        noti_1={`${user.user_name}님! 아직 둘러볼 한옥 스테이가 많아요!`} 
+                                        noti_1={`${user.user_name}님, 아직 둘러볼 한옥 스테이가 많아요!`} 
                                         noti_2={`정말 로그아웃 하실거에요?`}/>}
         <div className='header'>
             <div className='header_left'>
