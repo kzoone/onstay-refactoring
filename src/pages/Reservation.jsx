@@ -1,5 +1,11 @@
+import PageTitle from '../components/common/PageTitle';
+import ReservationContent from '../components/reservation/ReservationContent';
+
 export function Reservation() {
     return(
-        <h1>Reservation</h1>
+        <main className="reservation_section">
+            <PageTitle title='RESERVATION'/>
+            <ReservationContent />
+        </main>
     );
 }

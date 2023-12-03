@@ -14,18 +14,19 @@ export default function RoomContent() {
   const [ otherContent, setOtherContent ] = useState({});
   let { roomid } = useParams();
 
+  // 객실 정보 리스트 조회
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/room/${roomid}`)
-    .then(result => {
-      if(result.data[0].room_id === roomid) {
-        setRoomContent(result.data[0]);
-        setOtherContent(result.data[1]);
-      } else {
-        setRoomContent(result.data[1]);
-        setOtherContent(result.data[0]);
-      }
-    })
-    .catch(error => console.log(error));
+      .then(result => {
+        if(result.data[0].room_id === roomid) {
+          setRoomContent(result.data[0]);
+          setOtherContent(result.data[1]);
+        } else {
+          setRoomContent(result.data[1]);
+          setOtherContent(result.data[0]);
+        }
+      })
+      .catch(error => console.log(error));
   }, [roomid])
   
 
