@@ -16,11 +16,11 @@ export default function CategorySwiper({type}){
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/${type}`)
-    .then(result => {
-      const resultSlice = result.data.splice(0, 12);
-      setAccList(resultSlice);
-    })
-    .catch(err => console.log(err));
+      .then(result => {
+        const resultSlice = result.data.splice(0, 12);
+        setAccList(resultSlice);
+      })
+      .catch(err => console.log(err));
   }, [])
   
   const prevRef = useRef(null);
@@ -57,11 +57,11 @@ export default function CategorySwiper({type}){
             },
           }}
         >
-        {accList.map((list, idx) => (
+        { accList.map((list, idx) => (
           <SwiperSlide key={`list.acc_id${idx}`}>
             <CategorySwiperInner list={list}/>
           </SwiperSlide>
-      ))}
+          )) }
         <button className='prev' ref={prevRef}><FiChevronLeft /></button>
         <button className='next' ref={nextRef}><FiChevronRight /></button>
       </Swiper>
