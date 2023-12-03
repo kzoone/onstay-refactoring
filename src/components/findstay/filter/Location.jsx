@@ -32,25 +32,31 @@ export default function Location({ onLocation, codeinfo, locationName }){
         };
     }, [locationModalRef, closeModal, isLocationModalOpen]);
 
-
-    
-
+    const [location, setLocation] = useState('전체');
     /* 지역 선택 */
     const handleLocationSelect = (selected) => {
-        const selectedLocation = selected;
-        onLocation(selectedLocation);
+        setLocation(selected);
+        onLocation(selected);
     }
 
     return(
-        <div ref={locationModalRef} className="location_select">
-            <button type='button' onClick={openModal}>전체 지역</button>
+        <div ref={locationModalRef} className='location_select'>
+            <button className='location_btn' type='button' onClick={openModal}>
+                {location==='전체'?'전체':locationName(location)}
+            </button>
             
             {/* 모달이 열려 있을 때만 모달 컴포넌트 렌더링 */}
             {isLocationModalOpen && (
             <Modal isOpen={isLocationModalOpen} onClose={closeModal} className={'location_modal'} >
+            <div className='control_box'>
+                <div className='control_title'>지역 선택</div>
+            </div>
+            <div className='location_list'>
+                <button type='button' className='btn' onClick={() => handleLocationSelect('전체')}>전체</button>
                 {Object.keys(codeinfo).map((location)=>
-                    <button type='button' key={location} onClick={() => handleLocationSelect(location)}>{locationName(location)}</button>
+                    <button type='button' className='btn' key={location} onClick={() => handleLocationSelect(location)}>{locationName(location)}</button>
                 )}
+            </div>
             </Modal>
             )}
         </div>

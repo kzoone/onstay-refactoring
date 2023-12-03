@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
@@ -27,16 +27,16 @@ export default function Acc({acc, codeinfo, locationName}){
     
 
     return(
-        <div className="acc">
-            <div className="acc_title">{acc.acc_name}</div>
-            <div className="acc_content">
-                <div className="acc_info">
+        <div className='acc'>
+            <div className='acc_title'>{acc.acc_name}</div>
+            <div className='acc_content'>
+                <div className='acc_info'>
                     <p>{locationName(acc.area_code)}</p>
                     <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
                     <p>￦{acc.room_price} ~</p>
                     <p>예약하기</p>
                 </div>
-                <div className="acc_imgs">
+                <div className='acc_imgs'>
                     <Swiper 
                     navigation={true} 
                     modules={[Navigation]}

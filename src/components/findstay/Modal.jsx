@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TfiClose } from "react-icons/tfi";
+import { TfiClose } from 'react-icons/tfi';
 
 export default function Modal ({ isOpen, onClose, children, className }) {   // isOpen -> 모달이 열려 있는지 여부
     if (!isOpen) {
@@ -8,7 +8,10 @@ export default function Modal ({ isOpen, onClose, children, className }) {   // 
 
     return (
         <div className={`modal ${className}`}>
-            <button className="close" type='button' onClick={onClose}><TfiClose /></button>
+            <div className='modal_top'>
+                <button className='close' type='button' onClick={onClose}><TfiClose /></button>
+                <div className='modal_title'>필터</div>
+            </div>
             {children}
         </div>
     );

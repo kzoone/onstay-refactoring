@@ -1,7 +1,8 @@
 /* 인원 모달의 열고 닫기, 수량 변경, 장바구니에 추가하는 기능 */
 
-import { useState, useRef, useEffect } from "react";
-import Modal from "../Modal";
+import { useState, useRef, useEffect } from 'react';
+import Modal from '../Modal';
+import { IoIosArrowDown } from 'react-icons/io';
 
 export default function PersonnelModal({ onPersonnel }) {
 
@@ -46,22 +47,31 @@ export default function PersonnelModal({ onPersonnel }) {
     };
 
     const handlePersonnelSelect = (selected) => {
-        const selectedPersonnel = selected;
-        onPersonnel(selectedPersonnel);
+        onPersonnel(selected);
     }
   
-  return (
-    <div ref={personnelModalRef} className="personnel_select">
-        <button type='button' onClick={openModal}>인원 {personnelCnt} 명</button>
+    return (
+        <div ref={personnelModalRef} className='personnel_select'>
+            <div className='personnel_section'>
+                <div className='personnel_title'>인원</div>
+                <button className='personnel_btn' type='button' onClick={openModal}>
+                    <div className='btn_sub'>{personnelCnt} 명</div>
+                    <IoIosArrowDown />
+                </button>
+            </div>
         
         {isPersonnelModalOpen && (
-        <Modal isOpen={isPersonnelModalOpen} onClose={closeModal} className={'personnel_select'} >
-            <button type='button' onClick={handleDecrease}>-</button>
-            <div>{personnelCnt}</div>
-            <button type='button' onClick={handleIncrease}>+</button>
-            <button type='button' onClick={() =>{handlePersonnelSelect(personnelCnt); closeModal()}}>확인</button>
+        <Modal isOpen={isPersonnelModalOpen} onClose={closeModal} className={'personnel_modal'} >
+            <div className='control_box'>
+                <button className='control' type='button' onClick={handleDecrease}>-</button>
+                <div className='cnt'>{personnelCnt}</div>
+                <button className='control' type='button' onClick={handleIncrease}>+</button>
+            </div>
+            <div className='select'>
+                <button type='button' onClick={() =>{handlePersonnelSelect(personnelCnt); closeModal()}}>확인</button>
+            </div>
         </Modal>
         )}
-    </div>
-  );
+        </div>
+    );
 }

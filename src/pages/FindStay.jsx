@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import PageTitle from '../components/common/PageTitle';
 import Filter from '../components/findstay/Filter';
 import Sort from '../components/findstay/Sort';
@@ -10,7 +9,7 @@ export function FindStay() {
     /**
      * 숙소 리스트 출력
      */
-    const [accList, setAccList] = useState([]); //페이지가 로드될 때 서버에서 숙소리스트를 가져오고, 상태 변수 accList에 담아서 페이지에 출력한다.
+    const [accList, setAccList] = useState([]);
 
     useEffect(() => {
         axios
@@ -61,6 +60,18 @@ export function FindStay() {
     const locationName = (area_code) => {
         return codeinfo[area_code];
     };
+
+    /**
+     * 체크인, 체크아웃
+     */
+    const [checkin, setCheckin] = useState(null);
+    const handleCheckin = (selectedCheckin) => {
+        setCheckin(selectedCheckin);
+    }
+    const [checkout, setCheckout] = useState(null);
+    const handleCheckout = (selectedCheckout) => {
+        setCheckout(selectedCheckout);
+    }
  
     /**
      * 선택 인원
@@ -70,27 +81,114 @@ export function FindStay() {
         setPersonnel(selectedPersonnel);
     }
 
-    const params = {
-        personnel
+    
+    /**
+     * 선택한 가격
+    */
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(500000);
+    const handleMinPrice = (selectedMinPrice) => {
+        setMinPrice(selectedMinPrice);
+    }
+    const handleMaxPrice = (selectedMaxPrice) => {
+        setMaxPrice(selectedMaxPrice);
     }
 
-    const handleFilterSubmit = () => {
+    /**
+     * 서비스
+     */
+    const [isParking, setIsParking] = useState(0);
+    const [isCook, setIsCook] = useState(0);
+    const [isPet, setIsPet] = useState(0);
+    const [isBreakfast, setIsBreakfast] = useState(0);
+
+    const handleParking = (clickParking) => {
+        setIsParking(clickParking);
+    }
+    const handleCook = (clickCook) => {
+        setIsCook(clickCook);
+    }
+    const handlePet = (clickPet) => {
+        setIsPet(clickPet);
+    }
+    const handleBreakfast = (clickBreakfast) => {
+        setIsBreakfast(clickBreakfast);
+    }
+    
+    
+    
+    /**
+     * 조건별 정렬
+    */
+    const [sort, setSort] = useState('love');
+    const handleSort = (clickedSort) => {
+        setSort(clickedSort);
+    }
+    
+    /**
+     * 서버로 값 전달
+     */
+    const handleSubmit = () => {
+    
+        const params = {
+            personnel,
+            minPrice,
+            maxPrice,
+            sort,
+            checkin,
+            checkout
+        }
+
         axios
         .get('http://localhost:8000/findstay/',{params})
         .then((res) => {
-            setAccList(res.data);
+            if(res.data){
+                setAccList(res.data);
+            }
         })
         .catch((err) => {
             console.error('axios 에러 발생 => ' + err);
         })
     }
-     
+
+    useEffect(() => {
+        handleSubmit();
+    }, [personnel, minPrice, maxPrice, sort, checkin, checkout]);
+
     return(
-        <main className="findstay">
-            <PageTitle title={'FIND STAY'} subtitle={'머무는 것 자체로 여행이 되는 공간'} />
-            <Filter onSearch={handleSearch} onLocation={handleLocation} codeinfo={codeinfo} locationName={locationName} onPersonnel={handlePersonnel} onFilterSubmit={handleFilterSubmit} />
-            <Sort /> 
-            <AccList accs={accList} searched={searched} location={location} codeinfo={codeinfo} locationName={locationName} />
+        <main className='findstay'>
+            <PageTitle 
+                title={'FIND STAY'} 
+                subtitle={'머무는 것 자체로 여행이 되는 공간'} 
+            />
+            <Filter 
+                onSearch={handleSearch} 
+                onLocation={handleLocation} 
+                codeinfo={codeinfo} 
+                locationName={locationName} 
+                onCheckin={handleCheckin}
+                onCheckout={handleCheckout}
+                onPersonnel={handlePersonnel} 
+                onMinPrice={handleMinPrice}
+                onMaxPrice={handleMaxPrice}
+                onParking={handleParking}
+                onCook={handleCook}
+                onPet={handlePet}
+                onBreakfast={handleBreakfast}
+            />
+            <Sort onSort={handleSort} onSortSubmit={handleSubmit} /> 
+            <AccList 
+                accs={accList} 
+                searched={searched} 
+                location={location} 
+                codeinfo={codeinfo} 
+                locationName={locationName}
+                isParking={isParking}
+                isCook={isCook}
+                isPet={isPet}
+                isBreakfast={isBreakfast}
+                sort={sort}
+            />
         </main>
     );
 }
