@@ -1,4 +1,4 @@
-.notice_page {
+.notice_page, .notice_admin {
   max-width: 1300px;
   margin: 10vh auto;
   div.page_title_container {
@@ -6,15 +6,12 @@
       margin-left: 0;
     }
   }
-  & > div > p {
-    text-align: center;
-  }
-  table.notice_content {
+  table.notice_table {
     table-layout: fixed;
     margin: 8vh auto 0 auto;
     width: 90%;
     text-align: center;
-    @include responsive('sm') {
+    @include responsive("sm") {
       font-size: 0.85rem;
     }
     & tr {
@@ -26,14 +23,20 @@
       padding: 0 30px;
       border-bottom: 5px double black;
     }
-    & > tbody{
+    & > tbody {
       & > div {
         padding: 19.5vh 0;
+      }
+      & > tr.nosearch {
+        justify-content: center;
+        td {
+          margin: 18vh;
+        }
       }
       & > tr {
         border-bottom: 1px solid rgb(160, 160, 160);
       }
-    } 
+    }
     & > thead > tr > th:nth-child(1),
     & > tbody > tr > th:nth-child(1) {
       width: 8%;
@@ -41,14 +44,14 @@
     & > thead > tr > th:nth-child(2),
     & > tbody > tr > td:nth-child(2) {
       width: 45%;
-      @include responsive('sm') {
+      @include responsive("sm") {
         width: 40%;
       }
     }
     & > thead > tr > th:nth-child(3),
     & > tbody > tr > td:nth-child(3) {
       width: 25%;
-      @include responsive('sm') {
+      @include responsive("sm") {
         width: 30%;
       }
     }
@@ -69,7 +72,7 @@
     th,
     td {
       padding: 20px 0;
-      @include responsive('sm') {
+      @include responsive("sm") {
         padding: 15px 0;
       }
     }
@@ -80,13 +83,13 @@
     justify-content: space-between;
     margin: 5vh auto 0 auto;
     width: 30%;
-    @include responsive('lg') {
+    @include responsive("lg") {
       width: 40%;
     }
-    @include responsive('md') {
+    @include responsive("md") {
       width: 50%;
     }
-    @include responsive('sm') {
+    @include responsive("sm") {
       width: 80%;
     }
     li {
@@ -109,7 +112,7 @@
       @media screen and (max-width: $md-max-breakpoint) {
         width: 70%;
       }
-      @include responsive('sm') {
+      @include responsive("sm") {
         width: 90%;
       }
     }
@@ -130,7 +133,8 @@
       width: 68%;
     }
     & > form > select,
-    & > form > div > input, & > form > div > div.react-datepicker-wrapper > div {
+    & > form > div > input,
+    & > form > div > div.react-datepicker-wrapper > div {
       height: 40px;
       padding-left: 10px;
       border-radius: 50px;
@@ -138,6 +142,35 @@
     }
     & > form > div > div.react-datepicker__tab-loop {
       position: absolute;
+      .react-datepicker__header {
+        background-color: rgb(234, 234, 234);
+        * {
+          font-weight: 600;
+        }
+        & > div {
+          justify-content: space-between !important;
+          button:first-child {
+            margin-left: 10px;
+          }
+          button:last-child {
+            margin-right: 10px;
+          }
+        }
+      }
+      .react-datepicker__day--outside-month {
+        color: #a8a8a8 !important;
+        pointer-events: none;
+      }
+      //시작~종료 달력일자 구간 선택 컬러
+      .react-datepicker__day--in-selecting-range,
+      .react-datepicker__day--in-range, 
+      .react-datepicker__day--keyboard-selected {
+        background-color: rgb(234, 234, 234);
+        color: black;
+      }
+      .react-datepicker__day--keyboard-selected:hover {
+        background-color: rgb(179, 179, 179);
+      }
     }
     & > form {
       border-radius: 50px;
@@ -161,4 +194,8 @@
       }
     }
   }
+}
+
+.notice_admin {
+
 }
