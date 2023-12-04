@@ -1,0 +1,279 @@
+.notice_page,
+.notice_admin {
+  max-width: 1300px;
+  margin: 10vh auto;
+  div.page_title_container {
+    margin-bottom: 8vh;
+    p.title {
+      margin-left: 0;
+    }
+  }
+  .notice_admin_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto 5vh auto;
+    gap: 2%;
+    p {
+      width: 80%;
+      font-size: 1.1rem;
+      b{
+        font-size: 1.2rem;
+      }
+    }
+    button {
+      padding: 10px 30px;
+      border: 1px solid black;
+      border-radius: 50px;
+      &:hover {
+        background: black;
+        color: white;
+      }
+    }
+  }
+  table.notice_table {
+    table-layout: fixed;
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    @include responsive("sm") {
+      font-size: 0.85rem;
+    }
+    & tr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    & > thead {
+      padding: 0 30px;
+      border-bottom: 5px double black;
+    }
+    & > tbody {
+      & > div {
+        padding: 19.5vh 0;
+      }
+      & > tr.nosearch {
+        justify-content: center;
+        td {
+          margin: 18vh;
+        }
+      }
+      & > tr {
+        border-bottom: 1px solid rgb(160, 160, 160);
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"] + label {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 1px solid gray;
+          position: relative;
+        }
+        input[type="checkbox"]:checked + label::after {
+          content: "✔";
+          font-size: 15px;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        button {
+          padding: 5px;
+          background: white;
+          border-radius: 50px;
+          &:hover {
+            padding: 5px;
+            background: black;
+            border-radius: 50px;
+            svg{
+              fill: white;
+            }
+          }
+        }
+      }
+    }
+    & > thead > tr > th:nth-child(1),
+    & > tbody > tr > th:nth-child(1) {
+      width: 8%;
+      @include responsive("md") {
+        width: 15%;
+      }
+      @include responsive("sm") {
+        width: 20%;
+      }
+    }
+
+    & > thead > tr > th:nth-child(2),
+    & > tbody > tr > td:nth-child(2) {
+      width: 45%;
+      @include responsive("sm") {
+        width: 40%;
+      }
+    }
+    & > thead > tr > th:nth-child(3),
+    & > tbody > tr > td:nth-child(3) {
+      width: 25%;
+      @include responsive("sm") {
+        width: 30%;
+      }
+    }
+    & > thead > tr > th:nth-child(4),
+    & > tbody > tr > td:nth-child(4) {
+      width: 15%;
+    }
+    & > tbody > tr > td:nth-child(2) {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+    & > tbody > tr > td:nth-child(2) > a:hover {
+      border-bottom: 1px solid black;
+      font-weight: 600;
+    }
+    th,
+    td {
+      padding: 20px 0;
+      @include responsive("sm") {
+        padding: 15px 0;
+      }
+    }
+  }
+  ul.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5vh auto 0 auto;
+    width: 30%;
+    @include responsive("lg") {
+      width: 40%;
+    }
+    @include responsive("md") {
+      width: 50%;
+    }
+    @include responsive("sm") {
+      width: 80%;
+    }
+    li {
+      &.active {
+        font-weight: 600;
+      }
+    }
+  }
+  .notice_filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8vh auto 0 auto;
+    width: 50%;
+    @media screen and (max-width: $lg-max-breakpoint) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 50%;
+      @media screen and (max-width: $md-max-breakpoint) {
+        width: 70%;
+      }
+      @include responsive("sm") {
+        width: 90%;
+      }
+    }
+    & > form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 72%;
+    }
+    & > form > select {
+      width: 28%;
+    }
+    & > form > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6%;
+      width: 68%;
+    }
+    & > form > select,
+    & > form > div > input,
+    & > form > div > div.react-datepicker-wrapper > div {
+      height: 40px;
+      padding-left: 10px;
+      border-radius: 50px;
+      background: rgb(234, 234, 234);
+    }
+    & > form > div > div.react-datepicker__tab-loop {
+      position: absolute;
+      .react-datepicker__header {
+        background-color: rgb(234, 234, 234);
+        * {
+          font-weight: 600;
+        }
+        & > div {
+          justify-content: space-between !important;
+          button:first-child {
+            margin-left: 10px;
+          }
+          button:last-child {
+            margin-right: 10px;
+          }
+        }
+      }
+      .react-datepicker__day--outside-month {
+        color: #a8a8a8 !important;
+        pointer-events: none;
+      }
+      //시작~종료 달력일자 구간 선택 컬러
+      .react-datepicker__day--in-selecting-range,
+      .react-datepicker__day--in-range,
+      .react-datepicker__day--keyboard-selected {
+        background-color: rgb(234, 234, 234);
+        color: black;
+      }
+      .react-datepicker__day--keyboard-selected:hover {
+        background-color: rgb(179, 179, 179);
+      }
+    }
+    & > form {
+      border-radius: 50px;
+      @media screen and (max-width: $lg-max-breakpoint) {
+        width: 100%;
+      }
+      input {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    & > button {
+      height: 40px;
+      width: 25%;
+      border-radius: 50px;
+      background: black;
+      color: white;
+      @media screen and (max-width: $lg-max-breakpoint) {
+        width: 100%;
+        margin-top: 2vh;
+      }
+    }
+  }
+}
+
+.notice_admin {
+  .notice_table {
+    tbody {
+      tr {
+        td {
+          button {
+            .slnote:hover {
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}

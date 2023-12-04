@@ -1,6 +1,6 @@
 /* abstracts */ 
 @import './abstracts/variables';
-@import './abstracts//mixin';
+@import './abstracts/mixin';
 
 /* base */
 @import './base/normallize';
@@ -18,3 +18,5 @@
 @import './pages/join';
 @import './pages/login';
 @import './pages/newstay';
+@import './pages/notice';
+@import './pages/noticedetail';
