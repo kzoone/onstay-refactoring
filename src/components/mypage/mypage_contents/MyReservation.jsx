@@ -21,7 +21,7 @@ export function MyReservation({ user_id }) {
 
   useEffect(() => {
     axiosAuth({
-      url: 'http://localhost:8000/mypage/reservation/' + 'user',
+      url: 'http://localhost:8000/mypage/reservation/' + user_id,
       method: 'get',
     })
       .then((res) => {

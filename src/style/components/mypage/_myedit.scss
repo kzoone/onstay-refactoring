@@ -1,107 +1,172 @@
 div.my_edit {
+  button {
+    padding: 1.8vh 0;
+    text-align: center;
+    &.black_box {
+      color: white;
+      background-color: black;
+    }
+    &.white_box {
+      color: black;
+      background-color: white;
+      border: 1px solid black;
+    }
+  }
+} // 버튼 스타일
+
+div.my_edit {
   h2 {
     margin-bottom: 5vh;
   }
   form {
-    display: flex;
-    div.edit_infos {
+    > div:first-of-type {
       display: flex;
-      flex-direction: column;
-      button,
-      > a {
-        padding: 1.8vh 0;
-        text-align: center;
-        &.black_box {
-          color: white;
-          background-color: black;
-        }
-        &.white_box {
-          color: black;
-          background-color: white;
-          border: 1px solid black;
-        }
-      }
-      p {
+      margin-bottom: 2vh;
+      div.edit_infos {
         display: flex;
         flex-direction: column;
-        margin-bottom: 2vh;
-        label {
-          font-size: 0.8em;
-          font-weight: 600;
-          margin-bottom: 5px;
+        p {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 2vh;
+          &:nth-of-type(4) {
+            button {
+              padding: 1vh 0;
+            }
+          }
+          label {
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+          input:not(.join_checkbox) {
+            height: 5vh;
+            margin-bottom: 0.5vh;
+            border-bottom: 1px solid #ccc;
+            padding: 0 0.5rem;
+            &::placeholder {
+              color: #bbb;
+            }
+            &#current_pw {
+              margin-bottom: 1.5vh;
+            }
+            &:disabled {
+              color: #888;
+            }
+          }
         }
-        input:not(.join_checkbox) {
-          height: 5vh;
-          margin-bottom: 0.5vh;
-          border-bottom: 1px solid #ccc;
-          padding: 0 0.5rem;
-          &::placeholder {
-            color: #bbb;
+      }
+      div.edit_photo_container {
+        flex: 1;
+        text-align: center;
+        h3 {
+          font-size: 0.8em;
+          text-align: left;
+          margin-bottom: 1.5vh;
+        }
+        div.edit_photo_wrapper {
+          display: inline-block;
+          position: relative;
+          div.profile_img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            background-color: #ddd;
+            box-sizing: border-box;
+            img {
+              object-fit: cover;
+              object-position: center;
+              width: 100%;
+              height: 100%;
+            }
+          }
+          label.profile_img_select {
+            position: absolute;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 1px 1px 1px #888;
+            bottom: 10%;
+            right: 0;
+            @media (hover: hover) {
+              &:hover svg {
+                color: #00000076;
+              }
+            }
+            svg {
+              position: absolute;
+              width: 22px;
+              height: 22px;
+              color: #0000002b;
+              left: 50%;
+              top: 50%;
+              transition: all 0.3s;
+              transform: translate(-50%, -50%);
+            }
+          }
+          input[type='file'] {
+            display: none;
           }
         }
       }
     }
-    div.edit_photo_container {
-      flex: 1;
-      text-align: center;
-      h3 {
-        font-size: .8em;
-        text-align: left;
-        margin-bottom: 1.5vh;
+
+    > div.term_service {
+      font-size: 0.9rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 3vh;
+      input {
+        margin-right: 0.5rem;
+        accent-color: black;
       }
-      div.edit_photo_wrapper  {
-        display: inline-block;
+      div:first-child {
         position: relative;
-        div.profile_img {
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          overflow: hidden;
-          border: 1px solid #DDD;
-          background-color: #DDD;
-          box-sizing: border-box;
-          img {
-            object-fit: cover;
-            object-position: center;
-            width: 100%;
-            height: 100%;
-          }
-        }
-        label.profile_img_select {
+        button.term_detail_btn {
           position: absolute;
-          width: 35px;
-          height: 35px;
-          border-radius: 50%;
-          background-color: #FFF;
-          box-shadow: 1px 1px 1px #888;
-          bottom: 10%;
-          right: 0;
-          svg {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            color: #0000002b;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-          }
+          top: -0.85rem;
+          right: 0.2rem;
         }
-        input[type=file] {
-          display: none;
-        }
+      }
+      div.term_detail {
+        margin-top: 1.5vh;
+        padding: 1.5vh;
+        height: 150px;
+        overflow: scroll;
+        background-color: #eee;
+        transition: all 0.5s;
+      }
+    }
+    div.edit_submit_btn {
+      text-align: center;
+      button {
+        width: 200px;
+      }
+    }
+    div.edit_quit_btn {
+      display: inline-block;
+      button {
+        padding: .5vh 0;
+        color: #777;
+        font-size: .9em;
+        border-bottom: .5px solid #777;
       }
     }
   }
 }
 
 @media screen and (min-width: $md-max-breakpoint) {
-
   form {
-    display: flex;
-    div.edit_infos {
-      width: 50%;
+    > div:first-of-type {
+      display: flex;
+      div.edit_infos {
+        width: 50%;
+      }
     }
-    
   }
 }
 
@@ -111,12 +176,25 @@ div.my_edit {
       display: none;
     }
     form {
-      flex-direction: column-reverse;
-      div.edit_infos {
+      > div:first-of-type {
+        flex-direction: column-reverse;
+        div.edit_infos {
+        }
+        div.edit_photo_container {
+          h3 {
+            display: none;
+          }
+          div.edit_photo_wrapper {
+            margin-bottom: 7vh;
+          }
+        }
       }
-      div.edit_photo_container {
-        h3 {
-          display: none;
+      div.edit_submit_btn {
+        text-align: center;
+        margin-bottom: 2vh;
+        button {
+          max-width: 330px;
+          width: 100%;
         }
       }
     }
