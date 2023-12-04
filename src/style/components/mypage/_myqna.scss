@@ -1,0 +1,36 @@
+div.mypage_content {
+  div.my_qna {
+    ul.my_qna_navbar {
+      margin-bottom: 3vh;
+      display: flex;
+      justify-content: flex-start;
+      li {
+        cursor: pointer;
+        color: #AAA;
+        &.active {
+          color: #000;
+          font-weight: 600;
+        }
+      }
+    }
+    div.my_qna_content {
+      form {
+        
+      }
+    }
+  }
+}
+
+
+
+@media screen and (min-width: $md-max-breakpoint) {
+  div.mypage_content {
+    div.my_qna {
+      ul.my_qna_navbar {
+        li {
+          margin-right: 3vh;
+        }
+      }
+    }
+  } // 예약 내역 리스트 container
+}

@@ -10,19 +10,19 @@ export function MyPageNavbar(props) {
 
   return (
     <ul className='mypage_navbar'>
-      <li  onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' && 'active'}>
+      <li  onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' ? 'active' : ''}>
         예약 정보
       </li>
-      <li onClick={handleClick} data-content='MyCoupon' className={showContent==='MyCoupon' && 'active'}>
+      <li onClick={handleClick} data-content='MyCoupon' className={showContent==='MyCoupon' ? 'active' : ''}>
         보유 쿠폰
       </li>
-      <li onClick={handleClick} data-content='MyLoveStay' className={showContent==='MyLoveStay' && 'active'}>
+      <li onClick={handleClick} data-content='MyLoveStay' className={showContent==='MyLoveStay' ? 'active' : ''}>
         관심 스테이
       </li>
-      <li onClick={handleClick} data-content='MyEdit' className={showContent==='MyEdit' && 'active'}>
+      <li onClick={handleClick} data-content='MyEdit' className={showContent==='MyEdit' ? 'active' : ''}>
         회원 정보 수정
       </li>
-      <li onClick={handleClick} data-content='MyQNA' className={showContent==='MyQNA' && 'active'}>
+      <li onClick={handleClick} data-content='MyQNA' className={showContent==='MyQNA' ? 'active' : ''}>
         1:1 문의
       </li>
     </ul>

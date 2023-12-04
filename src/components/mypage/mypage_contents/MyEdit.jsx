@@ -197,10 +197,10 @@ export function MyEdit({ user_id }) {
             <p>
               <label htmlFor="user_pw">비밀번호</label>
               <input value={form.current_pw} onChange={handleChange} type="password" name="current_pw" id="current_pw" placeholder="현재 비밀번호를 입력하세요" />
-              <input value={form.new_pw} onChange={handleChange} type="password" name="user_pw" id="user_pw" placeholder="변경할 비밀번호를 입력하세요." />
+              <input value={form.new_pw} onChange={handleChange} type="password" name="new_pw" id="user_pw" placeholder="변경할 비밀번호를 입력하세요." />
               {(!valid.new_pw && form.new_pw !== '') &&
                         <small className="invalid_noti user_pw">{INVALID_NOTI_TEXT.user_pw}</small>}
-              <input value={form.new_pw_repeat} onChange={handleChange} type="password" name="user_pw_repeat" id="user_pw_repeat" placeholder="변경할 비밀번호를 한번 더 입력하세요." />
+              <input value={form.new_pw_repeat} onChange={handleChange} type="password" name="new_pw_repeat" id="user_pw_repeat" placeholder="변경할 비밀번호를 한번 더 입력하세요." />
               {(!valid.new_pw_repeat && form.user_pw !== '') &&
                         <small className="invalid_noti user_pw_repeat">{INVALID_NOTI_TEXT.user_pw_repeat}</small>}
               <button type='button' className='black_box' onClick={changePassword}>비밀번호 변경</button>

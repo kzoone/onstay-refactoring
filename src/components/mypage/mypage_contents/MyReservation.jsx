@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import axiosAuth from './../../../services/axiosAuth';
 import { Link } from 'react-router-dom';
+import ConfirmModal from './../../common/ConfirmModal';
 
 export function MyReservation({ user_id }) {
   let [category, setCategory] = useState('upcoming');
   let [reservations, setReservations] = useState([]);
+  let [modal, setModal] = useState({show : false, acc_name : '', room_name : '', handleConfirm : ()=>{}})
 
   const handleClick = (e) => setCategory(e.target.dataset.category);
 
@@ -22,7 +24,7 @@ export function MyReservation({ user_id }) {
   useEffect(() => {
     axiosAuth({
       url: 'http://localhost:8000/mypage/reservation/' + user_id,
-      method: 'get',
+      method: 'get'
     })
       .then((res) => {
         let reservations = res.data
@@ -55,20 +57,48 @@ export function MyReservation({ user_id }) {
       });
   }, [category, user_id]);
 
+  const showModal = (e) => {
+    setModal({
+      show : true,
+      acc_name : e.target.dataset.acc_name,
+      room_name : e.target.dataset.room_name,
+      handleConfirm : cancelReservation(e.target.dataset.rid)
+  })
+}
+
+const closeModal = () => setModal({...modal, show : false})
+
+// 예약 취소
+const cancelReservation = rid => () => {
+  axiosAuth({
+    url : 'http://localhost:8000/mypage/reservation',
+    method : 'delete',
+    data : {reservation_id : rid}
+  })
+  .then(res => {
+    alert(`예약이 성공적으로 취소되었습니다.`);
+    window.location.href = '/mypage'; 
+  })
+  .catch(err => {
+    alert(err.response.data.message)
+  })
+}
+
+
   return (
     <div className="my_reservation">
       <ul className="my_reservation_navbar">
         <li
           onClick={handleClick}
           data-category="upcoming"
-          className={category === 'upcoming' && 'active'}
+          className={category === 'upcoming' ? 'active' : ''}
         >
           다가올 예약
         </li>
         <li
           onClick={handleClick}
           data-category="complete"
-          className={category === 'complete' && 'active'}
+          className={category === 'complete' ? 'active' : ''}
         >
           이용 완료
         </li>
@@ -103,10 +133,10 @@ export function MyReservation({ user_id }) {
                 </div>
                 <div className="btns">
                   {category === 'upcoming' && res.dayDiff >= 2 && (
-                    <button>예약 취소</button>
+                    <button onClick={showModal} data-rid={res.reservation_id} data-acc_name={res.acc_name} data-room_name={res.room_name}>예약 취소</button>
                   )}
                   {category === 'upcoming' && res.dayDiff < 2 && (
-                    <small style={{color:'red'}}>취소 불가능</small>
+                    <div style={{color:'red', textAlign:'center'}}>취소 불가능</div>
                   )}
                   {category === 'complete' && res.dayDiff <= 0 && (
                     <button>후기 남기기</button>
@@ -131,6 +161,12 @@ export function MyReservation({ user_id }) {
           </div>
         )}
       </div>
+      {modal.show && 
+      <ConfirmModal noti_1={`${modal.acc_name}-${modal.room_name} 예약을 정말 취소하시겠습니까?`} 
+                    noti_2={`숙소 환불 규정에 따라 위약금이 부과될 수 있습니다.`} 
+                    handleModal={closeModal}
+                    handleConfirm={modal.handleConfirm}/>
+                    }
     </div>
   );
 }
