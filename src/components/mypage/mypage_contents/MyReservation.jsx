@@ -53,7 +53,7 @@ export function MyReservation({ user_id }) {
       .catch((err) => {
         throw err;
       });
-  }, [category]);
+  }, [category, user_id]);
 
   return (
     <div className="my_reservation">

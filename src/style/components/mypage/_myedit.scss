@@ -29,6 +29,19 @@ div.my_edit {
           display: flex;
           flex-direction: column;
           margin-bottom: 2vh;
+          small {
+            font-size: 0.8em;
+            text-wrap: nowrap;
+            &.invalid_noti {
+              color: rgba(231, 17, 17, 0.912);
+            }
+            &.valid_noti {
+              color: blue;
+            }
+            &.user_pw_repeat {
+              margin-bottom: .5rem;
+            }
+          } // 유효성 체크 노티
           &:nth-of-type(4) {
             button {
               padding: 1vh 0;
@@ -48,7 +61,6 @@ div.my_edit {
               color: #bbb;
             }
             &#current_pw {
-              margin-bottom: 1.5vh;
             }
             &:disabled {
               color: #888;
@@ -160,11 +172,13 @@ div.my_edit {
 }
 
 @media screen and (min-width: $md-max-breakpoint) {
-  form {
-    > div:first-of-type {
-      display: flex;
-      div.edit_infos {
-        width: 50%;
+  div.my_edit {
+    form {
+      > div:first-of-type {
+        display: flex;
+        div.edit_infos {
+          width: 50%;
+        }
       }
     }
   }
@@ -181,11 +195,9 @@ div.my_edit {
         div.edit_infos {
         }
         div.edit_photo_container {
+          margin-bottom: 7vh;
           h3 {
             display: none;
-          }
-          div.edit_photo_wrapper {
-            margin-bottom: 7vh;
           }
         }
       }
