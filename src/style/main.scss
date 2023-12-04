@@ -8,15 +8,18 @@
 
 /* components */
 @import './components/home/header';
-@import './components/home/newstaysection';
 @import './components/home/footer';
-@import './components/home/timeAttackSection';
+@import './components/common/confirmmodal';
 @import './components/home/categorysection';
+@import './components/home/timeAttackSection';
+@import './components/home/newstaysection';
 @import './components/home/topbutton';
 
 /* pages */
 @import './pages/join';
 @import './pages/login';
+@import './pages/roomdetail';
+@import './pages/reservation';
 @import './pages/mypage';
 @import './pages/newstay';
 @import './pages/notice';

@@ -1,0 +1,554 @@
+main.reservation_section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 6rem;
+  div.page_title_container {
+    display: block;
+    margin: 4rem 0 6rem 0;
+    text-align: center;
+    p.title {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      font-weight: bold;
+      letter-spacing: 0.8rem;
+      margin-left: 0;
+    }
+  }
+  div.fix_date_container {
+    @include flexbox($jc: space-between, $ai:flex-end);
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 1px solid #867357;
+    p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #5f523f;
+      @include ellipsis;
+    }
+    div.checkdate_container {
+      @include flexbox($fd: column, $ai: normal);
+      font-size: 0.8rem;
+      div.input_wrap {
+        margin-bottom: 10px;
+        display: flex;
+        div.react-datepicker-wrapper:first-child {
+          margin-right: 10px;
+        }
+        div.react-datepicker-wrapper {
+          div.react-datepicker__input-container {
+            input {
+              position: relative;
+              width: 100%;
+              height: 25px;
+              margin-right: 5px;
+              padding: 3px 10px;
+              border-bottom: 1px solid black;
+              background: no-repeat right 5px center; 
+              background-size: 15px 15px;
+              line-height: 19px;
+            }
+            input[type='date']::-webkit-calendar-picker-indicator {
+              position: absolute; 
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background: transparent;
+              color: transparent;
+            }
+            input[type='date']::before {
+              content: attr(placeholder);
+              width: 100%;
+              height: 100%;
+            }
+
+            button.react-datepicker__close-icon {
+              left: auto;
+              padding: 0;
+              &::after {
+                border-radius: 0;
+                background-color: white;
+                font-size: 13px;
+                color: black;
+              }
+            }
+          }
+        }
+  
+        div.react-datepicker__tab-loop {
+          position: absolute;
+          div.react-datepicker {
+            button {
+              margin: 10px;
+            }
+            div.react-datepicker__month-container {
+              div.react-datepicker__header {
+                background-color: #fff;
+                div.react-datepicker__current-month {
+                  margin: 10px;
+                  color: #867357;
+                }
+                div.react-datepicker__day-names {
+                  div.react-datepicker__day-name {
+                    color: #a28f72;
+                  }
+                }
+              }
+              div.react-datepicker__month {
+                div.react-datepicker__week {
+                  div.react-datepicker__day--selected {
+                    border: 1px solid #867357;
+                    background-color: #fff;
+                    color: #a28f72;
+                  }
+                  div.react-datepicker__day--in-selecting-range {
+                    border: none;
+                    background-color: #f0f0f0;
+                    color: #a28f72;
+                  }
+                  div.react-datepicker__day--in-range {
+                    border: 1px solid #867357;
+                    background-color: #f3ece1;
+                    color: #a28f72;
+                  }
+                  div.react-datepicker__day--keyboard-selected {
+                    background-color: #867357;
+                    color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      p {
+        width: 100%;
+        padding: 4px;
+        border: 1px solid #a28f72;
+        border-radius: 3px;
+        background-color: #a28f72;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: white;
+        text-align: center;
+      }
+    }
+  }
+  
+  form.payment_form {
+    margin: 0 auto 5rem auto;
+    padding: 0 3rem 3rem 3rem;
+    border: 1px solid rgba(139, 138, 138, 0.3);
+    dl.form_info_container {
+      padding: 4rem 3rem 3rem 3rem;
+      border-radius: 10px;
+      input {
+        width: 60%;
+        padding: 8px 10px;
+        border-radius: 5px;
+        background-color: rgba(157, 155, 155, 0.2);
+        font-size: 0.8rem;
+        color: #727272;
+      }
+      & > div {
+        @include flexbox($jc: space-between);
+        margin-bottom: 10px;
+        padding: 10px 0 20px 0;
+        border-bottom: 1px solid rgb(212 210 210);
+        dt, dd, p, span {
+          font-size: 0.9rem;
+          color: #444444;
+        }
+        dt {
+          width: 40%;
+          font-weight: bold;
+        }
+        dd {
+          width: 60%;
+        }
+      }
+      div.reservation_box {
+        dd {
+          @include flexbox($jc:flex-start);
+          span {
+            margin: 0 5px;
+            color: rgb(155, 155, 155);
+          }
+        }
+      }
+      div.capa_box {
+        dt {
+          display: flex;
+          flex-direction: column;
+          span {
+            margin-top: 3px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: #727272;
+          }
+        }
+      }
+      div.coupon_box {
+        padding: 25px 0;
+        dd {
+          display: flex;
+          flex-direction: column;
+          div.coupon_select,
+          div.coupon_price {
+            display: flex;
+            justify-content: space-between;
+            label {
+              flex-shrink: 0;
+              font-size: 0.85rem;
+              color: #727272;
+            }
+          }
+
+          div.coupon_select {
+            padding-bottom: 5px;
+            select {
+              border-bottom: 1px solid black;
+              text-align: right;
+            }
+          }
+
+          div.coupon_price {
+            padding-top: 10px;
+            p {
+              font-weight: bold;
+              &:last-child {
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+      }
+
+      div.payment_box {
+        padding: 25px 0;
+        div.room_price,
+        div.room_discount {
+          display: flex;
+          justify-content: space-between;
+          & p {
+            font-size: 0.85rem;
+          }
+          & p:first-child {
+            font-size: 0.85rem;
+            color: #727272;
+          }
+        }
+
+        div.room_price {
+          margin-bottom: 10px;
+          div {
+            display: flex;
+            & p:first-child {
+              margin-right: 8px;
+            }
+            & p:last-child {
+              font-weight: 500;
+            }
+          }
+        }
+        div.room_discount {
+          padding-bottom: 20px;
+          border-bottom: 1px solid black;
+        }
+        div.total_box {
+          @include flexbox($jc: space-between);
+          padding-top: 20px;
+          
+          p:first-child {
+            font-weight: bold;
+          }
+          p.total_price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: right;
+            color: #867357;
+          }
+        }
+      }
+    }
+
+    div.agreement_container {
+      margin: 0 auto;
+      padding: 2rem 4rem;
+      > p {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-align: center;
+      }
+      div {
+        padding: 15px 20px;
+        input {
+          margin-right: 10px;
+        }
+        label {
+          font-size: 0.8rem;
+        }
+
+        &.all_checkbox {
+          background-color: #e4e2e2;
+          label {
+            font-size: 0.9rem;
+            font-weight: 500;
+          }
+          ~ div {
+            border-bottom: 1px solid #d4d2d2;
+            div.check_box {
+              @include flexbox;
+              padding: 0;
+              div {
+                width: 60%;
+                padding: 0;
+              }
+              span {
+                width: 40%;
+                font-size: 0.7rem;
+                text-align: right;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover {
+                  @include text_hover;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+
+        div.detail_content {
+          display: none;
+          &.show_content {
+            display: block;
+          }
+          p {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            &.show {
+              display: block;
+            }
+            span {
+              display: block;
+              margin-bottom: 3px;
+            }
+          }
+        }
+      }
+    }
+
+    div.btn_box {
+      margin: 30px;
+      padding: 0 3rem;
+      text-align: center;
+      button.payment_btn {
+        width: 55%;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #a28f72;
+        font-size: 0.9em;
+        color: white;
+      }
+    }
+  }
+
+  @media screen and ( min-width : $xlg-breakpoint) {
+    & {
+      form.payment_form {
+        dl.form_info_container {
+          padding: 6rem 6rem 3rem 6rem;
+          input {
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and ( max-width: $lg-max-breakpoint ) {
+    & {
+      margin: 0;
+      padding: 0 4rem;
+      div.page_title_container {
+        margin-bottom: 4rem;
+        margin-left: 0.8rem;
+      }
+      div.fix_date_container {
+        div.checkdate_container {
+          margin-top: 20px;
+          div.input_wrap {
+            div.react-datepicker-wrapper {
+              div.react-datepicker__input-container {
+                div.checkdate_container {
+                  flex-direction: column;
+                  border-bottom: none;
+                  div.input_wrap {
+                    justify-content: space-between;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    div.react-datepicker-wrapper {
+                      width: 47.5%;
+                      div.react-datepicker__input-container {
+                        input {
+                          width: 100%;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          p {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and ( max-width: 850px ) {
+    & {
+      margin: 0;
+      padding: 0 2rem;
+      div.fix_date_container {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem;
+      }
+      form.payment_form {
+        padding: 0;
+        border: 1px solid rgba(139, 138, 138, 0.3);
+        dl.form_info_container {
+          padding: 3rem 2rem 2rem 2rem;
+          & > div {
+            dd, p, span {
+              font-size: 13px;
+            }
+            dt {
+              font-size: 13px;
+              padding-left: 0;
+            }
+          }
+        }
+        div.agreement_container {
+          padding: 2rem;
+          div {
+            &.all_checkbox {
+              ~ div {
+                div.check_box {
+                  div {
+                    width: 60%;
+                  }
+                  span {
+                    width: 40%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and ( max-width: 600px ) {
+    & {
+      margin: 0;
+      padding: 0;
+      div.page_title_container {
+        margin-top: 3.5rem 0 3em 0.8rem;
+        p.title {
+          letter-spacing: 0.5rem;
+        }
+      }
+      div.fix_date_container {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2.5rem;
+        & > p {
+          margin-bottom: 5px;
+        }
+      }
+      form.payment_form {
+        margin-bottom: 4rem;
+        padding: 0 1rem;
+        border-bottom: none;
+        dl.form_info_container {
+          padding: 0.5rem;
+          input {
+            width: 90%;
+          }
+          & > div {
+            dt, dd, p, span {
+              font-size: 13px;
+            }
+            dt {
+              padding-left: 0;
+            }
+          }
+          div.coupon_box {
+            dd {
+              div.coupon_select {
+                flex-direction: column;
+                align-items: flex-end;
+                padding-bottom: 0;
+                border-bottom: 1px solid black;
+                label {
+                  margin-right: 17px;
+                }
+                select {
+                  margin: 5px 0 5px -5px;
+                  border: none;
+                }
+              }
+            }
+          }
+
+          div.payment_box {
+            div.room_price {
+              flex-direction: column;
+              margin-bottom: 15px;
+              & div {
+                justify-content: space-between;
+                margin-bottom: 5px;
+              }
+              & p {
+                text-align: right;
+              }
+            }
+            div.room_discount,
+            div.total_box {
+              padding-bottom: 15px;
+            }
+          }
+        }
+
+        div.agreement_container {
+          padding: 1.5rem 0.5rem;
+          div {
+            &.all_checkbox {
+              ~ div {
+                div.check_box {
+                  div {
+                    width: 85%;
+                  }
+                  span {
+                    width: 25%;
+                  }
+                }
+              }
+            }
+          }
+        }
+    
+        div.btn_box {
+          margin: 30px 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+}

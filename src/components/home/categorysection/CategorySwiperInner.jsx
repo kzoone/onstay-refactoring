@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function CategorySwiperInner({list}) {
-  const [ accimg, setAccImg ] = useState({});
+  const [ accimg, setAccImg ] = useState('');
 
   const codeinfo = {
     1: '서울',
@@ -25,10 +25,10 @@ export default function CategorySwiperInner({list}) {
   
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/img/${list.acc_id}`)
-    .then(result => {
-      setAccImg(result.data.acc_img);
-    })
-    .catch(err => console.log(err));
+      .then(result => {
+        setAccImg(result.data.acc_img);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   return(                         

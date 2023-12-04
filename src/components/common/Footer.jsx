@@ -10,7 +10,7 @@ export default function Footer() {
         <div className='footer'>
             <div className='footer_top'>
                 <div className="left">
-                    <img className='main_logo' src='assets/images/main_logo.png' />
+                    <img className='main_logo' src='/assets/images/main_logo.png' />
                 </div>
                 <div className="right">
                     <div className="sns">

@@ -1,5 +1,11 @@
+import RoomContent from '../components/roomdetail/RoomContent';
+import PageTitle from '../components/common/PageTitle';
+
 export function RoomDetail() {
     return(
-        <h1>RoomDetail</h1>
+    <main className='roomdetail_section'>
+        <PageTitle title='BOOKING'/>
+        <RoomContent />
+    </main>
     );
 }
