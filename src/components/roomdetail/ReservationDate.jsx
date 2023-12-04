@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import axios from 'axios';
 import ConfirmModal from '../common/ConfirmModal';
+import useUserInfo from '../../util/useUserInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export default function ReservationDate({param, price}) {
@@ -15,8 +16,7 @@ export default function ReservationDate({param, price}) {
   const [ btnDisabled, setBtnDisabled ] = useState(false);
   const [ textBtn, setTextBtn ] = useState('예 약 하 기');
   const navigate = useNavigate();
-  // const userInfo = false; // 로그인 모달 테스트 용도
-  const userInfo = {'id' : 'user'}; // 로그인 테스트 용도
+  const userInfo = useUserInfo();
 
   // 예약 정보 가져오기
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function ReservationDate({param, price}) {
   // 예약하기 버튼 클릭
   const handleClick = () => {
     if ( !btnDisabled ) {
-      if ( userInfo ) { // 추후 로그인 정보 가져와서 변동 진행
+      if ( userInfo.user_id ) { 
         if ( startDate && endDate ) {
             const nightCnt = fnNightCnt(startDate, endDate);
             navigate(`/reservation/${param}`, { state: { reservationData, 'checkin': startDate, 'checkout': endDate, 'nightCntparam': nightCnt, price }});

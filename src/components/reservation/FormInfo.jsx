@@ -1,5 +1,6 @@
 import React, { useState, useEffect }  from 'react';
-import axios from 'axios';
+import axiosAuth from '../../services/axiosAuth.js';
+import useUserInfo from '../../util/useUserInfo.js';
 
 export default function FormInfo(props) {
   let { roomInfoData, isValidDate, 
@@ -9,16 +10,17 @@ export default function FormInfo(props) {
   const [ userData, setUserData ] = useState([]);
   const [ couponPrice, setCouponPrice ] = useState('');
   const isValidDateText = <p>-</p>;
-  const userInfo = {id : 'user'}; // 테스트용
+  const userInfo = useUserInfo();
 
   // user﹒user coupon 리스트 조회
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/reservation/user/${userInfo.id}`)
+    axiosAuth.get(`http://127.0.0.1:8000/reservation/user/${userInfo.user_id}`)
       .then(result => {
         setUserData(result.data);
       })
       .catch(error => console.log(error));
-  }, [])
+  }, [userInfo.user_id])
+
 
   // 선택한 날짜 문자열로 형식 변환 : 2023-12-02
   const formatData = (date) => {

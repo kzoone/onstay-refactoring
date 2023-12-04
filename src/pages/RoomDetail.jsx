@@ -3,9 +3,9 @@ import PageTitle from '../components/common/PageTitle';
 
 export function RoomDetail() {
     return(
-    <main className='roomdetail_section'>
-        <PageTitle title='BOOKING'/>
-        <RoomContent />
-    </main>
+        <main className='roomdetail_section'>
+            <PageTitle title='BOOKING'/>
+            <RoomContent />
+        </main>
     );
 }

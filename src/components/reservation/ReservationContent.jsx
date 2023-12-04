@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import FixDate from './FixDate'
 import FormInfo from './FormInfo';
 import Agreement from './Agreement';
-import ConfirmModal from '../common/ConfirmModal'; // 로그인 여부에 따른 처리 예정
+import ConfirmModal from '../common/ConfirmModal';
+import useUserInfo from '../../util/useUserInfo';
+import axiosAuth from '../../services/axiosAuth';
 
 export default function ReservationContent() {
   const location = useLocation();
@@ -20,7 +22,10 @@ export default function ReservationContent() {
   const [ totalPayPrice, setTotalPayPrice ] = useState(0);
   const [ selectedCouponId, setSelectedCouponId ] = useState('');
   const [ isAgree, setIsAgree ] = useState(false);
-  const userInfo = { 'id': 'user' }; // 테스트용 
+  const [ isModal, setIsModal ] = useState(false);
+  const userInfo = useUserInfo();
+  const navigate = useNavigate();
+  
 
   // 객실 정보 리스트 조회 
   useEffect(() => {
@@ -56,13 +61,13 @@ export default function ReservationContent() {
       } else {
         setIsValidDate(true);
         const { nightCnt, payPrice } = fnPrice(startDate, endDate, price);
-        setBtnText(`${nightCnt}박 : ₩${payPrice.toLocaleString()}`);
+        setBtnText(`${nightCnt}박 : ₩${payPrice.toLocaleString()} 결제하기`);
         return true;
       }
     } else {
       setIsValidDate(false);
       setBtnText('날짜를 선택해주세요');
-      return false
+      return false;
     }
   };
 
@@ -94,6 +99,42 @@ export default function ReservationContent() {
     return isDateInclude;
   };
 
+
+  const handleSubmit = (e) => { // isAgree, isValidDate ? startDate, endDate, userInfo.user_id, room_id, selectedCouponId
+    e.preventDefault();
+
+    // isAgree 약관 동의 진행 되고 isValidDate 유효성검사 모두 통과했니?
+    if ( isAgree && isValidDate ) {
+      axiosAuth({ 
+        method : 'post',
+        url: 'http://127.0.0.1:8000/reservation/booking',
+        data: {
+          userId : userInfo.user_id,
+          roomId : roomid,
+          startDate : startDate.toISOString().split('T')[0],
+          endDate : endDate.toISOString().split('T')[0],
+          selectedCouponId : selectedCouponId || null
+        }
+      })
+      .then(result => {
+        setIsModal(true);
+      })
+      .catch(error => console.log(error));
+    } else {
+      setBtnText('약관 동의를 체크해주세요');
+    }
+  };
+
+    // 모달창 확인 버튼 클릭
+    const handleConfirm = (e) => {
+      navigate('/mypage');
+    };
+
+    // 모달창 닫기 버튼 클릭
+    const handleModal = (e) => {
+        navigate('/');
+    };
+
   return (
     <>
       <FixDate
@@ -106,7 +147,7 @@ export default function ReservationContent() {
         nightCnt={nightCnt}
         price={price}
         btnText={btnText} />
-      <form className='payment_form'>
+      <form className='payment_form' onSubmit={handleSubmit} >
         <FormInfo 
           roomInfoData={roomInfoData} 
           isValidDate={isValidDate}
@@ -124,9 +165,20 @@ export default function ReservationContent() {
           setIsAgree={setIsAgree} 
           acc_name={roomInfoData.acc_name} />
         <div className='btn_box'>
-          <button type='button' className='payment_btn' disabled={!isValidDate}>{btnText}</button>
+          <button
+                  className='payment_btn'
+                  disabled={!isValidDate}>
+                  {btnText}
+          </button>
         </div>
       </form>
+      {
+        isModal &&
+          <ConfirmModal handleModal={handleModal} 
+                      handleConfirm={handleConfirm} 
+                      noti_1='결제 완료 되었습니다!' 
+                      noti_2='예약내역으로 이동하시겠습니까?' />
+      }
     </>
   );
 }

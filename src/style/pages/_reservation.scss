@@ -97,8 +97,8 @@ main.reservation_section {
                 div.react-datepicker__week {
                   div.react-datepicker__day--selected {
                     border: 1px solid #867357;
-                    background-color: #fff;
-                    color: #a28f72;
+                    background-color: #867357;
+                    color: white;
                   }
                   div.react-datepicker__day--in-selecting-range {
                     border: none;
@@ -111,8 +111,8 @@ main.reservation_section {
                     color: #a28f72;
                   }
                   div.react-datepicker__day--keyboard-selected {
-                    background-color: #867357;
-                    color: white;
+                    border: 1px solid #867357;
+                    background-color: transparent;
                   }
                 }
               }
@@ -346,10 +346,15 @@ main.reservation_section {
       button.payment_btn {
         width: 55%;
         padding: 10px;
+        border: 1px solid transparent;
         border-radius: 5px;
         background-color: #a28f72;
         font-size: 0.9em;
         color: white;
+        transition: all 0.3s;
+        &:hover {
+          @include btn_hover;
+        }
       }
     }
   }
@@ -549,6 +554,15 @@ main.reservation_section {
           padding: 0;
         }
       }
+    }
+  }
+}
+
+div.modal {
+  div.modal_container {
+    background-color: white;
+    div.modal_content {
+      border: 1px solid #a28f72;
     }
   }
 }
