@@ -38,7 +38,7 @@ export default function FixDate(props) {
         ref={ref}
         placeholder='체크인'
         readOnly
-        style={{ backgroundImage: 'url(/assets/images/calendar.png)'}}
+        style={{ backgroundImage: 'url(/assets/images/etc/calendar.png)'}}
       />
     );
   });
@@ -53,7 +53,7 @@ export default function FixDate(props) {
         ref={ref}
         readOnly
         placeholder='체크아웃'
-        style={{ backgroundImage: 'url(/assets/images/calendar.png)'}}
+        style={{ backgroundImage: 'url(/assets/images/etc/calendar.png)'}}
       />
     );
   });

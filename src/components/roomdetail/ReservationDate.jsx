@@ -145,7 +145,7 @@ export default function ReservationDate({param, price}) {
         ref={ref}
         placeholder='체크인'
         readOnly
-        style={{ backgroundImage: 'url(/assets/images/calendar.png)'}}
+        style={{ backgroundImage: 'url(/assets/images/etc/calendar.png)'}}
         />
       );
     });
@@ -160,7 +160,7 @@ export default function ReservationDate({param, price}) {
         ref={ref}
         placeholder='체크아웃'
         readOnly
-        style={{ backgroundImage: 'url(/assets/images/calendar.png)'}}
+        style={{ backgroundImage: 'url(/assets/images/etc/calendar.png)'}}
       />
     );
   });
