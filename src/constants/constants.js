@@ -17,7 +17,7 @@ export const MEMBER_REGEX = {
   user_id : new RegExp("^[A-Za-z\\d]{" + USERID_LENGTH_MIN + "," + USERID_LENGTH_MAX + "}$"),
   user_email : /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/, 
   user_name :  /^[ A-Za-z가-힣]{1,30}$/, 
-  user_pw : new RegExp("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).{" + USERPW_LENGTH_MIN + "," + USERPW_LENGTH_MAX + "}$"),
+  user_pw : new RegExp("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#-_=+$%^&*(),.?\":{}|<>]).{" + USERPW_LENGTH_MIN + "," + USERPW_LENGTH_MAX + "}$"),
   phone : /^01[016789]\d{7,8}$/
 }
 

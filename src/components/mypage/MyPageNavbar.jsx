@@ -1,15 +1,16 @@
 import { useState } from "react"
 
 export function MyPageNavbar(props) {
-  const {showContent, setShowContent} = props
+  const {showContent, setShowContent} = props;
 
   const handleClick = (e) => {
-    setShowContent(e.target.dataset.content)
+    setShowContent(e.target.dataset.content);
+    window.scrollTo({top : 0});
   }
 
   return (
     <ul className='mypage_navbar'>
-      <li onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' && 'active'}>
+      <li  onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' && 'active'}>
         예약 정보
       </li>
       <li onClick={handleClick} data-content='MyCoupon' className={showContent==='MyCoupon' && 'active'}>
@@ -27,9 +28,3 @@ export function MyPageNavbar(props) {
     </ul>
   )
 }
-
-// showContent==='mypage_reservation'
-// showContent==='mypage_coupon'
-// showContent==='mypage_love'
-// showContent==='mypage_edit'
-// showContent==='mypage_qna'

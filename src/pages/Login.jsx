@@ -34,7 +34,7 @@ export function Login() {
                 // 또한 간단한 유저 정보(아이디, 이름)은 json 객체로 받아 로컬 스토리지에 저장해둠
                 localStorage.setItem('user_info', JSON.stringify(res.data.userInfo))
                 alert('로그인 성공하였습니다.')
-                navigate('/')
+                window.location.href = '/'
             })
             .catch((err) => {
                 if (err.response.data === 'not exist') {
