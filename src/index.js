@@ -21,6 +21,8 @@ import { FindPw } from './pages/FindPw';
 import { NotFound } from './pages/NotFound';
 import { MyPage } from './pages/MyPage';
 import { AdminPage } from './pages/AdminPage';
+import { CookiesProvider } from 'react-cookie';
+
 
 const router = createBrowserRouter([
   {
@@ -48,10 +50,13 @@ const router = createBrowserRouter([
 ]);
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CookiesProvider>
+      <RouterProvider router={router} />
+    </CookiesProvider>
   </React.StrictMode>
 );
 
