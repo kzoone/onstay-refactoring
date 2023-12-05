@@ -3,9 +3,7 @@ import axiosAuth from '../../services/axiosAuth.js';
 import useUserInfo from '../../util/useUserInfo.js';
 
 export default function FormInfo(props) {
-  let { roomInfoData, isValidDate, 
-        startDate, endDate,
-        price, nightCnt, payPrice,
+  let { roomInfoData, isValidDated, startDate, endDate, price, nightCnt, payPrice,
         totalPayPrice, setTotalPayPrice, selectedCouponId, setSelectedCouponId } = props;
   const [ userData, setUserData ] = useState([]);
   const [ couponPrice, setCouponPrice ] = useState('');
@@ -19,7 +17,7 @@ export default function FormInfo(props) {
         setUserData(result.data);
       })
       .catch(error => console.log(error));
-  }, [userInfo.user_id])
+  }, [userInfo.user_id]);
 
 
   // 선택한 날짜 문자열로 형식 변환 : 2023-12-02
@@ -29,7 +27,7 @@ export default function FormInfo(props) {
     const day = date.getDate().toString().padStart(2, 0);
 
     return year + '-' + month + '-' + day;
-  }
+  };
 
   startDate && (startDate = formatData(startDate));
   endDate && (endDate = formatData(endDate));
@@ -37,7 +35,7 @@ export default function FormInfo(props) {
 
   // select coupon change 이벤트
   const handleSelectChange = (e) => {
-    if (isValidDate) {
+    if (isValidDated) {
       // 선택한 쿠폰 가격 number 타입으로 변경
       const selectedOption = e.target.options[e.target.selectedIndex];
       const parsedValue = parseInt(selectedOption.dataset.price);
@@ -54,7 +52,7 @@ export default function FormInfo(props) {
 
   // 쿠폰 선택 여부, 날짜 선택 관련 변동에 따른 최종 가격 텍스트 조건문에 따른 리턴
   const fntotalView = () => {
-    return isValidDate ? `₩${selectedCouponId ? totalPayPrice.toLocaleString() : payPrice.toLocaleString()}` : '-';
+    return isValidDated ? `₩${selectedCouponId ? totalPayPrice.toLocaleString() : payPrice.toLocaleString()}` : '-';
   };
   
     // 숙소 최대 인원에 맞춘 select option 태그 출력
@@ -74,7 +72,7 @@ export default function FormInfo(props) {
         <div className='reservation_box'>
           <dt>예약일</dt>
           <dd>
-            { isValidDate ? (
+            { isValidDated ? (
               <>
                 <p>{`${startDate} ~ ${endDate}`}</p>
                 <span>|</span>
@@ -135,7 +133,7 @@ export default function FormInfo(props) {
             </div>
             <div className='coupon_price'>
               <p>총 할인금액</p>
-              { selectedCouponId && isValidDate ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
+              { selectedCouponId && isValidDated ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
             </div>
           </dd>
         </div>
@@ -145,13 +143,13 @@ export default function FormInfo(props) {
             <div className='room_price'>
               <div>
                 <p>객실요금</p>
-              { isValidDate ? <p>{`${roomInfoData.room_name} / ₩${price.toLocaleString()} * ${nightCnt}박`}</p> : null}
+              { isValidDated ? <p>{`${roomInfoData.room_name} / ₩${price.toLocaleString()} * ${nightCnt}박`}</p> : null}
               </div>
-              { isValidDate ? <p>{`₩${payPrice.toLocaleString()}`}</p> : isValidDateText }
+              { isValidDated ? <p>{`₩${payPrice.toLocaleString()}`}</p> : isValidDateText }
             </div>
             <div className='room_discount'>
               <p>할인금액</p>
-              { selectedCouponId && isValidDate ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
+              { selectedCouponId && isValidDated ? <p>{`- ${couponPrice.toLocaleString()}`}</p> : isValidDateText }
             </div>
             <div className='total_box'>
               <p>총 결제 금액</p>

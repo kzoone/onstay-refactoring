@@ -180,6 +180,7 @@ main.roomdetail_section {
                     div.react-datepicker__day--keyboard-selected {
                       border: 1px solid #867357;
                       background-color: white;
+                      color: none;
                     }
                   }
                 }
@@ -202,6 +203,12 @@ main.roomdetail_section {
           &:hover {
             @include btn_hover($color:#a28f72, $bd_color: #a28f72, $bg_color:white);
             border-width: 1.3px;
+          }
+          &:disabled:hover {
+            border: 1px solid #a28f72;
+            border-radius: 3px;
+            background-color: #a28f72;
+            color: white;
           }
         }
       }

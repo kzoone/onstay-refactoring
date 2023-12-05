@@ -37,7 +37,7 @@ export default function RoomContent() {
         <RoomInfo data={roomContent}/>
         <div className='room_swiper_container'>
         <RoomSwiper img1={roomContent.room_img1} img2={roomContent.room_img2} img3={roomContent.room_img3} name={roomContent.room_name} acc={roomContent.acc_name} />
-        <ReservationDate param={roomid} price={roomContent.room_price}/>
+        <ReservationDate roomid={roomid} price={roomContent.room_price}/>
         </div>
       </div>
       <AdditionalList featureCodes={roomContent.feature_codes} amenities={roomContent.amenities}/>

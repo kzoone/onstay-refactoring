@@ -9,13 +9,23 @@ import useUserInfo from '../../util/useUserInfo';
 import axiosAuth from '../../services/axiosAuth';
 
 export default function ReservationContent() {
+  const userInfo = useUserInfo();
   const location = useLocation();
-  let { reservationData, checkin, checkout, nightCntparam, price } = location.state;
+  const navigate = useNavigate();
+  let [checkin, checkout, nightCntparam, price] = [null, null, null, null];
+
+  try {
+    [checkin, checkout, nightCntparam, price] = Object.values(location.state);
+  } catch { 
+    navigate('/notfound');
+  }
+
+  const [ reservationData, setReservationData ] = useState([]);
   const { roomid } = useParams();
   const [ startDate, setStartDate ] = useState(checkin);
   const [ endDate, setEndDate ] = useState(checkout);
   const [ roomInfoData, setRoomInfoData ] = useState([]);
-  const [ isValidDate, setIsValidDate ] = useState(false);
+  const [ isValidDated, setIsValidDated ] = useState(false);
   const [ btnText, setBtnText ] = useState('결제하기');
   const [ nightCnt, setNightCnt ] = useState(nightCntparam);
   const [ payPrice, setPayPrice ] = useState(0);
@@ -23,9 +33,6 @@ export default function ReservationContent() {
   const [ selectedCouponId, setSelectedCouponId ] = useState('');
   const [ isAgree, setIsAgree ] = useState(false);
   const [ isModal, setIsModal ] = useState(false);
-  const userInfo = useUserInfo();
-  const navigate = useNavigate();
-  
 
   // 객실 정보 리스트 조회 
   useEffect(() => {
@@ -34,8 +41,23 @@ export default function ReservationContent() {
         setRoomInfoData(result.data);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [roomid]);
 
+
+  // 예약 정보 가져오기
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/room/date/${roomid}`)
+      .then(result => {
+        if(result.data.length > 0) {
+          let mapArr = result.data.map(date => ({
+            checkin : new Date(date.checkin),
+            checkout : new Date(date.checkout)
+          }));
+          setReservationData(mapArr);
+        }
+      })
+      .catch(error => console.log(error));
+  }, [roomid]);
 
   // 날짜 유효성 검사
   useEffect(() => {
@@ -47,29 +69,39 @@ export default function ReservationContent() {
     if (startDate && endDate) {
       const isDateInclude = includeReservation(startDate, endDate);
       if (startDate.getTime() === endDate.getTime()) {
-        setIsValidDate(false);
+        setIsValidDated(false);
         setBtnText('같은 날짜는 예약 불가능합니다');
         return false;
       } else if (startDate.getTime() >= endDate.getTime()) {
-        setIsValidDate(false);
+        setIsValidDated(false);
         setBtnText('체크아웃 날짜는 체크인 날짜 이후로 선택해주세요');
         return false;
       } else if (isDateInclude) {
-        setIsValidDate(false);
+        setIsValidDated(false);
         setBtnText('예약 불가한 날짜가 포함되어 있습니다');
         return false;
       } else {
-        setIsValidDate(true);
+        setIsValidDated(true);
         const { nightCnt, payPrice } = fnPrice(startDate, endDate, price);
         setBtnText(`${nightCnt}박 : ₩${payPrice.toLocaleString()} 결제하기`);
         return true;
       }
     } else {
-      setIsValidDate(false);
+      setIsValidDated(false);
       setBtnText('날짜를 선택해주세요');
       return false;
     }
   };
+
+    // 선택한 날짜가 예약된 날짜에 포함되는지 확인
+    const includeReservation = (startDate, endDate) => {
+      const isDateInclude = reservationData.some(reservation => {
+        const checkinDate = reservation.checkin;
+        const checkoutDate = reservation.checkout;
+        return startDate < checkoutDate && endDate > checkinDate;
+      });
+      return isDateInclude;
+    };
 
   
   // 선택한 날짜에 따른 날짜 차이를 일수로 반환
@@ -89,22 +121,10 @@ export default function ReservationContent() {
   };
 
 
-  // 선택한 날짜가 예약된 날짜에 포함되는지 확인
-  const includeReservation = (startDate, endDate) => {
-    const isDateInclude = reservationData.some(reservation => {
-      const checkinDate = reservation.checkin;
-      const checkoutDate = reservation.checkout;
-      return startDate < checkoutDate && endDate > checkinDate;
-    });
-    return isDateInclude;
-  };
-
-
-  const handleSubmit = (e) => { // isAgree, isValidDate ? startDate, endDate, userInfo.user_id, room_id, selectedCouponId
+  // 최종 예약 버튼 클릭시 insert, delete
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // isAgree 약관 동의 진행 되고 isValidDate 유효성검사 모두 통과했니?
-    if ( isAgree && isValidDate ) {
+    if ( isAgree && isValidDated ) {
       axiosAuth({ 
         method : 'post',
         url: 'http://127.0.0.1:8000/reservation/booking',
@@ -117,7 +137,9 @@ export default function ReservationContent() {
         }
       })
       .then(result => {
-        setIsModal(true);
+        if(result.data.message === 'success') {
+          setIsModal(true);
+        }
       })
       .catch(error => console.log(error));
     } else {
@@ -150,7 +172,7 @@ export default function ReservationContent() {
       <form className='payment_form' onSubmit={handleSubmit} >
         <FormInfo 
           roomInfoData={roomInfoData} 
-          isValidDate={isValidDate}
+          isValidDated={isValidDated}
           startDate={startDate} 
           endDate={endDate}
           price={price} 
@@ -161,13 +183,15 @@ export default function ReservationContent() {
           selectedCouponId={selectedCouponId} 
           setSelectedCouponId={setSelectedCouponId} />
         <Agreement 
-          isAgree={isAgree} 
           setIsAgree={setIsAgree} 
+          setBtnText={setBtnText}
+          nightCnt={nightCnt}
+          payPrice={payPrice}
           acc_name={roomInfoData.acc_name} />
         <div className='btn_box'>
           <button
                   className='payment_btn'
-                  disabled={!isValidDate}>
+                  disabled={!isValidDated}>
                   {btnText}
           </button>
         </div>

@@ -8,7 +8,7 @@ import ConfirmModal from '../common/ConfirmModal';
 import useUserInfo from '../../util/useUserInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function ReservationDate({param, price}) {
+export default function ReservationDate({roomid, price}) {
   const [ reservationData, setReservationData ] = useState([]);
   const [ startDate, setStartDate ] = useState(null);
   const [ endDate, setEndDate ] = useState(null);
@@ -20,7 +20,7 @@ export default function ReservationDate({param, price}) {
 
   // 예약 정보 가져오기
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/room/date/${param}`)
+    axios.get(`http://127.0.0.1:8000/room/date/${roomid}`)
       .then(result => {
         if(result.data.length > 0) {
           let mapArr = result.data.map(date => ({
@@ -31,8 +31,8 @@ export default function ReservationDate({param, price}) {
         }
       })
       .catch(error => console.log(error));
-  }, []);
-  
+  }, [roomid]);
+
 
   // 날짜 유효성 검사
   useEffect(() => {
@@ -122,11 +122,10 @@ export default function ReservationDate({param, price}) {
       if ( userInfo.user_id ) { 
         if ( startDate && endDate ) {
             const nightCnt = fnNightCnt(startDate, endDate);
-            navigate(`/reservation/${param}`, { state: { reservationData, 'checkin': startDate, 'checkout': endDate, 'nightCntparam': nightCnt, price }});
-            
+            navigate(`/reservation/${roomid}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCntparam': nightCnt, price }});
           } else {
             setBtnDisabled(true);
-            navigate(`/reservation/${param}`, { state: { reservationData, 'checkin': startDate, 'checkout': endDate, 'nightCntparam': '', price }});
+            navigate(`/reservation/${roomid}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCntparam': '', price }});
             };
         } else {
           setIsModal(true);

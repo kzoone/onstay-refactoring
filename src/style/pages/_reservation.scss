@@ -355,6 +355,11 @@ main.reservation_section {
         &:hover {
           @include btn_hover;
         }
+        &:disabled:hover {
+          background-color: #a28f72;
+          border: 1px solid transparent;
+          color: white;
+        }
       }
     }
   }
