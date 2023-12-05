@@ -1,3 +1,4 @@
+// 공통 & qna 문의 작성 폼
 div.mypage_content {
   div.my_qna {
     ul.my_qna_navbar {
@@ -55,7 +56,7 @@ div.mypage_content {
             padding: 1rem;
           }
         }
-        button[type="submit"] {
+        button[type='submit'] {
           display: block;
           width: 100%;
           margin: 0 auto;
@@ -68,9 +69,13 @@ div.mypage_content {
           text-align: right;
           margin: 5px 3px 0 0;
           small {
-            font-size: .9em;
-            &.min {color: #000;}
-            &.max {color: #888;}
+            font-size: 0.9em;
+            &.min {
+              color: #000;
+            }
+            &.max {
+              color: #888;
+            }
           }
         }
       }
@@ -107,6 +112,153 @@ div.mypage_content {
             font-size: 1.05em;
             border-bottom: 2px solid #000;
           }
+        }
+      }
+    }
+  }
+}
+
+// qna 문의 리스트
+
+div.my_qna {
+  .qna_list_table {
+    text-align: center;
+    width: 100%;
+    font-size: 0.8rem;
+    th {
+      background-color: #555;
+      color: #eee;
+      font-weight: bold;
+      padding: 0.8vh 0;
+      box-sizing: border-box;
+    }
+    tr {
+      cursor: pointer;
+      &:nth-of-type(odd) {
+        background-color: #eee;
+      }
+      @media (hover: hover) {
+        &:hover {
+          background-color: #bbb;
+          color: #fff;
+        }
+      }
+    }
+    td {
+      // white-space: nowrap;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
+      padding: 2vh 0.25rem;
+      box-sizing: border-box;
+    }
+
+    th,
+    td {
+      &.qna_title {
+        padding: 0 2rem;
+        max-width: 140px;
+        box-sizing: border-box;
+        span {
+          width: 100%;
+          margin: 0 auto;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      &.answer_state {
+        span.completed {
+          color: rgb(41, 41, 220);
+        }
+        span.waiting {
+          color: #777;
+        }
+      }
+    }
+    td.qna_title {
+      span {
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $md-max-breakpoint) {
+  div.my_qna {
+    .qna_list_table {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+// qna 모달
+div.mypage_content {
+
+  div.qna_modal {
+    position: fixed;
+    div.qna_modal_content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 85%;
+      height: 77%;
+      max-width: 500px;
+      border-radius: 15px 15px 0 0;
+      background-color: #fff;
+      >div:first-child {
+        background-color: #555;
+        text-align: right;
+        border-bottom: 1px solid #CCC;
+        button {
+          font-size: 1.2em;
+          padding: .5rem .7em;
+          color: #FFF;
+        }
+      }
+      ul.qna_modal_navbar {
+        display: flex;
+        justify-content: space-between;
+        li {
+          padding: 2vh 0;
+          text-align: center;
+          width: 50%;
+          background-color: #DDD; 
+          &:first-child {
+            flex: 1;
+          } 
+          cursor: pointer;
+          &.active {
+            font-weight: 600;
+            background-color: #FFF;
+          }
+        }
+      }
+      form.question_form{
+        padding: 3vh;
+        p {
+          textarea {
+            height: 20vh;
+          }
+        }
+      }
+      div.admin_answer {
+        padding: 1.5rem 1.5rem;
+        height: 85%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        label {
+          margin-bottom: 3vh;
+        }
+        div.answer_textbox {
+          padding: 1rem;
+          border-radius: 5px;
+          background-color: #EEE;
+          overflow: scroll;
+          flex: 1;
         }
       }
     }

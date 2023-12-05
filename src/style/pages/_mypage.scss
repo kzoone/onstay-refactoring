@@ -59,7 +59,7 @@ main.mypage {
 
 @media screen and (min-width: $md-max-breakpoint) {
   main.mypage {
-     min-width: 900px;
+    // min-width: 900px;
     max-width: 1100px;
     div.mypage_main_container {
       ul.mypage_navbar {

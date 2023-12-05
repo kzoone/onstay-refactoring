@@ -8,8 +8,11 @@ export function MyQNAForm({user_id}) {
   const handleChange = e => {
     // question_category는 int 형태로 보내주기 위함
     setForm({...form, [e.target.name] : Number(e.target.value) || e.target.value})
-    console.log(form);
-  }
+    if (form.question_content.length>500) { // 글자수 500자 넘으면 경고 및 슬라이싱
+      alert('최대 500자까지 입력 가능합니다.')
+      setForm({...form,  question_content : form.question_content.slice(0,500)})
+    }
+  } 
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -24,6 +27,7 @@ export function MyQNAForm({user_id}) {
     })
     .then(res => {
       alert(res.data.message)
+      setForm({user_id : user_id, question_category:'default', question_title:'', question_content:''})
       // 바로 qna 리스트 보여줄 수 있도록 쿼리스트링 포함
       // 만약 setShowQnaContent 를 전달하여 리로딩 없이 바꿀 수 있다면 추후 변경하는게 좋아보임
       window.location.href = '/mypage?showContent=MyQNA&subContent=MyQNAList'; 
@@ -35,19 +39,12 @@ export function MyQNAForm({user_id}) {
 
   useEffect(()=>{
     setContentLength(form.question_content.length)
-
     if (contentLength >= 0 && contentLength < 301) { // 글자수에 따라 색상으로 표시해줌
       document.querySelector('.question_form small.min').style.color = 'black';
     } else if (contentLength >= 301 && contentLength < 401) {
       document.querySelector('.question_form small.min').style.color = 'orange';
     } else {
       document.querySelector('.question_form small.min').style.color = 'red'
-    }
-
-    if (contentLength>500) { // 글자수 500자 넘으면 경고 및 슬라이싱
-      alert('최대 500자까지 입력 가능합니다.')
-      setForm({...form,  question_content : form.question_content.slice(0,500)})
-      setContentLength(500);
     }
   },[form.question_content])
 

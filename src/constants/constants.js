@@ -86,3 +86,11 @@ export const TERM_DETAIL_EVENT = `
 - 이용 항목: 아이디, 성명, 이메일, 휴대전화 번호
 - 보유 및 이용 기간: 회원 탈퇴 시 혹은 동의 철회 시까지
 `
+
+
+export const QUESTION_CATEGORY = {
+  1 : '예약 문의',
+  2 : '오류 신고',
+  3 : '서비스 제안',
+  4 : '기타'
+}
