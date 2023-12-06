@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 
-export default function NoticeAdd({ setUpdateModal }) {
+export default function NoticeUpdate({ setUpdateModal }) {
   const handelModal = (e) => {
     setUpdateModal(false)
   }
@@ -19,7 +19,7 @@ export default function NoticeAdd({ setUpdateModal }) {
 
   return (
     <div className='modal_container'>
-      <div className='modal_content addModal'>
+      <div className='modal_content update_modal'>
         <img src='/assets/images/main_logo.png' alt='onstayhouse 로고 이미지' />
         <div className='text_wrap'>
           <form id='notice_form' className='notice_form' onSubmit={handleSubmit}>
@@ -49,4 +49,3 @@ export default function NoticeAdd({ setUpdateModal }) {
     </div>
   );
 }
-

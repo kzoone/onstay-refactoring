@@ -5,6 +5,7 @@ import NoticeContent from '../components/notice/NoticeContent';
 import NoticeAdd from '../components/notice/NoticeAdd';
 import useUserInfo from '../util/useUserInfo';
 import NoticeDelete from '../components/notice/NoticeDelete';
+import NoticeUpdate from '../components/notice/NoticeUpdate';
 
 export function Notice() {
   const userInfo = useUserInfo();
@@ -28,10 +29,10 @@ export function Notice() {
     <div className='notice_admin'>
       <PageTitle title='NOTICE' subtitle='공지사항 관리자 페이지 입니다' />
       <NoticeAdminBtn setAddModal={setAddModal} setDeletModal={setDeletModal} userInfo={userInfo} checkedItems={checkedItems} />
-      <NoticeContent userInfo={userInfo} handleCheckedItems={handleCheckedItems} />
-      {addModal && <NoticeAdd setAddModal={setAddModal} />}
+      <NoticeContent userInfo={userInfo} handleCheckedItems={handleCheckedItems} setUpdateModal={setUpdateModal} />
+      {addModal && <NoticeAdd btnText='등록' setAddModal={setAddModal} />}
       {deleteModal && <NoticeDelete btnText='삭제' setDeletModal={setDeletModal} userInfo={userInfo} checkedItems={checkedItems} />}
-      {updateModal && <NoticeDelete btnText='수정' setUpdateModal={setUpdateModal} userInfo={userInfo} />}
+      {updateModal && <NoticeUpdate btnText='수정' setUpdateModal={setUpdateModal} userInfo={userInfo} />}
     </div>
   ) : (
     <div className='notice_page'>

@@ -1,6 +1,6 @@
 import NoticeDate from './NoticeDate';
 
-export default function NoticeFilter(props) {
+export default function NoticeSearch(props) {
   const { setSearchTerm, searchTerm, setPage, setSelectOption, selectOption,
     setStartDate, startDate, setEndDate, endDate } = props;
 
@@ -39,13 +39,6 @@ export default function NoticeFilter(props) {
   const handleEndDateChange = (date) => {
     setEndDate(date);
   };
-
-  // const newStartDate = new Date(startDate);
-  // const newEndtDate = new Date(endDate);
-
-  // if(newStartDate > newEndtDate) {
-  //   alert('skf')
-  // }
 
   return (
     <div className='notice_filter'>

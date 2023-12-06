@@ -103,6 +103,7 @@ useEffect(() => {
                 notice_views={notice.notice_views}
                 userInfo={props.userInfo}
                 handleCheckedItems={props.handleCheckedItems}
+                setUpdateModal={props.setUpdateModal}
               />)}
         </tbody>
       </table>

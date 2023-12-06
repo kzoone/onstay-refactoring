@@ -5,10 +5,10 @@ import { useState } from 'react';
 
 export default function NoticeTable(props) {
   const { notice_id, no, page, notice_title, notice_date,
-    notice_views, userInfo, handleCheckedItems } = props;
+    notice_views, userInfo, handleCheckedItems, setUpdateModal } = props;
   const [isChecked, setIsChecked] = useState(false);
 
-  const openAddModal = () => setAddModal(true);
+  const openUpdateModal = () => setUpdateModal(true);
 
   // 조회 수 업데이트 요청
   const handleViewCount = (noticeId) => {
@@ -37,7 +37,7 @@ export default function NoticeTable(props) {
         </Link>
       </td>
       <td>{notice_date}</td>
-      {userInfo.isAdmin ? <td><button type='button'><SlNote className='slnote' /></button></td> : <td>{notice_views}</td>}
+      {userInfo.isAdmin ? <td><button type='button' onClick={openUpdateModal}><SlNote className='slnote' /></button></td> : <td>{notice_views}</td>}
     </tr>
   );
 };
