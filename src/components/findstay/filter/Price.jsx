@@ -67,6 +67,10 @@ export default function Price({ onMinPrice, onMaxPrice }){
         setMaxRangePercent(100 - (maxPrice / 500000) * 100);
     };
 
+    useEffect(() => {
+        handleRange();
+    }, [handleRange]);
+
     if(minPrice> maxPrice) {
         setMinPrice(Math.min(minPrice, maxPrice));
         setMaxPrice(Math.max(minPrice, maxPrice));

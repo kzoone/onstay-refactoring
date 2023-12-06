@@ -34,10 +34,9 @@ export function FindStay() {
     /**
      *  선택 지역
     */
-   
-   const [location, setLocation] = useState('전체');
-   const handleLocation = (selectedLocation) => {
-       setLocation(selectedLocation);
+    const [location, setLocation] = useState('전체');
+    const handleLocation = (selectedLocation) => {
+        setLocation(selectedLocation);
     }
     
     const codeinfo = {
@@ -129,11 +128,19 @@ export function FindStay() {
      */
     const handleSubmit = () => {
         const params = {
-            checkin,
-            checkout,
+            searched, 
+            location, 
+            checkin, 
+            checkout,  
+            personnel, 
+            minPrice, 
+            maxPrice, 
+            isParking, 
+            isCook, 
+            isPet, 
+            isBreakfast, 
             sort
         }
-        
         axios
         .get('http://localhost:8000/findstay/',{params})
         .then((res) => {
@@ -148,9 +155,8 @@ export function FindStay() {
     
     useEffect(() => {
         handleSubmit();
-    }, [checkin, checkout, sort]);
+    }, [searched, location, checkin, checkout,  personnel, minPrice, maxPrice, isParking, isCook, isPet, isBreakfast, sort]);
 
-    
     
     return(
         <main className='findstay'>
@@ -177,19 +183,10 @@ export function FindStay() {
             />
             <Sort onSort={handleSort} onSortSubmit={handleSubmit} /> 
             <AccList 
-                accs={accList} 
-                searched={searched} 
+                accs={accList}
                 location={location} 
                 codeinfo={codeinfo} 
                 locationName={locationName}
-                personnel={personnel}
-                minPrice={minPrice}
-                maxPrice={maxPrice}
-                isParking={isParking}
-                isCook={isCook}
-                isPet={isPet}
-                isBreakfast={isBreakfast}
-                sort={sort}
             />
         </main>
     );

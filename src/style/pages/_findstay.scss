@@ -370,11 +370,12 @@ main.findstay{
                         }
                         div.price_control{
                             div.slide{
-                                width: 90%;
+                                width: 100%;
                                 margin: 0 auto;
                                 height: 4px;
                                 background-color: #DDD;
                                 border-radius: 10px;
+                                box-sizing: border-box;
                                 position: relative;
                                 top: 30px;
                                 div.slide_inner{
@@ -555,11 +556,12 @@ main.findstay{
                             line-height: 25px;
                         }
                         &.reservation{
-                            width: 50px;
                             text-align: center;
                             padding-bottom: 2px;
-                            border-bottom: 1px solid #000;
                             margin-top: 20px;
+                            text-decoration: underline;
+                            text-underline-offset: 10px;
+                            text-align: left;
                         }
                     }
                 }
@@ -629,8 +631,9 @@ main.findstay{
         div.filter_container{
             padding-top: 20px;
             div.filter{
+                width: 360px;
+                min-width: 360px;
                 margin: 0 auto;
-                width: 350px;
                 display: block;
                 padding: 0 0 0 20px;
                 border:none;
