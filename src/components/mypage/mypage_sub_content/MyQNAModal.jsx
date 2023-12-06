@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export function MyQNAModal({closeModal, user_id, question_id}) {
   let [showContent, setShowContent] = useState('question')
-  let [question, setQuestion] = useState({question_title : ''})
+  let [question, setQuestion] = useState({})
   
   const handleContent = e => setShowContent(e.target.dataset.content)
   
@@ -15,6 +15,7 @@ export function MyQNAModal({closeModal, user_id, question_id}) {
     })
     .then(res => {
       setQuestion(res.data)
+      console.log(res.data);
     })
     .catch(err => {
       console.log(err);
@@ -29,19 +30,24 @@ export function MyQNAModal({closeModal, user_id, question_id}) {
             <button onClick={closeModal} className='close_btn'>X</button>
         </div>
         <ul className='qna_modal_navbar'>
-          <li onClick={handleContent} data-content='question' className={showContent==='question' ? 'active' : ''}>
+          <li onClick={handleContent} data-content='question' className={showContent==='question' ? 'active' : ''}
+              style={{cursor : question.answer_id ? 'pointer' : 'default'}}
+          >
             내 문의
             </li>
-          {<li onClick={handleContent} data-content='answer' className={showContent==='answer' ? 'active' : ''}>
-            관리자 답변
+          {question.answer_id && <li onClick={handleContent} data-content='answer' className={showContent==='answer' ? 'active' : ''}>
+          관리자 답변
           </li>}
         </ul>
         {showContent==='question' 
-        ? <MyQNAForm isModal={true} defaultQuestion={question} user_id={user_id}/>
+        ? <MyQNAForm isAnswerExist={question.answer_id ? true : false} isModal={true} 
+                      question_id={question_id} defaultQuestion={question} user_id={user_id}/>
         : 
         <div className='admin_answer'>
             <label htmlFor='answer'>관리자의 답변이 도착했어요 !</label>
-            <div className='answer_textbox'></div>
+            <textarea readOnly className='answer_textbox'>
+              {question?.answer_content}
+            </textarea>
         </div>
         }
       </div>

@@ -54,6 +54,7 @@ div.mypage_content {
             height: 40vh;
             overflow: scroll;
             padding: 1rem;
+            resize: none;
           }
         }
         button[type='submit'] {
@@ -182,8 +183,22 @@ div.my_qna {
       }
     }
   }
+  .qna_nolist {
+    div {
+      text-align: center;
+      padding: 1rem 0 2rem 0;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #000;
+      color: #FFF;
+      padding: 1.5vh 0;
+      max-width: 200px;
+    }
+  }
 }
-
 @media screen and (max-width: $md-max-breakpoint) {
   div.my_qna {
     .qna_list_table {
@@ -197,6 +212,7 @@ div.mypage_content {
 
   div.qna_modal {
     position: fixed;
+    z-index: 12;
     div.qna_modal_content {
       position: absolute;
       left: 50%;
@@ -242,6 +258,40 @@ div.mypage_content {
             height: 20vh;
           }
         }
+        div.modal_btn_container {
+          display: flex;
+          justify-content: space-between;
+          button {
+            width: 50%;
+            flex: 1;
+            padding: 1.8vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            &.question_black_btn {
+              margin-right: 2px;
+              background-color: #232222;
+            }
+            &.question_blue_btn {
+              background-color: rgb(87, 87, 237);
+              margin-right: 2px;
+              &:hover {
+                background-color: rgb(72, 72, 243);
+              }
+            }
+            &.question_red_btn {
+              svg {font-size: 1.2em;}
+              background-color: rgb(228, 74, 74);
+              &:hover {
+                background-color: rgb(234, 59, 59);
+              }
+            }
+            svg {
+              margin-right: 5px;
+            }
+          }
+        }
       }
       div.admin_answer {
         padding: 1.5rem 1.5rem;
@@ -253,7 +303,7 @@ div.mypage_content {
         label {
           margin-bottom: 3vh;
         }
-        div.answer_textbox {
+        textarea.answer_textbox {
           padding: 1rem;
           border-radius: 5px;
           background-color: #EEE;

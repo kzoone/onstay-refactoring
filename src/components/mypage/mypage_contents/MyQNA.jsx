@@ -19,7 +19,7 @@ export function MyQNA ({user_id}) {
       </ul>
       <div className='my_qna_content'>
         {showQnacontent==='MyQNAForm' && <MyQNAForm user_id={user_id}/>}
-        {showQnacontent==='MyQNAList' && <MyQNAList user_id={user_id}/>}
+        {showQnacontent==='MyQNAList' && <MyQNAList user_id={user_id} setShowQnaContent={setShowQnaContent} showQnacontent={showQnacontent}/>}
       </div>
     </div>
   );

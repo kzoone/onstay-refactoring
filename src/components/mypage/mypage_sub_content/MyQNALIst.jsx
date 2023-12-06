@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import axiosAuth from '../../../services/axiosAuth';
 import { QUESTION_CATEGORY } from '../../../constants/constants';
 import MyQNAModal from './MyQNAModal';
+import axios from 'axios';
 
-export function MyQNAList({ user_id }) {
+export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
   let [questions, setQuestions] = useState([]);
   let [modal, setModal] = useState({question_id : '', show : false})
 
   useEffect(() => {
-    axiosAuth({
+    axios({
       url: 'http://localhost:8000/mypage/questions/' + user_id,
       method: 'get',
     })
@@ -67,7 +67,10 @@ export function MyQNAList({ user_id }) {
           </tbody>
         </Table>
       ) : (
-        <div>없음 ㅋㅋ</div>
+        <div className='qna_nolist'>
+          <div>작성하신 1:1 문의가 없습니다. </div>
+          <button onClick={()=>setShowQnaContent('MyQNAForm')}>문의하러 가기</button>
+        </div>
       )}
       {modal.show && <MyQNAModal closeModal={closeModal} question_id={modal.question_id} user_id={user_id} />}
     </>

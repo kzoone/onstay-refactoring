@@ -1,6 +1,7 @@
 @import '../components/mypage/myreservation';
 @import '../components/mypage/myedit';
 @import '../components/mypage/myqna';
+@import '../components//mypage//mycoupon';
 
 main.mypage {
   @include pageTitle($ft-size: 1.2rem, $mb: 5rem);
@@ -80,6 +81,53 @@ main.mypage {
 }
 
 
+
+//  mypage content common 
+
+div.mypage_content {
+  ul.mypage_content_navbar {
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: flex-start;
+    li {
+      cursor: pointer;
+      color: #AAA;
+      &.active {
+        color: #000;
+        font-weight: 600;
+      }
+    }
+  }
+  
+  @media screen and (min-width: $md-max-breakpoint){
+    ul.mypage_content_navbar {
+      li {
+        margin-right: 2.5vh;
+      }
+    }
+  }
+
+
+  @media screen and (max-width: $md-max-breakpoint) {
+    ul.mypage_content_navbar {
+      justify-content: space-between;
+      li {
+        width: 50%;
+        border-right: none;
+        text-align: center;
+        border-bottom: 2px solid #AAA;
+        padding-bottom: 1.5vh;
+        &.active {
+          font-size: 1.05em;
+          border-bottom: 2px solid #000;
+        }
+      }
+    }
+  }
+  }
+  
+ 
+  
 
 
 

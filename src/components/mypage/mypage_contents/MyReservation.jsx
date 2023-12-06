@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axiosAuth from './../../../services/axiosAuth';
 import { Link } from 'react-router-dom';
 import ConfirmModal from './../../common/ConfirmModal';
+import axios from 'axios';
 
 export function MyReservation({ user_id }) {
   let [category, setCategory] = useState('upcoming');
@@ -22,7 +23,7 @@ export function MyReservation({ user_id }) {
   };
 
   useEffect(() => {
-    axiosAuth({
+    axios({
       url: 'http://localhost:8000/mypage/reservation/' + user_id,
       method: 'get'
     })
