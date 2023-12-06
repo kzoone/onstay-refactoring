@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import PageTitle from '../components/common/PageTitle';
 import Filter from '../components/findstay/Filter';
@@ -6,6 +6,7 @@ import Sort from '../components/findstay/Sort';
 import AccList from '../components/findstay/AccList';
 
 export function FindStay() {
+
     /**
      * 숙소 리스트 출력
      */
@@ -115,8 +116,6 @@ export function FindStay() {
         setIsBreakfast(clickBreakfast);
     }
     
-    
-    
     /**
      * 조건별 정렬
     */
@@ -129,16 +128,12 @@ export function FindStay() {
      * 서버로 값 전달
      */
     const handleSubmit = () => {
-    
         const params = {
-            personnel,
-            minPrice,
-            maxPrice,
-            sort,
             checkin,
-            checkout
+            checkout,
+            sort
         }
-
+        
         axios
         .get('http://localhost:8000/findstay/',{params})
         .then((res) => {
@@ -150,11 +145,13 @@ export function FindStay() {
             console.error('axios 에러 발생 => ' + err);
         })
     }
-
+    
     useEffect(() => {
         handleSubmit();
-    }, [personnel, minPrice, maxPrice, sort, checkin, checkout]);
+    }, [checkin, checkout, sort]);
 
+    
+    
     return(
         <main className='findstay'>
             <PageTitle 
@@ -175,6 +172,8 @@ export function FindStay() {
                 onCook={handleCook}
                 onPet={handlePet}
                 onBreakfast={handleBreakfast}
+                checkin={checkin}
+                checkout={checkout}
             />
             <Sort onSort={handleSort} onSortSubmit={handleSubmit} /> 
             <AccList 
@@ -183,6 +182,9 @@ export function FindStay() {
                 location={location} 
                 codeinfo={codeinfo} 
                 locationName={locationName}
+                personnel={personnel}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
                 isParking={isParking}
                 isCook={isCook}
                 isPet={isPet}

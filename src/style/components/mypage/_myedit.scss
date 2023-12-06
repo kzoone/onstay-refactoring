@@ -160,15 +160,17 @@ div.my_edit {
 }
 
 @media screen and (min-width: $md-max-breakpoint) {
-  form {
-    > div:first-of-type {
-      display: flex;
-      div.edit_infos {
-        width: 50%;
+    div.my_edit {
+      form {
+        > div:first-of-type {
+          display: flex;
+          div.edit_infos {
+            width: 50%;
+          }
+        }
       }
     }
   }
-}
 
 @media screen and (max-width: $md-max-breakpoint) {
   div.my_edit {

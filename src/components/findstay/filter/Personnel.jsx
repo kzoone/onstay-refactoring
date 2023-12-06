@@ -1,5 +1,3 @@
-/* 인원 모달의 열고 닫기, 수량 변경, 장바구니에 추가하는 기능 */
-
 import { useState, useRef, useEffect } from 'react';
 import Modal from '../Modal';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -9,7 +7,11 @@ export default function PersonnelModal({ onPersonnel }) {
     const [isPersonnelModalOpen, setPersonnelModalOpen] = useState(false);  
     
     const openModal = () => {  
-        setPersonnelModalOpen(true);
+        if(isPersonnelModalOpen){
+            closeModal();
+        }else{
+            setPersonnelModalOpen(true);
+        }
     };
     const closeModal = () => { 
         setPersonnelModalOpen(false);
@@ -51,27 +53,30 @@ export default function PersonnelModal({ onPersonnel }) {
     }
   
     return (
-        <div ref={personnelModalRef} className='personnel_select'>
-            <div className='personnel_section'>
-                <div className='personnel_title'>인원</div>
-                <button className='personnel_btn' type='button' onClick={openModal}>
-                    <div className='btn_sub'>{personnelCnt} 명</div>
+        <div className='personnel' ref={personnelModalRef}>
+            <div className='button_section'>
+                <span>인원</span>
+                <button className='personnel_select' type='button' onClick={openModal}>
+                    <span>{personnelCnt} 명</span>
                     <IoIosArrowDown />
                 </button>
             </div>
-        
-        {isPersonnelModalOpen && (
-        <Modal isOpen={isPersonnelModalOpen} onClose={closeModal} className={'personnel_modal'} >
-            <div className='control_box'>
-                <button className='control' type='button' onClick={handleDecrease}>-</button>
-                <div className='cnt'>{personnelCnt}</div>
-                <button className='control' type='button' onClick={handleIncrease}>+</button>
-            </div>
-            <div className='select'>
-                <button type='button' onClick={() =>{handlePersonnelSelect(personnelCnt); closeModal()}}>확인</button>
-            </div>
-        </Modal>
-        )}
+            
+            {isPersonnelModalOpen && (
+            <Modal isOpen={isPersonnelModalOpen} onClose={closeModal} className={'personnel_modal'} >
+                <div className='modal_body'>
+                    <div className='modal_title'>스테이 인원</div>
+                    <div className='personnel_control'>
+                        <button className='minus_btn' type='button' onClick={handleDecrease}>-</button>
+                        <div className='cnt'>{personnelCnt}</div>
+                        <button className='plus_btn' type='button' onClick={handleIncrease}>+</button>
+                    </div>
+                    <div className='confirm'>
+                        <button type='button' onClick={() =>{handlePersonnelSelect(personnelCnt); closeModal()}}>확인</button>
+                    </div>
+                </div>
+            </Modal>
+            )}
         </div>
     );
 }

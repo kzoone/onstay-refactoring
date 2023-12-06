@@ -6,35 +6,23 @@ import Personnel from './filter/Personnel';
 import Price from './filter/Price';
 import Service from './filter/Service';
 
-export default function Filter( { onSearch, onLocation, codeinfo, locationName, onPersonnel, onMinPrice, onMaxPrice, onParking, onCook, onPet, onBreakfast, onCheckin, onCheckout}){
+export default function Filter( { onSearch, onLocation, codeinfo, locationName, onPersonnel, onMinPrice, onMaxPrice, onParking, onCook, onPet, onBreakfast, onCheckin, onCheckout, checkin, checkout}){
     return(
         <div className='filter_container'>
-            <div className='filter_section'>
-                <div className='filter_line1'>
-                    <div className='search_location'>
-                        <Search onSearch={onSearch} />
-                        <Location onLocation={onLocation} codeinfo={codeinfo} locationName={locationName} /> 
-                    </div>
-                    <div className='checkin'>
-                        <Checkin onCheckin={onCheckin} />
-                    </div>
-                    <div className='tilde'>~</div>
-                    <div className='checkout'>
-                        <Checkout onCheckout={onCheckout} />
-                    </div>
+            <div className='filter'>
+                <Search onSearch={onSearch} />
+                <Location onLocation={onLocation} codeinfo={codeinfo} locationName={locationName} /> 
+                <div className='date'>
+                    <div className='select_date'>날짜</div>
+                    <Checkin onCheckin={onCheckin} checkin={checkin} checkout={checkout} />
+                    <span className='tilde'>~</span>
+                    <Checkout onCheckout={onCheckout} checkin={checkin} checkout={checkout} /> 
                 </div>
-                
-                <div className='filter_line2'>
-                    <div className='personnel'>
-                        <Personnel onPersonnel={onPersonnel} />
-                    </div>
-                    <div className='price'>
-                        <Price onMinPrice={onMinPrice} onMaxPrice={onMaxPrice} />
-                    </div>
-                    <div className='service'>
-                        <Service onParking={onParking} onCook={onCook} onPet={onPet} onBreakfast={onBreakfast} />
-                    </div>
-                </div>
+            </div>
+            <div className='filter'>
+                <Personnel onPersonnel={onPersonnel} />
+                <Price onMinPrice={onMinPrice} onMaxPrice={onMaxPrice} />
+                <Service onParking={onParking} onCook={onCook} onPet={onPet} onBreakfast={onBreakfast} />
             </div>
         </div>
     );

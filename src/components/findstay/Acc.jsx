@@ -1,8 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { FaHeart } from "react-icons/fa";
+import axios from 'axios';
+import useUserInfo from '../../util/useUserInfo';
 
-export default function Acc({acc, codeinfo, locationName}){
+export default function Acc({acc, locationName}){
      // Swiper 컴포넌트의 ref를 생성
     const swiperRef = useRef(null);
 
@@ -22,19 +25,19 @@ export default function Acc({acc, codeinfo, locationName}){
         };
     }, []);
 
-    
-    
-    
-
     return(
         <div className='acc'>
-            <div className='acc_title'>{acc.acc_name}</div>
+            <div className='acc_title'>{acc.acc_id}{acc.acc_name}</div>
             <div className='acc_content'>
                 <div className='acc_info'>
-                    <p>{locationName(acc.area_code)}</p>
-                    <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
-                    <p>￦{acc.room_price} ~</p>
-                    <p>예약하기</p>
+                    <div>
+                        <p>{locationName(acc.area_code)}</p>
+                        <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
+                        <p>￦{acc.room_price} ~</p>
+                    </div>
+                    <div className='reservation'>
+                        <p>예약하기</p>
+                    </div>
                 </div>
                 <div className='acc_imgs'>
                     <Swiper 
@@ -49,6 +52,10 @@ export default function Acc({acc, codeinfo, locationName}){
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    <div className='love'>
+                        <div className='love_cnt'>{acc.love}</div>
+                        <FaHeart />
+                    </div>
                 </div>
             </div>
         </div>

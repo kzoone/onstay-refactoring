@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaRegUser } from "react-icons/fa6";
-import { SlMagnifier } from "react-icons/sl";
-import { SlHome } from "react-icons/sl";
-import { IoBookOutline } from "react-icons/io5";
-import { SlBell } from "react-icons/sl";
-import { SlMenu } from "react-icons/sl";
-import { TfiClose } from "react-icons/tfi";
-import { LuLogIn } from "react-icons/lu";
-import useUserInfo from "../../util/useUserInfo.js"
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FaRegUser } from 'react-icons/fa6';
+import { SlMagnifier } from 'react-icons/sl';
+import { SlHome } from 'react-icons/sl';
+import { IoBookOutline } from 'react-icons/io5';
+import { SlBell } from 'react-icons/sl';
+import { SlMenu } from 'react-icons/sl';
+import { TfiClose } from 'react-icons/tfi';
+import { LuLogIn } from 'react-icons/lu';
+import useUserInfo from '../../util/useUserInfo.js'
 import $ from 'jquery';
 import ConfirmModal from './ConfirmModal.jsx';
 import axios from 'axios';
@@ -80,6 +80,8 @@ export default function Header() {
     }
 
     /* 스크롤 모션 */
+    const location = useLocation();
+
     $(function(){
         var scrollMotion = function(){
 
@@ -87,10 +89,20 @@ export default function Header() {
             var offtHeader = $('.header').offset().top;
             if((window.location.pathname === '/') && ($(window).width() <= 430) && (offtHeader === 0)){
                 $('.header').css({'background':'none'});
-                $('body').css({'padding-top':'0'});
+                $('.header .main_logo').css({'display':'none'});
+                $('.header .main_logo_white').css({'display':'block'});
+                $('.menubar svg').css({'fill':'#FFF'});
             }else{
                 $('.header').css({'background':'#FFF'});
+                $('.header .main_logo').css({'display':'block'});
+                $('.header .main_logo_white').css({'display':'none'});
+                $('.menubar svg').css({'fill':'#000'});
+            }
+
+            if(!$('main').hasClass('home') && (location.pathname !== '/')){
                 $('body').css({'padding-top':'70px'});
+            }else{
+                $('body').css({'padding-top':'0'});
             }
 
             /* menubar가 open된 상태로 화면높이가 줄어들때
@@ -127,6 +139,7 @@ export default function Header() {
             <div className='header_left'>
                 <Link to='/'>
                     <img className='main_logo' src='/assets/images/main_logo.png' />
+                    <img className='main_logo_white' src='/assets/images/logo_white.png' />
                 </Link>
             </div>
             <div className='header_right'>
@@ -190,19 +203,19 @@ export default function Header() {
                     {(user.user_id && !user.isAdmin) && <>
                         <ul>
                             <li>
-                                <a className='menu' href="/mypage?showContent=MyReservation">예약 정보</a>
+                                <a className='menu' href='/mypage?showContent=MyReservation'>예약 정보</a>
                             </li>
                             <li>
-                                <a className='menu' href="/mypage?showContent=MyCoupon">보유 쿠폰</a>
+                                <a className='menu' href='/mypage?showContent=MyCoupon'>보유 쿠폰</a>
                             </li>
                             <li>
-                                <a className='menu' href="/mypage?showContent=MyLoveStay">관심 스테이</a>
+                                <a className='menu' href='/mypage?showContent=MyLoveStay'>관심 스테이</a>
                             </li>
                             <li>
-                                <a className='menu' href="/mypage?showContent=MyEdit">회원 정보 수정</a>
+                                <a className='menu' href='/mypage?showContent=MyEdit'>회원 정보 수정</a>
                             </li>
                             <li>
-                                <a className='menu' href="/mypage?showContent=MyQNA">1:1 문의</a>
+                                <a className='menu' href='/mypage?showContent=MyQNA'>1:1 문의</a>
                             </li>
                         </ul>
                         <div className='logout_area'>

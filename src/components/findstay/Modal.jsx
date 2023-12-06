@@ -8,9 +8,9 @@ export default function Modal ({ isOpen, onClose, children, className }) {   // 
 
     return (
         <div className={`modal ${className}`}>
-            <div className='modal_top'>
+            <div className='modal_header'>
                 <button className='close' type='button' onClick={onClose}><TfiClose /></button>
-                <div className='modal_title'>필터</div>
+                <div className='modal_subject'>필터</div>
             </div>
             {children}
         </div>
