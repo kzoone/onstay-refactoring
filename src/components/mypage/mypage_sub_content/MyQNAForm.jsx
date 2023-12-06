@@ -1,9 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import axiosAuth from './../../../services/axiosAuth';
 
-export function MyQNAForm({user_id}) {
-  let [form, setForm] = useState({user_id : user_id, question_category:'default', question_title:'', question_content:''})
+export function MyQNAForm({isModal, defaultQuestion, user_id}) {
+  let [form, setForm] = useState({user_id : user_id, 
+                                  question_category : 'default', 
+                                  question_title: '', 
+                                  question_content: ''})
   let [contentLength, setContentLength] = useState(0)
+
+  useEffect(()=>{
+    setForm({
+      user_id : user_id,
+      question_category : defaultQuestion.question_category || '',
+      question_title: defaultQuestion.question_title || '',
+      question_content : defaultQuestion.question_content || ''
+    })
+  },[defaultQuestion])
 
   const handleChange = e => {
     // question_category는 int 형태로 보내주기 위함

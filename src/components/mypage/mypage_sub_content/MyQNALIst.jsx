@@ -6,11 +6,11 @@ import MyQNAModal from './MyQNAModal';
 
 export function MyQNAList({ user_id }) {
   let [questions, setQuestions] = useState([]);
-  let [modal, setModal] = useState({show : true})
+  let [modal, setModal] = useState({question_id : '', show : false})
 
   useEffect(() => {
     axiosAuth({
-      url: 'http://localhost:8000/mypage/question/' + user_id,
+      url: 'http://localhost:8000/mypage/questions/' + user_id,
       method: 'get',
     })
       .then((res) => {
@@ -20,6 +20,17 @@ export function MyQNAList({ user_id }) {
         console.log(err);
       });
   }, [user_id]);
+
+  const showModal = (e) => {
+    console.log(e.currentTarget.dataset.qid);
+    setModal({
+      question_id : e.currentTarget.dataset.qid,
+      show : true
+    })
+  }
+  const closeModal = () => {
+    setModal({...modal, show : false})
+  }
 
   return (
     <>
@@ -38,7 +49,10 @@ export function MyQNAList({ user_id }) {
           </thead>
           <tbody>
             {questions.map((question) => (
-              <tr className={question.question_id}>
+              <tr onClick={showModal} 
+                  key={question.question_id} 
+                  data-qid={question.question_id}
+                  >
                 <td className="row_num">{question.rno}</td>
                 <td className="qna_category">{QUESTION_CATEGORY[question.question_category]}</td>
                 <td className="qna_title">
@@ -55,7 +69,7 @@ export function MyQNAList({ user_id }) {
       ) : (
         <div>없음 ㅋㅋ</div>
       )}
-      {modal.show && <MyQNAModal />}
+      {modal.show && <MyQNAModal closeModal={closeModal} question_id={modal.question_id} user_id={user_id} />}
     </>
   );
 }
