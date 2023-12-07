@@ -1,11 +1,12 @@
 import NoticeDate from './NoticeDate';
 
-export default function NoticeFilter(props) {
+export default function NoticeSearch(props) {
   const { setSearchTerm, searchTerm, setPage, setSelectOption, selectOption,
-    setStartDate, startDate, setEndDate, endDate, fetchData } = props;
+    setStartDate, startDate, setEndDate, endDate } = props;
 
   // 검색 후 1 페이지로 초기화 및 검색어가 빈 값일 경우 알림
-  const search = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setPage(1);
     if (selectOption === 'title') {
       if (searchTerm.trim() === '') {
@@ -18,24 +19,13 @@ export default function NoticeFilter(props) {
     }
   }
 
-  // 클릭 이벤트
-  const handleSearch = () => {
-    search();
-  };
-
-  // submit 이벤트
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    search();
-  }
-
   // onChange option
   const handleSelectChange = (e) => {
+    setPage(1);
     setSearchTerm('');
     setStartDate(null);
     setEndDate(null);
     setSelectOption(e.target.value);
-    // fetchData();
   };
 
   const handleInputChange = (e) => {
@@ -73,7 +63,7 @@ export default function NoticeFilter(props) {
           }
         </div>
       </form>
-      <button type='button' onClick={handleSearch}>SEARCH</button>
+      <button>SEARCH</button>
     </div>
   );
 };

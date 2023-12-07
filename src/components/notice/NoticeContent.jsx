@@ -23,8 +23,8 @@ export default function NoticeContent(props) {
     pageItem: 5,
     searchTerm: searchTerm,
     selectOption: selectOption,
-    startDate: startDate,
-    endDate: endDate
+    startDate: startDate === null ? null : new Date(startDate).toISOString().split('T')[0],
+    endDate: endDate === null ? null : new Date(endDate).toISOString().split('T')[0]
   };
 
   // detailPage 값을 기반으로 이전 페이지 상태를 detailPage 값으로 page 설정
@@ -84,10 +84,10 @@ useEffect(() => {
       <table className='notice_table'>
         <thead>
           <tr>
-            {props.userInfo ? <th>NO</th> : <th>CHECK</th>}
+            {props.userInfo.isAdmin ? <th>CHECK</th> : <th>NO</th>}
             <th>TITLE</th>
             <th>DATE</th>
-            {props.userInfo ? <th>VIEW COUNT</th> : <th>ALTER</th>}
+            {props.userInfo.isAdmin ? <th>ALTER</th> : <th>VIEW COUNT</th>}
           </tr>
         </thead>
         <tbody>
@@ -101,7 +101,10 @@ useEffect(() => {
                 notice_title={notice.notice_title}
                 notice_date={notice.notice_date}
                 notice_views={notice.notice_views}
+                notice_content={notice.notice_content}
+                notice_img={notice.notice_img}
                 userInfo={props.userInfo}
+                handleCheckedItems={props.handleCheckedItems}
               />)}
         </tbody>
       </table>

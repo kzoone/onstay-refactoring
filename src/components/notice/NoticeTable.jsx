@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { SlNote } from "react-icons/sl";
+import { SlNote } from 'react-icons/sl';
+import { useState } from 'react';
+import NoticeUpdate from '../notice/NoticeUpdate';
 
 export default function NoticeTable(props) {
-  const { notice_id, no, page, notice_title, notice_date, notice_views, userInfo } = props;
+  const { notice_id, no, page, notice_title, notice_date,
+    notice_views, notice_content, notice_img, userInfo, handleCheckedItems } = props;
+  const [isChecked, setIsChecked] = useState(false);
+  const [updateModal, setUpdateModal] = useState(false);
+
+  const openUpdateModal = () => setUpdateModal(true);
 
   // 조회 수 업데이트 요청
   const handleViewCount = (noticeId) => {
@@ -11,17 +18,41 @@ export default function NoticeTable(props) {
       .catch(error => console.error(error));
   };
 
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    // 체크 여부와 ID를 부모 컴포넌트로 전달
+    handleCheckedItems(notice_id, !isChecked);
+  };
+
   return (
-        <tr>
-          {userInfo ? <th>{no}</th> : <th><input type="checkbox" id={`notice_check${no}`} /><label htmlFor={`notice_check${no}`} ></label></th>}
-          <td>
-            <Link to={`/notice/${notice_id}/${page}`}
-              onClick={() => handleViewCount(notice_id)}>
-              {notice_title}
-            </Link>
-          </td>
-          <td>{notice_date}</td>
-          {userInfo ? <td>{notice_views}</td> : <td><button type='button'><SlNote className='slnote' /></button></td>}
-        </tr>
+    <tr>
+      {userInfo.isAdmin ?
+        <th>
+          <input type='checkbox' id={`notice_check${no}`}
+            checked={isChecked} onChange={handleCheckboxChange} />
+          <label htmlFor={`notice_check${no}`} ></label>
+        </th>
+        : <th>{no}</th>}
+      <td>
+        <Link to={`/notice/${notice_id}/${page}`}
+          onClick={() => handleViewCount(notice_id)}>
+          {notice_title}
+        </Link>
+      </td>
+      <td>{notice_date}</td>
+      {userInfo.isAdmin ?
+        <td>
+          {/* <button type='button' onClick={openUpdateModal}><SlNote className='slnote' /></button> */}
+          <button type='button' onClick={openUpdateModal}><SlNote className='slnote'  /></button>
+        </td>
+        : <td>{notice_views}</td>}
+      {updateModal && <td><NoticeUpdate btnText='수정'
+        setUpdateModal={setUpdateModal} 
+        notice_title={notice_title}
+        notice_content={notice_content}
+        notice_img={notice_img}
+        notice_id ={notice_id}
+      /></td>}
+    </tr>
   );
 };
