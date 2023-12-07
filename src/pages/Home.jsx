@@ -1,11 +1,11 @@
 import HomeVisual from '../components/home/homevisual/HomeVisual';
 import ContentCategory from '../components/home/categorysection/CategorySection';
 import TimeAttackSection from '../components/home/TimeAttackSection';
-import NewStaySection from "../components/home/newstaysection/NewStaySection";
+import NewStaySection from '../components/home/newstaysection/NewStaySection';
 
 export default function Home() {
     return(
-        <main>
+        <main className='home'>
             <HomeVisual />
             <ContentCategory />
             <TimeAttackSection />

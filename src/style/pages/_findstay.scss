@@ -4,208 +4,441 @@ main.findstay{
     margin: 0 auto;
     @include pageTitle();
     font-size: 0.7rem;
+
+    /* 필터 기능 */
     div.filter_container{
         border-top: 2px solid #000;
-        div.filter_section{
-            margin-bottom: 30px;
-            div.filter_line1,
-            div.filter_line2{
-                border-bottom: 1px solid rgb(215, 215, 215);
+        margin-bottom: 30px;
+        div.filter{
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgb(215, 215, 215);
+
+            /* 검색 */
+            div.search{
                 display: flex;
                 align-items: center;
-                padding: 10px 0;
-                div.tilde{
+                label{
                     margin-right: 10px;
+                    font-weight: bold;
                 }
-                div.search_location{
-                    margin-right: 30px;
+                input{
+                    width: 150px;
+                    border: 1px solid rgb(215, 215, 215);
+                    padding: 8px;
+                    border-radius: 5px;
                 }
-                div.search_location,
+            } 
+
+            /* 지역 */
+            div.location{
+                position: relative;
+                margin-right: 30px;
+                button.location_select{
+                    background-color: rgb(215, 215, 215);
+                    width: 70px;
+                    padding: 8px 5px;
+                    border-radius: 5px;
+                    margin-left: 10px;
+                }
+                div.location_modal{
+                    z-index: 9;
+                    top: 35px;
+                    padding: 15px 10px 30px 10px;
+                    position: absolute;
+                    background: #FFF;
+                    width: 300px;
+                    border-radius: 0.3rem;
+                    border: 1px solid #CCC;
+                    box-shadow: 0 2px 8px 0 rgba(0,0,0,.25);
+                    div.modal_header{
+                        display: flex;
+                        margin: 0 auto;
+                        padding-bottom: 15px;
+                        align-items: center;
+                        border-bottom: 1px solid #CCC;
+                        margin-bottom: 20px;
+                        button.close{
+                            background: none;
+                            width: 30px;
+                            font-size: 16px;
+                        }
+                        div.modal_subject{
+                            font-weight: bold;
+                            font-size: 14px;
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                    div.modal_body{
+                        div.modal_title{
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                            margin-left: 5px;
+                        }
+                        div.location_control{
+                            margin-top: 20px;
+                            button{
+                                background: #a28f72;
+                                color: #FFF;
+                                padding: 8px;
+                                margin: 1px;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                } 
+            } 
+
+            /* 체크인, 체크아웃 */
+            div.date{
+                display: flex;
+                align-items: center;
+                div.select_date{
+                    font-weight: bold;
+                    display: none;
+                }
                 div.checkin,
-                div.checkout,
-                div.personnel,
-                div.price{
+                div.checkout{
                     position: relative;
-                    label{
+                    margin-right: 10px;
+                    div.react-datepicker-wrapper{ //input
+                        div.react-datepicker__input-container{
+                            display: flex;
+                            justify-content: start;
+                            align-items: center;
+                            input{
+                                display: flex;
+                                justify-content: space-between;
+                                width: 150px;
+                                border: 1px solid rgb(215, 215, 215);
+                                text-align: left;
+                                padding: 8px 8px 8px 25px;
+                                border-radius: 5px;
+                            }
+                            button.react-datepicker__close-icon{
+                                background: none;
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                width: 30px;
+                                &::after{
+                                    background: none;
+                                    color: #000;
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+                    div.react-datepicker__tab-loop{ //달력
+                        div.react-datepicker-popper{
+                            z-index: 9;
+                            div{
+                                display: flex;
+                                justify-content: center;
+                                padding: 0;
+                                margin: 0;
+                                z-index: 9;
+                                div.react-datepicker{
+                                    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+                                    padding: 15px;
+                                    margin-top: 10px;
+                                    div.react-datepicker__triangle{
+                                        margin: -7px;
+                                        &::before{
+                                            border-bottom: none;
+                                        }
+                                        &::after{
+                                            border-bottom-color: #FFF;
+                                        }
+                                    }
+                                    button.react-datepicker__navigation{
+                                        background: none;
+                                        width: 20px;
+                                        top: 12px;
+                                    }
+                                    div.react-datepicker__month-container{
+                                        display: flex;
+                                        flex-direction: column;
+                                        div.react-datepicker__header{
+                                            background: none;
+                                            display: flex;
+                                            flex-direction: column;
+                                            .react-datepicker__current-month{
+                                                padding: 10px;
+                                            }
+                                            .react-datepicker__day-names{
+                                                .react-datepicker__day-name{
+                                                    font-weight: bold;
+                                                    padding: 5px 20px;
+                                                }
+                                            }
+                                        }
+                                        div.react-datepicker__month{
+                                            display: flex;
+                                            flex-direction: column;
+                                            .react-datepicker__week{
+                                                .react-datepicker__day{
+                                                    padding: 5px 20px;
+                                                }
+                                                .react-datepicker__day--selected{
+                                                    background: #a28f72;
+                                                    border-radius: 50%;
+                                                }
+                                                .react-datepicker__day--today{
+                                                    font-weight: normal;
+                                                }
+                                                .react-datepicker__day--keyboard-selected{
+                                                    background: none;
+                                                }
+                                                .react-datepicker__day--outside-month{
+                                                    color: #CCC;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
+
+            span.tilde{
+                margin-right: 10px;
+            }
+
+            /* 인원 */
+            div.personnel{
+                position: relative;
+                margin-right: 30px;
+                div.button_section{
+                    display: flex;
+                    align-items: center;
+                    span{
                         margin-right: 10px;
                         font-weight: bold;
                     }
-                    input{
-                        width: 150px;
-                        border: 1px solid rgb(215, 215, 215);
-                        padding: 8px;
-                        border-radius: 5px;
-                        text-align: left;
+                    button.personnel_select{
                         display: flex;
                         justify-content: space-between;
-                    }
-                    .personnel_section,
-                    .price_section{
-                        display: flex;
-                        align-items: center;
-                        margin-right: 20px;
-                        font-weight: bold;
-                        div.personnel_title,
-                        div.price_title{
-                            margin-right: 10px;
-                        }
-                        button.personnel_btn,
-                        button.price_btn{
-                            width: 150px;
-                            border: 1px solid rgb(215, 215, 215);
-                            padding: 8px;
-                            border-radius: 5px;
-                            text-align: left;
-                            display: flex;
-                            justify-content: space-between;
-                        }
-                    }
-                    button.location_btn{
-                        background-color: rgb(215, 215, 215);
-                        width: 70px;
-                        padding: 8px 5px;
+                        width: 150px;
+                        border: 1px solid rgb(215, 215, 215);
+                        text-align: left;
+                        padding: 8px;
                         border-radius: 5px;
-                        margin-left: 10px;
+                        span{
+                            font-weight: normal;
+                        }
                     }
-                    div.modal{
-                        z-index: 9;
-                        position: absolute;
-                        background: #FFF;
-                        width: 300px;
-                        padding: 15px 10px 55px 10px;
-                        border-radius: 0.3rem;
-                        border: 1px solid #CCC;
-                        box-shadow: 0 2px 8px 0 rgba(0,0,0,.25);
-                        div.modal_top{
+                }
+                div.personnel_modal{
+                    z-index: 9;
+                    top: 35px;
+                    padding: 15px 10px 50px 10px;
+                    position: absolute;
+                    background: #FFF;
+                    width: 300px;
+                    border-radius: 0.3rem;
+                    border: 1px solid #CCC;
+                    box-shadow: 0 2px 8px 0 rgba(0,0,0,.25);
+                    div.modal_header{
+                        display: flex;
+                        margin: 0 auto;
+                        padding-bottom: 15px;
+                        align-items: center;
+                        border-bottom: 1px solid #CCC;
+                        margin-bottom: 20px;
+                        button.close{
+                            background: none;
+                            width: 30px;
+                            font-size: 16px;
+                        }
+                        div.modal_subject{
+                            font-weight: bold;
+                            font-size: 14px;
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                    div.modal_body{
+                        div.modal_title{
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                            margin-left: 5px;
+                        }
+                        div.personnel_control{
                             display: flex;
-                            margin: 0 auto;
-                            padding-bottom: 15px;
+                            margin-top: 20px;
+                            font-size: 15px;
                             align-items: center;
-                            border-bottom: 1px solid #CCC;
-                            margin-bottom: 20px;
-                            button{
-                                background: none;
+                            justify-content: center;
+                            button.minus_btn,
+                            button.plus_btn{
+                                background: #a28f72;
+                                color: #FFF;
+                                padding: 5px 10px;
+                                border-radius: 10px;
+                            }
+                            div.cnt{
+                                margin: 0 20px;
                                 width: 30px;
-                                font-size: 16px;
-                            }
-                            div.modal_title{
-                                font-weight: bold;
-                                font-size: 14px;
-                                position: absolute;
-                                left: 50%;
-                                transform: translateX(-50%);
+                                text-align: center;
                             }
                         }
-                        &.location_modal{
-                            top: 40px;
-                            padding: 15px 10px 30px 10px;
-                            .location_list{
-                                margin-top: 20px;
-                                button.btn{
-                                    background: #a28f72;
-                                    color: #FFF;
-                                    padding: 8px;
-                                    margin: 1px;
-                                    border-radius: 10px;
-                                }
+                        div.confirm{
+                            position: absolute;
+                            bottom: 10px;
+                            right: 10px;
+                            button{
+                                padding: 8px 15px;
+                                font-size: 12px;
+                                background: #a28f72;
+                                border-radius: 5px;
+                                color: #FFF;
                             }
                         }
-                        &.personnel_modal{
-                            top: 40px;
-                            div.control_box{
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                div.cnt{
-                                    border: 1px solid green;
-                                }
-                                button.control{
-                                    width: 25px;
-                                }
-                            }
-                        }
-                        &.price_modal,
-                        &.location_modal{
-                            top: 40px;
-                            width: 400px;
-                            div.control_box{
-                                div.control_title{
-                                    font-size: 18px;
-                                    font-weight: bold;
-                                    margin-bottom: 10px;
-                                    margin-left: 5px;
-                                }
-                                div.slide{
-                                    width: 90%;
-                                    margin: 0 auto;
-                                    height: 4px;
-                                    background-color: #DDD;
-                                    border-radius: 10px;
-                                    position: relative;
-                                    top: 30px;
-                                    div.slide_inner{
-                                        position: absolute;
-                                        border-radius: 10px;
-                                        background-color: #a28f72;
-                                        height: 4px;
-                                    }
-                                }
-                                div.range{
-                                    position: relative;
-                                    top: 30px;
-                                    input.min_range,
-                                    input.max_range{
-                                        position: absolute;
-                                        top: -11px;
-                                        border: none;
-                                        width: 100%;
-                                        height: 4px;
-                                        pointer-events: none;
-                                        appearance: none;
-                                        &::-webkit-slider-thumb {
-                                        height: 20px;
-                                        width: 20px;
-                                        border-radius: 50%;
-                                        border: 2px solid #a28f72;
-                                        background-color: #FFF;
-                                        -webkit-appearance: none;
-                                        pointer-events: auto;
-                                        cursor: pointer;
-                                        }
-                                    }
-                                }
-                                div.range_value{
-                                    margin-top: 70px;
-                                    display: flex;
-                                    justify-content: space-between;
-                                    align-items: center;
-                                    div.tilde{
-                                        border: 1px solid #BBB;
-                                        width: 20px;
-                                        height: 1px;
-                                        margin: 0 auto;
-                                    }
-                                    div.price_box{
-                                        border: 1px solid #DDD;
-                                        border-radius: 5px;
-                                        padding: 5px 70px 5px 5px;
-                                        div{
-                                            color: #BBB;
-                                        }
-                                        div.min_price,
-                                        div.max_price{
-                                            color: #000;
-                                            font-size: 14px;
-                                            font-weight: bold;
-                                            margin-top: 2px;
-                                            width: 90px;
-                                        }
+                    }
+                }
+            }
 
+            /* 가격 */
+            div.price{
+                margin-right: 30px;
+                position: relative;
+                div.button_section{
+                    display: flex;
+                    align-items: center;
+                    span{
+                        margin-right: 10px;
+                        font-weight: bold;
+                    }
+                    button.price_select{
+                        display: flex;
+                        justify-content: space-between;
+                        width: 150px;
+                        border: 1px solid rgb(215, 215, 215);
+                        text-align: left;
+                        padding: 8px;
+                        border-radius: 5px;
+                        span{
+                            font-weight: normal;
+                        }
+                    }
+                }
+                div.price_modal{
+                    position: absolute;
+                    top: 35px;
+                    z-index: 9;
+                    width: 400px;
+                    padding: 15px 10px 55px 10px;
+                    background: #FFF;
+                    border-radius: 0.3rem;
+                    border: 1px solid #CCC;
+                    box-shadow: 0 2px 8px 0 rgba(0,0,0,.25);
+                    div.modal_header{
+                        display: flex;
+                        margin: 0 auto;
+                        padding-bottom: 15px;
+                        align-items: center;
+                        border-bottom: 1px solid #CCC;
+                        margin-bottom: 20px;
+                        button.close{
+                            background: none;
+                            width: 30px;
+                            font-size: 16px;
+                        }
+                        div.modal_subject{
+                            font-weight: bold;
+                            font-size: 14px;
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                    div.modal_body{
+                        div.modal_title{
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                            margin-left: 5px;
+                        }
+                        div.price_control{
+                            div.slide{
+                                width: 100%;
+                                margin: 0 auto;
+                                height: 4px;
+                                background-color: #DDD;
+                                border-radius: 10px;
+                                box-sizing: border-box;
+                                position: relative;
+                                top: 30px;
+                                div.slide_inner{
+                                    position: absolute;
+                                    border-radius: 10px;
+                                    background-color: #a28f72;
+                                    height: 4px;
+                                }
+                            }
+                            div.range{
+                                position: relative;
+                                top: 30px;
+                                input.min_range,
+                                input.max_range{
+                                    position: absolute;
+                                    top: -4px;
+                                    border: none;
+                                    width: 100%;
+                                    height: 4px;
+                                    pointer-events: none;
+                                    appearance: none;
+                                    &::-webkit-slider-thumb {
+                                    height: 20px;
+                                    width: 20px;
+                                    border-radius: 50%;
+                                    border: 2px solid #a28f72;
+                                    background-color: #FFF;
+                                    -webkit-appearance: none;
+                                    pointer-events: auto;
+                                    cursor: pointer;
+                                    }
+                                }
+                            }
+                            div.range_value{
+                                margin-top: 70px;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                div.tilde{
+                                    border: 1px solid #BBB;
+                                    width: 20px;
+                                    height: 1px;
+                                    margin: 0 auto;
+                                }
+                                div.price_box{
+                                    border: 1px solid #DDD;
+                                    border-radius: 5px;
+                                    padding: 5px 70px 5px 5px;
+                                    div{
+                                        color: #BBB;
+                                    }
+                                    div.min_price,
+                                    div.max_price{
+                                        color: #000;
+                                        font-size: 14px;
+                                        font-weight: bold;
+                                        margin-top: 2px;
+                                        width: 90px;
                                     }
                                 }
                             }
                         }
-                        div.select{
+                        div.confirm{
                             position: absolute;
                             bottom: 10px;
                             right: 10px;
@@ -221,106 +454,12 @@ main.findstay{
                             }
                         }
                     }
-                    &.search_location{
-                        display: flex;
-                        align-items: center;
-                    }
-
-
-                    /* 체크인, 체크아웃 */
-                    &.checkin, &.checkout{
-                        margin-right: 10px;
-                        .react-datepicker-wrapper{
-                            .react-datepicker__input-container{
-                                display: flex;
-                                justify-content: start;
-                                align-items: center;
-                                button.react-datepicker__close-icon{
-                                    background: none;
-                                    display: flex;
-                                    justify-content: flex-end;
-                                    align-items: center;
-                                    width: 30px;
-                                    &::after{
-                                        background: none;
-                                        color: #000;
-                                        font-size: 15px;
-                                    }
-                                }
-                            }
-                        }
-                        input{
-                            padding-left: 25px;
-                        }
-                        div{
-                            display: flex;
-                            justify-content: center;
-                            padding: 0;
-                            margin: 0;
-                            z-index: 9;
-                            .react-datepicker{
-                                box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-                                padding: 15px;
-                                margin-top: 10px;
-                                .react-datepicker__triangle{
-                                    margin: -7px;
-                                    &::before{
-                                        border-bottom: none;
-                                    }
-                                    &::after{
-                                        border-bottom-color: #FFF;
-                                    }
-                                }
-                                button{
-                                    background: none;
-                                    width: 20px;
-                                    top: 12px;
-                                }
-                                .react-datepicker__month-container{
-                                    display: flex;
-                                    flex-direction: column;
-                                    .react-datepicker__header{
-                                        background: none;
-                                        display: flex;
-                                        flex-direction: column;
-                                        .react-datepicker__current-month{
-                                            padding: 10px;
-                                        }
-                                        .react-datepicker__day-names{
-                                            .react-datepicker__day-name{
-                                                font-weight: bold;
-                                                padding: 5px 20px;
-                                            }
-                                        }
-                                    }
-                                    .react-datepicker__month{
-                                        display: flex;
-                                        flex-direction: column;
-                                        .react-datepicker__week{
-                                            .react-datepicker__day{
-                                                padding: 5px 20px;
-                                            }
-                                            .react-datepicker__day--selected{
-                                                background: #a28f72;
-                                                border-radius: 50%;
-                                            }
-                                            .react-datepicker__day--today{
-                                                font-weight: normal;
-                                            }
-                                            .react-datepicker__day--keyboard-selected{
-                                                background: none;
-                                            }
-                                            .react-datepicker__day--outside-month{
-                                                color: #CCC;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
-                div.Service_select{
+            }
+
+            /* 서비스 */
+            div.service{
+                div.service_select{
                     margin-left: 20px;
                     display: flex;
                     button{
@@ -341,22 +480,25 @@ main.findstay{
                             border: 1px solid #a28f72;
                             color: #FFF;
                         }
-                        div{
-                            margin-right: 5px;
+                        svg{
+                            margin-left: 5px;
                         }
                     }
                 }
-                
-                
             }
-        } //filter_section
+
+        }
+    }
+    div.mobile_filter_container{
+        display: none;
     }
 
+    /* 정렬 기능 */
     div.sort{
         margin-top: 70px;
         padding-bottom: 10px;
         border-bottom: 2px solid #000;
-        ul{
+        ul.sort_dt{
             display: flex;
             justify-content: end;
             li{
@@ -376,34 +518,56 @@ main.findstay{
                     margin-left: -5px;
                     &:hover{
                         color: #000;
-                        
+                    }
+                    &.selected{
+                        color: #000;
                     }
                 }
             }
         }
+        div.select_box{
+            display: none;
+        }
+        div.option{
+            display: none;
+        }
     }
 
+    /* 리스트 */
     div.acc_list{
+        margin-bottom: 100px;
         display: grid;
-        grid-template-columns: repeat(2, minmax(400px, auto));
+        grid-template-columns: repeat(2, minmax(560px, auto));
         grid-column-gap: 100px;
-        div.acc{
-            padding-top: 70px;
+        a.acc{
+            margin-top: 100px;
             div.acc_title{
                 font-size: 32px;
+                margin-bottom: 20px;
             }
             div.acc_content{
                 display: flex;
                 align-items: end;
                 justify-content: space-between;
                 div.acc_info{
-                    p{
-                        font-size: 14px;
-                        line-height: 25px;
+                    div{
+                        p{
+                            font-size: 14px;
+                            line-height: 25px;
+                        }
+                        &.reservation{
+                            text-align: center;
+                            padding-bottom: 2px;
+                            margin-top: 20px;
+                            text-decoration: underline;
+                            text-underline-offset: 10px;
+                            text-align: left;
+                        }
                     }
                 }
                 div.acc_imgs{
-                    width: 70%;
+                    width: 60%;
+                    position: relative;
                     div.swiper{
                         div.swiper-wrapper{
                             .swiper-slide{
@@ -412,6 +576,8 @@ main.findstay{
                                 align-items: center;
                                 img{
                                     width: 100%;
+                                    height: 230px;
+                                    object-fit: none;
                                 }
                             }
                         }
@@ -422,8 +588,212 @@ main.findstay{
                         font-size: 20px;
                         font-weight: bold;
                     }
+                    div.love{
+                        display: flex;
+                        align-items: center;
+                        position: absolute;
+                        bottom: 5px;
+                        right: 3px;
+                        z-index: 9;
+                        div.love_cnt{
+                            font-size: 14px;
+                            color: #FFF;
+                        }
+                        svg{
+                            fill: none;
+                            width: 35px;
+                            stroke: #FFF;
+                            stroke-width: 10;
+                            font-size: 24px;
+                            cursor: pointer;
+                        }
+                        svg.wish{
+                            stroke: none;
+                            fill: red;
+                        }
+                    }
                 }
             }   
+        }
+        p.nothing{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 40px;
+            font-size: 140%;
+            width: 210px;
+        }
+    }
+}
+
+@media screen and (max-width: 880px) {
+    main.findstay{
+        div.filter_container{
+            padding-top: 20px;
+            div.filter{
+                width: 360px;
+                min-width: 360px;
+                margin: 0 auto;
+                display: block;
+                padding: 0 0 0 20px;
+                border:none;
+                div.search,
+                div.location,
+                div.personnel{
+                    display: inline-block;
+                    padding: 10px 0;
+                }
+                div.price{
+                    padding: 10px 0;
+                }
+                div.date{
+                    padding: 10px 0;
+                    div.select_date{
+                        display: inline-block;
+                        margin-right: 10px;
+                    }
+                    div.checkin,
+                    div.checkout{
+                        div.react-datepicker-wrapper{ 
+                            div.react-datepicker__input-container{
+                                input{
+                                    width: 130px;
+                                }
+                            }
+                        }
+                    }
+                }
+                div.service{
+                    padding: 20px 0 10px 0;
+                    div.service_select{
+                        margin: 0;
+                        button{
+                            width: 60px;
+                            &.pet{
+                                width: 80px;
+                            }
+                            svg{
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        div.sort{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            ul.sort_dt{
+                display: none;
+            }
+            div.select_box{
+                display: inline-block;
+                display: flex;
+                cursor: pointer;
+                div.current_sort{
+                    margin-right: 2px;
+                }
+            }
+            div.options{
+                position: absolute;
+                top: 18px;
+                right: 0;
+                background-color: #FFF;
+                border: 1px solid #CCC;
+                padding: 10px 16px;
+                border-radius: 5px;
+                div.option{
+                    display: block;
+                    line-height: 30px;
+                    z-index: 9;
+                    font-size: 14px;
+                    text-align: center;
+                    &:hover{
+                        cursor: pointer;
+                        text-decoration: underline;
+                        text-underline-offset : 3px;
+                    }
+                }
+            }
+        }
+        div.acc_list{
+            display: flex;
+            flex-direction: column;
+            div.acc{
+                margin-top: 40px;
+                padding: 20px;
+                div.acc_title{
+                    font-size: 20px;
+                }
+                div.acc_content{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    div.acc_info{
+                        margin-bottom: 7px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: end;
+                        div{
+                            p{
+                                font-size: 12px;
+                                line-height: 20px;
+                            }
+                        }
+                    }
+                    div.acc_imgs{
+                        width: 100%;
+                        div.swiper{
+                            div.swiper-wrapper{
+                                .swiper-slide{
+                                    img{
+                                        width: 100%;
+                                        height: auto;
+                                        object-fit: cover;
+                                        object-position: left top;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//---- 수정 필요 ---
+@media screen and (max-width: 520px) {
+    main.findstay{
+        div.filter_container{
+            div.filter{
+                min-width: 360px;
+                div.location,
+                div.personnel,
+                div.price{
+                    position: static;
+                    div.location_modal{
+                        top: 260px;
+                        left: 5%;
+                    }
+                    div.personnel_modal{
+                        top: 360px;
+                        left: 5%;
+                    }
+                    div.price_modal{
+                        top: 410px;
+                        left: 5%;
+                        width: 90%;
+                        .price_box{
+                            padding-right: 40px !important;
+                        }
+                    }
+                }
+            }
         }
     }
 }

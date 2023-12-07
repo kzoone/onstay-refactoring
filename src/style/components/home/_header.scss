@@ -16,7 +16,8 @@ body{
         z-index: 10;
         div.header_left{
             padding: 5px 20px;
-            img.main_logo{
+            img.main_logo,
+            img.main_logo_white{
                 width: 120px;
             }
         }
@@ -177,6 +178,7 @@ body{
             }
         }
         div.header_mobile{
+            z-index: 10;
             position: fixed;
             left: 0;
             bottom: 0;

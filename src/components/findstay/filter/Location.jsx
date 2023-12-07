@@ -9,7 +9,11 @@ export default function Location({ onLocation, codeinfo, locationName }){
     const [isLocationModalOpen, setLocationModalOpen] = useState(false);  
     
     const openModal = () => {   //모달이 열릴 때 실행되는 함수
-      setLocationModalOpen(true);
+        if(isLocationModalOpen){
+            closeModal();
+        }else{
+            setLocationModalOpen(true);
+        }
     };
     const closeModal = () => {  //모달이 닫힐 때 실행되는 함수
       setLocationModalOpen(false);
@@ -40,22 +44,22 @@ export default function Location({ onLocation, codeinfo, locationName }){
     }
 
     return(
-        <div ref={locationModalRef} className='location_select'>
-            <button className='location_btn' type='button' onClick={openModal}>
+        <div className='location' ref={locationModalRef}>
+            <button className='location_select' type='button' onClick={openModal}>
                 {location==='전체'?'전체':locationName(location)}
             </button>
             
             {/* 모달이 열려 있을 때만 모달 컴포넌트 렌더링 */}
             {isLocationModalOpen && (
             <Modal isOpen={isLocationModalOpen} onClose={closeModal} className={'location_modal'} >
-            <div className='control_box'>
-                <div className='control_title'>지역 선택</div>
-            </div>
-            <div className='location_list'>
-                <button type='button' className='btn' onClick={() => handleLocationSelect('전체')}>전체</button>
-                {Object.keys(codeinfo).map((location)=>
-                    <button type='button' className='btn' key={location} onClick={() => handleLocationSelect(location)}>{locationName(location)}</button>
-                )}
+            <div className='modal_body'>
+                <div className='modal_title'>스테이 지역</div>
+                <div className='location_control'>
+                    <button type='button' className='location_btn' onClick={() => handleLocationSelect('전체')}>전체</button>
+                    {Object.keys(codeinfo).map((location)=>
+                        <button type='button' className='btn' key={location} onClick={() => handleLocationSelect(location)}>{locationName(location)}</button>
+                    )}
+                </div>
             </div>
             </Modal>
             )}

@@ -114,23 +114,25 @@ export default function Service({ onParking, onCook, onPet, onBreakfast }){
     }
 
     return(
-        <div className='Service_select'>
-            <button className='parking' type='button' onClick={() => handleParking(isParking)}>
-                <div>주차</div>
-                {isParking ? <TfiClose /> : ''}
-            </button>
-            <button className='cook' type='button' onClick={() => handleCook(isCook)}>
-                <div>조리</div>
-                {isCook ? <TfiClose /> : ''}
-            </button>
-            <button className='pet' type='button' onClick={() => handlePet(isPet)}>
-                <div>반려동물</div>
-                {isPet ? <TfiClose /> : ''}
-            </button>
-            <button className='breakfast' type='button' onClick={() => handleBreakfast(isBreakfast)}>
-                <div>조식</div>
-                {isBreakfast ? <TfiClose /> : ''}
-            </button>
+        <div className='service'>
+            <div className='service_select'>
+                <button className='parking' type='button' onClick={() => handleParking(isParking)}>
+                    <div>주차</div>
+                    {isParking ? <TfiClose /> : ''}
+                </button>
+                <button className='cook' type='button' onClick={() => handleCook(isCook)}>
+                    <div>조리</div>
+                    {isCook ? <TfiClose /> : ''}
+                </button>
+                <button className='pet' type='button' onClick={() => handlePet(isPet)}>
+                    <div>반려동물</div>
+                    {isPet ? <TfiClose /> : ''}
+                </button>
+                <button className='breakfast' type='button' onClick={() => handleBreakfast(isBreakfast)}>
+                    <div>조식</div>
+                    {isBreakfast ? <TfiClose /> : ''}
+                </button>
+            </div>
         </div>
     );
 }

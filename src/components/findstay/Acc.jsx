@@ -1,8 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { FaHeart } from "react-icons/fa";
+import axios from 'axios';
+import useUserInfo from '../../util/useUserInfo';
+import { Link } from 'react-router-dom';
 
-export default function Acc({acc, codeinfo, locationName}){
+export default function Acc({acc, locationName}){
      // Swiper 컴포넌트의 ref를 생성
     const swiperRef = useRef(null);
 
@@ -22,19 +26,97 @@ export default function Acc({acc, codeinfo, locationName}){
         };
     }, []);
 
+    /* 좋아요 클릭 기능 */
+    const userId = useUserInfo().user_id;
+    const [isLoveAccs, setIsLoveAccs] = useState([]);   //유저가 좋아요한 숙소 목록 
     
-    
-    
+    const getUserLoveAccs = () => {
+        axios
+        .get('http://localhost:8000/findstay/love', {
+            userId
+        })
+        .then((res) => {
+            setIsLoveAccs(res.data);
+        })
+        .catch((error) => {
+            console.error('axios 에러 발생 => ', error);
+        })
+    }
+    useEffect(()=>{
+        getUserLoveAccs();
+    }, [])
+
+    const handleLoveClick = () => { // 좋아요 눌렀을때
+        const accId = acc.acc_id;
+
+        if(isLoveAccs.includes(accId)){
+            axios   //관심스테이 테이블에서 삭제
+            .delete('http://localhost:8000/findstay/love',{
+                userId,
+                accId
+            })
+            .then((res) => {
+                if(res === 'ok'){
+                    loveCntChange();
+                    console.log('관심스테이 테이블에서 삭제됨');
+                }
+            })
+            .catch((error) => {
+                console.error('axios 에러 발생 => ', error);
+            })
+        }else{
+            // axios   //관심스테이 테이블에 추가
+            // .post('http://localhost:8000/findstay/love', {
+            //     userId,
+            //     accId
+            // })
+            // .then((res) => {
+            //     if(res === 'ok'){
+            //         loveCntChange();
+            //         setIsLoveAccs([...isLoveAccs, accId]);
+            //         console.log('관심스테이 테이블에 추가됨');
+            //     }
+            // })
+            // .catch((error) => {
+            //     console.error('axios 에러 발생 => ', error);
+            // })
+            axios   //숙소테이블의 좋아요 수 +1
+            .put('http://localhost:8000/findstay/love',{
+                accId
+            })
+            .then((res) => {
+                if(res === 'ok'){
+                    getUserLoveAccs();
+                    console.log('숙소 테이블의 좋아요 수 증가됨')
+                }
+            })
+            .catch((error) => {
+                console.error('axios 에러 발생 => ', error);
+            })
+        }
+    }
+    useEffect(()=>{
+        handleLoveClick();
+    }, [])
+
+    /* 좋아요 수 출력 */
+    const loveCntChange = () => {
+        console.log('좋아요 수 change')
+    }
 
     return(
-        <div className='acc'>
-            <div className='acc_title'>{acc.acc_name}</div>
+        <Link to={`acc/${acc.acc_id}`} className='acc'>
+            <div className='acc_title'>{acc.acc_id}{acc.acc_name}</div>
             <div className='acc_content'>
                 <div className='acc_info'>
-                    <p>{locationName(acc.area_code)}</p>
-                    <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
-                    <p>￦{acc.room_price} ~</p>
-                    <p>예약하기</p>
+                    <div>
+                        <p>{locationName(acc.area_code)}</p>
+                        <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
+                        <p>￦{acc.room_price} ~</p>
+                    </div>
+                    <div className='reservation'>
+                        <p>예약하기</p>
+                    </div>
                 </div>
                 <div className='acc_imgs'>
                     <Swiper 
@@ -49,8 +131,14 @@ export default function Acc({acc, codeinfo, locationName}){
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    <div className='love'>
+                        <div className='love_cnt'>{acc.love}</div>
+                        <FaHeart 
+                            onClick={handleLoveClick}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };

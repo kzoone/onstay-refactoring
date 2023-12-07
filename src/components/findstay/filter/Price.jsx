@@ -8,7 +8,11 @@ export default function Price({ onMinPrice, onMaxPrice }){
     const [isPriceModalOpen, setPriceModalOpen] = useState(false);  
     
     const openModal = () => {  
-        setPriceModalOpen(true);
+        if(isPriceModalOpen){
+            closeModal();
+        }else{
+            setPriceModalOpen(true);
+        }
     };
     const closeModal = () => { 
         setPriceModalOpen(false);
@@ -63,6 +67,10 @@ export default function Price({ onMinPrice, onMaxPrice }){
         setMaxRangePercent(100 - (maxPrice / 500000) * 100);
     };
 
+    useEffect(() => {
+        handleRange();
+    }, [handleRange]);
+
     if(minPrice> maxPrice) {
         setMinPrice(Math.min(minPrice, maxPrice));
         setMaxPrice(Math.max(minPrice, maxPrice));
@@ -80,63 +88,63 @@ export default function Price({ onMinPrice, onMaxPrice }){
     
 
     return(
-        <div ref={priceModalRef} className='price_select'>
-            <div className='price_section'>
-                <div className='price_title'>가격 범위</div>
-                <button className='price_btn' type='button' onClick={openModal}>
-                    <div className='btn_sub'>￦ {minPrice.toLocaleString()} ~ {maxPrice.toLocaleString()}</div>
+        <div className='price' ref={priceModalRef}>
+            <div className='button_section'>
+                <span>가격 범위</span>
+                <button className='price_select' type='button' onClick={openModal}>
+                    <span className='btn_sub'>￦ {minPrice.toLocaleString()} ~ {maxPrice.toLocaleString()}</span>
                     <IoIosArrowDown />
                 </button>
             </div>
-        
-
-        {isPriceModalOpen && (
-        <Modal isOpen={isPriceModalOpen} onClose={closeModal} className={'price_modal'} >
-            <div className='control_box'>
-                <div className='control_title'>가격 범위</div>
-                <div className='slide'>
-                    <div className='slide_inner' style={{left : `${minRangePercent}%`, right: `${maxRangePercent}%` }} />
-                </div>
-                <div className='range'>
-                    <input type='range' 
-                        className='min_range' 
-                        value={minPrice}
-                        step='10000' 
-                        min='0' 
-                        max='500000'
-                        onChange={(e) => {
-                            handleMinPriceChange(e);
-                            handleRange();}} 
-                    />
-                    <input type='range' 
-                        className='max_range' 
-                        value={maxPrice}
-                        step='10000' 
-                        min='0'
-                        max='500000'
-                        onChange={(e) => {
-                            handleMaxPriceChange(e);
-                            handleRange();}} 
-                    /> 
-                </div>
-                <div className='range_value'>
-                    <div className='price_box'>
-                        <div>최저 요금</div>
-                        <div className='min_price'>￦ {minPrice.toLocaleString()}</div>
+            {isPriceModalOpen && (
+            <Modal isOpen={isPriceModalOpen} onClose={closeModal} className={'price_modal'} >
+                <div className='modal_body'>
+                    <div className='modal_title'>스테이 가격</div>
+                    <div className='price_control'>
+                        <div className='slide'>
+                            <div className='slide_inner' style={{left : `${minRangePercent}%`, right: `${maxRangePercent}%` }} />
+                        </div>
+                        <div className='range'>
+                            <input type='range' 
+                                className='min_range' 
+                                value={minPrice}
+                                step='10000' 
+                                min='0' 
+                                max='500000'
+                                onChange={(e) => {
+                                    handleMinPriceChange(e);
+                                    handleRange();}} 
+                            />
+                            <input type='range' 
+                                className='max_range' 
+                                value={maxPrice}
+                                step='10000' 
+                                min='0'
+                                max='500000'
+                                onChange={(e) => {
+                                    handleMaxPriceChange(e);
+                                    handleRange();}} 
+                            /> 
+                        </div>
+                        <div className='range_value'>
+                            <div className='price_box'>
+                                <div>최저 요금</div>
+                                <div className='min_price'>￦ {minPrice.toLocaleString()}</div>
+                            </div>
+                            <div className='tilde' />
+                            <div className='price_box'>
+                                <div>최대 요금</div>
+                                <div className='max_price'>￦ {maxPrice.toLocaleString()}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div className='tilde' />
-                    <div className='price_box'>
-                        <div>최대 요금</div>
-                        <div className='max_price'>￦ {maxPrice.toLocaleString()}</div>
+                    <div className='confirm'>
+                        <button type='button' className='reset' onClick={() => {handleReset();}}>초기화</button>
+                        <button type='button' onClick={() =>{handleMinPriceSelect(minPrice); handleMaxPriceSelect(maxPrice); closeModal();}}>확인</button>
                     </div>
                 </div>
-            </div>
-            <div className='select'>
-                <button type='button' className='reset' onClick={() => {handleReset();}}>초기화</button>
-                <button type='button' onClick={() =>{handleMinPriceSelect(minPrice); handleMaxPriceSelect(maxPrice); closeModal();}}>확인</button>
-            </div>
-        </Modal>
-        )}
+            </Modal>
+            )}
         </div>
     );
 }
