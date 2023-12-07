@@ -1,0 +1,316 @@
+// 공통 & qna 문의 작성 폼
+div.mypage_content {
+  div.my_qna {
+    ul.my_qna_navbar {
+      margin-bottom: 5vh;
+      display: flex;
+      justify-content: flex-start;
+      li {
+        cursor: pointer;
+        color: #aaa;
+        &.active {
+          color: #000;
+          font-weight: 600;
+        }
+      }
+    }
+    div.my_qna_content {
+      form {
+        p {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 2.5vh;
+          label {
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+          input,
+          select {
+            height: 5vh;
+            margin-bottom: 0.5vh;
+            border-bottom: 1px solid #ccc;
+            padding: 0 0.5rem;
+            &::placeholder {
+              color: #bbb;
+            }
+            &:disabled {
+              color: #888;
+            }
+          }
+          select {
+            color: #555;
+            option {
+              &.placeholder {
+                display: none;
+              }
+            }
+          }
+          label.question_content {
+            margin-bottom: 2vh;
+          }
+          textarea {
+            background-color: #eee;
+            height: 40vh;
+            overflow: scroll;
+            padding: 1rem;
+            resize: none;
+          }
+        }
+        button[type='submit'] {
+          display: block;
+          width: 100%;
+          margin: 0 auto;
+          padding: 1.8vh 0;
+          text-align: center;
+          color: white;
+          background-color: black;
+        }
+        div.question_content_length {
+          text-align: right;
+          margin: 5px 3px 0 0;
+          small {
+            font-size: 0.9em;
+            &.min {
+              color: #000;
+            }
+            &.max {
+              color: #888;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $md-max-breakpoint) {
+  div.mypage_content {
+    div.my_qna {
+      ul.my_qna_navbar {
+        li {
+          margin-right: 3vh;
+        }
+      }
+      form {
+      }
+    } // 예약 내역 리스트 container
+  }
+}
+
+@media screen and (max-width: $md-max-breakpoint) {
+  div.mypage_content {
+    div.my_qna {
+      ul.my_qna_navbar {
+        justify-content: space-between;
+        li {
+          width: 50%;
+          border-right: none;
+          text-align: center;
+          border-bottom: 2px solid #aaa;
+          padding-bottom: 1.5vh;
+          &.active {
+            font-size: 1.05em;
+            border-bottom: 2px solid #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+// qna 문의 리스트
+
+div.my_qna {
+  .qna_list_table {
+    text-align: center;
+    width: 100%;
+    font-size: 0.8rem;
+    th {
+      background-color: #555;
+      color: #eee;
+      font-weight: bold;
+      padding: 0.8vh 0;
+      box-sizing: border-box;
+    }
+    tr {
+      cursor: pointer;
+      &:nth-of-type(odd) {
+        background-color: #eee;
+      }
+      @media (hover: hover) {
+        &:hover {
+          background-color: #bbb;
+          color: #fff;
+        }
+      }
+    }
+    td {
+      // white-space: nowrap;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
+      padding: 2vh 0.25rem;
+      box-sizing: border-box;
+    }
+
+    th,
+    td {
+      &.qna_title {
+        padding: 0 2rem;
+        max-width: 140px;
+        box-sizing: border-box;
+        span {
+          width: 100%;
+          margin: 0 auto;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      &.answer_state {
+        span.completed {
+          color: rgb(41, 41, 220);
+        }
+        span.waiting {
+          color: #777;
+        }
+      }
+    }
+    td.qna_title {
+      span {
+        text-align: left;
+      }
+    }
+  }
+  .qna_nolist {
+    div {
+      text-align: center;
+      padding: 1rem 0 2rem 0;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #000;
+      color: #FFF;
+      padding: 1.5vh 0;
+      max-width: 200px;
+    }
+  }
+}
+@media screen and (max-width: $md-max-breakpoint) {
+  div.my_qna {
+    .qna_list_table {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+// qna 모달
+div.mypage_content {
+
+  div.qna_modal {
+    position: fixed;
+    z-index: 12;
+    div.qna_modal_content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 85%;
+      height: 77%;
+      max-width: 500px;
+      border-radius: 15px 15px 0 0;
+      background-color: #fff;
+      >div:first-child {
+        background-color: #555;
+        text-align: right;
+        border-bottom: 1px solid #CCC;
+        button {
+          font-size: 1.2em;
+          padding: .5rem .7em;
+          color: #FFF;
+        }
+      }
+      ul.qna_modal_navbar {
+        display: flex;
+        justify-content: space-between;
+        li {
+          padding: 2vh 0;
+          text-align: center;
+          width: 50%;
+          background-color: #DDD; 
+          &:first-child {
+            flex: 1;
+          } 
+          cursor: pointer;
+          &.active {
+            font-weight: 600;
+            background-color: #FFF;
+          }
+        }
+      }
+      form.question_form{
+        padding: 3vh;
+        p {
+          textarea {
+            height: 20vh;
+          }
+        }
+        div.modal_btn_container {
+          display: flex;
+          justify-content: space-between;
+          button {
+            width: 50%;
+            flex: 1;
+            padding: 1.8vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            &.question_black_btn {
+              margin-right: 2px;
+              background-color: #232222;
+            }
+            &.question_blue_btn {
+              background-color: rgb(87, 87, 237);
+              margin-right: 2px;
+              &:hover {
+                background-color: rgb(72, 72, 243);
+              }
+            }
+            &.question_red_btn {
+              svg {font-size: 1.2em;}
+              background-color: rgb(228, 74, 74);
+              &:hover {
+                background-color: rgb(234, 59, 59);
+              }
+            }
+            svg {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+      div.admin_answer {
+        padding: 1.5rem 1.5rem;
+        height: 85%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        label {
+          margin-bottom: 3vh;
+        }
+        textarea.answer_textbox {
+          padding: 1rem;
+          border-radius: 5px;
+          background-color: #EEE;
+          overflow: scroll;
+          flex: 1;
+        }
+      }
+    }
+  }
+}

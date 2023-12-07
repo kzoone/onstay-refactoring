@@ -3,7 +3,6 @@ import React from 'react';
 export default function ConfirmModal({handleModal, handleConfirm, noti_1, noti_2, btnText}){
 
   const handleModalBackground = (e) => {
-    handleModal();
     e.stopPropagation();
   }
 

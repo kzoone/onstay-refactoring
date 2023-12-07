@@ -15,7 +15,7 @@ export function MyPage() {
     return (
         <main className="mypage">
             <PageTitle title='MY PAGE' />
-            <MyPageGreet userName={user.user_name} />
+            <MyPageGreet userName={user.user_name} user_id={user.user_id} />
             <div className='mypage_main_container'>
                 <MyPageNavbar setShowContent={setShowContent} showContent={showContent} />
                 <MyPageContent user_id={user.user_id} showContent={showContent} />

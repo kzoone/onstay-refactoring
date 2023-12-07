@@ -1,4 +1,8 @@
+@import '../components/mypage/myreservation';
 @import '../components/mypage/myedit';
+@import '../components/mypage/myqna';
+@import '../components/mypage//mycoupon';
+@import '../components/mypage/mylovestay';
 
 main.mypage {
   @include pageTitle($ft-size: 1.2rem, $mb: 5rem);
@@ -50,14 +54,14 @@ main.mypage {
       }
     }
     div.mypage_content {
-      flex: 1;
+      width: 75%;
     }
   }
 }
 
 @media screen and (min-width: $md-max-breakpoint) {
   main.mypage {
-     min-width: 900px;
+    // min-width: 900px;
     max-width: 1100px;
     div.mypage_main_container {
       ul.mypage_navbar {
@@ -73,227 +77,61 @@ main.mypage {
       ul.mypage_navbar {
         display: none;
       }
+      div.mypage_content {
+        width: 100%;
+      }
     }
   }
 }
 
 
 
-
+//  mypage content common 
 
 div.mypage_content {
-  div.my_reservation {
-    ul.my_reservation_navbar {
-      margin-bottom: 3vh;
-      display: flex;
-      justify-content: flex-start;
-      li {
-        cursor: pointer;
-        color: #AAA;
-        &.active {
-          color: #000;
-          font-weight: 600;
-        }
+  ul.mypage_content_navbar {
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: flex-start;
+    li {
+      cursor: pointer;
+      color: #AAA;
+      &.active {
+        color: #000;
+        font-weight: 600;
       }
     }
-    div.my_reservation_list {
-      display: flex;
-      flex-direction: column;
-      padding: 3vh 0 0 0;
-      div.my_reservation_wrapper {
-        display: flex;
-        justify-content: space-between;
-        &:not(:last-of-type) {
-          margin-bottom: 8vh;
-        }
-        div.reservation_info {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          h4.acc_name {
-            font-size: 1.5em;
-            margin-bottom: 0.5rem;
-          }
-          span.room_name {
-            font-weight: 300;
-            color: #333;
-            margin-bottom: 2rem;
-          }
-          div.stay_info,
-          div.pay_info {
-            margin-bottom: 0.5rem;
-            b {
-              font-size: 0.9rem;
-            }
-            small {
-              &:first-of-type {
-                margin-top: 0.3rem;
-              }
-              margin-bottom: 0.2rem;
-              display: block;
-            }
-          }
-          div.btns {
-            text-align: left;
-            margin-top: auto;
-            button {
-              padding-bottom: 0.2rem;
-              border-bottom: 1px solid #888;
-              margin-right: 1rem;
-              font-size: 0.8rem;
-            }
-          }
-          div.acc_img_mobile {
-            width: 100%;
-            height: 20vh;
-            margin-bottom: 1.5vh;
-            img {
-              object-fit: cover;
-              object-position: center;
-              width: 100%;
-              height: 100%;
-            }
-          }
-        }
-        div.acc_img_pc {
-          width: 50%;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-          }
-        }
-      } // 예약 내역 한개 wrapper
-
-      div.no_list {
-        text-align: center;
-        div.no_list_img {
-          margin: 0 auto;
-          width: 40vh;
-          img {
-            width: 100%;
-          }
-        }
-        > div {
-          margin-bottom: 2rem;
-          span {
-            display: inline-block;
-            font-size: 0.8rem;
-            color: #333;
-            margin-bottom: .3rem;
-          }
-        }
-        a {
-          display: inline-block;
-          width: 100%;
-          background-color: #000;
-          font-size: 0.8rem;
-          color: #fff;
-          padding: 1.5vh 0;
-        }
-      }
-    } // 예약 내역 리스트 container
   }
-}
-
-@media screen and (min-width: $md-max-breakpoint) {
-  div.mypage_content {
-    ul.my_reservation_navbar {
+  
+  @media screen and (min-width: $md-max-breakpoint){
+    ul.mypage_content_navbar {
       li {
         margin-right: 2.5vh;
       }
     }
+  }
 
-    div.my_reservation_list {
-      div.my_reservation_wrapper {
-        div.reservation_info {
-          .acc_img_mobile {
-            display: none;
-          }
-        }
-        height: 30vh;
-      }
-    }
 
-    div.no_list {
-      a {
-        max-width: 200px;
-      }
-    }
-  } // 예약 내역 리스트 container
-}
-
-@media screen and (max-width: $md-max-breakpoint) {
-  div.mypage_content {
-    div.my_reservation {
-      ul.my_reservation_navbar {
-        justify-content: space-between;
-        li {
-          width: 50%;
-          border-right: none;
-          text-align: center;
-          border-bottom: 2px solid #AAA;
-          padding-bottom: 1.5vh;
-          &.active {
-            font-size: 1.05em;
-            border-bottom: 2px solid #000;
-          }
-        }
-      }
-    }
-    div.my_reservation_wrapper {
-      padding-bottom: 2vh;
-      border-bottom: 1px solid #EEE;
-      &:not(:last-of-type) {
-
-      }
-      div.reservation_info {
+  @media screen and (max-width: $md-max-breakpoint) {
+    ul.mypage_content_navbar {
+      justify-content: space-between;
+      li {
+        width: 50%;
+        border-right: none;
         text-align: center;
-        h4.acc_name {
-
+        border-bottom: 2px solid #AAA;
+        padding-bottom: 1.5vh;
+        &.active {
+          font-size: 1.05em;
+          border-bottom: 2px solid #000;
         }
-        span.room_name {
-
-        }
-        div.detail_infos {
-          padding: 2vh 0 1.5vh 0;
-          background-color: #EEE;
-          margin-bottom: 1vh;
-          div.stay_info,
-          div.pay_info {
-            b {
-            }
-            small {
-              &:first-of-type {
-  
-              }
-  
-            }
-          }
-        }
-        div.btns {
-          button {
-            flex: 1;
-            background-color: #000;
-            color: white;
-            width: 100%;
-            height: 4vh;
-          }
-        }
-      }
-      div.acc_img_pc {
-        display: none;
-        img {
-
-        }
-      }
-    } // 예약 내역 한개 wrapper
-
-    div.no_list {
-      span:nth-of-type(2) {
-        display: block;
       }
     }
-  } // 예약 내역 리스트 container
-}
+  }
+  }
+  
+ 
+  
+
+
+

@@ -1,0 +1,35 @@
+div.mypage_content {
+  div.my_coupon {
+    ul.my_coupon_navbar {
+      margin-bottom: 2rem;
+    }
+
+    div.coupon_list_container {
+        div.coupon_wrapper {
+            padding: 1rem;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            margin-bottom: .8rem;
+            display: flex;
+            flex-direction: column;
+            span.discount_price {
+             font-size: 1.5em;
+             font-weight: 600;
+             margin-bottom: .3rem;
+            }
+            span.coupon_name {
+                margin-bottom: 1.5rem;
+            }
+            small.coupon_expire_date {
+                margin-bottom: .1rem;
+            }
+        }
+        div.coupon_nolist {
+            div {
+                text-align: center;
+                padding: 1rem 0 1rem 0;
+            }
+        }
+    }
+  }
+}

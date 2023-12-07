@@ -2,7 +2,9 @@
 
 export const UNKNOWN_ERROR_ALERT = '알 수 없는 오류가 발생하였습니다.'
 
+// 회원 프로필 디폴트 이미지 경로
 
+export const DEFAULT_PROFILE_IMG = 'http://localhost:3000/assets/images/etc/user_profile_default.jpg';
 
 
 /** JOIN (회원가입) 관련 constants */
@@ -17,7 +19,7 @@ export const MEMBER_REGEX = {
   user_id : new RegExp("^[A-Za-z\\d]{" + USERID_LENGTH_MIN + "," + USERID_LENGTH_MAX + "}$"),
   user_email : /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/, 
   user_name :  /^[ A-Za-z가-힣]{1,30}$/, 
-  user_pw : new RegExp("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#-_=+$%^&*(),.?\":{}|<>]).{" + USERPW_LENGTH_MIN + "," + USERPW_LENGTH_MAX + "}$"),
+  user_pw : new RegExp("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#+$%^&*(),.?\":{}|<>]).{" + USERPW_LENGTH_MIN + "," + USERPW_LENGTH_MAX + "}$"),
   phone : /^01[016789]\d{7,8}$/
 }
 
@@ -84,3 +86,31 @@ export const TERM_DETAIL_EVENT = `
 - 이용 항목: 아이디, 성명, 이메일, 휴대전화 번호
 - 보유 및 이용 기간: 회원 탈퇴 시 혹은 동의 철회 시까지
 `
+
+
+export const QUESTION_CATEGORY = {
+  1 : '예약 문의',
+  2 : '오류 신고',
+  3 : '서비스 제안',
+  4 : '기타'
+}
+
+
+// 지역 코드 별 스트링 
+export const AREA_STRING = {
+  1: '서울',
+  2: '강원',
+  3: '부산',
+  4: '경기',
+  5: '충북',
+  6: '충남',
+  7: '경북',
+  8: '경남',
+  9: '전북',
+  10: '전남',
+  11: '인천',
+  12: '광주',
+  13: '대전',
+  14: '대구',
+  15: '제주',
+};
