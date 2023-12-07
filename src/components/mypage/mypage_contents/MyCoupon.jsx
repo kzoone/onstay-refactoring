@@ -10,7 +10,6 @@ export function MyCoupon ({user_id}) {
   useEffect(()=>{
     axios.get('http://localhost:8000/mypage/coupons/'  + 'user')
     .then(res => {
-      console.log(res.data);
       if (category==='valid') {
         setCoupons(res.data)
       } else { // 현재 테이블에 만료 기한 컬럼이 없어, 임시로 만료쿠폰 리스트 선택한 경우 빈 배열 반환하도록 함

@@ -15,7 +15,6 @@ export function MyQNAModal({closeModal, user_id, question_id}) {
     })
     .then(res => {
       setQuestion(res.data)
-      console.log(res.data);
     })
     .catch(err => {
       console.log(err);

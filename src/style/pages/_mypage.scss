@@ -54,7 +54,7 @@ main.mypage {
       }
     }
     div.mypage_content {
-      flex: 1;
+      width: 75%;
     }
   }
 }
@@ -76,6 +76,9 @@ main.mypage {
     div.mypage_main_container {
       ul.mypage_navbar {
         display: none;
+      }
+      div.mypage_content {
+        width: 100%;
       }
     }
   }

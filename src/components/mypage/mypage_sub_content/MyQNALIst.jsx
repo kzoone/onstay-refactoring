@@ -22,7 +22,6 @@ export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
   }, [user_id]);
 
   const showModal = (e) => {
-    console.log(e.currentTarget.dataset.qid);
     setModal({
       question_id : e.currentTarget.dataset.qid,
       show : true
