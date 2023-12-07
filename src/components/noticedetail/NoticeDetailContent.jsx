@@ -8,8 +8,7 @@ export default function NoticeDetailContent(props) {
 
   return (
     <>
-      <p>| {notice_title}</p>
-      <p>{notice_content}</p>
+      <textarea readOnly value={notice_content} />
       <p>Register Date : {dateStr}</p>
       <p>View Count : {notice_views}</p>
     </>

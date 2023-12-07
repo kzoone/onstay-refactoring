@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { SlNote } from 'react-icons/sl';
 import { useState } from 'react';
+import NoticeUpdate from '../notice/NoticeUpdate';
 
 export default function NoticeTable(props) {
   const { notice_id, no, page, notice_title, notice_date,
-    notice_views, userInfo, handleCheckedItems, setUpdateModal } = props;
+    notice_views, notice_content, notice_img, userInfo, handleCheckedItems } = props;
   const [isChecked, setIsChecked] = useState(false);
+  const [updateModal, setUpdateModal] = useState(false);
 
   const openUpdateModal = () => setUpdateModal(true);
 
@@ -26,7 +28,8 @@ export default function NoticeTable(props) {
     <tr>
       {userInfo.isAdmin ?
         <th>
-          <input type='checkbox' id={`notice_check${no}`} checked={isChecked} onChange={handleCheckboxChange} />
+          <input type='checkbox' id={`notice_check${no}`}
+            checked={isChecked} onChange={handleCheckboxChange} />
           <label htmlFor={`notice_check${no}`} ></label>
         </th>
         : <th>{no}</th>}
@@ -37,7 +40,19 @@ export default function NoticeTable(props) {
         </Link>
       </td>
       <td>{notice_date}</td>
-      {userInfo.isAdmin ? <td><button type='button' onClick={openUpdateModal}><SlNote className='slnote' /></button></td> : <td>{notice_views}</td>}
+      {userInfo.isAdmin ?
+        <td>
+          {/* <button type='button' onClick={openUpdateModal}><SlNote className='slnote' /></button> */}
+          <button type='button' onClick={openUpdateModal}><SlNote className='slnote'  /></button>
+        </td>
+        : <td>{notice_views}</td>}
+      {updateModal && <td><NoticeUpdate btnText='수정'
+        setUpdateModal={setUpdateModal} 
+        notice_title={notice_title}
+        notice_content={notice_content}
+        notice_img={notice_img}
+        notice_id ={notice_id}
+      /></td>}
     </tr>
   );
 };

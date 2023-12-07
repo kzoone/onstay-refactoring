@@ -101,9 +101,10 @@ useEffect(() => {
                 notice_title={notice.notice_title}
                 notice_date={notice.notice_date}
                 notice_views={notice.notice_views}
+                notice_content={notice.notice_content}
+                notice_img={notice.notice_img}
                 userInfo={props.userInfo}
                 handleCheckedItems={props.handleCheckedItems}
-                setUpdateModal={props.setUpdateModal}
               />)}
         </tbody>
       </table>

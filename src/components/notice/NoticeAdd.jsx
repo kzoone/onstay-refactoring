@@ -21,22 +21,18 @@ export default function NoticeAdd({ btnText, setAddModal }) {
     e.preventDefault();
     const formData = new FormData();//전송할 바디를 만듬
 
-    if (!imageFile) {
-      alert('이미지를 선택해 주세요.');
-    } else {
-      formData.append('file', imageFile);
-      formData.append('title', e.target.title.value);
-      formData.append('content', e.target.content.value);
+    formData.append('file', imageFile);
+    formData.append('title', e.target.title.value);
+    formData.append('content', e.target.content.value);
 
-      axiosAuth.post('http://127.0.0.1:8000/notice/insert/', formData)
-        .then(result => {
-          if (result.data === 'ok') {
-            alert('공지사항 등록이 완료되었습니다.');
-            window.location.reload();
-          }
-        }).catch(error => console.log(error))
-        ;
-    }
+    axiosAuth.post('http://127.0.0.1:8000/notice/insert/', formData)
+      .then(result => {
+        if (result.data === 'ok') {
+          alert('공지사항 등록이 완료되었습니다.');
+          window.location.reload();
+        }
+      }).catch(error => console.log(error))
+      ;
 
     setAddModal(false);
   };
@@ -47,13 +43,13 @@ export default function NoticeAdd({ btnText, setAddModal }) {
   };
 
   const handleFileButtonClick = () => {
-    // 숨겨진 파일 입력(input)에 대해 클릭 이벤트
+    // 숨겨진 파일 input에 대해 클릭 이벤트
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
 
-  const handleInput = (e, maxLength, setCountFn) => {
+  const handleInput = (maxLength, setCountFn) => (e) => {
     if (e.target.value.length > maxLength) {
       e.target.value = e.target.value.slice(0, maxLength);
       alert(`${maxLength.toLocaleString()}자 이내로 작성해 주세요.`)
@@ -84,8 +80,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
                   <button
                     type='button'
                     className='custom_file_button'
-                    onClick={handleFileButtonClick}
-                  >
+                    onClick={handleFileButtonClick}>
                     <SlCamera />
                   </button>
                 </div>
@@ -94,8 +89,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
                 <label htmlFor='notice_title'>제목 : </label>
                 <input type='text' name='title' id='notice_title'
                   placeholder={`title(${titleMaxLength}자 이내로 작성해 주세요.)`}
-                  maxLength={titleMaxLength}
-                  onChange={(e) => handleInput(e, titleMaxLength, setInputCountTitle)} />
+                  onChange={handleInput(titleMaxLength, setInputCountTitle)} />
               </li>
               <li>
                 <span>{inputCountTitle.toLocaleString()}</span>
@@ -105,8 +99,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
                 <label htmlFor='ntoice_content'>내용 : </label>
                 <textarea name='content' id='ntoice_content' form='notice_form' rows='10'
                   placeholder={`content(${contentMaxLength}자 이내로 작성해 주세요.)`}
-                  maxLength={contentMaxLength}
-                  onChange={(e) => handleInput(e, contentMaxLength, setInputCountContent)}></textarea>
+                  onChange={handleInput(contentMaxLength, setInputCountContent)}></textarea>
               </li>
               <li>
                 <span>{inputCountContent.toLocaleString()}</span>

@@ -1,4 +1,7 @@
-export default function NoticeAdminBtn({ setAddModal, setDeletModal, userInfo, checkedItems }) {
+import useUserInfo from "../../util/useUserInfo";
+
+export default function NoticeAdminBtn({ setAddModal, setDeletModal, checkedItems }) {
+  const userInfo = useUserInfo();
   const openAddModal = () => setAddModal(true);
   const openDeleteModal = () => {
     if (checkedItems.length === 0) {

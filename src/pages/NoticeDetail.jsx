@@ -1,8 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PageTitle from "../components/common/PageTitle";
-import NoticeAbata from '../components/noticedetail/NoticeAbata';
+import NoticeAvata from '../components/noticedetail/NoticeAvata';
 import NoticeDetailContent from '../components/noticedetail/NoticeDetailContent';
 
 export function NoticeDetail() {
@@ -23,15 +23,17 @@ export function NoticeDetail() {
     <div className="notice_detail_page">
       <PageTitle title='NOTICE' />
       <div className="notice_detail_content">
-        {detailNotice.notice_img ? <NoticeAbata notice_img={detailNotice.notice_img} /> : null}
+          <p>| {detailNotice.notice_title}</p>
         <div>
-          <NoticeDetailContent
-            notice_date={detailNotice.notice_date}
-            notice_title={detailNotice.notice_title}
-            notice_content={detailNotice.notice_content}
-            notice_views={detailNotice.notice_views}
-          />
+          <div>
+            <NoticeDetailContent
+              notice_date={detailNotice.notice_date}
+              notice_content={detailNotice.notice_content}
+              notice_views={detailNotice.notice_views}
+            />
           <Link to='/notice' state={{ page: page }}>목록으로</Link>
+          </div>
+          <NoticeAvata notice_img={detailNotice.notice_img} />
         </div>
       </div>
     </div>

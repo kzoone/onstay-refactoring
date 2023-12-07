@@ -1,7 +1,8 @@
-
+import useUserInfo from '../../util/useUserInfo';
 import axiosAuth from '../../services/axiosAuth';
-export default function NoticeDelete({ btnText, setDeletModal, userInfo, checkedItems }) {
 
+export default function NoticeDelete({ btnText, setDeletModal, checkedItems }) {
+  const userInfo = useUserInfo();
   const handleModalBackground = (e) => {
     handleModal();
     e.stopPropagation();
