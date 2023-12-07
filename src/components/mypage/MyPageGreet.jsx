@@ -1,15 +1,18 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function MyPageGreet(props) {
-  let [reserveCount, setReserveCount] = useState(0)
+  let [reserveCount, setReserveCount] = useState(0);
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/mypage/reservation/' + props.user_id)
-    .then(res => setReserveCount(res.data.length))
+    axios.get('http://localhost:8000/mypage/reservation/upcoming/' + props.user_id)
+    .then(res => {
+      setReserveCount(res.data.length)
+    })
     .catch(err => console.log(err))
-  },[props.user_id])
+  },[props.user_id, props.url])
+
 
   return (
     <div className='mypage_greet_container'>

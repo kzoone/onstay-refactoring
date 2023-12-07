@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosAuth from './../../../services/axiosAuth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ConfirmModal from './../../common/ConfirmModal';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ export function MyReservation({ user_id }) {
   let [category, setCategory] = useState('upcoming');
   let [reservations, setReservations] = useState([]);
   let [modal, setModal] = useState({show : false, acc_name : '', room_name : '', handleConfirm : ()=>{}})
+  let location = useLocation();
 
   const handleClick = (e) => setCategory(e.target.dataset.category);
 
@@ -56,7 +57,7 @@ export function MyReservation({ user_id }) {
       .catch((err) => {
         throw err;
       });
-  }, [category, user_id]);
+  }, [category, user_id, location.search]);
 
   const showModal = (e) => {
     setModal({
@@ -137,7 +138,7 @@ const cancelReservation = rid => () => {
                     <button onClick={showModal} data-rid={res.reservation_id} data-acc_name={res.acc_name} data-room_name={res.room_name}>예약 취소</button>
                   )}
                   {category === 'upcoming' && res.dayDiff < 2 && (
-                    <div style={{color:'red', textAlign:'center'}}>취소 불가능</div>
+                    <button onClick={()=>alert('취소 불가능 상태입니다. 1:1 문의를 이용해주세요.')} className='disabled'>취소 불가능</button>
                   )}
                   {category === 'complete' && res.dayDiff <= 0 && (
                     <button>후기 남기기</button>
