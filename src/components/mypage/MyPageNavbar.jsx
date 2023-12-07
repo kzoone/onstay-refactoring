@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 export function MyPageNavbar(props) {
   const {showContent, setShowContent} = props;
 
