@@ -3,7 +3,7 @@
   .swiper-slide {
     text-align: center;     
     /* Center slide text vertically */
-    display: flex;
+    /* display: flex; */  //한번 확인해보기 크기 줄일 때 문제
   }
   .swiper-slide img {
     width: 100%;
