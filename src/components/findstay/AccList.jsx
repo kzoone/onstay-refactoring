@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Acc from './Acc';
 
 export default function AccList({accs, location, codeinfo, locationName}){
-    //검색어에 따라 숙소를 필터링하고, 필터링된 숙소만을 보여줌
 
     return(
         <>

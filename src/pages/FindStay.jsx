@@ -11,7 +11,6 @@ export function FindStay() {
      * 숙소 리스트 출력
      */
     const [accList, setAccList] = useState([]);
-
     useEffect(() => {
         axios
         .get('http://localhost:8000/findstay/')
