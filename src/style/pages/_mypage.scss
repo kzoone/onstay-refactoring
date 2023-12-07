@@ -1,7 +1,8 @@
 @import '../components/mypage/myreservation';
 @import '../components/mypage/myedit';
 @import '../components/mypage/myqna';
-@import '../components//mypage//mycoupon';
+@import '../components/mypage//mycoupon';
+@import '../components/mypage/mylovestay';
 
 main.mypage {
   @include pageTitle($ft-size: 1.2rem, $mb: 5rem);

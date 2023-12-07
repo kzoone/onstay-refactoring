@@ -1,59 +1,33 @@
 div.mypage_content {
-  border-bottom: 1px dotted #BBB;
-  padding-bottom: 5vh;
-  div.my_reservation {
-    ul.my_reservation_navbar {
-      margin-bottom: 3vh;
-      display: flex;
-      justify-content: flex-start;
-      li {
-        cursor: pointer;
-        color: #AAA;
-        &.active {
-          color: #000;
-          font-weight: 600;
-        }
-      }
-    }
-    div.my_reservation_list {
+  div.my_lovestay {
+    div.my_lovestay_list {
       display: flex;
       flex-direction: column;
       padding: 3vh 0 0 0;
-      div.my_reservation_wrapper {
+      div.my_lovestay_wrapper {
         display: flex;
         justify-content: space-between;
         &:not(:last-of-type) {
           margin-bottom: 8vh;
         }
-        div.reservation_info {
+        div.lovestay_info {
           display: flex;
           flex-direction: column;
           flex: 1;
           h4.acc_name {
             font-size: 1.5em;
-            margin-bottom: 0.5rem;
           }
-          span.room_name {
-            font-weight: 300;
-            color: #333;
-            margin-bottom: 2rem;
-          }
-          div.stay_info,
-          div.pay_info {
-            &:first-child {
-              margin-bottom: 1rem;
-            }
-            b {
-              font-size: 0.9rem;
-            }
-            small {
-              &:first-of-type {
-                margin-top: 0.3rem;
-              }
-              margin-bottom: 0.2rem;
-              display: block;
+        div.detail_infos {
+          margin-bottom: .8rem;
+          span {
+            color: #444;
+            font-size: .9em;
+            display: block;
+            &:not(:last-child) {
+              margin-bottom: .5rem;
             }
           }
+        }
           div.btns {
             text-align: left;
             margin-top: auto;
@@ -120,24 +94,19 @@ div.mypage_content {
 
 @media screen and (min-width: $md-max-breakpoint) {
   div.mypage_content {
-    div.my_reservation {
-      ul.my_reservation_navbar {
-        li {
-          margin-right: 2.5vh;
-        }
-      }
+    div.my_lovestay {
   
-      div.my_reservation_list {
-        div.my_reservation_wrapper {
-          div.reservation_info {
-            span.room_name {
-              margin-bottom: 3rem;
+      div.my_lovestay_list {
+        div.my_lovestay_wrapper {
+          div.lovestay_info {
+            h4.acc_name {
+              margin-bottom: 7rem;
             }
             .acc_img_mobile {
               display: none;
             }
           }
-          height: 30vh;
+          height: 27vh;
         }
       }
   
@@ -153,51 +122,22 @@ div.mypage_content {
 
 @media screen and (max-width: $md-max-breakpoint) {
   div.mypage_content {
-    div.my_reservation {
-      ul.my_reservation_navbar {
-        justify-content: space-between;
-        li {
-          width: 50%;
-          border-right: none;
-          text-align: center;
-          border-bottom: 2px solid #AAA;
-          padding-bottom: 1.5vh;
-          &.active {
-            font-size: 1.05em;
-            border-bottom: 2px solid #000;
-          }
-        }
-      }
+    div.my_lovestay {
+      
     }
-    div.my_reservation_wrapper {
+    div.my_lovestay_wrapper {
       padding-bottom: 2vh;
       border-bottom: 1px solid #EEE;
       &:not(:last-of-type) {
 
       }
-      div.reservation_info {
+      div.lovestay_info {
         text-align: center;
         h4.acc_name {
-
+          margin-bottom: 1rem;
         }
         span.room_name {
 
-        }
-        div.detail_infos {
-          padding: 2vh 0 1.5vh 0;
-          background-color: #EEE;
-          margin-bottom: 1vh;
-          div.stay_info,
-          div.pay_info {
-            b {
-            }
-            small {
-              &:first-of-type {
-  
-              }
-  
-            }
-          }
         }
         div.btns {
           button {
