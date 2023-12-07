@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Agreement(props) {
-  const { setIsAgree, setBtnText, nightCnt, payPrice, acc_name } = props;
+  const { isValidDated, setIsAgree, setBtnText, nightCnt, payPrice, acc_name } = props;
   const [ checkboxes, setCheckboxes ] = useState({
     all : false,
     personal : { checked : false, showContent : '' },
@@ -18,7 +18,7 @@ export default function Agreement(props) {
   const validateAgreements = () => {
     const allAgreed = checkboxes.personal.checked && checkboxes.minor.checked && checkboxes.refund.checked;
     setIsAgree(allAgreed);
-    setBtnText(`${nightCnt}박 : ₩${payPrice.toLocaleString()} 결제하기`);
+    isValidDated && setBtnText(`${nightCnt}박 : ₩${payPrice.toLocaleString()} 결제하기`)
   };
 
   // 약관 동의 check 이벤트 핸들러 ( 전체 동의와 개별 동의 클릭 구현 )

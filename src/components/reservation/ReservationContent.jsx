@@ -183,6 +183,7 @@ export default function ReservationContent() {
           selectedCouponId={selectedCouponId} 
           setSelectedCouponId={setSelectedCouponId} />
         <Agreement 
+          isValidDated={isValidDated}
           setIsAgree={setIsAgree} 
           setBtnText={setBtnText}
           nightCnt={nightCnt}

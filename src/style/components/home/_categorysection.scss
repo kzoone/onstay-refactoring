@@ -44,8 +44,10 @@ section.category_section {
               font-size: 0.8rem;
               letter-spacing: 0.1rem;
               transition: all 0.3s;
-              &:hover {
-                @include text_hover;
+              @media (hover:hover) {
+                &:hover {
+                  @include text_hover;
+                }
               }
             }
           }
@@ -75,8 +77,10 @@ section.category_section {
         &.next {
           @include pos_x(calc(50% + 35px));
         }
-        &:hover {
-          @include btn_hover;
+        @media (hover:hover) {
+          &:hover {
+            @include btn_hover;
+          }
         }
         svg {
           width: 100%;
@@ -128,6 +132,7 @@ section.category_section {
           div.swiper-wrapper {
             div.swiper-slide {
               div.acc_info {
+              @include flexbox($fd:column);
                 p.name {
                   font-size: 1rem;
                   font-weight: 600;
@@ -141,10 +146,13 @@ section.category_section {
                   }
                 }
                 a.reservation {
-                  border-bottom: 1px solid #a28f72;
-                  color: #a28f72;
+                  width: 50%;
+                  padding: 5px;
+                  border: 1px solid #a28f72;
+                  border-radius: 5px;
                   font-weight: 600;
                   letter-spacing: 0.1rem;
+                  color: #a28f72;
                 }
               }
             }
