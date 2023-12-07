@@ -28,8 +28,8 @@ main.reservation_section {
       @include flexbox($fd: column, $ai: normal);
       font-size: 0.8rem;
       div.input_wrap {
-        margin-bottom: 10px;
         display: flex;
+        margin-bottom: 10px;
         div.react-datepicker-wrapper:first-child {
           margin-right: 10px;
         }
@@ -97,8 +97,8 @@ main.reservation_section {
                 div.react-datepicker__week {
                   div.react-datepicker__day--selected {
                     border: 1px solid #867357;
-                    background-color: #fff;
-                    color: #a28f72;
+                    background-color: #867357;
+                    color: white;
                   }
                   div.react-datepicker__day--in-selecting-range {
                     border: none;
@@ -111,8 +111,9 @@ main.reservation_section {
                     color: #a28f72;
                   }
                   div.react-datepicker__day--keyboard-selected {
-                    background-color: #867357;
-                    color: white;
+                    border: 1px solid #867357;
+                    background-color: transparent;
+                    color: #ccc;
                   }
                 }
               }
@@ -229,10 +230,10 @@ main.reservation_section {
         div.room_discount {
           display: flex;
           justify-content: space-between;
-          & p {
+          p {
             font-size: 0.85rem;
           }
-          & p:first-child {
+          p:first-child {
             font-size: 0.85rem;
             color: #727272;
           }
@@ -310,9 +311,11 @@ main.reservation_section {
                 text-align: right;
                 cursor: pointer;
                 transition: all 0.3s;
-                &:hover {
-                  @include text_hover;
-                  text-decoration: underline;
+                @media (hover:hover) {
+                  &:hover {
+                    @include text_hover;
+                    text-decoration: underline;
+                  }
                 }
               }
             }
@@ -346,10 +349,22 @@ main.reservation_section {
       button.payment_btn {
         width: 55%;
         padding: 10px;
+        border: 1px solid transparent;
         border-radius: 5px;
         background-color: #a28f72;
         font-size: 0.9em;
         color: white;
+        transition: all 0.3s;
+        @media (hover:hover) {
+          &:hover {
+            @include btn_hover;
+          }
+          &:disabled:hover {
+            background-color: #a28f72;
+            border: 1px solid transparent;
+            color: white;
+          }
+        }
       }
     }
   }
@@ -486,7 +501,11 @@ main.reservation_section {
               font-size: 13px;
             }
             dt {
+              width: 30%;
               padding-left: 0;
+            }
+            dd {
+              width: 65%;
             }
           }
           div.coupon_box {
@@ -511,11 +530,11 @@ main.reservation_section {
             div.room_price {
               flex-direction: column;
               margin-bottom: 15px;
-              & div {
+              div {
                 justify-content: space-between;
                 margin-bottom: 5px;
               }
-              & p {
+              p {
                 text-align: right;
               }
             }
@@ -547,8 +566,20 @@ main.reservation_section {
         div.btn_box {
           margin: 30px 0;
           padding: 0;
+          button.payment_btn {
+            width: 70%;
+          }
         }
       }
+    }
+  }
+}
+
+div.modal {
+  div.modal_container {
+    background-color: white;
+    div.modal_content {
+      border: 1px solid #a28f72;
     }
   }
 }

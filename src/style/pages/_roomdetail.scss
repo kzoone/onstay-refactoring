@@ -1,94 +1,105 @@
 main.roomdetail_section {
-  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 2rem;
   @include pageTitle($mb: 4rem);
-  p.acc_name{
-    margin-bottom: 50px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid black;
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  div.content_container {
-    @include flexbox($jc: space-between, $ai: normal);
-    margin-bottom: 4.2rem;
-    padding: 1.5rem 0.5rem;
 
-    div.room_info_container {
-      @include flexbox($fd: column, $jc: space-between, $ai: flex-start);
-      width: 40%;
-      padding-bottom: 15px;
+  div.content_wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
 
-      div.info_top_wrap {
-        p.info_title {
-          margin-bottom: 15px;
-          font-size: 0.9rem;
-          letter-spacing: 0.2rem;
-        }
-        
-        p.room_name {
-          margin-bottom: 10px;
-          font-size: 1.5rem;
-          font-weight: 500;
-        }
-        p.acc_summary {
-          font-size: 0.8rem;
-          line-height: 1.2rem;
-        }
-        span.line {
-          display: block;
-          margin-bottom: 20px;
-        }
-      }
-
-      div.info_bottom_wrap {
-        p {
-          font-size: 0.95rem;
-          span {
-            font-size: 0.9rem;
-          }
-        }
-
-        p.time {
-          margin-bottom: 5px;
-        }
-
-        p.capa {
-          span.min_capa {
-            margin-right: 5px;
-          }
-          span.max_capa {
-            font-size: 0.9rem;
-          }
-        }
-      }
+    p.acc_name {
+      margin-bottom: 50px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid black;
+      font-size: 1.2rem;
+      font-weight: 500;
     }
 
-    div.room_swiper_container {
-      width: 50%;
+    div.content_container {
+      @include flexbox($jc: space-between, $ai: normal);
+      margin-bottom: 4.2rem;
+      padding: 1.5rem 0.5rem;
 
-      div.swiper {
-        margin-bottom: 30px;
-        img {
-          width: 100%;
-        }
-        div.swiper-pagination {
-          margin-bottom: 5px;
-          
-          span.swiper-pagination-bullet {
-            background-color: white;
-            opacity: 0.6;
+      div.room_info_container {
+        @include flexbox($fd: column, $jc: space-between, $ai: flex-start);
+        width: 40%;
+        padding-bottom: 15px;
+
+        div.info_top_wrap {
+          p.info_title {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
           }
-          
-          span.swiper-pagination-bullet-active {
-            --swiper-theme-color: white;
-            opacity: 1;
+
+          p.room_name {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 500;
+          }
+
+          p.acc_summary {
+            font-size: 0.8rem;
+            line-height: 1.2rem;
+          }
+
+          span.line {
+            display: block;
+            margin-bottom: 20px;
+          }
+        }
+
+        div.info_bottom_wrap {
+          p {
+            font-size: 0.95rem;
+
+            span {
+              font-size: 0.9rem;
+            }
+          }
+
+          p.time {
+            margin-bottom: 5px;
+          }
+
+          p.capa {
+            span.min_capa {
+              margin-right: 5px;
+            }
+
+            span.max_capa {
+              font-size: 0.9rem;
+            }
           }
         }
       }
-    }
-      
+
+      div.room_swiper_container {
+        width: 50%;
+
+        div.swiper {
+          margin-bottom: 30px;
+
+          img {
+            width: 100%;
+          }
+
+          div.swiper-pagination {
+            margin-bottom: 5px;
+
+            span.swiper-pagination-bullet {
+              background-color: white;
+              opacity: 0.6;
+            }
+
+            span.swiper-pagination-bullet-active {
+              --swiper-theme-color: white;
+              opacity: 1;
+            }
+          }
+        }
+      }
+
       div.checkdate_container {
         @include flexbox($jc: space-between);
         border-bottom: 1px solid black;
@@ -108,13 +119,13 @@ main.roomdetail_section {
                 padding: 3px 10px;
                 border: 1px solid black;
                 border-radius: 3px;
-                background: no-repeat right 5px center; 
+                background: no-repeat right 5px center;
                 background-size: 15px 15px;
                 line-height: 19px;
               }
 
               input[type='date']::-webkit-calendar-picker-indicator {
-                position: absolute; 
+                position: absolute;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -122,7 +133,7 @@ main.roomdetail_section {
                 background: transparent;
                 color: transparent;
               }
-          
+
               input[type='date']::before {
                 content: attr(placeholder);
                 width: 100%;
@@ -131,6 +142,7 @@ main.roomdetail_section {
 
               button.react-datepicker__close-icon {
                 left: 75%;
+
                 &::after {
                   border-radius: 0;
                   background-color: white;
@@ -143,23 +155,28 @@ main.roomdetail_section {
 
           div.react-datepicker__tab-loop {
             position: absolute;
+
             div.react-datepicker {
               button {
                 margin: 10px;
               }
+
               div.react-datepicker__month-container {
                 div.react-datepicker__header {
                   background-color: #fff;
+
                   div.react-datepicker__current-month {
                     margin: 10px;
                     color: #867357;
                   }
+
                   div.react-datepicker__day-names {
                     div.react-datepicker__day-name {
                       color: #a28f72;
                     }
                   }
                 }
+
                 div.react-datepicker__month {
                   div.react-datepicker__week {
                     div.react-datepicker__day--selected {
@@ -167,19 +184,23 @@ main.roomdetail_section {
                       background-color: #fff;
                       color: #a28f72;
                     }
+
                     div.react-datepicker__day--in-selecting-range {
                       border: none;
                       background-color: #f0f0f0;
                       color: #a28f72;
                     }
+
                     div.react-datepicker__day--in-range {
                       border: 1px solid #867357;
                       background-color: #f3ece1;
                       color: #a28f72;
                     }
+
                     div.react-datepicker__day--keyboard-selected {
                       border: 1px solid #867357;
                       background-color: white;
+                      color: #ccc;
                     }
                   }
                 }
@@ -189,7 +210,7 @@ main.roomdetail_section {
         }
 
         button.reservation_btn {
-          width: 30%;
+          width: 40%;
           margin-bottom: 5px;
           padding: 4px;
           border: 1px solid #a28f72;
@@ -198,10 +219,19 @@ main.roomdetail_section {
           font-weight: 500;
           color: white;
           text-align: center;
+          word-break: keep-all;
           transition: padding, border-radius, background-color, border, color 0.5s;
-          &:hover {
-            @include btn_hover($color:#a28f72, $bd_color: #a28f72, $bg_color:white);
-            border-width: 1.3px;
+          @media (hover:hover) {
+            &:hover {
+              @include btn_hover($color: #a28f72, $bd_color: #a28f72, $bg_color: white);
+              border-width: 1.3px;
+            } 
+            &:disabled:hover {
+              border: 1px solid #a28f72;
+              border-radius: 3px;
+              background-color: #a28f72;
+              color: white;
+            }
           }
         }
       }
@@ -209,37 +239,44 @@ main.roomdetail_section {
 
     div.common_container {
       @include flexbox($jc: space-between);
-      flex-wrap: nowrap; 
+      flex-wrap: nowrap;
       overflow-x: auto;
       padding: 2rem 1rem;
       border-top: 1px solid #ccc;
       color: #797979;
+
       &.amenities_container {
-        margin-bottom: 5rem;
+        margin-bottom: 6rem;
         padding: 3rem 1rem;
         border-bottom: 1px solid #ccc;
       }
+
       p.title {
         font-size: 0.9rem;
         font-weight: 500;
         letter-spacing: 0.2rem;
       }
+
       div.info {
         @include flexbox($jc: space-around);
-        width: 75%;
+        width: 80%;
+
         div {
           img {
             width: 30px;
             margin: 0 auto;
           }
+
           p {
             font-size: 0.7rem;
             text-align: center;
           }
+
           p.features {
             margin: 5px auto 0 auto;
           }
         }
+
         p.amenities {
           font-size: 0.7rem;
           text-align: center;
@@ -247,199 +284,580 @@ main.roomdetail_section {
       }
     }
 
-    div.common_container + div.amenities_container + div.page_title_container {
-      margin-bottom: 2rem;        
-        p.title {
-          font-weight: 600;
+    div.common_container+div.amenities_container+div.page_title_container {
+      margin-bottom: 2rem;
+
+      p.title {
+        font-weight: 600;
       }
     }
 
     div.other_room_container {
       @include flexbox(column);
-      margin-bottom: 4rem;
+      margin-bottom: 6rem;
+
       a {
         width: 40%;
         margin-bottom: 30px;
+
         img {
           width: 100%;
         }
       }
-      
+
       p.room_name {
         margin-bottom: 5px;
         font-weight: 600;
       }
+
       p.max_capa {
         font-size: 0.8rem;
       }
     }
+  }
 
-  @media screen and (max-width: $xlg-breakpoint ) {
-    & {
-      div.content_container {
-        div.room_swiper_container {
-          div.checkdate_container {
-            flex-direction: column;
-            border-bottom: none;
-            div.input_wrap {
-              justify-content: space-between;
-              width: 100%;
-              margin-bottom: 10px;
-              div.react-datepicker-wrapper {
-                width: 47.5%;
-                div.react-datepicker__input-container {
-                  input {
-                    width: 100%;
-                  }
-                  button.react-datepicker__close-icon {
-                    left: auto;
-                  }
+  /* 공통  guide */
+  div.guide {
+    width: 100vw;
+    background-color: black;
+
+    div.room_guide_container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem 2rem;
+      color: #aeaeae;
+
+      div.title_wrap {
+        @include flexbox($jc: flex-start);
+        margin-bottom: 3rem;
+
+        p:first-child {
+          width: 20%;
+          font-size: 1.3rem;
+          font-weight: bold;
+        }
+
+        p:last-child {
+          font-weight: 500;
+        }
+      }
+
+      div.info_wrap {
+        @include flexbox($jc: flex-start, $ai: normal);
+
+        div.info_nav {
+          @include flexbox($fd: column, $jc: flex-start, $ai: flex-start);
+          width: 20%;
+
+          button {
+            margin-bottom: 1rem;
+            padding: 10px 32px;
+            border: 1px solid #5a5757;
+            background: #272727;
+            border-radius: 5px;
+            color: #b5b5b5;
+
+            &.active {
+              border: 1px solid #7b7a7a;
+              border-radius: 5px;
+              background: black;
+              transition: all 0.3s;
+              @media (hover:hover) {
+                &:hover {
+                  color: white;
                 }
               }
             }
             
-            button.reservation_btn {
-              width: 100%;
-              height: 30px;
-              padding: 5px;
-              line-height: 20px;
+            @media (hover:hover) {
+              &:hover {
+                background-color: #bcbcbc;
+                color: black;
+              }
+            }
+          }
+        }
+
+        div.guide_content_wrap {
+          width: 80%;
+
+          div.content_box {
+            display: flex;
+
+            &:not(:last-child) {
+              margin-bottom: 2rem;
+            }
+
+            p.title {
+              width: 15%;
+              font-weight: bold;
+            }
+
+            p:not(:first-child) {
+              font-size: 0.8rem;
+              margin-bottom: 1rem;
+            }
+          }
+
+          div.content_box.price {
+            div.content {
+              width: 80%;
+
+              p:first-child {
+                margin-bottom: 20px;
+                font-size: 0.8rem;
+              }
+
+              table {
+                width: 100%;
+                margin-bottom: 2rem;
+                border: 0.5px solid #595959;
+                border-collapse: collapse;
+                text-align: center;
+                th, td {
+                  padding: 0.5rem 2rem;
+                  border: 0.5px solid #595959;
+                  font-size: 0.9rem;
+                }
+              }
+
+              p:not(first-child) {
+                margin-bottom: 1rem;
+                font-size: 0.8rem;
+              }
             }
           }
         }
       }
     }
   }
-    
-  @media screen and (max-width : $md-max-breakpoint) {
-    & {
-      p.acc_name {
-        margin-bottom: 20px;
-      }
-      div.content_container {
-        flex-direction: column;
-        margin-bottom: 2rem;
-        padding: 2rem 0.5rem;
-        
-        div.room_info_container {
-          width: 100%;
-          margin-bottom: 20px;
-          div.info_top_wrap {
-            margin-bottom: 50px;
-          }
-          div.info_bottom_wrap {
-            margin-bottom: 15px;
-            p {
-              font-size: 0.9rem;
-            }
+
+  // room_guide ( 이용 안내 )
+  div.guide div.room_guide_container {
+    div.info_wrap {
+      div.guide_content_wrap.use_guide {
+        display: flex;
+
+        p.title {
+          width: 15%;
+          margin-bottom: 1rem;
+          font-weight: bold;
+        }
+
+        div.content {
+          width: 80%;
+          word-break: keep-all;
+
+          p {
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
           }
         }
-        div.room_swiper_container {
-          width: 100%;
-          div.checkdate_container {
-            flex-direction: column;
-            border-bottom: none;
-            div.input_wrap {
-              justify-content: space-between;
-              width: 100%;
-              margin-bottom: 10px;
-              div.react-datepicker-wrapper {
+      }
+    }
+  }
+
+  @media screen and (min-width: $xlg-breakpoint) {
+    div.room_guide_container {
+      padding: 5rem 4rem 4rem 4rem;
+    }
+  }
+
+  @media screen and (max-width: $lg-max-breakpoint ) {
+    & {
+      div.content_wrap {
+        div.content_container {
+          div.room_swiper_container {
+            div.checkdate_container {
+              flex-direction: column;
+              border-bottom: none;
+
+              div.input_wrap {
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 10px;
+
+                div.react-datepicker-wrapper {
                   width: 47.5%;
-                div.react-datepicker__input-container {
-                  input {
-                    width: 100%;
+
+                  div.react-datepicker__input-container {
+                    input {
+                      width: 100%;
+                    }
+
+                    button.react-datepicker__close-icon {
+                      left: auto;
+                    }
                   }
                 }
               }
-            }
 
-            button.reservation_btn {
-              width: 100%;
-              height: 30px;
-              padding: 5px;
-              line-height: 20px;
+              button.reservation_btn {
+                width: 100%;
+                height: 30px;
+                padding: 5px;
+                line-height: 20px;
+              }
             }
           }
         }
       }
-      div.common_container {
+    }
+  }
+
+  @media screen and (max-width : 854px) {
+    & {
+      div.content_wrap {
+        padding: 0 2rem;
+
+        p.acc_name {
+          margin-bottom: 20px;
+        }
+
+        div.content_container {
+          flex-direction: column;
+          margin-bottom: 2rem;
+          padding: 2rem 0.5rem;
+
+          div.room_info_container {
+            width: 100%;
+            margin-bottom: 20px;
+
+            div.info_top_wrap {
+              margin-bottom: 50px;
+            }
+
+            div.info_bottom_wrap {
+              margin-bottom: 15px;
+
+              p {
+                font-size: 0.9rem;
+              }
+            }
+          }
+
+          div.room_swiper_container {
+            width: 100%;
+
+            div.checkdate_container {
+              flex-direction: column;
+              border-bottom: none;
+
+              div.input_wrap {
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 10px;
+
+                div.react-datepicker-wrapper {
+                  width: 47.5%;
+
+                  div.react-datepicker__input-container {
+                    input {
+                      width: 100%;
+                    }
+                  }
+                }
+              }
+
+              button.reservation_btn {
+                width: 100%;
+                height: 30px;
+                padding: 5px;
+                line-height: 20px;
+              }
+            }
+          }
+        }
+
+        div.common_container {
           flex-direction: column;
           align-items: flex-start;
 
           &.features_contatiner {
             div.info {
               overflow-x: auto;
+
               div {
                 margin-right: 10px;
               }
             }
           }
+
           &.amenities_container {
             padding: 2rem 1rem;
+
             div.info {
               margin-bottom: 10px;
             }
           }
-          
+
           p.title {
             margin-bottom: 20px;
           }
-          
+
           div.info {
             width: 100%;
             white-space: nowrap;
+
             p.amenities {
               margin-right: 0;
             }
-          } 
-      }
+          }
+        }
 
-      div.common_container + div.amenities_container + div.page_title_container {
-        margin-bottom: 30px;
-        p.title {
-          font-weight: 600;
+        div.common_container+div.amenities_container+div.page_title_container {
+          margin-bottom: 30px;
+
+          p.title {
+            font-weight: 600;
+          }
+        }
+
+        div.other_room_container {
+          a {
+            width: 90%;
+          }
         }
       }
 
-      div.other_room_container {
-        a {
-          width: 90%;
+      /* 공통  guide */
+      div.guide div.room_guide_container {
+        div.title_wrap {
+          flex-direction: column;
+
+          p:first-child {
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+          }
+
+          p:last-child {
+            font-size: 0.9rem;
+          }
+        }
+
+        div.info_wrap {
+          flex-direction: column;
+
+          div.info_nav {
+            flex-direction: row;
+            justify-content: space-between;
+            width: 95%;
+
+            button {
+              width: 27%;
+              padding: 7px 20px;
+              border-radius: 15px;
+              text-align: center;
+
+              &.active {
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                background: black;
+              }
+            }
+          }
+
+          div.guide_content_wrap {
+            width: 100%;
+            padding-top: 2rem;
+
+
+            div.content_box {
+              p.title {
+                padding-left: 0.5rem;
+                text-align: left;
+              }
+            }
+
+            div.content_box.price {
+              div.content {
+                p:first-child {
+                  margin-bottom: 1rem;
+                }
+
+                table {
+                  th, td {
+                    padding: 0.5rem 1rem;
+                    font-size: 0.8rem;
+                  }
+
+                  th {
+                    color: #a4a4a4;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // 개별 이용 안내
+      div.guide div.room_guide_container {
+        div.info_wrap {
+          div.guide_content_wrap.use_guide {
+            p.title {
+              padding-left: 0.5rem;
+            }
+          }
         }
       }
     }
   }
 
-  @include responsive(sm) {
+  @media screen and (max-width : 670px) {
     & {
-      div.content_container{
-        margin-bottom: 30px;
-        div.room_info_container {
-          div.info_top_wrap {
-            margin-bottom: 60px;
+      div.content_wrap {
+        div.content_container {
+          margin-bottom: 30px;
+
+          div.room_info_container {
+            div.info_top_wrap {
+              margin-bottom: 60px;
+            }
+
+            div.info_bottom_wrap {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        div.common_container {
+          align-items: flex-start;
+
+          &.amenities_container {
+            margin-bottom: 0;
+
+            div.info {
+              justify-content: flex-start;
+              margin-bottom: 0;
+            }
           }
 
-          div.info_bottom_wrap {
-            margin-bottom: 0;
+          div.info {
+            overflow-x: auto;
+
+            div {
+              margin-right: 20px;
+              padding-bottom: 1rem;
+            }
+
+            p.amenities {
+              margin-right: 10px;
+              padding-bottom: 1rem;
+            }
+          }
+        }
+
+        div.common_container+div.amenities_container+div.page_title_container {
+          margin-top: 4rem;
+        }
+
+        div.other_room_container {
+          margin-bottom: 4rem;
+        }
+      }
+
+      // 공통 guide
+      div.guide div.room_guide_container {
+        div.title_wrap {
+          margin-bottom: 2rem;
+
+          p:first-child {
+            font-size: 1rem;
+          }
+
+          p:last-child {
+            font-size: 0.8rem;
+          }
+        }
+
+        div.info_wrap {
+          div.info_nav {
+            margin: 0 auto;
+
+            button {
+              width: 30%;
+              padding: 5px 0;
+              font-size: 0.8rem;
+            }
+          }
+
+          div.guide_content_wrap {
+            border-top: 1px solid #ccc;
+
+            div.content_box {
+              flex-direction: column;
+              padding-top: 2rem;
+
+              &:not(:last-child) {
+                margin-bottom: 0;
+              }
+
+
+              p.title {
+                width: 100%;
+                margin-bottom: 0.5rem;
+                padding-left: 0;
+                font-weight: bold;
+                color: #ccc;
+              }
+            }
+
+            div.content_box:first-child {
+              flex-direction: column;
+
+              div.content {
+                width: 100%;
+
+                table {
+                  th, td {
+                    padding: 5px;
+                  }
+                }
+              }
+            }
           }
         }
       }
-      div.common_container {
-        align-items: flex-start;
-        &.amenities_container {
-          margin-bottom: 0;
-          div.info {
-            margin-bottom: 0;
+
+      // room_guide ( 예약 안내 )
+      div.guide div.room_guide_container {
+        div.info_wrap {
+
+          div.guide_content_wrap.reservation_guide,
+          div.guide_content_wrap.refund_guide {
+            padding-top: 1rem;
+
+            div.content_box:first-child {
+              div.content {
+                p:first-child {
+                  margin: 0.5rem 0;
+                  font-size: 0.7rem;
+                  text-align: left;
+                }
+              }
+            }
           }
         }
-        div.info {
-          justify-content: flex-start;
-          overflow-x: auto;
-          div {
-            margin-right: 20px;
-            padding-bottom: 1rem;
-          }
-          p.amenities {
-            margin-right: 10px;
-            padding-bottom: 1rem;
+      }
+
+      // room_guide ( 이용 안내 )
+      div.guide div.room_guide_container {
+        div.info_wrap {
+          div.guide_content_wrap.use_guide {
+            flex-direction: column;
+
+            p.title {
+              width: 100%;
+              padding-top: 1rem;
+              padding-left: 0;
+            }
+
+            div.content {
+              width: 100%;
+            }
           }
         }
       }

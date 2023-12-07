@@ -5,9 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export default function FixDate(props) {
   const { roomInfoData, reservationData,
-          startDate, setStartDate, endDate, setEndDate, btnText } = props;  
+          startDate, setStartDate, endDate, setEndDate, btnText } = props;
 
-  const userInfo = { 'id' : 'user' }; // 테스트용 
 
   // 날짜 비활성화 
   const filterReverseDate = (date) => {
