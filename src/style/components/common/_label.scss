@@ -1,0 +1,22 @@
+.swiper-slide {
+  position: relative;   
+  
+  div.label_container {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    & div {
+      width: 60px;
+      height: 25px;
+      background-color: rgba(162, 143, 114, 0.8);
+      color: white;
+      line-height: 25px;
+      &.new {
+        background-color: rgba(118, 118, 118, 0.8);
+      }
+    }
+  }
+}
