@@ -43,7 +43,7 @@ export default function CategorySwiperInner({list}) {
           : null
         }
           <span className='price_tag'>₩</span>
-          <span className='price'>{list.room_price} ~</span>
+          <span className='price'>{list.room_price.toLocaleString()} ~</span>
         </p>
         <Link to={`/findstay/acc/${list.acc_id}`} className='reservation'>예약하기</Link>
       </div>
