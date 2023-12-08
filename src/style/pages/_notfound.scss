@@ -1,0 +1,45 @@
+main.not_found {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  img {
+    width: 100%;
+  }
+  h1 {
+    padding-top: 3vh;
+    font-weight: bold;
+    font-size: 500%;
+    color: rgb(83, 83, 83);
+  }
+  @include responsive("xlg") {
+    figcaption {
+      width: 13vw;
+    }
+  }
+  @include responsive("lg") {
+    figcaption {
+      width: 17vw;
+    }
+    h1 {
+      font-size: 400%;
+    }
+  }
+  @include responsive("md") {
+    figcaption {
+      width: 21vw;
+    }
+    h1 {
+      font-size: 300%;
+    }
+  }
+  @include responsive("sm") {
+    figcaption {
+      width: 25vw;
+    }
+    h1 {
+      font-size: 200%;
+    }
+  }
+}

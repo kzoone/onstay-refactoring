@@ -40,6 +40,13 @@ export default function NoticeSearch(props) {
     setEndDate(date);
   };
 
+  const handleCilck = () => {
+    setPage(1);
+    setSearchTerm('');
+    setStartDate(null);
+    setEndDate(null);
+  };
+
   return (
     <div className='notice_filter'>
       <form onSubmit={handleSubmit}>
@@ -54,16 +61,19 @@ export default function NoticeSearch(props) {
               value={searchTerm}
               onChange={handleInputChange}
             /> :
-              <NoticeDate
+            <NoticeDate
               startDate={startDate}
               endDate={endDate}
               handleStartDateChange={handleStartDateChange}
               handleEndDateChange={handleEndDateChange}
-              />
+            />
           }
         </div>
       </form>
-      <button>SEARCH</button>
+      <div>
+        <button type='button' onClick={handleCilck}>RESET</button>
+        <button>SEARCH</button>
+      </div>
     </div>
   );
 };

@@ -27,7 +27,7 @@ export function Notice() {
     <div className='notice_admin'>
       <PageTitle title='NOTICE' subtitle='공지사항 관리자 페이지 입니다' />
       <NoticeAdminBtn setAddModal={setAddModal} setDeletModal={setDeletModal} checkedItems={checkedItems} />
-      <NoticeContent userInfo={userInfo} handleCheckedItems={handleCheckedItems} />
+      <NoticeContent handleCheckedItems={handleCheckedItems} checkedItems={checkedItems} />
       {addModal && <NoticeAdd btnText='등록' setAddModal={setAddModal} />}
       {deleteModal && <NoticeDelete btnText='삭제' setDeletModal={setDeletModal} checkedItems={checkedItems} />}
     </div>
