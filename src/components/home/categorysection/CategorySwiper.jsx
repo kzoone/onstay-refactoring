@@ -17,7 +17,7 @@ export default function CategorySwiper({type}){
   
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/${type}`)
+    axios.get(`http://192.168.50.76:8000/${type}`)
       .then(result => {
         setAccList(result.data);
       })

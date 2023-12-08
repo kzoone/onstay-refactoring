@@ -12,7 +12,7 @@ export default function FormInfo(props) {
 
   // user﹒user coupon 리스트 조회
   useEffect(() => {
-    axiosAuth.get(`http://127.0.0.1:8000/reservation/user/${userInfo.user_id}`)
+    axiosAuth.get(`http://192.168.50.76:8000/reservation/user/${userInfo.user_id}`)
       .then(result => {
         setUserData(result.data);
       })

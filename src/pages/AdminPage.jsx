@@ -11,13 +11,7 @@ export function AdminPage() {
     const user = useUserInfo()
     const [showContent, setShowContent] = useState('ManageMember')
 
-    useEffect(()=>{
-        if(!user.isAdmin) {
-            window.location.href = '/noaccess'
-        }
-    },[user.user_id])
-
-    return user.isAdmin ? (
+    return  (
         <main className='adminpage mypage'>
             <PageTitle title='ADMIN PAGE' />
             <MyPageGreet userName={'관리자'} isAdmin={true} />
@@ -26,5 +20,5 @@ export function AdminPage() {
                 <AdminPageContent showContent={showContent}/>
             </div>
         </main>
-    ) : null;
+    ) 
 }

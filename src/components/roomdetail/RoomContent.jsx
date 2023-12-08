@@ -17,7 +17,7 @@ export default function RoomContent() {
 
   // 객실 정보 리스트 조회
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/room/${roomid}`)
+    axios.get(`http://192.168.50.76:8000/room/${roomid}`)
       .then(result => {
         if(result.data[0].room_id === roomid) {
           setRoomContent(result.data[0]);

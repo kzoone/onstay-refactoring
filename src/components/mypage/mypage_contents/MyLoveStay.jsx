@@ -11,7 +11,7 @@ export function MyLoveStay({ user_id }) {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/mypage/lovestay/' + user_id)
+    axios.get('http://192.168.50.76:8000/mypage/lovestay/' + user_id)
       .then(res => {
         setAccs(res.data)
       })

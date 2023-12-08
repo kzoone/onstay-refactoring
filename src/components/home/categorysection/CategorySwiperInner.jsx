@@ -24,7 +24,7 @@ export default function CategorySwiperInner({list}) {
   };
   
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/img/${list.acc_id}`)
+    axios.get(`http://192.168.50.76:8000/img/${list.acc_id}`)
       .then(result => {
         setAccImg(result.data.acc_img);
       })
