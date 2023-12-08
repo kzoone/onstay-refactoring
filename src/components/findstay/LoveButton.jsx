@@ -13,7 +13,7 @@ export default function LoveButton({ acc }){
     // //유저가 좋아요 한 숙소 리스트 가져오기
     // const getUserLoveAccs = () => {
     //     axios
-    //     .get('http://localhost:8000/findstay/')
+    //     .get('http://192.168.50.76:8000/findstay/')
     //     .then((res) => {
     //         setIsLoveAccs(res.data);
     //         console.log('유저가 좋아요 한 숙소 리스트 가져와서 isLoveAccs에 담았음')
@@ -31,7 +31,7 @@ export default function LoveButton({ acc }){
     //         // 유저가 좋아요 한 숙소리스트가 해당 acc_id를 가지고 있으면
     //         //관심스테이 테이블에서 삭제
     //         axios  
-    //         .delete('http://localhost:8000/findstay/love',{
+    //         .delete('http://192.168.50.76:8000/findstay/love',{
     //             data : {
     //                 userId,
     //                 accId
@@ -49,7 +49,7 @@ export default function LoveButton({ acc }){
     //         // 유저가 좋아요 한 숙소리스트가 해당 acc_id를 가지고 있지 않으면
     //         //관심스테이 테이블에 추가 && 숙소테이블의 좋아요 수 +1
     //         axios({
-    //             url : 'http://localhost:8000/findstay/love',
+    //             url : 'http://192.168.50.76:8000/findstay/love',
     //             method : 'post',
     //             data : {userId, accId}
     //         })

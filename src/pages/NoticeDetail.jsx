@@ -10,7 +10,7 @@ export function NoticeDetail() {
   const [detailNotice, setDetailNotice] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/notice/${noticeid}/${page}`)
+    axios.get(`http://192.168.50.76:8000/notice/${noticeid}/${page}`)
       .then(result => {
         setDetailNotice(result.data)
       })

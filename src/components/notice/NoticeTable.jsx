@@ -16,7 +16,7 @@ export default function NoticeTable(props) {
 
   // 조회 수 업데이트 요청
   const handleViewCount = (noticeId) => {
-    axios.get(`http://localhost:8000/notice/increase/${noticeId}`)
+    axios.get(`http://192.168.50.76:8000/notice/increase/${noticeId}`)
       .catch(error => console.error(error));
   };
 

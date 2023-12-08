@@ -19,7 +19,7 @@ function App() {
 
   // useEffect(() => {
   //   axios({
-  //     url: 'http://localhost:8000/member/tokenCheck',
+  //     url: 'http://192.168.50.76:8000/member/tokenCheck',
   //     method: 'get',
   //     withCredentials: true
   //   })

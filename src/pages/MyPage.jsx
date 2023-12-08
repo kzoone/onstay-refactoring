@@ -10,11 +10,12 @@ export function MyPage() {
     const location = useLocation();
     let defaultShowContent = new URLSearchParams(location.search).get('showContent') || 'MyReservation'
     let [showContent, setShowContent] = useState(defaultShowContent)
-    const user = useUserInfo();
+    const user = useUserInfo({redirectIfNoUser : true});
 
-    return user.user_id && (
+
+    return (
         <main className="mypage">
-            user.user_id ? <PageTitle title='MY PAGE' />
+            <PageTitle title='MY PAGE' />
             <MyPageGreet userName={user.user_name} user_id={user.user_id} url={location.search} />
             <div className='mypage_main_container'>
                 <MyPageNavbar setShowContent={setShowContent} showContent={showContent} />
