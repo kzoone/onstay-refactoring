@@ -12,14 +12,7 @@ export function MyPage() {
     let [showContent, setShowContent] = useState(defaultShowContent)
     const user = useUserInfo();
 
-    useEffect(()=>{
-        if(!user.user_id) {
-            window.location.href = '/noaccess'
-        }
-    },[user.user_id])
-
-
-    return user.user_id ? (
+    return user.user_id && (
         <main className="mypage">
             user.user_id ? <PageTitle title='MY PAGE' />
             <MyPageGreet userName={user.user_name} user_id={user.user_id} url={location.search} />
@@ -28,5 +21,5 @@ export function MyPage() {
                 <MyPageContent user_id={user.user_id} showContent={showContent} />
             </div> 
         </main>
-    ) : <div></div>
+    ) 
 }
