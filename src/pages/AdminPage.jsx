@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PageTitle from '../components/common/PageTitle'
 import { MyPageContent } from '../components/mypage/MyPageContent'
 import { MyPageGreet } from '../components/mypage/MyPageGreet'
@@ -11,7 +11,13 @@ export function AdminPage() {
     const user = useUserInfo()
     const [showContent, setShowContent] = useState('ManageMember')
 
-    return(
+    useEffect(()=>{
+        if(!user.isAdmin) {
+            window.location.href = '/noaccess'
+        }
+    },[user.user_id])
+
+    return user.isAdmin ? (
         <main className='adminpage mypage'>
             <PageTitle title='ADMIN PAGE' />
             <MyPageGreet userName={'관리자'} isAdmin={true} />
@@ -20,5 +26,5 @@ export function AdminPage() {
                 <AdminPageContent showContent={showContent}/>
             </div>
         </main>
-    );
+    ) : null;
 }

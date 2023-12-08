@@ -6,7 +6,7 @@ import useUserInfo from '../util/useUserInfo';
 
 export function Login() {
     const [form, setForm] = useState({ user_id: '', user_pw: '' })
-    const navigate = useNavigate('/')
+    const navigate = useNavigate()
     const userInfo = useUserInfo()
 
     const alreadyLogin = () => {
