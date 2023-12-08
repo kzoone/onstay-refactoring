@@ -24,7 +24,7 @@ export function MyEdit({ user_id }) {
 
 
   useEffect(()=>{
-      axios.get('http://127.0.0.1:8000/member/userinfo/' + user_id)
+      axios.get('http://localhost:8000/member/userinfo/' + user_id)
       .then(res => {
         setForm({
           ...form,
@@ -36,7 +36,7 @@ export function MyEdit({ user_id }) {
 
         setUserInfo(res.data)
         if (res.data.user_img) {
-          setProfileView(res.data.user_img ? 'http://127.0.0.1:8000/getimg/userprofile/' + res.data.user_img : null) 
+          setProfileView(res.data.user_img ? 'http://localhost:8000/getimg/userprofile/' + res.data.user_img : null) 
         }
       })
       .catch((err)=>{
@@ -86,7 +86,7 @@ export function MyEdit({ user_id }) {
     if (!valid.new_pw_repeat) return alert('변경할 비밀번호와 동일한 비밀번호를 확인란에 입력해주세요')
 
     axiosAuth({
-      url : 'http://127.0.0.1:8000/mypage/edit/pw',
+      url : 'http://localhost:8000/mypage/edit/pw',
       method : 'post',
       data : {user_id : user_id , current_pw : form.current_pw, new_pw : form.new_pw}
     })
@@ -131,7 +131,7 @@ export function MyEdit({ user_id }) {
     body.append('isProfileDefault', profileView ? 'false' : 'true')
 
     axiosAuth({
-      url : 'http://127.0.0.1:8000/mypage/edit/userinfo',
+      url : 'http://localhost:8000/mypage/edit/userinfo',
       method : 'post',
       data : body
     })
@@ -152,7 +152,7 @@ export function MyEdit({ user_id }) {
   // 회원 탈퇴
   const quitMember = () => {
     axiosAuth({
-      url : 'http://127.0.0.1:8000/mypage/quit',
+      url : 'http://localhost:8000/mypage/quit',
       method : 'delete',
       data : {user_id}
     })

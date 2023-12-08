@@ -13,7 +13,7 @@ export default function NewAcc() {
 
   useEffect(() => {
     if (isMounted.current) {
-      axios.post('http://127.0.0.1:8000/newstay/', pageData)
+      axios.post('http://localhost:8000/newstay/', pageData)
         .then(result => {
           setNewAccList(prevData => [...prevData, ...result.data]);
         }).catch(error => console.log(error));

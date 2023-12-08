@@ -26,7 +26,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
     formData.append('title', form['title']);
     formData.append('content', form['content']);
 
-    axiosAuth.post('http://127.0.0.1:8000/notice/insert/', formData)
+    axiosAuth.post('http://localhost:8000/notice/insert/', formData)
       .then(result => {
         if (result.data === 'ok') {
           alert('공지사항 등록이 완료되었습니다.');

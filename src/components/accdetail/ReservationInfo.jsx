@@ -10,7 +10,7 @@ const ReservationInfo = () => {
 
   useEffect(()=>{
     axios
-    .get(`http://127.0.0.1:8000/findstay/acc/${accid}/reserve`)
+    .get(`http://localhost:8000/findstay/acc/${accid}/reserve`)
     .then((result) =>{
       setReserveInfo(result.data)
     })

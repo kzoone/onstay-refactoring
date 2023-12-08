@@ -41,7 +41,7 @@ export default function NoticeContent(props) {
   // 데이터 요청을 처리하는 함수
   const fetchData = () => {
     axios
-      .post('http://127.0.0.1:8000/notice/', searchParams)
+      .post('http://localhost:8000/notice/', searchParams)
       .then((result) => {
         if (result.data && result.data.length > 0) {
           setNoticeList(result.data);

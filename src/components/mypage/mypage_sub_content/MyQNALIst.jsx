@@ -10,7 +10,7 @@ export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
 
   useEffect(() => {
     axios({
-      url: 'http://127.0.0.1:8000/mypage/questions/' + user_id,
+      url: 'http://localhost:8000/mypage/questions/' + user_id,
       method: 'get',
     })
       .then((res) => {

@@ -13,7 +13,7 @@ export function FindStay() {
     const [accList, setAccList] = useState([]);
     useEffect(() => {
         axios
-        .get('http://127.0.0.1:8000/findstay/')
+        .get('http://localhost:8000/findstay/')
         .then((res) => {
             setAccList(res.data);
         })
@@ -141,7 +141,7 @@ export function FindStay() {
             sort
         }
         axios
-        .get('http://127.0.0.1:8000/findstay/',{params})
+        .get('http://localhost:8000/findstay/',{params})
         .then((res) => {
             if(res.data){
                 setAccList(res.data);

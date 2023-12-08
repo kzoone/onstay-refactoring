@@ -12,7 +12,7 @@ export function RoomSwiper() {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/findstay/acc/${accid}/room`)
+      .get(`http://localhost:8000/findstay/acc/${accid}/room`)
       .then((result) => {
         /* console.log(result.data); */
         setRoomInfo(result.data);

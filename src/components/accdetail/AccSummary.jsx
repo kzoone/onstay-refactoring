@@ -9,7 +9,7 @@ export function AccSummary() {
 
     useEffect(() =>{
         axios
-        .get(`http://127.0.0.1:8000/findstay/acc/${accid}/summary`)
+        .get(`http://localhost:8000/findstay/acc/${accid}/summary`)
         .then((result) => {
             setAccSummary(result.data);
         })

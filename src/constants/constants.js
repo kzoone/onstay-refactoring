@@ -4,7 +4,7 @@ export const UNKNOWN_ERROR_ALERT = '알 수 없는 오류가 발생하였습니�
 
 // 회원 프로필 디폴트 이미지 경로
 
-export const DEFAULT_PROFILE_IMG = 'http://127.0.0.1:3000/assets/images/etc/user_profile_default.jpg';
+export const DEFAULT_PROFILE_IMG = 'http://localhost:3000/assets/images/etc/user_profile_default.jpg';
 
 
 /** JOIN (회원가입) 관련 constants */

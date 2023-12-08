@@ -17,7 +17,7 @@ export default function NoticeDelete({ btnText, setDeletModal, checkedItems }) {
 
     if(deleteConfirm) {
       // 확인 버튼을 누르면 삭제 동작을 수행
-      axiosAuth.delete('http://127.0.0.1:8000/notice/delete', { data: { checkedItems }, })
+      axiosAuth.delete('http://localhost:8000/notice/delete', { data: { checkedItems }, })
         .then(result => {
           if (result.data === 'ok') {
             alert('삭제가 완료되었습니다!')

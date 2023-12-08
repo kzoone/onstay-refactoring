@@ -24,7 +24,7 @@ export function Login() {
         else if (form.user_pw === '') return alert('비밀번호를 입력해주세요.')
 
         axios({
-            url: 'http://127.0.0.1:8000/member/login/',
+            url: 'http://localhost:8000/member/login/',
             method: 'post',
             data: form,
             withCredentials: true
