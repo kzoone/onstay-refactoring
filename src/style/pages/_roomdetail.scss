@@ -863,4 +863,12 @@ main.roomdetail_section {
       }
     }
   }
+  
+  @include responsive(sm) {
+    & {
+      div.content_wrap div.common_container.features_container div.info {
+      justify-content: flex-start;
+      }
+    }
+  }
 }

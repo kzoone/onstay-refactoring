@@ -12,7 +12,6 @@ import 'swiper/scss/navigation';
 
 export default function CategorySwiper({type}){
   const [ accList, setAccList ] = useState([]);
-  const [ accPriceList, setPriceList ] = useState([]);
   const categoryTitle = { only : '오직 온스테이하우스에서만' , price : '20만원 이하 가성비 하우스' };
   
 
