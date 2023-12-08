@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axiosAuth from "../../services/axiosAuth";
 import { SlCamera } from 'react-icons/sl';
 import NoticeImgModal from './NoticeImgModal';
@@ -24,20 +24,24 @@ export default function NoticeUpdate(props) {
   };
 
   const handleSubmit = (e) => {
+    const updateConfirm =  window.confirm('등록하시겠습니까?');
     e.preventDefault();
 
-    const formData = new FormData();//전송할 바디를 만듬
+    const formData = new FormData();
+    formData.append('id', notice_id);
     formData.append('file', imageFile);
     formData.append('title', form['title']);
     formData.append('content', form['content']);
 
-    axiosAuth.post(`http://127.0.0.1:8000/notice/update/:${notice_id}`, formData)
-      .then(result => {
-        if (result.data === 'ok') {
-          alert('공지사항 수정이 완료되었습니다.');
-          window.location.reload();
-        }
-      }).catch(error => console.log(error));
+    if(updateConfirm) {
+      axiosAuth.post(`http://127.0.0.1:8000/notice/update/`, formData)
+        .then(result => {
+          if (result.data === 'ok') {
+            alert('공지사항 수정이 완료되었습니다.');
+            window.location.reload();
+          }
+        }).catch(error => console.log(error));
+    };
 
     setUpdateModal(false);
   };
@@ -54,9 +58,7 @@ export default function NoticeUpdate(props) {
     }
   };
 
-  // !isEditMode ? form['title'] = notice_title 
   const handleInput = (maxLength, setCountFn) => (e) => {
-    // if (!isEditMode) form['title'] = notice_title;
     setForm({ ...form, [e.target.name]: e.target.value });
 
     if (e.target.value.length > maxLength) {
@@ -106,8 +108,6 @@ export default function NoticeUpdate(props) {
                 <label htmlFor='notice_title'>제목 : </label>
                 <input type='text' name='title' id='notice_title' disabled={!isEditMode}
                   placeholder={`title(${titleMaxLength}자 이내로 작성해 주세요.)`}
-                  // maxLength={titleMaxLength}
-                  // onChange={(e) => handleInput(e, titleMaxLength, setInputCountTitle)}
                   onChange={handleInput(titleMaxLength, setInputCountTitle)}
                   value={form.title}
                 />
@@ -121,8 +121,6 @@ export default function NoticeUpdate(props) {
                 <textarea name='content' id='ntoice_content' form='notice_form' rows='10'
                   placeholder={`content(${contentMaxLength}자 이내로 작성해 주세요.)`}
                   disabled={!isEditMode}
-                  // maxLength={contentMaxLength}
-                  // onChange={(e) => handleInput(e, contentMaxLength, setInputCountContent)}
                   onChange={handleInput(contentMaxLength, setInputCountContent)}
                   value={form.content}></textarea>
               </li>
@@ -134,7 +132,8 @@ export default function NoticeUpdate(props) {
             <div className='btn_wrap'>
               {!isEditMode ? <button type='button' className='close_btn' onClick={handelModal}>닫기</button>
                 : <button className='update_btn'>등록</button>}
-              {!isEditMode ? <button type="button" onClick={handleUpdateClick}>{btnText || '확인'}</button> : <button type='button' className='close_btn' onClick={handelModal}>닫기</button>}
+              {!isEditMode ? <button type="button" onClick={handleUpdateClick}>{btnText || '확인'}</button> 
+              : <button type='button' className='close_btn' onClick={handelModal}>닫기</button>}
             </div>
           </form>
         </div>

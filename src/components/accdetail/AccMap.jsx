@@ -24,7 +24,8 @@ export function AccMap() {
         };
 
         const map = new kakao.maps.Map(container, options);
-
+        map.setZoomable(false)
+        
         const markerPosition = new kakao.maps.LatLng(result.data.latitude, result.data.longitude);
         const marker = new kakao.maps.Marker({
           position: markerPosition,

@@ -5,8 +5,10 @@ import PagiNation from 'react-js-pagination';
 import { useLocation } from 'react-router-dom';
 import NoticeSearch from './NoticeSearch';
 import NoticeTable from './NoticeTable';
+import useUserInfo from '../../util/useUserInfo';
 
 export default function NoticeContent(props) {
+  const userInfo = useUserInfo();
   const location = useLocation();
   const detailPage = location.state ? location.state.page : null;
   const [page, setPage] = useState(1);
@@ -60,11 +62,11 @@ export default function NoticeContent(props) {
   // 검색어 변경 시 데이터 요청
   useEffect(() => {
     const delaySearch = setTimeout(() => {
-      if (searchTerm.trim() !== '') {
+      if (searchTerm.trim() !== '' || searchTerm.trim() === '') {
         fetchData();
       } else if (startDate && endDate) {
         fetchData();
-      }
+      } 
     }, 1000);
     return () => clearTimeout(delaySearch);
   }, [page, searchTerm, startDate, endDate]);
@@ -84,10 +86,10 @@ useEffect(() => {
       <table className='notice_table'>
         <thead>
           <tr>
-            {props.userInfo.isAdmin ? <th>CHECK</th> : <th>NO</th>}
+            {userInfo.isAdmin ? <th>CHECK</th> : <th>NO</th>}
             <th>TITLE</th>
             <th>DATE</th>
-            {props.userInfo.isAdmin ? <th>ALTER</th> : <th>VIEW COUNT</th>}
+            {userInfo.isAdmin ? <th>ALTER</th> : <th>VIEW COUNT</th>}
           </tr>
         </thead>
         <tbody>
@@ -103,8 +105,8 @@ useEffect(() => {
                 notice_views={notice.notice_views}
                 notice_content={notice.notice_content}
                 notice_img={notice.notice_img}
-                userInfo={props.userInfo}
                 handleCheckedItems={props.handleCheckedItems}
+                checkedItems={props.checkedItems}
               />)}
         </tbody>
       </table>

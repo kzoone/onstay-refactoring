@@ -27,6 +27,9 @@
       justify-content: end;
       gap: 5%;
       width: 40%;
+      @media screen and (max-width: $md-max-breakpoint) {
+        width: 70%;
+      }
     }
     button {
       padding: 2% 7%;
@@ -35,6 +38,9 @@
       &:hover {
         background: black;
         color: white;
+      }
+      strong{
+        color: red;
       }
     }
   }
@@ -109,7 +115,7 @@
     }
     & > thead > tr > th:nth-child(1),
     & > tbody > tr > th:nth-child(1) {
-      width: 8%;
+      width: 9%;
       @include responsive("md") {
         width: 15%;
       }
@@ -159,6 +165,14 @@
       }
     }
   }
+  > p {
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 1vw;
+    @include responsive("sm") {
+      font-size: 0.85rem;
+    }
+  }
   ul.pagination {
     display: flex;
     align-items: center;
@@ -185,7 +199,8 @@
     align-items: center;
     justify-content: space-between;
     margin: 8vh auto 0 auto;
-    width: 50%;
+    width: 60%;
+    gap: 3%;
     @media screen and (max-width: $lg-max-breakpoint) {
       display: flex;
       flex-direction: column;
@@ -202,7 +217,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 72%;
+      width: 65%;
     }
     & > form > select {
       width: 28%;
@@ -268,15 +283,26 @@
         width: 100%;
       }
     }
-    & > button {
-      height: 40px;
-      width: 25%;
-      border-radius: 50px;
-      background: black;
-      color: white;
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 35%;
       @media screen and (max-width: $lg-max-breakpoint) {
         width: 100%;
         margin-top: 2vh;
+      }
+      & > button {
+        height: 40px;
+        width: 48%;
+        border-radius: 50px;
+      }
+      & > button:nth-child(1) {
+        border: 1px solid black;
+      }
+      & > button:nth-child(2) {
+        background: black;
+        color: white;
       }
     }
   }
@@ -299,6 +325,19 @@
         }
       }
     }
+    .update_modal {
+      .text_wrap {
+        li {
+          div {
+            p {
+              @include responsive('sm') {
+                font-size: .8rem;
+              }
+            }
+          }
+        }
+      }
+    }
     .img_modal {
       width: 400px;
       height: 500px;
@@ -308,6 +347,13 @@
     }
     .deleteModal {
       height: 340px;
+      .text_wrap {
+        p {
+          strong {
+            color: red;
+          }
+        }
+      }
     }
     div.modal_content {
       @include responsive("sm") {

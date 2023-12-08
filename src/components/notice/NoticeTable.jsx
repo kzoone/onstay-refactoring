@@ -3,11 +3,13 @@ import axios from 'axios';
 import { SlNote } from 'react-icons/sl';
 import { useState } from 'react';
 import NoticeUpdate from '../notice/NoticeUpdate';
+import useUserInfo from '../../util/useUserInfo';
 
 export default function NoticeTable(props) {
   const { notice_id, no, page, notice_title, notice_date,
-    notice_views, notice_content, notice_img, userInfo, handleCheckedItems } = props;
-  const [isChecked, setIsChecked] = useState(false);
+    notice_views, notice_content, notice_img, handleCheckedItems, checkedItems } = props;
+  const userInfo = useUserInfo();
+  const [isChecked, setIsChecked] = useState(checkedItems.includes(notice_id || false));
   const [updateModal, setUpdateModal] = useState(false);
 
   const openUpdateModal = () => setUpdateModal(true);
@@ -18,7 +20,7 @@ export default function NoticeTable(props) {
       .catch(error => console.error(error));
   };
 
-  const handleCheckboxChange = () => {
+  const handleCheckboxChange = (e) => {
     setIsChecked(!isChecked);
     // 체크 여부와 ID를 부모 컴포넌트로 전달
     handleCheckedItems(notice_id, !isChecked);
@@ -42,16 +44,15 @@ export default function NoticeTable(props) {
       <td>{notice_date}</td>
       {userInfo.isAdmin ?
         <td>
-          {/* <button type='button' onClick={openUpdateModal}><SlNote className='slnote' /></button> */}
-          <button type='button' onClick={openUpdateModal}><SlNote className='slnote'  /></button>
+          <button type='button' onClick={openUpdateModal}><SlNote className='slnote' /></button>
         </td>
         : <td>{notice_views}</td>}
       {updateModal && <td><NoticeUpdate btnText='수정'
-        setUpdateModal={setUpdateModal} 
+        setUpdateModal={setUpdateModal}
         notice_title={notice_title}
         notice_content={notice_content}
         notice_img={notice_img}
-        notice_id ={notice_id}
+        notice_id={notice_id}
       /></td>}
     </tr>
   );

@@ -7,6 +7,7 @@ import { useRef } from 'react';
 export default function NoticeAdd({ btnText, setAddModal }) {
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
+  const [form, setForm] = useState({ title: '', content: '' });
   const [inputCountTitle, setInputCountTitle] = useState('0');
   const [inputCountContent, setInputCountContent] = useState('0');
 
@@ -22,8 +23,8 @@ export default function NoticeAdd({ btnText, setAddModal }) {
     const formData = new FormData();//전송할 바디를 만듬
 
     formData.append('file', imageFile);
-    formData.append('title', e.target.title.value);
-    formData.append('content', e.target.content.value);
+    formData.append('title', form['title']);
+    formData.append('content', form['content']);
 
     axiosAuth.post('http://127.0.0.1:8000/notice/insert/', formData)
       .then(result => {
@@ -50,6 +51,8 @@ export default function NoticeAdd({ btnText, setAddModal }) {
   };
 
   const handleInput = (maxLength, setCountFn) => (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+
     if (e.target.value.length > maxLength) {
       e.target.value = e.target.value.slice(0, maxLength);
       alert(`${maxLength.toLocaleString()}자 이내로 작성해 주세요.`)
@@ -89,7 +92,8 @@ export default function NoticeAdd({ btnText, setAddModal }) {
                 <label htmlFor='notice_title'>제목 : </label>
                 <input type='text' name='title' id='notice_title'
                   placeholder={`title(${titleMaxLength}자 이내로 작성해 주세요.)`}
-                  onChange={handleInput(titleMaxLength, setInputCountTitle)} />
+                  onChange={handleInput(titleMaxLength, setInputCountTitle)}
+                  value={form.title} />
               </li>
               <li>
                 <span>{inputCountTitle.toLocaleString()}</span>
@@ -99,7 +103,8 @@ export default function NoticeAdd({ btnText, setAddModal }) {
                 <label htmlFor='ntoice_content'>내용 : </label>
                 <textarea name='content' id='ntoice_content' form='notice_form' rows='10'
                   placeholder={`content(${contentMaxLength}자 이내로 작성해 주세요.)`}
-                  onChange={handleInput(contentMaxLength, setInputCountContent)}></textarea>
+                  onChange={handleInput(contentMaxLength, setInputCountContent)}
+                  value={form.content}></textarea>
               </li>
               <li>
                 <span>{inputCountContent.toLocaleString()}</span>

@@ -146,7 +146,7 @@ export default function Header() {
                 <nav>
                     <ul>
                         <li><Link className='menu' to='/findstay'>FIND STAY</Link></li>
-                        <li><Link className='menu' to='/newstay'>NEW-STAY</Link></li>
+                        <li><a className='menu' href='/newstay'>NEW-STAY</a></li>
                         <li><Link className='menu' to='#'>JOURNAL</Link></li>
                         <li><Link className='menu' to='/notice'>NOTICE</Link></li>
                     </ul>

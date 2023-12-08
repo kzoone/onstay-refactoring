@@ -35,7 +35,7 @@ export default function NewStaySection() {
     <div className='newstaysection'>
       <div>
         <p>NEW STAY</p>
-        <Link to='/newstay'>전체보기 <SlArrowRight /></Link>
+        <a href='/newstay'>전체보기 <SlArrowRight /></a>
       </div>
       <ul>
         {newStayList.map(newStay =>
