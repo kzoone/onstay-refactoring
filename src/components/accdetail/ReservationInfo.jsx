@@ -13,7 +13,6 @@ const ReservationInfo = () => {
     .get(`http://localhost:8000/findstay/acc/${accid}/reserve`)
     .then((result) =>{
       setReserveInfo(result.data)
-      console.log(result.data);
     })
     .catch((error) => console.log(error));
   },[accid]);
