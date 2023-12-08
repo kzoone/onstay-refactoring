@@ -9,7 +9,7 @@ export default function NoticeTable(props) {
   const { notice_id, no, page, notice_title, notice_date,
     notice_views, notice_content, notice_img, handleCheckedItems, checkedItems } = props;
   const userInfo = useUserInfo();
-  const [isChecked, setIsChecked] = useState(checkedItems.includes(notice_id || false));
+  const [isChecked, setIsChecked] = useState(checkedItems?.includes(notice_id || false));
   const [updateModal, setUpdateModal] = useState(false);
 
   const openUpdateModal = () => setUpdateModal(true);
