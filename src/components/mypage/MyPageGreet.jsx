@@ -9,7 +9,7 @@ export function MyPageGreet({user_id, userName, isAdmin}) {
 
   useEffect(()=>{
     if (!isAdmin) {
-      axios.get('http://192.168.50.76:8000/mypage/reservation/upcoming/' + user_id)
+      axios.get('http://127.0.0.1:8000/mypage/reservation/upcoming/' + user_id)
       .then(res => {
         setReserveCount(res.data.length)
       })

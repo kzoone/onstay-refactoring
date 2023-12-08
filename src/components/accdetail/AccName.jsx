@@ -7,7 +7,7 @@ export function AccName() {
     const {accid} = useParams();
 
     useEffect(() => {
-        axios.get(`http://192.168.50.76:8000/findstay/acc/${accid}`)
+        axios.get(`http://127.0.0.1:8000/findstay/acc/${accid}`)
         .then(result => {
             // console.log(result.data);
             setAccInfo(result.data);

@@ -36,7 +36,7 @@ export default function ReservationContent() {
 
   // 객실 정보 리스트 조회 
   useEffect(() => {
-    axios.get(`http://192.168.50.76:8000/reservation/${roomid}`)
+    axios.get(`http://127.0.0.1:8000/reservation/${roomid}`)
       .then(result => {
         setRoomInfoData(result.data);
       })
@@ -46,7 +46,7 @@ export default function ReservationContent() {
 
   // 예약 정보 가져오기
   useEffect(() => {
-    axios.get(`http://192.168.50.76:8000/room/date/${roomid}`)
+    axios.get(`http://127.0.0.1:8000/room/date/${roomid}`)
       .then(result => {
         if(result.data.length > 0) {
           let mapArr = result.data.map(date => ({
@@ -127,7 +127,7 @@ export default function ReservationContent() {
     if ( isAgree && isValidDated ) {
       axiosAuth({ 
         method : 'post',
-        url: 'http://192.168.50.76:8000/reservation/booking',
+        url: 'http://127.0.0.1:8000/reservation/booking',
         data: {
           userId : userInfo.user_id,
           roomId : roomid,

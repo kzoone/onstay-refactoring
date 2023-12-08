@@ -12,7 +12,7 @@ const useUserInfo = (option = {redirectIfNoUser : false}) => {
     // 로컬스토리지가 유실되거나, 액세스 토큰이 만료된 경우 재발급api 호출
     if (!storedUserInfo || !getCookie('auth_access_token')) { 
        axios({
-        url : 'http://192.168.50.76:8000/member/tokenCheck',
+        url : 'http://127.0.0.1:8000/member/tokenCheck',
         method : 'get',
         withCredentials : true
       })

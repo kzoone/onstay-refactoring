@@ -20,7 +20,7 @@ export default function ReservationDate({roomid, price}) {
 
   // 예약 정보 가져오기
   useEffect(() => {
-    axios.get(`http://192.168.50.76:8000/room/date/${roomid}`)
+    axios.get(`http://127.0.0.1:8000/room/date/${roomid}`)
       .then(result => {
         if(result.data.length > 0) {
           let mapArr = result.data.map(date => ({

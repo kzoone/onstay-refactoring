@@ -21,7 +21,7 @@ export default function Header() {
 
     useEffect(()=>{
         if (user.user_id) {
-            axios.get('http://192.168.50.76:8000/member/userinfo/' + user.user_id)
+            axios.get('http://127.0.0.1:8000/member/userinfo/' + user.user_id)
             .then(res=>{
                 setUserProfile(res.data.user_img)
             })
@@ -76,7 +76,7 @@ export default function Header() {
     
     const handleLogout = () => {
         axios({
-            url : 'http://192.168.50.76:8000/member/logout/',
+            url : 'http://127.0.0.1:8000/member/logout/',
             method : 'post',
             data : { user_id :user.user_id},
             withCredentials : true
@@ -192,7 +192,7 @@ export default function Header() {
                         {(user.user_id && !user.isAdmin) && <>
                             <div className='profile_img'>
                                 <img 
-                                src={'http://192.168.50.76:8000/getimg/userprofile/' + userProfile || DEFAULT_PROFILE_IMG} alt="" />
+                                src={'http://127.0.0.1:8000/getimg/userprofile/' + userProfile || DEFAULT_PROFILE_IMG} alt="" />
                             </div>
                             <div className='name'>{user.user_name} 님</div>
                         </>}

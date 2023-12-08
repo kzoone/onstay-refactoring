@@ -34,7 +34,7 @@ export default function NoticeUpdate(props) {
     formData.append('content', form['content']);
 
     if(updateConfirm) {
-      axiosAuth.post(`http://192.168.50.76:8000/notice/update/`, formData)
+      axiosAuth.post(`http://127.0.0.1:8000/notice/update/`, formData)
         .then(result => {
           if (result.data === 'ok') {
             alert('공지사항 수정이 완료되었습니다.');

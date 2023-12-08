@@ -8,7 +8,7 @@ export function MyCoupon ({user_id}) {
   let [coupons, setCoupons] = useState([])
 
   useEffect(()=>{
-    axios.get('http://192.168.50.76:8000/mypage/coupons/'  + user_id)
+    axios.get('http://127.0.0.1:8000/mypage/coupons/'  + user_id)
     .then(res => {
       if (category==='valid') {
         setCoupons(res.data)

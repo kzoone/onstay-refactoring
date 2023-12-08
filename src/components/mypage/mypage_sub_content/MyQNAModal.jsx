@@ -10,7 +10,7 @@ export function MyQNAModal({closeModal, user_id, question_id}) {
   
   useEffect(()=>{
     axios({
-      url : 'http://192.168.50.76:8000/mypage/question/' + question_id,
+      url : 'http://127.0.0.1:8000/mypage/question/' + question_id,
       method : 'get'
     })
     .then(res => {

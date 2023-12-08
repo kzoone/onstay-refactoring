@@ -18,7 +18,7 @@ export function MyReservation({ user_id }) {
 
   useEffect(() => {
     axios({
-      url: 'http://192.168.50.76:8000/mypage/reservation/' + category + '/' + user_id,
+      url: 'http://127.0.0.1:8000/mypage/reservation/' + category + '/' + user_id,
       method: 'get'
     })
     .then((res) => {
@@ -43,7 +43,7 @@ const closeModal = () => setModal({...modal, show : false})
 // 예약 취소
 const cancelReservation = rid => () => {
   axiosAuth({
-    url : 'http://192.168.50.76:8000/mypage/reservation',
+    url : 'http://127.0.0.1:8000/mypage/reservation',
     method : 'delete',
     data : {reservation_id : rid}
   })

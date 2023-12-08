@@ -42,7 +42,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
     else if (form.question_title.length>100) return alert('문의 제목은 100자 이내로 작성해주세요.')
 
     axiosAuth({
-      url : 'http://192.168.50.76:8000/mypage/question',
+      url : 'http://127.0.0.1:8000/mypage/question',
       method : 'post',
       data : form
     })
@@ -67,7 +67,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
     const body = {...form, question_id}
 
     axiosAuth({
-      url : 'http://192.168.50.76:8000/mypage/question',
+      url : 'http://127.0.0.1:8000/mypage/question',
       method : 'put',
       data : body
     })
@@ -93,7 +93,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
   const deleteQuestion = () => {
     axiosAuth({
       method : 'delete',
-      url : 'http://192.168.50.76:8000/mypage/question',
+      url : 'http://127.0.0.1:8000/mypage/question',
       data : {question_id}
     })
     .then(res => {
