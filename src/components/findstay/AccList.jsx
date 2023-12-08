@@ -5,7 +5,7 @@ export default function AccList({accs, location, codeinfo, locationName}){
 
     return(
         <>
-        <div>총{accs.length}개의 숙소</div>
+        {/* <div>총{accs.length}개의 숙소</div> */}
         <div className='acc_list'>
             {accs.length > 0 ? (
                 accs.map((acc) => 

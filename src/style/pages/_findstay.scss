@@ -539,81 +539,83 @@ main.findstay{
         display: grid;
         grid-template-columns: repeat(2, minmax(560px, auto));
         grid-column-gap: 100px;
-        a.acc{
+        div.acc_container{
+            position: relative;
             margin-top: 100px;
-            div.acc_title{
-                font-size: 32px;
-                margin-bottom: 20px;
-            }
-            div.acc_content{
-                display: flex;
-                align-items: end;
-                justify-content: space-between;
-                div.acc_info{
-                    div{
-                        p{
-                            font-size: 14px;
-                            line-height: 25px;
-                        }
-                        &.reservation{
-                            text-align: center;
-                            padding-bottom: 2px;
-                            margin-top: 20px;
-                            text-decoration: underline;
-                            text-underline-offset: 10px;
-                            text-align: left;
-                        }
-                    }
+            a.acc{
+                div.acc_title{
+                    font-size: 32px;
+                    margin-bottom: 20px;
                 }
-                div.acc_imgs{
-                    width: 60%;
-                    position: relative;
-                    div.swiper{
-                        div.swiper-wrapper{
-                            .swiper-slide{
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                img{
-                                    width: 100%;
-                                    height: 230px;
-                                    object-fit: none;
-                                }
+                div.acc_content{
+                    display: flex;
+                    align-items: end;
+                    justify-content: space-between;
+                    div.acc_info{
+                        div{
+                            p{
+                                font-size: 14px;
+                                line-height: 25px;
+                            }
+                            &.reservation{
+                                text-align: center;
+                                padding-bottom: 2px;
+                                margin-top: 20px;
+                                text-decoration: underline;
+                                text-underline-offset: 10px;
+                                text-align: left;
                             }
                         }
                     }
-                    .swiper-button-next::after,
-                    .swiper-button-prev::after { 
-                        color: #FFF;
-                        font-size: 20px;
-                        font-weight: bold;
-                    }
-                    div.love{
-                        display: flex;
-                        align-items: center;
-                        position: absolute;
-                        bottom: 5px;
-                        right: 3px;
-                        z-index: 9;
-                        div.love_cnt{
-                            font-size: 14px;
+                    div.acc_imgs{
+                        width: 60%;
+                        div.swiper{
+                            div.swiper-wrapper{
+                                .swiper-slide{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    img{
+                                        width: 100%;
+                                        height: 230px;
+                                        object-fit: none;
+                                    }
+                                }
+                            }
+                        }
+                        .swiper-button-next::after,
+                        .swiper-button-prev::after { 
                             color: #FFF;
-                        }
-                        svg{
-                            fill: none;
-                            width: 35px;
-                            stroke: #FFF;
-                            stroke-width: 10;
-                            font-size: 24px;
-                            cursor: pointer;
-                        }
-                        svg.wish{
-                            stroke: none;
-                            fill: red;
+                            font-size: 20px;
+                            font-weight: bold;
                         }
                     }
+                }   
+            }
+            div.love{
+                display: flex;
+                align-items: center;
+                position: absolute;
+                bottom: 5px;
+                right: 3px;
+                z-index: 9;
+                div.love_cnt{
+                    font-size: 14px;
+                    color: #FFF;
                 }
-            }   
+                svg{
+                    fill: none;
+                    width: 35px;
+                    stroke: #FFF;
+                    stroke-width: 10;
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+                svg.wish{
+                    stroke: none;
+                    fill: red;
+                }
+            }
         }
         p.nothing{
             position: absolute;
@@ -722,44 +724,50 @@ main.findstay{
         div.acc_list{
             display: flex;
             flex-direction: column;
-            div.acc{
-                margin-top: 40px;
-                padding: 20px;
-                div.acc_title{
-                    font-size: 20px;
-                }
-                div.acc_content{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: start;
-                    div.acc_info{
-                        margin-bottom: 7px;
-                        width: 100%;
+            div.acc_container{
+                margin-top: 50px;
+                a.acc{
+                    margin-top: 40px;
+                    padding: 20px;
+                    div.acc_title{
+                        font-size: 20px;
+                    }
+                    div.acc_content{
                         display: flex;
-                        justify-content: space-between;
-                        align-items: end;
-                        div{
-                            p{
-                                font-size: 12px;
-                                line-height: 20px;
+                        flex-direction: column;
+                        align-items: start;
+                        div.acc_info{
+                            margin-bottom: 7px;
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: end;
+                            div{
+                                p{
+                                    font-size: 12px;
+                                    line-height: 20px;
+                                }
                             }
                         }
-                    }
-                    div.acc_imgs{
-                        width: 100%;
-                        div.swiper{
-                            div.swiper-wrapper{
-                                .swiper-slide{
-                                    img{
-                                        width: 100%;
-                                        height: auto;
-                                        object-fit: cover;
-                                        object-position: left top;
+                        div.acc_imgs{
+                            width: 100%;
+                            div.swiper{
+                                div.swiper-wrapper{
+                                    .swiper-slide{
+                                        img{
+                                            width: 100%;
+                                            height: auto;
+                                            object-fit: cover;
+                                            object-position: left top;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                }
+                div.love{
+                    bottom: 20px;
                 }
             }
         }
