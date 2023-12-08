@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa6';
 import { SlMagnifier } from 'react-icons/sl';
@@ -12,10 +12,22 @@ import useUserInfo from '../../util/useUserInfo.js'
 import $ from 'jquery';
 import ConfirmModal from './ConfirmModal.jsx';
 import axios from 'axios';
+import {DEFAULT_PROFILE_IMG} from '../../constants/constants.js'
 
 export default function Header() {
     const user = useUserInfo();
     let [showModal, setShowModal] = useState(false);
+    let [userProfile, setUserProfile] = useState({})
+
+    useEffect(()=>{
+        if (user.user_id) {
+            axios.get('http://localhost:8000/member/userinfo/' + user.user_id)
+            .then(res=>{
+                setUserProfile(res.data.user_img)
+            })
+            .catch(err => console.log(err))
+        } 
+    },[user.user_id])
 
     /* menubar 제어 */
     function menubarOpen(){ //menubar 버튼을 누르면 menubar_list를 OPEN
@@ -178,7 +190,10 @@ export default function Header() {
                     <div className='profile'>
                         {/* 회원 로그인 시에만 */}
                         {(user.user_id && !user.isAdmin) && <>
-                            <div className='profile_img' />
+                            <div className='profile_img'>
+                                <img 
+                                src={'http://localhost:8000/getimg/userprofile/' + userProfile || DEFAULT_PROFILE_IMG} alt="" />
+                            </div>
                             <div className='name'>{user.user_name} 님</div>
                         </>}
 

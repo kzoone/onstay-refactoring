@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosAuth from './../../../services/axiosAuth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ConfirmModal from './../../common/ConfirmModal';
 import axios from 'axios';
 
@@ -8,55 +8,26 @@ export function MyReservation({ user_id }) {
   let [category, setCategory] = useState('upcoming');
   let [reservations, setReservations] = useState([]);
   let [modal, setModal] = useState({show : false, acc_name : '', room_name : '', handleConfirm : ()=>{}})
+  let location = useLocation();
 
   const handleClick = (e) => setCategory(e.target.dataset.category);
 
-  const convertDateForm = (isoTime) => {
-    let newTime = new Date(isoTime);
-    let year = newTime.getFullYear();
-    let month = newTime.getMonth() + 1;
-    let date = newTime.getDate();
-    month = month >= 10 ? month : '0' + month;
-    date = date >= 10 ? date : '0' + date;
-    let day = ['일', '월', '화', '수', '목', '금', '토'][newTime.getDay()];
-    return `${year}-${month}-${date}(${day}) `;
-  };
+  const dateFormatWithDay = (date) => {
+    return date + ' (' + ['일','월','화','수','목','금','토'][new Date(date).getDay()] + ')'
+  }
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8000/mypage/reservation/' + user_id,
+      url: 'http://localhost:8000/mypage/reservation/' + category + '/' + user_id,
       method: 'get'
     })
-      .then((res) => {
-        let reservations = res.data
-          .map((reservation) => {
-            const now = new Date().getTime();
-            const checkin = new Date(reservation.checkin).getTime();
-            const checkout = new Date(reservation.checkout).getTime()
-            const totalPrice = reservation.room_price * parseInt((checkout - checkin) / (24*60*60*1000)) 
-            const dayDiff = parseInt((checkin - now) / (24 * 60 * 60 * 1000)); // 현재 날짜와 체크인 날짜간의 간격을 구함
-            return {
-              ...reservation,
-              dayDiff,
-              totalPrice,
-              checkin: convertDateForm(reservation.checkin),
-              checkout: convertDateForm(reservation.checkout),
-              pay_date: convertDateForm(reservation.pay_date),
-            };
-          })
-          .filter((reservation) => {
-            if (category === 'upcoming') {
-              return reservation.dayDiff >= 0; // 다가올 예약 페이지 (예약 포함)
-            } else if (category === 'complete') {
-              return reservation.dayDiff < 0;
-            }
-          });
-        setReservations(reservations);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }, [category, user_id]);
+    .then((res) => {
+        setReservations(res.data);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+  }, [category, user_id, location]);
 
   const showModal = (e) => {
     setModal({
@@ -118,28 +89,28 @@ const cancelReservation = rid => () => {
                   <div className="stay_info">
                     <b>예약 정보</b>
                     <small className="checkin">
-                      체크인 : {res.checkin} {res.checkin_time}
+                      체크인 : {dateFormatWithDay(res.checkin_date)} {res.checkin_time}
                     </small>
                     <small className="checkout">
-                      체크아웃 : {res.checkout} {res.checkout_time}
+                      체크아웃 : {dateFormatWithDay(res.checkout_date)} {res.checkout_time}
                     </small>
                   </div>
                   <div className="pay_info">
                     <b>결제 정보</b>
                     <small className="pay_price">
-                      결제 금액 : {res.totalPrice.toLocaleString()}원
+                      결제 금액 : {res.pay_price.toLocaleString()}원
                     </small>
                     <small className="pay_date">결제 일자 : {res.pay_date}</small>
                   </div>
                 </div>
                 <div className="btns">
-                  {category === 'upcoming' && res.dayDiff >= 2 && (
+                  {(category === 'upcoming' && res.isCancelable) ? (
                     <button onClick={showModal} data-rid={res.reservation_id} data-acc_name={res.acc_name} data-room_name={res.room_name}>예약 취소</button>
+                  ) : null}
+                  {(category === 'upcoming' && !res.isCancelable) && (
+                    <button onClick={()=>alert('취소 불가능 상태입니다. 1:1 문의를 이용해주세요.')} className='disabled'>취소 불가능</button>
                   )}
-                  {category === 'upcoming' && res.dayDiff < 2 && (
-                    <div style={{color:'red', textAlign:'center'}}>취소 불가능</div>
-                  )}
-                  {category === 'complete' && res.dayDiff <= 0 && (
+                  {category === 'complete' && (
                     <button>후기 남기기</button>
                   )}
                 </div>

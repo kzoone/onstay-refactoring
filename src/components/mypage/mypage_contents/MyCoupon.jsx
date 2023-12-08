@@ -8,7 +8,7 @@ export function MyCoupon ({user_id}) {
   let [coupons, setCoupons] = useState([])
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/mypage/coupons/'  + 'user')
+    axios.get('http://localhost:8000/mypage/coupons/'  + user_id)
     .then(res => {
       if (category==='valid') {
         setCoupons(res.data)

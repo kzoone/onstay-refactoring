@@ -22,6 +22,7 @@ import { NotFound } from './pages/NotFound';
 import { MyPage } from './pages/MyPage';
 import { AdminPage } from './pages/AdminPage';
 import { CookiesProvider } from 'react-cookie';
+import NoAccess from './pages/NoAccess';
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {path : '/adminpage', element : <AdminPage/>}
     ]
   },
+  {
+    path : '/noaccess',
+    element : <NoAccess/>
+  }
 ]);
 
 
