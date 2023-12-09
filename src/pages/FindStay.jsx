@@ -11,16 +11,6 @@ export function FindStay() {
      * 숙소 리스트 출력
      */
     const [accList, setAccList] = useState([]);
-    useEffect(() => {
-        axios
-        .get('http://localhost:8000/findstay/')
-        .then((res) => {
-            setAccList(res.data);
-        })
-        .catch((err) => {
-            console.error('axios 에러 발생 => ' + err);
-        })
-    }, []);
 
     /**
      * 입력한 검색어
@@ -121,6 +111,13 @@ export function FindStay() {
     const handleSort = (clickedSort) => {
         setSort(clickedSort);
     }
+
+    /**
+     * 유저가 좋아요 누름
+     */
+    const handleLove = () => {
+        handleSubmit();
+    }
     
     /**
      * 서버로 값 전달
@@ -186,6 +183,7 @@ export function FindStay() {
                 location={location} 
                 codeinfo={codeinfo} 
                 locationName={locationName}
+                handleLove={handleLove}
             />
         </main>
     );

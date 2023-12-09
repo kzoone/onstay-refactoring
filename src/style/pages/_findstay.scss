@@ -611,9 +611,11 @@ main.findstay{
                     font-size: 24px;
                     cursor: pointer;
                 }
-                svg.wish{
-                    stroke: none;
+            }
+            div.loved{
+                svg{
                     fill: red;
+                    stroke: none;
                 }
             }
         }

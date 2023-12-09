@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LoveCount from './LoveCount';
 import LoveButton from './LoveButton';
 
-export default function Acc({acc, locationName}){
+export default function Acc({acc, locationName, userId, handleLove, userLoved, getUserIsLovedAccs }){
      // Swiper 컴포넌트의 ref를 생성
     const swiperRef = useRef(null);
 
@@ -50,16 +49,16 @@ export default function Acc({acc, locationName}){
                         >
                             {acc.acc_img.split(',').filter(img => !img.startsWith('swiperImage')).map((img, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={`assets/images/acc/${img.trim()}`} />
+                                    <img src={`assets/images/acc/${img}`} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
                     </div>
                 </div>
             </Link>
-            <div className='love'>
+            <div className={`love ${userLoved ? 'loved' : ''}`}>
                 <LoveCount acc={acc} />
-                <LoveButton acc={acc} />
+                <LoveButton acc={acc} userId={userId} handleLove={handleLove} userLoved={userLoved} getUserIsLovedAccs={getUserIsLovedAccs} />
             </div>
         </div>
     );
