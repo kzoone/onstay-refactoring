@@ -3,7 +3,7 @@ import Acc from './Acc';
 import axios from "axios";
 import useUserInfo from '../../util/useUserInfo';
 
-export default function AccList({accs, location, codeinfo, locationName, handleLove}){
+export default function AccList({accs, location, codeinfo, locationName }){
 
     const userId = useUserInfo().user_id;
     const [userLovedAccs, setUserLovedAccs] = useState([]);
@@ -32,7 +32,7 @@ export default function AccList({accs, location, codeinfo, locationName, handleL
             {accs.length > 0 ? (
                 accs.map((acc) => 
                 <React.Fragment key={acc.acc_id}>
-                    <Acc acc={acc} location={location} codeinfo={codeinfo} locationName={locationName} userId={userId} handleLove={handleLove} userLoved={userLovedAccs.includes(acc.acc_id)} getUserIsLovedAccs={getUserIsLovedAccs} />
+                    <Acc acc={acc} location={location} codeinfo={codeinfo} locationName={locationName} userId={userId} userLoved={userLovedAccs.includes(acc.acc_id)} getUserIsLovedAccs={getUserIsLovedAccs} />
                 </React.Fragment>
                 )
             ) : (

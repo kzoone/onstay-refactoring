@@ -611,6 +611,9 @@ main.findstay{
                     font-size: 24px;
                     cursor: pointer;
                 }
+                .modal_container{
+                    z-index: 25;
+                }
             }
             div.loved{
                 svg{
@@ -770,38 +773,6 @@ main.findstay{
                 }
                 div.love{
                     bottom: 20px;
-                }
-            }
-        }
-    }
-}
-
-//---- 수정 필요 ---
-@media screen and (max-width: 520px) {
-    main.findstay{
-        div.filter_container{
-            div.filter{
-                min-width: 360px;
-                div.location,
-                div.personnel,
-                div.price{
-                    position: static;
-                    div.location_modal{
-                        top: 260px;
-                        left: 5%;
-                    }
-                    div.personnel_modal{
-                        top: 360px;
-                        left: 5%;
-                    }
-                    div.price_modal{
-                        top: 410px;
-                        left: 5%;
-                        width: 90%;
-                        .price_box{
-                            padding-right: 40px !important;
-                        }
-                    }
                 }
             }
         }

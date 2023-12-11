@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import LoveCount from './LoveCount';
 import LoveButton from './LoveButton';
 
-export default function Acc({acc, locationName, userId, handleLove, userLoved, getUserIsLovedAccs }){
+export default function Acc({acc, locationName, userId, userLoved, getUserIsLovedAccs }){
      // Swiper 컴포넌트의 ref를 생성
     const swiperRef = useRef(null);
 
@@ -24,6 +24,11 @@ export default function Acc({acc, locationName, userId, handleLove, userLoved, g
         window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const [loveCount, setLoveCount] = useState(acc.love); //좋아요 수
+    const onLoveCount = (clicked) => {
+        setLoveCount(clicked);
+    }
 
     return(
         <div className='acc_container'>
@@ -57,8 +62,8 @@ export default function Acc({acc, locationName, userId, handleLove, userLoved, g
                 </div>
             </Link>
             <div className={`love ${userLoved ? 'loved' : ''}`}>
-                <LoveCount acc={acc} />
-                <LoveButton acc={acc} userId={userId} handleLove={handleLove} userLoved={userLoved} getUserIsLovedAccs={getUserIsLovedAccs} />
+                <LoveCount loveCount={loveCount} />
+                <LoveButton acc={acc} userId={userId} userLoved={userLoved} getUserIsLovedAccs={getUserIsLovedAccs} onLoveCount={onLoveCount} />
             </div>
         </div>
     );

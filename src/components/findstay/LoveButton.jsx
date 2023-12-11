@@ -4,9 +4,10 @@ import { useState } from "react";
 import ConfirmModal from '../common/ConfirmModal';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoveButton({ acc, userId, userLoved, handleLove, getUserIsLovedAccs }){
+export default function LoveButton({ acc, userId, userLoved, getUserIsLovedAccs, onLoveCount }){
     const [ isModal, setIsModal ] = useState(false);
     const navigate = useNavigate();
+    
     /**
      * 관심스테이에 담기
      */
@@ -23,9 +24,9 @@ export default function LoveButton({ acc, userId, userLoved, handleLove, getUser
                     }
                 })
                 .then((res) => {
-                    if(res.data === 'ok'){
+                    if(res.data.result === 'ok'){
                         getUserIsLovedAccs();
-                        handleLove();
+                        onLoveCount(res.data.loveCount);
                     }
                 })
                 .catch((error) => {
@@ -40,9 +41,9 @@ export default function LoveButton({ acc, userId, userLoved, handleLove, getUser
                     data : {userId, accId}
                 })
                 .then((res) => {
-                    if(res.data === 'ok'){
+                    if(res.data.result === 'ok'){
                         getUserIsLovedAccs();
-                        handleLove();
+                        onLoveCount(res.data.loveCount);
                     }
                 })
                 .catch((error) => {

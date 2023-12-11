@@ -131,13 +131,6 @@ export function FindStay() {
     }
 
     /**
-     * 좋아요 클릭
-     */
-    const handleLove = () => {
-        
-    }
-
-    /**
      * 숙소 리스트 출력
      */
     const [accList, setAccList] = useState([]);
@@ -225,7 +218,6 @@ export function FindStay() {
                 location={location} 
                 codeinfo={codeinfo} 
                 locationName={locationName}
-                handleLove={handleLove}
             />
         </main>
     );
