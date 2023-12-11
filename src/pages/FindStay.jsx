@@ -6,17 +6,13 @@ import Sort from '../components/findstay/Sort';
 import AccList from '../components/findstay/AccList';
 
 export function FindStay() {
-
-    /**
-     * 숙소 리스트 출력
-     */
-    const [accList, setAccList] = useState([]);
-
     /**
      * 입력한 검색어
      */
     const [searched, setSearched] = useState('');
     const handleSearch = (inputText) => {
+        setPage(1);
+        setAccList([]); 
         setSearched(inputText);
     }
 
@@ -25,6 +21,8 @@ export function FindStay() {
     */
     const [location, setLocation] = useState('전체');
     const handleLocation = (selectedLocation) => {
+        setPage(1);
+        setAccList([]); 
         setLocation(selectedLocation);
     }
     
@@ -55,10 +53,14 @@ export function FindStay() {
      */
     const [checkin, setCheckin] = useState(null);
     const handleCheckin = (selectedCheckin) => {
+        setPage(1);
+        setAccList([]); 
         setCheckin(selectedCheckin);
     }
     const [checkout, setCheckout] = useState(null);
     const handleCheckout = (selectedCheckout) => {
+        setPage(1);
+        setAccList([]); 
         setCheckout(selectedCheckout);
     }
  
@@ -67,6 +69,8 @@ export function FindStay() {
      */
     const [personnel, setPersonnel] = useState(1);
     const handlePersonnel = (selectedPersonnel) => {
+        setPage(1);
+        setAccList([]); 
         setPersonnel(selectedPersonnel);
     }
 
@@ -77,9 +81,13 @@ export function FindStay() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(500000);
     const handleMinPrice = (selectedMinPrice) => {
+        setPage(1);
+        setAccList([]); 
         setMinPrice(selectedMinPrice);
     }
     const handleMaxPrice = (selectedMaxPrice) => {
+        setPage(1);
+        setAccList([]); 
         setMaxPrice(selectedMaxPrice);
     }
 
@@ -92,15 +100,23 @@ export function FindStay() {
     const [isBreakfast, setIsBreakfast] = useState(0);
 
     const handleParking = (clickParking) => {
+        setPage(1);
+        setAccList([]); 
         setIsParking(clickParking);
     }
     const handleCook = (clickCook) => {
+        setPage(1);
+        setAccList([]); 
         setIsCook(clickCook);
     }
     const handlePet = (clickPet) => {
+        setPage(1);
+        setAccList([]); 
         setIsPet(clickPet);
     }
     const handleBreakfast = (clickBreakfast) => {
+        setPage(1);
+        setAccList([]); 
         setIsBreakfast(clickBreakfast);
     }
     
@@ -109,39 +125,45 @@ export function FindStay() {
     */
     const [sort, setSort] = useState('love');
     const handleSort = (clickedSort) => {
+        setPage(1);
+        setAccList([]); 
         setSort(clickedSort);
     }
 
     /**
-     * 유저가 좋아요 누름
+     * 좋아요 클릭
      */
     const handleLove = () => {
-        handleSubmit();
+        
     }
-    
+
     /**
-     * 서버로 값 전달
+     * 숙소 리스트 출력
      */
+    const [accList, setAccList] = useState([]);
+    const [page, setPage] = useState(1);
+    const isMounted = useRef(false);
+    const params = {
+        searched, 
+        location, 
+        checkin, 
+        checkout,  
+        personnel, 
+        minPrice, 
+        maxPrice, 
+        isParking, 
+        isCook, 
+        isPet, 
+        isBreakfast, 
+        sort,
+        page
+    }
     const handleSubmit = () => {
-        const params = {
-            searched, 
-            location, 
-            checkin, 
-            checkout,  
-            personnel, 
-            minPrice, 
-            maxPrice, 
-            isParking, 
-            isCook, 
-            isPet, 
-            isBreakfast, 
-            sort
-        }
         axios
         .get('http://localhost:8000/findstay/',{params})
         .then((res) => {
             if(res.data){
-                setAccList(res.data);
+                setAccList((prevData) => [...prevData, ...res.data]);
             }
         })
         .catch((err) => {
@@ -150,10 +172,30 @@ export function FindStay() {
     }
     
     useEffect(() => {
-        handleSubmit();
-    }, [searched, location, checkin, checkout,  personnel, minPrice, maxPrice, isParking, isCook, isPet, isBreakfast, sort]);
+        if (isMounted.current) {
+            handleSubmit();
+        } else {
+            isMounted.current = true;
+        }
+    }, [searched, location, checkin, checkout,  personnel, minPrice, maxPrice, isParking, isCook, isPet, isBreakfast, sort, page]);
 
-    
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const handleScroll = () => {
+        if (
+            window.innerHeight + document.documentElement.scrollTop >=
+            document.documentElement.offsetHeight -2
+        ) {
+            // 스크롤이 화면 하단에 도달하면 추가 데이터를 불러옴
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
+
     return(
         <main className='findstay'>
             <PageTitle 

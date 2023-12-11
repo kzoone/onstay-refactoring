@@ -5,7 +5,6 @@ export default function Sort({onSort, onSortSubmit}){
 
     const handleSortSubmit = (clicked) => {
         onSort(clicked);
-        onSortSubmit(); 
         const buttons = document.querySelectorAll('.sort ul li button');
         buttons.forEach((button)=>{
             button.classList.remove('selected');
