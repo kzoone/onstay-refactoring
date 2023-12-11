@@ -23,6 +23,8 @@ import { MyPage } from './pages/MyPage';
 import { AdminPage } from './pages/AdminPage';
 import { CookiesProvider } from 'react-cookie';
 import NoAccess from './pages/NoAccess';
+import FindIdResult from './pages/FindIdResult';
+
 
 
 const router = createBrowserRouter([
@@ -45,7 +47,8 @@ const router = createBrowserRouter([
       {path : '/find/id', element : <FindId/>},
       {path : '/find/pw', element : <FindPw/>},
       {path : '/mypage', element : <MyPage/>},
-      {path : '/adminpage', element : <AdminPage/>}
+      {path : '/adminpage', element : <AdminPage/>},
+      {path : '/find/id/result', element : <FindIdResult/> }
     ]
   },
   {

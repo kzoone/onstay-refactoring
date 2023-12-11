@@ -1,0 +1,99 @@
+main.findid {
+    form.findid_form {
+        h2.findid_desc {
+            padding: 2em 0;
+            margin-bottom: 1em;
+            text-align: center;
+            font-size: .9em;
+            text-wrap: nowrap;
+        }
+        p {
+            margin-bottom: .5em;
+            input {
+                padding-left: 0;
+                &::placeholder {
+                    font-size: .9em;
+                }
+            }
+            small.invalid_noti {
+                color: red;
+            }
+            div.certification_input_wrapper {
+                position: relative;
+                input {
+                    width: 100%;
+                }
+                div.timer {
+                    position: absolute;
+                    right: 0; top: 50%;
+                    transform: translateY(-50%);
+                    background-color: white;
+                }
+            } 
+        }
+        button {
+            padding: 1rem 0;
+            &.code_resend_btn {
+                align-self: start;
+                text-align: left;
+                font-size: .8em;
+                padding-bottom: .3rem;
+                border-bottom: 1px solid #CCC;
+                color: #444;
+                background: none;
+                margin-bottom: .5rem;
+            }
+            &.code_send_btn {
+                border: none;
+                background-color: #777;
+                color: white;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    div.find_result_container {
+        padding: 0;
+        margin-bottom: 2em;
+        div.find_result_desc {
+            padding: 4em 0;
+            border-bottom: 1px solid #000;
+            span {
+                display: block;
+                font-size: .9em;
+                text-align: center;
+                &:first-child {
+                    margin-bottom: .5em;
+                }
+            }
+        }
+        div.findid_result_wrapper {
+            padding: 2em 0;
+            &:not(:last-of-type) {
+                border-bottom: 1px dotted #CCC;
+            }
+            span {
+                text-align: center;
+                display: block;
+                &:not(:last-child) {
+                    margin-bottom: .3em;
+                }
+                &.result_id {
+                    font-weight: 600;
+                    font-size: 1.2em;
+                }
+                &.result_name {
+                    color: #666;
+                }
+                &.result_joindate {
+                    font-size: .9em;
+                    color: #666;
+                }
+            }
+        }
+        a.login_link {
+            background-color: #000;
+            color: #FFF;
+        }
+    }
+}

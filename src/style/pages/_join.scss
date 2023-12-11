@@ -2,7 +2,7 @@ main.member {
   @include pageTitle($ft-size: 1.2rem, $mb: 5rem);
   padding: 0 2rem;
   margin: 0 auto;
-  form {
+  form, > div.find_result_container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;

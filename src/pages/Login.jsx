@@ -59,8 +59,8 @@ export function Login() {
                     <button className='login_btn black_box'>로그인</button>
                     <Link to='/join' className='join_link white_box'>회원가입</Link>
                     <div className='find_links_box'>
-                        <Link to='/findId'>아이디 찾기</Link>
-                        <Link to='/findPw'>비밀번호 찾기</Link>
+                        <Link to='/find/id'>아이디 찾기</Link>
+                        <Link to='/find/pw'>비밀번호 찾기</Link>
                     </div>
                 </form>}
         </main>

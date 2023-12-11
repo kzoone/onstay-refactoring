@@ -5,7 +5,6 @@ import { Link, useLocation } from "react-router-dom";
 export function MyPageGreet({user_id, userName, isAdmin}) {
   let [reserveCount, setReserveCount] = useState(0);
   let location = useLocation();
-  console.log(isAdmin);
 
   useEffect(()=>{
     if (!isAdmin) {
