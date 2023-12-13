@@ -16,13 +16,13 @@ export default function RoomSwiper(props) {
         rewind={true}
         modules={[Pagination]}>
           <SwiperSlide>
-            <img src={`/assets/images/room/${props.img1}`} alt={`${props.acc}의 ${props.name} 이미지`} />
+            { props.img1 && <img src={`/assets/images/room/${props.img1}`} alt={`${props.acc}의 ${props.name} 이미지`} /> }
           </SwiperSlide>
           <SwiperSlide>
-            <img src={`/assets/images/room/${props.img2}`} alt={`${props.acc}의 ${props.name} 이미지`} />
+            { props.img2 && <img src={`/assets/images/room/${props.img2}`} alt={`${props.acc}의 ${props.name} 이미지`} /> }
           </SwiperSlide>
           <SwiperSlide>
-            <img src={`/assets/images/room/${props.img3}`} alt={`${props.acc}의 ${props.name} 이미지`} />
+            { props.img3 && <img src={`/assets/images/room/${props.img3}`} alt={`${props.acc}의 ${props.name} 이미지`} /> }
           </SwiperSlide>
       </Swiper>
     </>
