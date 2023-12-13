@@ -39,7 +39,7 @@ export default function NewStaySection() {
       </div>
       <ul>
         {newStayList.map(newStay =>
-          <li key={'newStaySection' + `${newStay.acc_id}`}>
+          <li key={newStay.acc_id}>
             <Link to={`/findstay/acc/${newStay.acc_id}`}>
               <NewStayAvata acc_img={newStay.acc_img} />
               <NewStayContent acc_name={newStay.acc_name} area_code={newStay.area_code}

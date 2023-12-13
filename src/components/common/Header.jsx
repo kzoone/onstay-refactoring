@@ -270,10 +270,10 @@ export default function Header() {
                         </Link>
                     </li>
                     <li>
-                        <Link className='menus_mobile' to='/newstay'>
+                        <a className='menus_mobile' href='/newstay'>
                             <span className='icon_mobile'><SlHome /></span>
                             <span className='menu_mobile'>NEW-STAY</span>
-                        </Link>
+                        </a>
                     </li>
                     <li>
                         <Link className='menus_mobile' to='#'>
