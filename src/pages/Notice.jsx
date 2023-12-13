@@ -7,7 +7,7 @@ import useUserInfo from '../util/useUserInfo';
 import NoticeDelete from '../components/notice/NoticeDelete';
 
 export function Notice() {
-  const userInfo = useUserInfo();
+  const userInfo = useUserInfo(false);
   const [addModal, setAddModal] = useState(false);
   const [deleteModal, setDeletModal] = useState(false);
   const [checkedItems, setCheckedItems] = useState([]);
@@ -18,7 +18,7 @@ export function Notice() {
       setCheckedItems((prevCheckedItems) => [...prevCheckedItems, noticeId]);
     } else {
       setCheckedItems((prevCheckedItems) =>
-        prevCheckedItems.filter((item) => item !== noticeId)
+        prevCheckedItems.filter(item => item !== noticeId)
       );
     }
   };

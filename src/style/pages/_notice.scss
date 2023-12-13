@@ -24,7 +24,7 @@
     }
     div {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       gap: 5%;
       width: 40%;
       @media screen and (max-width: $md-max-breakpoint) {
@@ -35,9 +35,11 @@
       padding: 2% 7%;
       border: 1px solid black;
       border-radius: 50px;
-      &:hover {
-        background: black;
-        color: white;
+      @media (hover: hover) {
+        &:hover {
+          background: black;
+          color: white;
+        }
       }
       strong{
         color: red;
@@ -98,12 +100,14 @@
             padding: 5px;
             background: white;
             border-radius: 50px;
-            &:hover {
-              padding: 5px;
-              background: black;
-              border-radius: 50px;
-              svg {
-                fill: white;
+            @media (hover: hover) {
+              &:hover {
+                padding: 5px;
+                background: black;
+                border-radius: 50px;
+                svg {
+                  fill: white;
+                }
               }
             }
           }
@@ -148,9 +152,11 @@
       text-overflow: ellipsis;
       text-align: left;
     }
-    & > tbody > tr > td:nth-child(2) > a:hover {
-      border-bottom: 1px solid black;
-      font-weight: 600;
+    @media (hover: hover) {
+      & > tbody > tr > td:nth-child(2) > a:hover {
+        border-bottom: 1px solid black;
+        font-weight: 600;
+      }
     }
     th,
     td {
@@ -266,8 +272,10 @@
         background-color: rgb(234, 234, 234);
         color: black;
       }
-      .react-datepicker__day--keyboard-selected:hover {
-        background-color: rgb(179, 179, 179);
+      @media (hover: hover) {
+        .react-datepicker__day--keyboard-selected:hover {
+          background-color: rgb(179, 179, 179);
+        }
       }
       .react-datepicker__day--selected {
         background-color: rgb(179, 179, 179);
@@ -381,8 +389,10 @@
                   border-radius: 50px;
                   border: none;
                   cursor: pointer;
-                  &:hover {
-                    background: rgba(215, 215, 215, 0.526);
+                  @media (hover: hover) {
+                    &:hover {
+                      background: rgba(215, 215, 215, 0.526);
+                    }
                   }
                 }
                 &:nth-child(n + 1):nth-child(-n + 2) {
@@ -413,7 +423,7 @@
               &:nth-child(3),
               &:nth-child(5) {
                 display: flex;
-                justify-content: end;
+                justify-content: flex-end;
                 padding-right: 2vh;
                 span {
                   color: rgb(186, 186, 186);
@@ -431,9 +441,11 @@
         button {
           border: 1px solid black;
           color: black;
-          &.delete_btn:hover {
-            background-color: black;
-            color: white;
+          @media (hover: hover) {
+            &.delete_btn:hover {
+              background-color: black;
+              color: white;
+            }
           }
         }
       }

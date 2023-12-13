@@ -14,7 +14,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
   const titleMaxLength = 100;
   const contentMaxLength = 2000;
 
-  const handelModal = (e) => {
+  const handleModal = (e) => {
     setAddModal(false)
   };
 
@@ -113,7 +113,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
             </ul>
             <div className='btn_wrap'>
               <button type='button' className='close_btn'
-                onClick={handelModal}>닫기</button>
+                onClick={handleModal}>닫기</button>
               <button className='add_btn'>{btnText || '확인'}</button>
             </div>
           </form>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import axiosAuth from "../../services/axiosAuth";
 import { SlCamera } from 'react-icons/sl';
 import NoticeImgModal from './NoticeImgModal';

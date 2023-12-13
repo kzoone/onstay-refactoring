@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PageTitle from "../components/common/PageTitle";
@@ -15,7 +15,7 @@ export function NoticeDetail() {
         setDetailNotice(result.data)
       })
       .catch(error => console.log(error))
-  }, [])
+  }, [noticeid, page])
 
 
 
