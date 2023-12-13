@@ -16,7 +16,7 @@ export function AccMap() {
         console.log(result.data);
         setAccMap(result.data);
 
-        // Kakao Maps API 사용
+        // Kakao 지도 API 사용
         const container = document.getElementById('map');
         const options = {
           center: new kakao.maps.LatLng(result.data.latitude, result.data.longitude),
@@ -24,28 +24,38 @@ export function AccMap() {
         };
 
         const map = new kakao.maps.Map(container, options);
-        map.setZoomable(false)
-        
+        map.setDraggable(false);
+        map.setZoomable(false);
         const markerPosition = new kakao.maps.LatLng(result.data.latitude, result.data.longitude);
         const marker = new kakao.maps.Marker({
           position: markerPosition,
         });
         marker.setMap(map);
+
+        // 지도 크기가 변경될 때마다 마커를 중앙에 위치시킴
+        kakao.maps.event.addListener(map, 'idle', function() {
+          map.setCenter(markerPosition);
+        });
       })
       .catch((error) => console.log(error));
   }, [accid]); // accid가 변경될 때마다 useEffect가 다시 실행됨
 
   return(
-    <div className='map_container'>
-        <div className='map' id="map"style={{width:'100%',height:'60vh'}}></div>
-        <div className='map_text_container'>
-            <div className='text_title'>HELLO</div>
-            <div className='text_name'>{accMap.acc_name}</div>
-            <div className='text_address'>{accMap.address}</div>
-            <div className='text_tel'>{accMap.tel}</div>
-            <div className='text_homepage'>{accMap.homepage}</div>
-        </div>
-   </div>
+      <div className='map_container'>
+          <div className='explain'>{accMap.acc_name}의 위치는 {accMap.address}입니다.</div>
+          <div className='map_text_container'>
+              <div className='mobile-title-container'>
+                <div className='text_title'>HELLO</div>
+                <div className='text_name'>{accMap.acc_name}</div>
+              </div>
+              <div>
+                <div className='text_address'>{accMap.address}</div>
+                <div className='text_tel'>{accMap.tel}</div>
+                <div className='text_homepage'>{accMap.homepage}</div>
+              </div>
+          </div>
+        <div className='map' id="map"></div>
+      </div>
     ); 
   
 }

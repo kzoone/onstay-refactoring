@@ -13,12 +13,13 @@ const ReservationInfo = () => {
     .get(`http://localhost:8000/findstay/acc/${accid}/reserve`)
     .then((result) =>{
       setReserveInfo(result.data)
+      console.log(result.data);
     })
     .catch((error) => console.log(error));
   },[accid]);
   
   return (
-    <div>
+    <div className='content_whole_frame'>
       <div className='content_title'>예약 안내</div>
       <div className='content_explain'>
         <div className='content_subtitle'>요금기준</div>

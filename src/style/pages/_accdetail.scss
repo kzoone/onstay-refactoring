@@ -1,4 +1,6 @@
 div.visual-section {
+  max-width: 1800px;
+  margin: 0 auto;
   position: relative;
   display: flex;
   align-items: center; /* 세로 중앙 정렬 추가 */
@@ -40,193 +42,583 @@ div.visual-section {
   }
 }
 
-.whole-container{
-  display: flex;
-  width: 1300px;
-  margin:0 auto;
-  margin-bottom: 200px;
-  
-  .title{
-    font-size: 3.6rem;
-    width: 20%;
-  }
-  
-  .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
-    width: 60%;
-  }
-  .room-swiper-container{
-    padding: 0 10px;
-    .slide {
-      position:relative;
-        .swiper-img {
+@media screen and (min-width : 1026px){
+  div.whole-frame{
+    max-width: 1800px;
+    margin: 0 auto;
+    background: linear-gradient(to right, #EEE 60%, transparent 50%);
+    .whole-container{
+    display: flex;
+    width: 100%;
+    margin:0 auto;
+    align-items: center;
+    margin-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom:50px;
+    .title{
+      margin-bottom: 200px;
+      margin-left: 50px;
+      font-size: 3.6rem;
+      width: 20%;
+    }
+    .border{
+      width: 50%;
+      border-top:5px solid black;
+      margin-top : 30px;
+    }
+    .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
+      width: 60%;
+    }
+    .room-swiper-container{
+      padding: 0 10px;
+      .slide {
+        position:relative;
+          .swiper-img {
+            width: 100%;
+            /* 이미지에 대한 다른 스타일을 추가하세요. */
+          }
+        .text-container{
+          position: absolute;
+          bottom:0;
+          left:0;
           width: 100%;
-          /* 이미지에 대한 다른 스타일을 추가하세요. */
-        }
-      .text-container{
-        position: absolute;
-        bottom:0;
-        left:0;
-        width: 100%;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        padding: 20px 20px;
-        .room-type{
-          margin-top:15px;
-          font-size: 0.7rem;
-          color:rgba(255,255,255,0.8);
-        }
-        .room-name{
-          font-size : 1.6rem;
-          font-weight: 500;
-          margin-top:8px;
-          margin-bottom: 30px;
-          
-        }
-        .room-capa{
-          font-size:0.9rem;
-          opacity: 0.7;
-          margin-bottom:20px;
-        }
-        .space-between{
-          display: flex;
-          justify-content: space-between;
-          .room-price{
-            font-size: 1.3rem;
+          background: rgba(0,0,0,0.7);
+          color: white;
+          padding: 20px 20px;
+          .room-type{
+            margin-top:15px;
+            font-size: 0.7rem;
+            color:rgba(255,255,255,0.8);
+          }
+          .room-name{
+            font-size : 1.6rem;
             font-weight: 500;
+            margin-top:8px;
+            margin-bottom: 30px;
+            
           }
-          .room-reserve{
-            text-decoration: underline;
-            font-size : 1.0rem;
-            color : gray;
+          .room-capa{
+            font-size:0.9rem;
+            opacity: 0.7;
+            margin-bottom:20px;
+          }
+          .space-between{
+            display: flex;
+            justify-content: space-between;
+            .room-price{
+              font-size: 1.3rem;
+              font-weight: 500;
+            }
+            .room-reserve{
+              text-decoration: underline;
+              font-size : 1.0rem;
+              color : gray;
+            }
+          }
+  
+        }
+      }
+    }
+  }    
+  }
+  div.summary-whole-container{
+    width: 100%;  
+    div.summary-container{
+      padding: 30px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 100px;
+        div.summary-title{
+          font-size: 2.0rem;
+          font-weight: 400;
+          margin-bottom: 10px;
+        }
+        div.border{
+          border-left : 3px solid black;
+          height : 50px;
+          margin-left: 50%;
+          margin-bottom: 70px;
+        }
+        div.summary-top,
+        div.summary-bottom{
+          width: 60%;
+          margin: 0 auto;
+          font-size : 1.1rem;
+          font-weight: 400;
+        }
+        div.summary-top{
+          margin-bottom: 50px;
+        }
+    }
+  }
+
+  div.map_container{
+    position: relative;
+    margin-bottom: 100px;
+    div.explain{
+      text-align: center;
+      font-size: 1.3rem;
+      padding-bottom: 50px;  
+    }
+    div.map{
+      width: 100%;
+      height: 60vh;
+    }
+    div.map_text_container{
+      position: absolute;
+      background: white;
+      top:20%;
+      left:10%;
+      padding: 20px 40px;
+      z-index:100;
+      div.text_title,
+      div.text_name{
+        font-size: 1.3rem;
+        font-weight:550;
+      }
+      div.text_title{
+        margin-bottom:10px;
+      }
+      div.text_name{
+        margin-bottom: 25px;
+      }
+      div.text_address,
+      div.text_tel,
+      div.text_homepage{
+        font-size: 0.9rem;
+        color:gray;
+        margin-bottom: 10px;
+      }
+    }
+    }
+    
+}
+
+@media screen and (min-width : 770px) and (max-width : 1026px){
+  div.whole-frame{
+    width: 100%;
+    background: linear-gradient(to right, #EEE 60%, transparent 50%);
+    .whole-container{
+      display: flex;
+      width: 80%;
+      margin:0 auto;
+      margin-bottom: 100px;
+      padding-top: 100px;
+      padding-bottom:50px;
+      .title{
+        font-size: 3.6rem;
+        width: 60%;
+      }
+      .border{
+        width: 50%;
+        border-top:5px solid black;
+        margin-top : 30px;
+      }
+      .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
+        width: 60%;
+      }
+      .room-swiper-container{
+        padding: 0 10px;
+        .slide {
+          position:relative;
+            .swiper-img {
+              width: 100%;
+              /* 이미지에 대한 다른 스타일을 추가하세요. */
+            }
+          .text-container{
+            position: absolute;
+            bottom:0;
+            left:0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 20px 20px;
+            .room-type{
+              margin-top:15px;
+              font-size: 0.7rem;
+              color:rgba(255,255,255,0.8);
+            }
+            .room-name{
+              font-size : 1.6rem;
+              font-weight: 500;
+              margin-top:8px;
+              margin-bottom: 30px;
+              
+            }
+            .room-capa{
+              font-size:0.9rem;
+              opacity: 0.7;
+              margin-bottom:20px;
+            }
+            .space-between{
+              display: flex;
+              justify-content: space-between;
+              .room-price{
+                font-size: 1.3rem;
+                font-weight: 500;
+              }
+              .room-reserve{
+                text-decoration: underline;
+                font-size : 1.0rem;
+                color : gray;
+              }
+            }
           }
         }
-
       }
     }
   }
-}
-div.summary-whole-container{
-  
-  width: 100%;
-  background: #EEE;  
-  div.summary-container{
-    padding: 50px;
-    width: 1300px;
-    margin: 0 auto;
-    text-align: center;
-    margin-bottom: 200px;
-    div.summary-title{
-      font-size: 2.0rem;
-      font-weight: 400;
-      margin-bottom: 100px;
-    }
-    div.summary-top,
-    div.summary-bottom{
-      width: 60%;
+  div.summary-whole-container{
+    width: 100%;  
+    div.summary-container{
+      padding: 30px;
+      width: 100%;
       margin: 0 auto;
-      font-size : 1.1rem;
-      font-weight: 400;
-    }
-    div.summary-top{
+      text-align: center;
       margin-bottom: 50px;
+      div.summary-title{
+        font-size: 2.0rem;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+      div.border{
+        border-left : 3px solid black;
+        height : 50px;
+        margin-left: 50%;
+        margin-bottom: 70px;
+      }
+      div.summary-top,
+      div.summary-bottom{
+        width: 60%;
+        margin: 0 auto;
+        font-size : 1.1rem;
+        font-weight: 400;
+      }
+      div.summary-top{
+        margin-bottom: 50px;
+      }
     }
   }
+  div.map_container{
+    margin-bottom: 100px;
+    div.explain{
+      display: none; 
+    }
+
+    div.map_text_container{
+      display: flex;
+      background: #EEE;
+      padding: 20px 20px;
+      z-index:100;
+      margin : 20px;
+      font-size: 0.9r em;
+      div.mobile-title-container{
+        margin-right: 50px; 
+        div.text_title{
+          margin-bottom:10px;
+        }
+      }
+
+      div.text_address,
+      div.text_tel,
+      div.text_homepage{
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      div.text_tel,
+      div.text_homepage{
+        color: gray;
+      }
+    }
+    div.map{
+      width: 100%;
+      height: 60vh;
+    }
+    }
+    
 }
 
-
-div.map_container{
-position: relative;
-margin-bottom: 100px;
-div.map_text_container{
-  position: absolute;
-  background: white;
-  top:10%;
-  left:10%;
-  padding: 20px 40px;
-  z-index:100;
-  div.text_title,
-  div.text_name{
-    font-size: 1.3rem;
-    font-weight:550;
+@media screen and (max-width : 769px){
+  div.visual-section {
+    max-width: 1800px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 추가 */
+    margin-bottom: 50px;
+    div.img-container {
+      width: 100%;
+      height: 80vh;
+      position: relative;
+  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  
+    div.text-container {
+      position: absolute;
+      bottom:0;
+      left: 50%;
+      transform: translate(-50%, -0%);
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* 세로 중앙 정렬 추가 */
+      background: rgb(0, 0, 0, 0.7);
+      color: white;
+      font-size: 1.2rem;
+      padding: 20px;
+      div.acc_name{
+        margin-left : 10px;
+      }
+      div.acc_address{
+        margin-right: 10px;
+      }
+    }
   }
-  div.text_title{
-    margin-bottom:10px;
+  
+  div.whole-frame{
+    width: 100%;
+    background: linear-gradient(to bottom, #EEE 80%, transparent 50%);
+    .whole-container{
+      width: 100%;
+      margin:0 auto;
+      padding-top: 100px;
+      padding-bottom:50px;
+      .title{
+        font-size: 2.1rem;
+        width: 30%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .border{
+        width: 50%;
+        border-top:5px solid black;
+        margin-top : 30px;
+        margin-left : 25%;
+        padding-bottom: 100px;
+      }
+      .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
+        width: 60%;
+      }
+      .room-swiper-container{
+        padding: 0 10px;
+        .slide {
+          position:relative;
+            .swiper-img {
+              width: 100%;
+              /* 이미지에 대한 다른 스타일을 추가하세요. */
+            }
+          .text-container{
+            position: absolute;
+            bottom:0;
+            left:0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            .room-type{
+              margin-top:15px;
+              font-size: 0.7rem;
+              color:rgba(255,255,255,0.8);
+            }
+            .room-name{
+              font-size : 0.9rem;
+              font-weight: 500;
+              margin-top:8px;
+              margin-bottom: 10px;
+              
+            }
+            .room-capa{
+              font-size:0.5rem;
+              opacity: 0.7;
+              margin-bottom:10px;
+            }
+            .space-between{
+              display: flex;
+              justify-content: space-between;
+              .room-price{
+                font-size: 0.7rem;
+                font-weight: 500;
+              }
+              .room-reserve{
+                text-decoration: underline;
+                font-size : 0.6rem;
+                color : gray;
+              }
+            }
+          }
+        }
+      }
+    }
   }
-  div.text_name{
-    margin-bottom: 25px;
+  div.summary-whole-container{
+    width: 100%;  
+    div.summary-container{
+      padding: 30px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 50px;
+      div.summary-title{
+        font-size: 2.0rem;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+      div.border{
+        border-left : 3px solid black;
+        height : 50px;
+        margin-left: 50%;
+        margin-bottom: 30px;
+      }
+      div.summary-top,
+      div.summary-bottom{
+        width: 100%;
+        font-size : 1.1rem;
+        font-weight: 400;
+      }
+      div.summary-top{
+        margin-bottom: 50px;
+      }
+    }
   }
-  div.text_address,
-  div.text_tel,
-  div.text_homepage{
-    font-size: 0.9rem;
-    color:gray;
-    margin-bottom: 10px;
-  }
+  div.map_container{
+    margin-bottom: 100px;
+    div.explain{
+      display: none;
+    }
+    div.map_text_container{
+      display: flex;
+      background: #EEE;
+      padding: 20px 20px;
+      z-index:100;
+      margin : 20px;
+      font-size: 0.9r em;
+      div.mobile-title-container{
+        
+      }
+
+      div.text_address,
+      div.text_tel,
+      div.text_homepage{
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      div.text_tel,
+      div.text_homepage{
+        color: gray;
+      }
+    }
+    div.map{
+      width: 100%;
+      height: 60vh;
+    }
+    }
+    
+
 }
+
+div.about_whole_frame{
+  max-width: 1800px;
+  div.about_frame{
+    width: 100%;
+    background: black;
+    div.about_title{
+      display: flex;
+      width: 80%;
+      color: white;
+      margin : 0 auto;
+      text-align: center;
+      padding-top : 30px;
+      margin-right: 50px;
+    }
+    div.about-section{
+    display: flex;
+    color: white;
+    width: 100%;
+    margin:0 auto;
+    padding: 40px;
+    .about_btn{
+      margin: 30px;
+      width: 20%;
+      .reserve_btn,
+      .usage_btn,
+      .refund_btn{
+        color: gray;
+        margin: 30px;
+        font-size: 1.6rem;
+        &.reserve_btn,
+        &.usage_btn,
+        &.refund_btn {
+          color: gray; // 여기에 기본 글자색을 설정하세요
+          &.selected {
+            color: white; // 여기에 선택된 버튼의 글자색을 설정하세요
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    div.content_display{
+      text-align: left;
+      margin:60px;
+      font-size:1.3rem;
+      width: 80%;
+    }
+    }
+    }
+}
+
+div.content_whole_frame{
+  width: 100%;
+  div.content_title{
+    font-size:1.5rem;
+    margin-bottom : 20px;
+    color: white;
+    }
+    div.content_explain{
+    display: flex;
+    margin-bottom:30px;
+    color: gray;
+    div.content_subtitle{
+      margin-right:50px;
+      min-width: 20%;
+    }
+    .content_comment{
+      min-width: 70%;
+      margin-bottom:20px;
+      list-style: disc;
+    }
+    div.content_subtitle{
+      margin-bottom: 10px;
+    }
+    .content_table {
+      border-collapse: collapse;
+      margin-bottom:20px;
+    }
+    
+    /* 헤더 셀에 border를 추가합니다. */
+    .content_thead th {
+      border: 1px solid #BBB; /* 테두리 색을 설정할 수 있습니다. */
+      padding: 8px; /* 셀 안의 여백을 설정할 수 있습니다. */
+      text-align: center; /* 텍스트 정렬을 설정할 수 있습니다. */
+      font-size: 0.9rem;
+    }
+    
+    /* 본문 셀에 border를 추가합니다. */
+    .content_table td {
+      border: 1px solid #BBB; /* 테두리 색을 설정할 수 있습니다. */
+      white-space: nowrap;
+      padding: 8px 100px; /* 셀 안의 여백을 설정할 수 있습니다. */
+      text-align: center; /* 텍스트 정렬을 설정할 수 있습니다. */
+      font-size: 0.9rem;
+    }
+    }
 }
 
 
-div.about_frame{
-width: 100%;
-background: black;
-div.about-section{
-display: flex;
-color: white;
-width: 1300px;
-margin:0 auto;
-padding: 40px;
-.about_btn{
-  color:white;
-  margin: 30px;
-  .reserve_btn,
-  .usage_btn,
-  .refund_btn{
-    color:white;
-    margin: 30px;
-    font-size: 1.6rem;
-  }
-}
-div.content_display{
-  text-align: left;
-  margin:60px;
-  font-size:1.3rem;
-}
-}
-}
 
-div.content_title{
-font-size:1.5rem;
-margin-bottom : 20px;
-}
-div.content_explain{
-display: flex;
-margin-bottom:30px;
-div.content_subtitle{
-  margin-right:50px;
-}
-.content_comment{
-  margin-bottom:20px;
-  list-style: disc;
-}
-div.content_subtitle{
-  margin-bottom: 10px;
-}
-.content_table {
-  border-collapse: collapse;
-  margin-bottom:20px;
-}
-
-/* 헤더 셀에 border를 추가합니다. */
-.content_thead th {
-  border: 1px solid #ddd; /* 테두리 색을 설정할 수 있습니다. */
-  padding: 8px; /* 셀 안의 여백을 설정할 수 있습니다. */
-  text-align: left; /* 텍스트 정렬을 설정할 수 있습니다. */
-}
-
-/* 본문 셀에 border를 추가합니다. */
-.content_table td {
-  border: 1px solid #ddd; /* 테두리 색을 설정할 수 있습니다. */
-  padding: 8px; /* 셀 안의 여백을 설정할 수 있습니다. */
-  text-align: left; /* 텍스트 정렬을 설정할 수 있습니다. */
-}
-}

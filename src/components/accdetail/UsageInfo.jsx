@@ -3,7 +3,7 @@ import React from 'react';
 
 const UsageInfo = () => {
   return (
-    <div>
+    <div className='content_whole_frame'>
       <div className='content_title'>이용 안내</div>
       <div className='content_explain'>
         <div className='content_subtitle'>이용 규칙</div>
@@ -29,7 +29,6 @@ const UsageInfo = () => {
           </ul>
         </div>
       </div>
-      
     </div>
   );
 };

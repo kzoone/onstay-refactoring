@@ -3,7 +3,7 @@ import React from 'react';
 
 const RefundPolicy = () => {
   return (
-    <div>
+    <div className='content_whole_frame'>
       <div className='content_title'>환불 규정</div>
       <div className='content_explain'>
         <div className='content_subtitle'>환불 규정</div>
