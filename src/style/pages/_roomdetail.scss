@@ -292,31 +292,199 @@ main.roomdetail_section {
       }
     }
 
-    div.other_room_container {
-      @include flexbox(column);
+    // review + other room
+    div.btn_content_container {
+      @include flexbox($fd:column);
       margin-bottom: 6rem;
-
-      a {
-        width: 40%;
-        margin-bottom: 30px;
-
-        img {
-          width: 100%;
+      div.btn_title {
+        button{
+          margin-bottom: 3rem;
+          font-size: 1rem;
+          font-weight: bold;
+          color: #ccc;
+          letter-spacing: 0.3rem;
+        }
+        button:first-child {
+          margin-right: 20px;
+        }
+        button.active {
+          color: black;
         }
       }
 
-      p.room_name {
-        margin-bottom: 5px;
-        font-weight: 600;
+      // review 
+      div.review_container {
+        @include flexbox($fd:column, $ai:flex-end);
+        div.register_wrap {
+          padding-right: 7.5%;
+          margin-bottom: 0.8rem;
+          div.btn_wrap {
+            @include flexbox;
+            svg {
+              transition: all 0.1s;
+            }
+            button.register_btn {
+              margin-left: 0.3rem;
+              transition: all 0.1s;
+              border-bottom: 1px solid transparent;
+            }
+            &:hover > svg, 
+            &:hover > button{
+              color: #a28f72;
+            }
+            &:hover button {
+              border-bottom: 1px solid #a28f72;
+              font-weight: bold;
+            }
+          }
+
+          // modal
+          div.review_modal {
+            @include pos-center($type:fixed);
+            button {}
+            form.modal_form {
+              div.img_wrap {
+                label {}
+                input {}
+              }
+
+              div.star_container {
+                @include flexbox($jc: flex-start, $ai: flex-start);
+                div.star_wrap {
+                  position: relative;
+                  display: flex;
+                  align-items: center;
+                  flex-direction: row-reverse;
+                  margin: 0 5px;
+                  border: none;
+
+                  input {
+                    display: none;
+                  }
+                  input:checked ~ label,
+                  label:hover,
+                  label:hover ~ label{
+                    transition: 0.2s;
+                    color: #a28f72;
+                  }
+                  
+                  label {
+                    color: #aeaeae;
+                    cursor: pointer;
+                    &:nth-of-type(2n) {
+                      position: absolute;
+                      width: 8px;
+                      overflow: hidden;
+                    }
+                    &:nth-of-type(2) {
+                      transform: translateX(-8px);
+                    }
+                    &:nth-of-type(4) {
+                      transform: translateX(-24px);
+                    }
+                    &:nth-of-type(6) {
+                      transform: translateX(-40px);
+                    }
+                    &:nth-of-type(8) {
+                      transform: translateX(-56px);
+                    }
+                    &:nth-of-type(10) {
+                      transform: translateX(-72px);
+                    }
+                  }
+                }
+
+                span {
+                  color: #867357;
+                  font-weight: 500;
+                }
+              }
+            }
+          }
+        }
+        div.review_wrap {
+          @include flexbox($ai:normal);
+          flex-wrap: wrap;
+          div.review_content {
+            width: 40%;
+            margin-bottom: 3rem;
+            &:nth-of-type(odd) {
+              margin-right: 5%;
+            }
+            img {
+              width: 100%;
+              margin-bottom: 1rem;
+            }
+          }
+            
+          // 별점
+          div.star_info {
+            @include flexbox($jc: flex-end);
+            margin-bottom: 1rem;
+            div.star_wrap {
+              @include flexbox;
+              margin-right: 5px;
+              color: #a28f72;
+              svg.unselected {
+                color: #a28f72;
+              }
+            }
+            span {
+              margin-bottom: -2px;
+              color: #867357;
+            }
+          }
+
+          // 작성자, 작성 날짜
+          div.review_info {
+          @include flexbox($jc: space-between);
+          margin-bottom: 10px;
+          padding-bottom: 4px;
+          border-bottom: 1px solid black;
+            p {
+            font-size: 0.9rem;
+            }
+            p:first-child {
+              font-weight: bold;
+            }
+            p:last-child {
+              text-align: right;
+            }
+          }
+          p.review_text {
+            width: 100%;
+            font-size: 0.9rem;
+            line-height: 1.2rem;
+            color: #7b7a7a;
+          }
+        }
       }
 
-      p.max_capa {
-        font-size: 0.8rem;
+      // other room
+      div.other_room_container {
+      @include flexbox($fd:column);
+        a {
+          // width: 40%;
+          margin-bottom: 30px;
+          
+          img {
+            width: 100%;
+          }
+        }
+        
+        p.room_name {
+          margin-bottom: 5px;
+          font-weight: 600;
+        }
+        
+        p.max_capa {
+          font-size: 0.8rem;
+        }
       }
     }
   }
-
-  /* 공통  guide */
+    
+    /* 공통  guide */
   div.guide {
     width: 100vw;
     background-color: black;
