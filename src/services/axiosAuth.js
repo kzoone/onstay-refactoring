@@ -18,19 +18,20 @@ axiosAuth.interceptors.request.use(
       withCredentials : true
     })
       .then(res => {
-        localStorage.setItem('user_info', JSON.stringify(res.data.userInfo))
+        localStorage.setItem('isLoggedIn', 1)
         return config;
       })
       .catch((err) => {
         source.cancel('토큰 만료로 인한 요청 취소');
+        localStorage.removeItem('isLoggedIn')
         alert('토큰이 만료되어 로그인 페이지로 이동합니다.');
-        localStorage.removeItem('user_info') // 로컬스토리지에서 유저 정보 삭제
         window.location.href = '/login';
         return Promise.reject(err);
       });
   },
   (err) => {
-    console.error('토큰 체크 요청 실패', err);
+    console.log('no user');
+    // console.error('토큰 체크 요청 실패', err);
     return Promise.reject(err);
   }
 );

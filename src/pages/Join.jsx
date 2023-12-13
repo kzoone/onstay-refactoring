@@ -129,16 +129,16 @@ export function Join() {
                 </p>
                 <p>
                     <label htmlFor="user_name">이름</label>
-                    <input onChange={(e) => { handleChange(e) }} value={form.user_name} type="text" name="user_name" id="user_name" placeholder="이용자 본인의 이름을 입력하세요" />
+                    <input onChange={(e) => { handleChange(e) }} value={form.user_name} type="text" name="user_name" id="user_name" placeholder="이용자 본인의 이름을 입력하세요" autoComplete='username' />
                     {(!valid.user_name && form.user_name !== '') &&
                         <small className="invalid_noti user_name">{INVALID_NOTI_TEXT.user_name}</small>}
                 </p>
                 <p>
                     <label htmlFor="user_pw">비밀번호</label>
-                    <input onChange={(e) => { handleChange(e) }} value={form.user_pw} type="password" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요" />
+                    <input onChange={(e) => { handleChange(e) }} value={form.user_pw} type="password" name="user_pw" id="user_pw" placeholder="비밀번호를 입력하세요" autoComplete='new-password' />
                     {(!valid.user_pw && form.user_pw !== '') &&
                         <small className="invalid_noti user_pw">{INVALID_NOTI_TEXT.user_pw}</small>}
-                    <input onChange={(e) => { handleChange(e) }} value={form.user_pw_repeat} type="password" name="user_pw_repeat" id="user_pw_repeat" placeholder="비밀번호를 한번 더 입력하세요." />
+                    <input onChange={(e) => { handleChange(e) }} value={form.user_pw_repeat} type="password" name="user_pw_repeat" id="user_pw_repeat" placeholder="비밀번호를 한번 더 입력하세요." autoComplete='new-password' />
                     {(!valid.user_pw_repeat && form.user_pw_repeat !== '') &&
                         <small className="invalid_noti user_pw_repeat">{INVALID_NOTI_TEXT.user_pw_repeat}</small>}
                 </p>
@@ -153,7 +153,8 @@ export function Join() {
                 <JoinTerm setValid={setValid} />
 
                 <button className="join_btn black_box">회원가입</button>
-                <Link to='/login' className="login_link white_box">로그인</Link>
+                <button onClick={()=>{navigate('/login')}} className="login_link white_box">로그인</button>
+                
             </form>
         </main>
     );

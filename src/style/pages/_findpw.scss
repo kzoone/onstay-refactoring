@@ -1,0 +1,19 @@
+main.findpw {
+    // @include pageTitle($ft_size : 0.95rem);
+    form.findpw_form {
+        h2.findpw_desc {
+            padding: 2em 0;
+            margin-bottom: 1em;
+            text-align: center;
+            font-size: .9em;
+            text-wrap: nowrap;
+        }
+    }
+    button.small_btn {
+        align-self: start;
+        text-align: left;
+        font-size: .8em;
+        color: #444;
+        background: none;
+    }
+}

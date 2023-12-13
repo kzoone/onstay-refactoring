@@ -8,10 +8,10 @@ import AdminPageContent from '../components/adminpage/AdminPageContent'
 
 
 export function AdminPage() {
-    const user = useUserInfo()
+    const user = useUserInfo({blockAccessByAuth : true, adminRequired : true})
     const [showContent, setShowContent] = useState('ManageMember')
 
-    return  (
+    return user.isAdmin && (
         <main className='adminpage mypage'>
             <PageTitle title='ADMIN PAGE' />
             <MyPageGreet userName={'관리자'} isAdmin={true} />

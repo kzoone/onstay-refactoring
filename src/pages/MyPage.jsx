@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MyPageGreet } from '../components/mypage/MyPageGreet';
 import PageTitle from './../components/common/PageTitle';
 import useUserInfo from './../util/useUserInfo';
@@ -10,10 +10,9 @@ export function MyPage() {
     const location = useLocation();
     let defaultShowContent = new URLSearchParams(location.search).get('showContent') || 'MyReservation'
     let [showContent, setShowContent] = useState(defaultShowContent)
-    const user = useUserInfo({redirectIfNoUser : true});
+    const user = useUserInfo({blockAccessByAuth : true});
 
-
-    return (
+    return user.user_id && (
         <main className="mypage">
             <PageTitle title='MY PAGE' />
             <MyPageGreet userName={user.user_name} user_id={user.user_id} url={location.search} />

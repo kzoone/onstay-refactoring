@@ -66,7 +66,8 @@ div.mypage_content {
           color: white;
           background-color: black;
         }
-        div.question_content_length {
+        span.question_content_length {
+          display: block;
           text-align: right;
           margin: 5px 3px 0 0;
           small {

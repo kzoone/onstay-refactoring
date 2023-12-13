@@ -15,6 +15,7 @@
 @import './components/home/timeAttackSection';
 @import './components/home/newstaysection';
 @import './components/home/topbutton';
+@import './components/common/loadingspinner';
 
 /* pages */
 @import './pages/join';
@@ -27,3 +28,5 @@
 @import './pages/noticedetail';
 @import './pages/findstay';
 @import './pages/notfound';
+@import './pages/findid';
+@import './pages/findpw';
