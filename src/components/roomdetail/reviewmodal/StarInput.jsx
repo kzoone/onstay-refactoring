@@ -8,17 +8,16 @@ export default function startInput({setClickRating, handleClickRating, value, is
 
   return(
     <>
-      <label 
-        htmlFor={`star_${value}`}
-        onClick={handleClickStar}
-        isHalf={isHalf}>
-      { isHalf ? <FaStarHalf /> : <FaStar />}
-      </label>
       <input 
         type='radio'
         name='rating'
         id={`star_${value}`}
         value={value} />
+      <label 
+        htmlFor={`star_${value}`}
+        onClick={handleClickStar} >
+      { isHalf ? <FaStarHalf /> : <FaStar />}
+      </label>
     </>
   );
 }

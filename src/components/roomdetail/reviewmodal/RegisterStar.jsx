@@ -17,10 +17,12 @@ export default function RegisterStar({setClickRating, handleClickRating}) {
     <div className='star_wrap'>
     {
       inputValues.reverse().map(input => (
+        <React.Fragment key={input.score}>
           <StarInput setClickRating={setClickRating}
                       handleClickRating={handleClickRating}
                       value={input.score}
                       isHalf={input.isHalf} />
+        </React.Fragment>
       ))
     }
     </div>
