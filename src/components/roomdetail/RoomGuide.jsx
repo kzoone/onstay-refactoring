@@ -4,7 +4,7 @@ import UseGuide from './roomguide/UseGuide';
 import RefundGuide from './roomguide/RefundGuide';
 
 export default function RoomGuide(pros) {
-  let [ showContent, setShowContent ] = useState('reservation');
+  const [ showContent, setShowContent ] = useState('reservation');
   
   const handleClickContent = (e) => {
     setShowContent(e.target.dataset.content);
