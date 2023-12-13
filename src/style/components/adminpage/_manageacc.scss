@@ -1,0 +1,29 @@
+div.manage_accs{
+    table.accs_table{
+        width: 100%;
+        thead{
+            tr{
+                th{
+                    border: 1px solid #000;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    border: 1px solid #000;
+                    vertical-align: middle;
+                    &.acc_name{
+                        width: 300px;
+                    }
+                    &.acc_img{
+                        width: 100px;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

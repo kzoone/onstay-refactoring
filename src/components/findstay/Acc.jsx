@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LoveCount from './LoveCount';
 import LoveButton from './LoveButton';
+import { PiNotePencil } from "react-icons/pi";
+import { LiaWalletSolid } from "react-icons/lia";
 
-export default function Acc({acc, locationName}){
+export default function Acc({acc, locationName, userId, userLoved, getUserIsLovedAccs }){
      // Swiper 컴포넌트의 ref를 생성
     const swiperRef = useRef(null);
 
@@ -26,6 +27,11 @@ export default function Acc({acc, locationName}){
         };
     }, []);
 
+    const [loveCount, setLoveCount] = useState(acc.love); //좋아요 수
+    const onLoveCount = (clicked) => {
+        setLoveCount(clicked);
+    }
+
     return(
         <div className='acc_container'>
             <Link to={`acc/${acc.acc_id}`} className='acc'>
@@ -34,8 +40,8 @@ export default function Acc({acc, locationName}){
                     <div className='acc_info'>
                         <div>
                             <p>{locationName(acc.area_code)}</p>
-                            <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
-                            <p>￦{acc.room_price} ~</p>
+                            <p><span><PiNotePencil /></span>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
+                            <p><span><LiaWalletSolid /></span>￦{acc.room_price} ~</p>
                         </div>
                         <div className='reservation'>
                             <p>예약하기</p>
@@ -50,16 +56,16 @@ export default function Acc({acc, locationName}){
                         >
                             {acc.acc_img.split(',').filter(img => !img.startsWith('swiperImage')).map((img, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={`assets/images/acc/${img.trim()}`} />
+                                    <img src={`assets/images/acc/${img}`} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
                     </div>
                 </div>
             </Link>
-            <div className='love'>
-                <LoveCount acc={acc} />
-                <LoveButton acc={acc} />
+            <div className={`love ${userLoved ? 'loved' : ''}`}>
+                <LoveCount loveCount={loveCount} />
+                <LoveButton acc={acc} userId={userId} userLoved={userLoved} getUserIsLovedAccs={getUserIsLovedAccs} onLoveCount={onLoveCount} />
             </div>
         </div>
     );

@@ -2,81 +2,89 @@ div.footer{
     z-index: 10;
     padding: 30px 70px;
     background: #F5F5F5;
-    div.footer_top{
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        div.left{
-            img.main_logo{
-                width: 120px;
-            }
-        }
-        div.right{
-            div.sns{
-                display: flex;
-                justify-content: space-around;
-                padding: 10px 0;
-                a{
-                    width: 13%;
-                    margin: 0;
-                    color: rgb(102, 102, 102);
-                    &:first-child svg {
-                        width: 9.5px;
-                    }
-                    &:nth-of-type(4) svg,
-                    &:nth-of-type(5) svg {
-                        width: 20px;
-                    }
-                    svg {
-                        width: 13px;
-                    }
+    div.footer_content{
+        max-width: 1800px;
+        margin: 0 auto;
+        div.footer_top{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            div.left{
+                img.main_logo{
+                    width: 120px;
                 }
             }
-            div.copyright{
-                color: rgb(179, 179, 179);
-                font-size: 12px;
-                letter-spacing: 0.03rem;
+            div.right{
+                div.sns{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 10px 0;
+                    a{
+                        width: 13%;
+                        margin: 0;
+                        color: rgb(102, 102, 102);
+                        &:first-child svg {
+                            width: 9.5px;
+                        }
+                        &:nth-of-type(4) svg,
+                        &:nth-of-type(5) svg {
+                            width: 20px;
+                        }
+                        svg {
+                            width: 13px;
+                        }
+                    }
+                }
+                div.copyright{
+                    color: rgb(179, 179, 179);
+                    font-size: 12px;
+                    letter-spacing: 0.03rem;
+                }
             }
         }
-    }
 
-    div.footer_bottom{
-        border-top: 1px solid rgb(204, 204, 204);
-        padding-top: 30px;
-        p{
-            color: rgb(153, 153, 153);
-            line-height: 25px;
-            font-size: 12px;
+        div.footer_bottom{
+            border-top: 1px solid rgb(204, 204, 204);
+            padding-top: 30px;
+            p{
+                color: rgb(153, 153, 153);
+                line-height: 25px;
+                font-size: 12px;
+            }
         }
     }
     @media screen and (max-width: 1024px) {
-        margin-bottom: 60px;
+        & {
+            margin-bottom: 60px;
+        }
     }
     @include responsive(sm){
         & {
             padding: 30px 50px;
-            div.footer_top{
-                align-items: center;
-                margin-bottom: 15px;
-                div.left {
-                    margin-top: 10px;
-                    img.main_logo {
-                        width: 100px;
-                        display: none;
+            div.footer_content{
+                div.footer_top{
+                    align-items: center;
+                    margin-bottom: 15px;
+                    div.left {
+                        margin-top: 10px;
+                        img.main_logo {
+                            width: 100px;
+                            display: none;
+                        }
+                    }
+                    div.right{
+                        margin-top: 10px;
+                        div.copyright {
+                            letter-spacing: 0.05rem;
+                        }
                     }
                 }
-                div.right{
-                    margin-top: 10px;
-                    div.copyright {
-                        letter-spacing: 0.05rem;
+                div.footer_bottom{
+                    text-align: center;
+                    p{
+                        line-height: 15px;
+                        margin-bottom: 10px;
                     }
-                }
-            }
-            div.footer_bottom{
-                text-align: center;
-                p{
-                    line-height: 15px;
-                    margin-bottom: 10px;
                 }
             }
         }
