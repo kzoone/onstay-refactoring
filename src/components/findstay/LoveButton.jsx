@@ -60,10 +60,15 @@ export default function LoveButton({ acc, userId, userLoved, getUserIsLovedAccs,
         navigate('/login');
     };
     
-    // 모달 함수 : 닫기 클릭 + 모달 외 영역 클릭
+    // 모달 함수 : 닫기 클릭
     const handleModal = (e)  => {
         setIsModal(false);
     };
+    if(isModal){
+        document.querySelector('.header').style.zIndex = '9';
+    }else{
+        document.querySelector('.header').style.zIndex = '10';
+    }
     
     return(
         <>

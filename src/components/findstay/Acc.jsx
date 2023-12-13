@@ -4,6 +4,8 @@ import { Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import LoveCount from './LoveCount';
 import LoveButton from './LoveButton';
+import { PiNotePencil } from "react-icons/pi";
+import { LiaWalletSolid } from "react-icons/lia";
 
 export default function Acc({acc, locationName, userId, userLoved, getUserIsLovedAccs }){
      // Swiper 컴포넌트의 ref를 생성
@@ -38,8 +40,8 @@ export default function Acc({acc, locationName, userId, userLoved, getUserIsLove
                     <div className='acc_info'>
                         <div>
                             <p>{locationName(acc.area_code)}</p>
-                            <p>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
-                            <p>￦{acc.room_price} ~</p>
+                            <p><span><PiNotePencil /></span>기준 {acc.min_capa}명 (최대 {acc.max_capa}명)</p>
+                            <p><span><LiaWalletSolid /></span>￦{acc.room_price} ~</p>
                         </div>
                         <div className='reservation'>
                             <p>예약하기</p>

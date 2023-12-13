@@ -67,10 +67,10 @@ export function FindStay() {
     /**
      * 선택 인원
      */
-    const [personnel, setPersonnel] = useState(1);
+    const [personnel, setPersonnel] = useState(0);
     const handlePersonnel = (selectedPersonnel) => {
         setPage(1);
-        setAccList([]); 
+        setAccList([]);
         setPersonnel(selectedPersonnel);
     }
 
@@ -78,8 +78,8 @@ export function FindStay() {
     /**
      * 선택한 가격
     */
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(500000);
+    const [minPrice, setMinPrice] = useState(1);
+    const [maxPrice, setMaxPrice] = useState(500001);
     const handleMinPrice = (selectedMinPrice) => {
         setPage(1);
         setAccList([]); 
@@ -156,7 +156,10 @@ export function FindStay() {
         .get('http://localhost:8000/findstay/',{params})
         .then((res) => {
             if(res.data){
-                setAccList((prevData) => [...prevData, ...res.data]);
+                setAccList((prevData) => {
+                    const notDuplicationData = res.data.filter(nextAcc => !prevData.some(prevAcc => prevAcc.acc_id === nextAcc.acc_id));
+                    return [...prevData, ...notDuplicationData];
+                });
             }
         })
         .catch((err) => {

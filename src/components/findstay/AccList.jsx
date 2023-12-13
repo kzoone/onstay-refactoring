@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Acc from './Acc';
 import axios from "axios";
-import useUserInfo from '../../util/useUserInfo';
+import useUserInfo from '../../util/useUserInfo'
 
 export default function AccList({accs, location, codeinfo, locationName }){
 
-    const userId = useUserInfo().user_id;
+    const user = useUserInfo()
+    const userId = user.user_id;
     const [userLovedAccs, setUserLovedAccs] = useState([]);
 
     const getUserIsLovedAccs = () => {

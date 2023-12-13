@@ -36,11 +36,14 @@ export default function Location({ onLocation, codeinfo, locationName }){
         };
     }, [locationModalRef, closeModal, isLocationModalOpen]);
 
-    const [location, setLocation] = useState('전체');
     /* 지역 선택 */
+    const [location, setLocation] = useState('전체');
+
     const handleLocationSelect = (selected) => {
-        setLocation(selected);
-        onLocation(selected);
+        if (location !== selected) {
+            setLocation(selected);
+            onLocation(selected);
+        }
     }
 
     return(

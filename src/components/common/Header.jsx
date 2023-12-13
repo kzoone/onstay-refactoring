@@ -50,10 +50,10 @@ export default function Header() {
         //menubar_list가 open되었을때 배경 어둡게, 스크롤바 사라짐
         if(document.querySelector('.menubar_list').classList.contains('open')){
             document.querySelector('.menubar_bg').style.display = 'block';
-            document.querySelector('body').style.overflow = 'hidden';
+            document.querySelector('html').style.overflow = 'hidden';
         }else{
             document.querySelector('.menubar_bg').style.display = 'none';
-            document.querySelector('body').style.overflow = 'scroll';
+            document.querySelector('html').style.overflow = 'scroll';
         }
     })
 
@@ -157,7 +157,7 @@ export default function Header() {
             <div className='header_right'>
                 <nav>
                     <ul>
-                        <li><Link className='menu' to='/findstay'>FIND STAY</Link></li>
+                        <li><a className='menu' href='/findstay'>FIND STAY</a></li>
                         <li><a className='menu' href='/newstay'>NEW-STAY</a></li>
                         <li><Link className='menu' to='#'>JOURNAL</Link></li>
                         <li><Link className='menu' to='/notice'>NOTICE</Link></li>
@@ -264,10 +264,10 @@ export default function Header() {
             <nav>
                 <ul>
                     <li>
-                        <Link className='menus_mobile' to='/findstay'>
+                        <a className='menus_mobile' href='/findstay'>
                             <span className='icon_mobile'><SlMagnifier /></span>
                             <span className='menu_mobile'>FIND STAY</span>
-                        </Link>
+                        </a>
                     </li>
                     <li>
                         <Link className='menus_mobile' to='/newstay'>

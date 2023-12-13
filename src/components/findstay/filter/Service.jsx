@@ -17,7 +17,7 @@ export default function Service({ onParking, onCook, onPet, onBreakfast }){
         const handleParkingClick = () => {
             if(parking.classList.contains('possible')){
                 parking.classList.remove('possible');
-                setIsparking(0);
+                setIsparking((prevIsParking) => (prevIsParking === 0 ? 1 : 0));
             }else{
                 parking.classList.add('possible');
                 setIsparking(1);
@@ -40,7 +40,7 @@ export default function Service({ onParking, onCook, onPet, onBreakfast }){
         const handleCookClick = () => {
             if(cook.classList.contains('possible')){
                 cook.classList.remove('possible');
-                setIsCook(0);
+                setIsCook((prevIsCook) => (prevIsCook === 0 ? 1 : 0));
             }else{
                 cook.classList.add('possible');
                 setIsCook(1);
@@ -63,7 +63,7 @@ export default function Service({ onParking, onCook, onPet, onBreakfast }){
         const handlePetClick = () => {
             if(pet.classList.contains('possible')){
                 pet.classList.remove('possible');
-                setIsPet(0);
+                setIsPet((prevIsPet) => (prevIsPet === 0 ? 1 : 0));
             }else{
                 pet.classList.add('possible');
                 setIsPet(1);
@@ -86,7 +86,7 @@ export default function Service({ onParking, onCook, onPet, onBreakfast }){
         const handleBreakfastClick = () => {
             if(breakfast.classList.contains('possible')){
                 breakfast.classList.remove('possible');
-                setIsBreakfast(0);
+                setIsBreakfast((prevIsBreakfast) => (prevIsBreakfast === 0 ? 1 : 0));
             }else{
                 breakfast.classList.add('possible');
                 setIsBreakfast(1);
