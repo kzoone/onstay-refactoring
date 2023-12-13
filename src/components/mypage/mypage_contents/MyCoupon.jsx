@@ -38,7 +38,7 @@ export function MyCoupon ({user_id}) {
       {coupons.length 
       ? // 쿠폰 1개 이상 있는 경우
       coupons.map(coupon => 
-      <div className='coupon_wrapper'>
+      <div className='coupon_wrapper' key={coupon.coupon_id}>
           <span className='discount_price'>{coupon.discount_price.toLocaleString()}원</span>
           <span className='coupon_name'>{coupon.coupon_name}</span>
           <small className='coupon_expire_date'>만료일자 : 2024-12-23 </small>

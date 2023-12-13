@@ -158,7 +158,6 @@ export function MyEdit({ user_id }) {
     })
     .then(res => {
       alert('회원 탈퇴되었습니다. 홈으로 이동합니다.')
-      localStorage.removeItem('user_info')
       window.location.href = '/'
     })
     .catch(err => {
@@ -184,23 +183,23 @@ export function MyEdit({ user_id }) {
             </p> 
             <p>
               <label htmlFor="user_name">이름</label>
-              <input onChange={handleChange} value={form.user_name} type="text" name="user_name" id="user_name" placeholder="이용자 본인의 이름을 입력하세요" />
+              <input onChange={handleChange} value={form.user_name} type="text" name="user_name" id="user_name" placeholder="이용자 본인의 이름을 입력하세요" autoComplete='username'/>
               {(!valid.user_name && form.user_name !== '') &&
                         <small className="invalid_noti user_name">{INVALID_NOTI_TEXT.user_name}</small>}
             </p>
             <p>
               <label htmlFor="phone">휴대전화번호</label>
-              <input onChange={handleChange} value={form.phone} type="text" name="phone" id="phone" placeholder="- 없이 휴대전화 번호를 입력하세요" />
+              <input onChange={handleChange} value={form.phone} type="phone" name="phone" id="phone" placeholder="- 없이 휴대전화 번호를 입력하세요" />
               {(!valid.phone && form.phone !== '') &&
                         <small className="invalid_noti phone">{INVALID_NOTI_TEXT.phone}</small>}
             </p>
             <p>
               <label htmlFor="user_pw">비밀번호</label>
-              <input value={form.current_pw} onChange={handleChange} type="password" name="current_pw" id="current_pw" placeholder="현재 비밀번호를 입력하세요" />
-              <input value={form.new_pw} onChange={handleChange} type="password" name="new_pw" id="user_pw" placeholder="변경할 비밀번호를 입력하세요." />
+              <input value={form.current_pw} onChange={handleChange} type="password" name="current_pw" id="current_pw" placeholder="현재 비밀번호를 입력하세요" autoComplete='current-password'/>
+              <input value={form.new_pw} onChange={handleChange} type="password" name="new_pw" id="user_pw" placeholder="변경할 비밀번호를 입력하세요." autoComplete='new-password'/>
               {(!valid.new_pw && form.new_pw !== '') &&
                         <small className="invalid_noti user_pw">{INVALID_NOTI_TEXT.user_pw}</small>}
-              <input value={form.new_pw_repeat} onChange={handleChange} type="password" name="new_pw_repeat" id="user_pw_repeat" placeholder="변경할 비밀번호를 한번 더 입력하세요." />
+              <input value={form.new_pw_repeat} onChange={handleChange} type="password" name="new_pw_repeat" id="user_pw_repeat" placeholder="변경할 비밀번호를 한번 더 입력하세요." autoComplete='new-password' />
               {(!valid.new_pw_repeat && form.user_pw !== '') &&
                         <small className="invalid_noti user_pw_repeat">{INVALID_NOTI_TEXT.user_pw_repeat}</small>}
               <button type='button' className='black_box' onClick={changePassword}>비밀번호 변경</button>

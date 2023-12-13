@@ -82,12 +82,12 @@ export default function Header() {
             withCredentials : true
         })
         .then(res => {
-            localStorage.removeItem('user_info')
+            localStorage.removeItem('isLoggedIn')
             alert('로그아웃 되었습니다.')
             window.location.href = '/'
         })
         .catch(err => {
-            throw err
+           console.log(err);
         })
     }
 

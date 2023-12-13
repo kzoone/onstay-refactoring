@@ -135,9 +135,9 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
       <p>
         <label className="question_content" htmlFor="question_content">문의 내용</label>
         <textarea readOnly={!isEditable} value={form.question_content} onChange={handleChange} id='question_content' name="question_content"/>
-        <div className="question_content_length">
+        <span className="question_content_length">
           <small className="min">{contentLength}</small>/<small className="max">500</small>
-        </div>
+        </span>
       </p>
       {/* 모달 아닌 경우 (신규 등록 폼) */}
       {(!isModal && isEditable) && <button className="black_box" type="submit">문의 제출</button>}

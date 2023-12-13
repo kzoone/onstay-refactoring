@@ -1,5 +1,5 @@
-main.findid {
-    form.findid_form {
+main.find {
+    form.find_form {
         h2.findid_desc {
             padding: 2em 0;
             margin-bottom: 1em;
@@ -62,7 +62,7 @@ main.findid {
                 display: block;
                 font-size: .9em;
                 text-align: center;
-                &:first-child {
+                &:not(:last-child) {
                     margin-bottom: .5em;
                 }
             }

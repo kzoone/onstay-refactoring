@@ -103,9 +103,9 @@ export function FindId() {
     }
 
     return(
-        <main className='findid member'>
+        <main className='findid member find'>
             <PageTitle title='FIND ID' subtitle='아이디 찾기'/>
-            <form className='findid_form' onSubmit={handleSubmit}>
+            <form className='find_form findid_form' onSubmit={handleSubmit}>
                 <h2 className='findid_desc'>이메일 인증을 통해 아이디를 찾을 수 있습니다.</h2>
                 <p>
                     <label className='hidden_label' htmlFor="user_email">이메일</label>
@@ -124,7 +124,7 @@ export function FindId() {
                         <div className='timer'>{certification.timer}</div>
                     </div>
                         <button onClick={sendCertificationCode}
-                        type='button' className='code_resend_btn'>인증번호 재발송</button>
+                        type='button' className='code_resend_btn small_btn'>인증번호 재발송</button>
                 </p>
                 <button className='black_box' type='submit'>아이디 찾기</button>
                 </>}

@@ -18,7 +18,7 @@ export default function FindIdResult() {
     const secureName = (name) => name[0] + "*".repeat(name.length-1)
 
     return location.state?.list && (
-        <main className='findid member'>
+        <main className='find findid member'>
             <PageTitle title='FIND ID' subtitle='아이디 찾기' />
             <div className='find_result_container'>
                 <div className='find_result_desc'>

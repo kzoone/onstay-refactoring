@@ -25,7 +25,7 @@ export function MyLoveStay({ user_id }) {
         {accs.length 
         ?
         accs.map(acc => 
-            <div className="my_lovestay_wrapper">
+            <div className="my_lovestay_wrapper" key={acc.acc_id}>
               <div className="lovestay_info">
                 <h4 className="acc_name">{acc.acc_name}</h4>
                 <div className="acc_img_mobile">
@@ -48,7 +48,7 @@ export function MyLoveStay({ user_id }) {
                         pagination={{ clickable: true, el: '.swiper-pagination' }}
                 >
                   {acc.images.filter(img=>img.img_size==='small').map(img => 
-                  <SwiperSlide>
+                  <SwiperSlide key={img.acc_img}>
                     <img src={`assets/images/acc/${img.acc_img}`} alt="" />
                   </SwiperSlide>
                   )} 
