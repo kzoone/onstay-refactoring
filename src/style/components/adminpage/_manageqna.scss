@@ -1,0 +1,51 @@
+div.adminpage_content {
+  div.admin_qna {
+    ul.admin_qna_navbar {
+      margin-bottom: 5vh;
+      display: flex;
+      justify-content: flex-start;
+      li {
+        cursor: pointer;
+        color: #aaa;
+        &.active {
+          color: #000;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: $md-max-breakpoint) {
+  div.adminpage_content {
+    div.admin_qna {
+      ul.admin_qna_navbar {
+        li {
+          margin-right: 3vh;
+        }
+      }
+    } 
+  }
+}
+
+@media screen and (max-width: $md-max-breakpoint) {
+  div.adminpage_content {
+    div.admin_qna {
+      ul.admin_qna_navbar {
+        justify-content: space-between;
+        li {
+          width: 50%;
+          border-right: none;
+          text-align: center;
+          border-bottom: 2px solid #aaa;
+          padding-bottom: 1.5vh;
+          &.active {
+            font-size: 1.05em;
+            border-bottom: 2px solid #000;
+          }
+        }
+      }
+    }
+  }
+}
