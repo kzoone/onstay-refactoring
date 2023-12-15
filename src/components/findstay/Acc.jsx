@@ -6,6 +6,9 @@ import LoveCount from './LoveCount';
 import LoveButton from './LoveButton';
 import { PiNotePencil } from "react-icons/pi";
 import { LiaWalletSolid } from "react-icons/lia";
+import { BiSolidChevronLeft } from "react-icons/bi";
+import { BiSolidChevronRight } from "react-icons/bi";
+
 
 export default function Acc({acc, locationName, userId, userLoved, getUserIsLovedAccs }){
      // Swiper 컴포넌트의 ref를 생성
@@ -49,7 +52,7 @@ export default function Acc({acc, locationName, userId, userLoved, getUserIsLove
                     </div>
                     <div className='acc_imgs'>
                         <Swiper 
-                        navigation={true} 
+                        navigation={true}
                         modules={[Navigation]}
                         onResize={() => handleResize()}
                         ref={swiperRef}
