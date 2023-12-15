@@ -56,7 +56,11 @@ export default function Review({roomid}) {
                     type='button'
                     onClick={handleClickRegister}>등록하기</button>
           </div>
-          { reviewModal && <ReviewModal setReviewModal={setReviewModal} registerData={registerData} /> }
+          { reviewModal && <ReviewModal
+                              userid={userid}
+                              roomid={roomid}
+                              setReviewModal={setReviewModal}
+                              registerData={registerData} /> }
         </div>
         : null
       }
@@ -64,7 +68,7 @@ export default function Review({roomid}) {
         { reviewData.map(review => (
           <React.Fragment key={review.review_id}>
             <div className='review_content'>
-              <img src={`/assets/images/room/${review.review_img}`} alt='숙소 이미지' />
+              <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' />
               <div className='star_info'>
                 <ReviewStar rating={review.review_star} />
                 <span>{review.review_star}</span>
@@ -104,7 +108,7 @@ export default function Review({roomid}) {
     </div>
   );
 
-  return reviewData.length > 0 ? reviewContainer : emptyReview
+  return reviewData.length > 0 ? reviewContainer : emptyReview;
 }
 
 
