@@ -312,14 +312,14 @@ main.roomdetail_section {
         }
       }
 
-      // review 
+      // review o + 페이지네이션
       div.review_container {
         @include flexbox($fd:column, $ai:flex-end);
         div.register_wrap {
           padding-right: 7.5%;
           margin-bottom: 0.8rem;
           > div.btn_wrap {
-            @include flexbox;
+            @include flexbox($ai: unset);
             svg {
               transition: all 0.1s;
             }
@@ -328,13 +328,14 @@ main.roomdetail_section {
               transition: all 0.1s;
               border-bottom: 1px solid transparent;
             }
-            &:hover > svg, 
-            &:hover > button{
-              color: #a28f72;
-            }
-            &:hover button {
-              border-bottom: 1px solid #a28f72;
-              font-weight: bold;
+            @media (hover:hover) {
+              &:hover > svg, 
+              &:hover > button {
+                color: #a28f72;
+              }
+              &:hover button {
+                font-weight: bold;
+              }
             }
           }
 
@@ -343,24 +344,22 @@ main.roomdetail_section {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 10;
+            z-index: 1500;
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.5);
             div.review_modal {
               @include pos-center($type:fixed);
               width: 70%;
-              height: 80%;
+              height: 88%;
               background: rgba(0, 0, 0, 0.8);
               border-radius: 10px;
               div.logo_wrap {
                 @include flexbox;
                 width: 100%;
                 height: 18%;
-                // border-bottom: 1px solid #979797;
                 img {
-                  // 모바일 46%로 추후 수정 위에 모달 너비는 80% / height 줄이기
-                  width: 25%;  // 미디움 이상은 20%
+                  width: 25%;
                 }
               }
               button {}
@@ -369,10 +368,30 @@ main.roomdetail_section {
                 padding: 1rem 2rem;
                 height: 82%;
                 color: #797979;
+                div.date_wrap {
+                  display: flex;
+                  align-items: center;
+                  width: 80%;
+                  margin-bottom: 2rem;
+                  label {
+                    width: 25%;
+                    font-weight: bold;
+                  }
+                  select {
+                    width: 70%;
+                    padding: 0.2rem;
+                    border: 1px solid #797979;
+                    border-radius: 5px;
+                    font-size: 0.8rem;
+                    color: #797979;
+                    // background: #797979;
+                    // color: white;
+                  }
+                }
                 div.img_wrap {
                   display: flex;
-                  margin-bottom: 2rem;
                   width: 80%;
+                  margin-bottom: 2rem;
                   label {
                     width: 25%;
                     font-weight: bold;
@@ -389,12 +408,14 @@ main.roomdetail_section {
                       font-size: 0.9rem;
                     }
                     button.file_icon_btn {
-                      &:hover svg {
-                        fill: white;
+                      @media (hover:hover) {
+                        &:hover svg {
+                          fill: white;
+                        }
                       }
-                      svg {
-                        fill: #797979;
-                      }
+                        svg {
+                          fill: #797979;
+                        }
                     }
                   }
                 }
@@ -421,9 +442,16 @@ main.roomdetail_section {
                       input {
                         display: none;
                       }
-                      input:checked ~ label,
+/*                      input:checked ~ label,
                       label:hover,
                       label:hover ~ label{
+                        transition: 0.2s;
+                        color: #e3c563;
+                      } */
+                      input:focus ~ label,
+                      label:hover,
+                      label:hover ~ label,
+                      input:checked ~ label {
                         transition: 0.2s;
                         color: #e3c563;
                       }
@@ -466,6 +494,7 @@ main.roomdetail_section {
                   @include flexbox($jc: flex-start, $ai:flex-start);
                   width: 80%;
                   margin-bottom: 0.5rem;
+                  background: transparent;
                   label {
                     width: 25%;
                     font-weight: bold;
@@ -499,11 +528,12 @@ main.roomdetail_section {
                     &.close_btn {
                       margin-right: 5%;
                     }
-                    &:hover {
-                      border: 1px solid #797979;
-                      border: 1px solid rgb(184, 184, 184);
-                      background: rgb(124, 124, 124);
-                      color: black;
+                    @media (hover:hover) {
+                      &:hover {
+                        border: 1px solid rgb(184, 184, 184);
+                        background: rgb(124, 124, 124);
+                        color: black;
+                      }
                     }
                   }
                 }
@@ -540,7 +570,7 @@ main.roomdetail_section {
               }
             }
             span {
-              margin-bottom: -2px;
+              margin-bottom: -4px;
               color: #867357;
             }
           }
@@ -566,6 +596,51 @@ main.roomdetail_section {
             font-size: 0.9rem;
             line-height: 1.2rem;
             color: #7b7a7a;
+          }
+        }
+
+        // 페이지네이션
+        ul.pagination {
+          @include flexbox($ai:flex-end);
+          width: 100%;
+          margin-top: 3rem;
+          li {
+            margin: 0 0.5rem;
+            &.active a {
+              display: block;
+              width: 20px;
+              height: 20px;
+              padding-top: 1px;
+              border-radius: 7px;
+              background: #867357;
+              font-weight: bold;
+              font-size: 0.9rem;
+              color: white;
+              line-height: 20px;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+
+      // review x 
+      div.review_container {
+        div.content_wrap {
+          @include flexbox($fd: column);
+          height: 30vh;
+          background: #f2f1f1;
+          border-radius: 1rem;
+          img {
+            width: 30%;
+            margin-bottom: 1rem;
+          }
+          p {
+            font-size: 0.9rem;
+            color: #636262;
+            &:last-child {
+              margin-top: 0.5rem;
+            }
           }
         }
       }
@@ -672,8 +747,12 @@ main.roomdetail_section {
             }
 
             p:not(:first-child) {
+              display: flex;
               font-size: 0.8rem;
               margin-bottom: 1rem;
+              svg {
+                margin-right: 5px;
+              }
             }
           }
 
@@ -800,6 +879,7 @@ main.roomdetail_section {
         div.btn_content_container {
           div.review_container {
             div.register_wrap {
+              padding: 1%;
               div.bg_modal {
                 div.review_modal {
                   width: 65%;
@@ -809,6 +889,12 @@ main.roomdetail_section {
                     }
                   }
                 }
+              }
+            }
+
+            div.review_wrap {
+              div.review_content {
+                width: 47%;
               }
             }
           }
@@ -927,7 +1013,11 @@ main.roomdetail_section {
 
         // 리뷰 탭메뉴 + 모달
         div.btn_content_container {
-          div.btn_title {}
+          div.btn_title {
+            button {
+              margin-bottom: 2rem;
+            }
+          }
 
           div.review_container {
             div.register_wrap {
@@ -1082,21 +1172,24 @@ main.roomdetail_section {
           }
         }
 
-        div.common_container+div.amenities_container+div.page_title_container {
+/*         div.common_container+div.amenities_container+div.page_title_container {
           margin-top: 4rem;
         }
-
+ */
         // 리뷰 탭메뉴 + 모달
         div.btn_content_container {
-          div.btn_title {}
+          div.btn_title {
+
+          }
 
           div.review_container {
             div.register_wrap {
+              padding-right: 0.5rem;
               // 모달
               div.bg_modal {
                 div.review_modal {
                   width: 80%;
-                  height: 90%;
+                  height: 95%;
                   div.logo_wrap {
                     img {
                       width: 28%;
@@ -1158,12 +1251,24 @@ main.roomdetail_section {
                 }
               }
             }
+
+            div.review_wrap {
+              flex-direction: column;
+              align-items: center;
+              div.review_content {
+                width: 100%;
+                padding: 0 0.5rem;
+                &:nth-of-type(odd) {
+                  margin-right: 0;
+                }
+              }
+            }
           }
         }
 
-        div.other_room_container {
+/*         div.other_room_container {
           margin-bottom: 4rem;
-        }
+        } */
       }
 
       // 공통 guide
@@ -1271,13 +1376,19 @@ main.roomdetail_section {
     }
   }
   
+  // @media screen and (max-width: $sm-breakpoint) {
   @include responsive(sm) {
     & {
-      > div.content_wrap div.common_container.features_container div.info {
-        justify-content: flex-start;
-      }
-
+/*       > div.content_wrap div.common_container.features_container div.info {
+        justify-content: flex-start; 
+      } */
       > div.content_wrap {
+        div.common_container.features_container {
+          div.info {
+            justify-content: flex-start; 
+          }
+        }
+
         div.btn_content_container {
           div.review_container {
             div.register_wrap {
@@ -1289,14 +1400,23 @@ main.roomdetail_section {
                       width: 35%;
                     }
                   }
-
                   // form
                   form.modal_form {
+                    div.date_wrap {
+                      margin-bottom: 1.8rem;
+                    }
+
                     div.text_length {
                       margin-bottom: 1.5rem;
                     }
                   }
                 }
+              }
+            }
+
+            div.review_wrap {
+              div.review_content {
+                width: 100%;
               }
             }
           }
