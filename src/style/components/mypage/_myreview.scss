@@ -1,0 +1,664 @@
+main.mypage {
+  >div.mypage_main_container {
+    div.mypage_content {
+      div.review_container {
+        >p {
+          margin-bottom: 2rem;
+          font-size: 1.1rem;
+          font-weight: 600;
+        }
+        div.review_wrap {
+          display: flex;
+          flex-wrap: wrap;
+          div.review_inner {
+            width: 48%;
+            &:nth-of-type(odd) {
+              margin-right: 2%;
+            }
+
+            div.btn_wrap {
+              @include flexbox($jc: flex-end);
+              margin-bottom: 0.5rem;
+              button {
+                display: flex;
+                justify-content: center;
+                font-size: 0.95rem;
+                &:first-child {
+                  margin-right: 5px;
+                }
+                @media (hover:hover) {
+                  &:hover {
+                    font-weight: 600;
+                    color: #867357;
+                  }
+                }
+              }
+              // 수정 modal
+              div.bg_modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1500;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+
+                div.review_modal {
+                  @include pos-center($type: fixed);
+                  width: 80%;
+                  max-width: 600px;
+                  height: 88%;
+                  background: rgba(0, 0, 0, 0.8);
+                  border-radius: 10px;
+
+                  div.logo_wrap {
+                    @include flexbox;
+                    width: 100%;
+                    height: 18%;
+
+                    img {
+                      width: 25%;
+                    }
+                  }
+
+                  form.modal_form {
+                    @include flexbox($fd: column, $jc: normal);
+                    padding: 1rem 2rem;
+                    height: 82%;
+                    color: #797979;
+
+                    div.date_wrap {
+                      display: flex;
+                      align-items: center;
+                      width: 80%;
+                      margin-bottom: 2rem;
+
+                      label {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      input {
+                        width: 70%;
+                        padding: 0 4px;
+                        border-bottom: 1px solid #797979;
+                        font-size: 0.8rem;
+                        color: #797979;
+                      }
+                    }
+
+                    div.img_wrap {
+                      display: flex;
+                      width: 80%;
+                      margin-bottom: 2rem;
+
+                      // 선택 이미지 보기 모달
+                      div.img_modal_container {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 10;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.8);
+                        div.modal_content {
+                          @include flexbox($fd:column);
+                          width: 100%;
+                          height: 100%;
+                          img {
+                            width: 60%;
+                            margin-bottom: 30px;
+                          }
+                        }
+                      }
+
+                      label {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      input {
+                        display: none;
+                      }
+
+                      div.icon_wrap {
+                        @include flexbox($jc: space-between, $ai: center);
+                        width: 70%;
+                        padding: 0 4px;
+                        border-bottom: 1px solid #797979;
+
+                        p {
+                          font-size: 0.9rem;
+
+                          &.icon_text {
+                            font-size: 0.8rem;
+                          }
+                        }
+
+                        div.icon_box {
+                          display: flex;
+                          button.img_icon_btn,
+                          button.file_icon_btn {
+                            @media (hover:hover) {
+                              &:hover svg {
+                                fill: white;
+                              }
+                            }
+                            
+                            svg {
+                              fill: #797979;
+                            }
+                          }
+                        }
+                      }
+                    }
+
+                    div.star_container {
+                      @include flexbox($jc: flex-start, $ai: flex-start);
+                      margin-bottom: 2rem;
+                      width: 80%;
+
+                      p {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      div.star_content {
+                        @include flexbox($jc: space-between);
+                        width: 70%;
+                        padding-right: 4px;
+                        border-bottom: 1px solid #797979;
+
+                        div.star_wrap {
+                          position: relative;
+                          display: flex;
+                          align-items: center;
+                          flex-direction: row-reverse;
+                          margin: 0 5px;
+
+                          input {
+                            display: none;
+                          }
+
+                          input:focus~label,
+                          label:hover,
+                          label:hover~label,
+                          input:checked~label {
+                            transition: 0.2s;
+                            color: rgb(226, 195, 70);
+                          }
+
+                          label {
+                            color: #aeaeae;
+                            color: #424242;
+                            cursor: pointer;
+
+                            &:nth-of-type(2n) {
+                              position: absolute;
+                              width: 8px;
+                              overflow: hidden;
+                            }
+
+                            &:nth-of-type(2) {
+                              transform: translateX(-8px);
+                            }
+
+                            &:nth-of-type(4) {
+                              transform: translateX(-24px);
+                            }
+
+                            &:nth-of-type(6) {
+                              transform: translateX(-40px);
+                            }
+
+                            &:nth-of-type(8) {
+                              transform: translateX(-56px);
+                            }
+
+                            &:nth-of-type(10) {
+                              transform: translateX(-72px);
+                            }
+                          }
+                        }
+
+                        span {
+                          font-weight: bold;
+                          color: rgb(226, 195, 70);
+                          text-align: right;
+                        }
+                      }
+                    }
+
+                    div.content_wrap {
+                      @include flexbox($jc: flex-start, $ai: flex-start);
+                      width: 80%;
+                      margin-bottom: 0.5rem;
+                      background: transparent;
+
+                      label {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      textarea {
+                        width: 70%;
+                        height: 30vh;
+                        padding: 0.5rem;
+                        font-size: 0.8rem;
+                        border: 1px solid #797979;
+                        border-radius: 6px;
+                        color: #dadada;
+                        resize: none;
+
+                        &::placeholder {
+                          text-align: center;
+                        }
+                      }
+                    }
+
+                    div.text_length {
+                      width: 70%;
+                      text-align: right;
+                      margin-bottom: 2rem
+                    }
+
+                    div.btn_wrap {
+                      @include flexbox;
+                      width: 87%;
+
+                      button {
+                        width: 40%;
+                        padding: 0.6rem;
+                        border: 1px solid #797979;
+                        border-radius: 10px;
+                        background: rgba(100, 100, 100, 0.5);
+                        font-size: 0.8rem;
+                        color: #a7a6a6;
+
+                        &.close_btn {
+                          margin-right: 5%;
+                        }
+
+                        &:disabled {
+                          border-color: black;
+                          color: #797979;
+                        }
+
+                        @media (hover:hover) {
+                          &:not(:disabled):hover {
+                            border: 1px solid rgb(184, 184, 184);
+                            background: rgb(124, 124, 124);
+                            color: black;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            div.review_content {
+              margin-bottom: 3rem;
+              img {
+                width: 100%;
+                margin-bottom: 1rem;
+              }
+
+              div.star_info {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 1rem;
+                color: #a28f72;
+                div.star_wrap {
+                  display: flex;
+                  margin-right: 5px;
+                }
+              }
+
+              div.review_info {
+                @include flexbox($jc: space-between);
+                margin-bottom: 10px;
+                padding-bottom: 4px;
+                border-bottom: 1px solid black;
+  
+                p {
+                  font-size: 0.9rem;
+                  &:first-child {
+                    font-weight: bold;
+                  }
+                  &:last-child {
+                    text-align: right;
+                  }
+                }
+              }
+  
+              p.review_text {
+                width: 100%;
+                font-size: 0.9rem;
+                line-height: 1.2rem;
+                color: #7b7a7a;
+              }
+            }
+          }
+        }
+        ul.pagination {
+          @include flexbox($ai: flex-end);
+          width: 100%;
+          margin-top: 3rem;
+
+          li {
+            margin: 0 0.5rem;
+
+            &.active a {
+              display: block;
+              width: 20px;
+              height: 20px;
+              padding-top: 1px;
+              border-radius: 7px;
+              background: #867357;
+              font-weight: bold;
+              font-size: 0.9rem;
+              color: white;
+              line-height: 20px;
+              text-align: center;
+            }
+          }
+        }
+      }
+      // review x 
+      div.empty_review_container {
+        div.content_wrap {
+          @include flexbox($fd: column);
+          height: 30vh;
+          background: #f2f1f1;
+          border-radius: 1rem;
+
+          img {
+            max-width: 100px;
+            margin-bottom: 1rem;
+          }
+
+          p {
+            font-size: 0.9rem;
+            color: #636262;
+
+            &:last-child {
+              margin-top: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    & {
+      >div.mypage_main_container {
+        div.mypage_content {
+          div.review_container {
+            >p {
+            }
+            div.review_wrap {
+              div.review_inner {
+                width: 100%;
+                &:nth-of-type(odd) {
+                  margin-right: 0;
+                }
+    
+                div.btn_wrap {
+                  button {
+                    &:first-child {
+                    }
+                  }
+                }
+    
+                div.review_content {
+                  img {
+                  }
+    
+                  div.star_info {
+                    div.star_wrap {
+                    }
+                  }
+    
+                  div.review_info {
+                    p {
+                      &:first-child {
+                      }
+                      &:last-child {
+                      }
+                    }
+                  }
+      
+                  p.review_text {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width : 670px) {
+    & {
+      >div.mypage_main_container {
+        div.mypage_content {
+          div.review_container {
+            >p {
+            }
+            div.review_wrap {
+              div.review_inner {
+                &:nth-of-type(odd) {
+                }
+    
+                div.btn_wrap {
+                  button {
+                    &:first-child {
+                    }
+                  }
+                  // 수정 모달
+                  div.bg_modal {
+                    div.review_modal {
+                      width: 80%;
+                      height: 95%;
+      
+                      div.logo_wrap {
+                        height: 17%;
+      
+                        img {
+                          width: 28%;
+                        }
+                      }
+      
+                      // form 
+                      form.modal_form {
+                        height: 83%;
+                        padding: 0;
+      
+                        div.date_wrap {
+                          flex-direction: column;
+                          align-items: normal;
+      
+                          label {
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+      
+                          input {
+                            width: 100%;
+                          }
+                        }
+      
+                        div.img_wrap {
+                          flex-direction: column;
+      
+                          label {
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+      
+                          div.icon_wrap {
+                            width: 100%;
+                          }
+                        }
+      
+                        div.star_container {
+                          flex-direction: column;
+      
+                          p {
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+      
+                          div.star_content {
+                            width: 100%;
+                          }
+                        }
+      
+                        div.content_wrap {
+                          flex-direction: column;
+      
+                          label {
+                            width: 50%;
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+      
+                          textarea {
+                            width: 100%;
+                          }
+                        }
+      
+                        div.text_length {
+                          width: 80%;
+                          margin-bottom: 1.5rem;
+                        }
+                      }
+                    }
+                  }
+                }
+    
+                div.review_content {
+                  img {
+                  }
+    
+                  div.star_info {
+                    div.star_wrap {
+                    }
+                  }
+    
+                  div.review_info {
+                    p {
+                      &:first-child {
+                      }
+                      &:last-child {
+                      }
+                    }
+                  }
+      
+                  p.review_text {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive(sm) {
+    & {
+      >div.mypage_main_container {
+        div.mypage_content {
+          div.review_container {
+            >p {
+            }
+            div.review_wrap {
+              div.review_inner {
+                width: 100%;
+                &:nth-of-type(odd) {
+                  margin-right: 0;
+                }
+    
+                div.btn_wrap {
+                  button {
+                    &:first-child {
+                      margin-right: 9px;
+                    }
+                  }
+                  // 수정 모달
+                  div.bg_modal {
+                    div.review_modal {
+                      width: 95%;
+      
+                      div.logo_wrap {
+                        img {
+                          width: 35%;
+                        }
+                      }
+      
+                      // form
+                      form.modal_form {
+                        div.date_wrap {
+                          margin-bottom: 1.6rem;
+                        }
+      
+                        div.img_wrap {
+                          margin-bottom: 1.6rem;
+                          // 선택 이미지 보기 모달
+                          div.img_modal_container {
+                            background: rgba(0, 0, 0, 0.9);
+                            div.modal_content {
+                              img {
+                                width: 90%;
+                                margin-bottom: 30px;
+                              }
+                            }
+                          }
+                        }
+      
+                        div.star_container {
+                          margin-bottom: 1.6rem;
+                        }
+      
+                        div.text_length {
+                          margin-bottom: 1.5rem;
+                        }
+                      }
+                    }
+                  }
+                }
+    
+                div.review_content {
+                  img {
+                  }
+    
+                  div.star_info {
+                    div.star_wrap {
+                    }
+                  }
+    
+                  div.review_info {
+                    p {
+                      &:first-child {
+                      }
+                      &:last-child {
+                      }
+                    }
+                  }
+      
+                  p.review_text {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
