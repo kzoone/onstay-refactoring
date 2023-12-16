@@ -1,6 +1,6 @@
 import { FaStar, FaStarHalf, FaRegStar } from 'react-icons/fa';
 
-export default function startInput({setClickRating, handleClickRating, value, isHalf}) {
+export default function startInput({setClickRating, handleClickRating, value, isHalf, isSelected}) {
 
   const handleClickStar = () => {
     handleClickRating(value);
@@ -12,6 +12,7 @@ export default function startInput({setClickRating, handleClickRating, value, is
         type='radio'
         name='rating'
         id={`star_${value}`}
+        checked={isSelected}
         value={value} />
       <label 
         htmlFor={`star_${value}`}

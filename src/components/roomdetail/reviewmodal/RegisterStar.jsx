@@ -1,7 +1,7 @@
 import React from 'react';
 import StarInput from './StarInput';
 
-export default function RegisterStar({setClickRating, handleClickRating}) {
+export default function RegisterStar({setClickRating, handleClickRating, initialRating}) {
   const inputValues = [ { score : 0.5, isHalf : true }, 
                         { score : 1, isHalf : false }, 
                         { score : 1.5, isHalf : true }, 
@@ -21,7 +21,8 @@ export default function RegisterStar({setClickRating, handleClickRating}) {
           <StarInput setClickRating={setClickRating}
                       handleClickRating={handleClickRating}
                       value={input.score}
-                      isHalf={input.isHalf} />
+                      isHalf={input.isHalf} 
+                      isSelected={initialRating !== null && initialRating == input.score} />
         </React.Fragment>
       ))
     }

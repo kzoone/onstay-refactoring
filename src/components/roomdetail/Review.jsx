@@ -25,7 +25,7 @@ export default function Review({roomid}) {
     // 리뷰 가능 여부 요청
     axios.get(`http://localhost:8000/room/${roomid}/${userid}`)
     .then(result => {
-      if (result.data.message === '예약 x') {
+      if (result.data.message === '일치하는 예약 정보가 없습니다') {
         setRegisterData([]);
       } else {
         setRegisterData(result.data);
@@ -89,7 +89,7 @@ export default function Review({roomid}) {
         activePage={currentPage}
         itemsCountPerPage={4}
         totalItemsCount={reviewData.length > 0 ? reviewData[0].total_cnt : 0}
-        pageRangeDisplayed={4}
+        pageRangeDisplayed={5}
         onChange={handlePageChange}
         prevPageText='<'
         nextPageText='>'

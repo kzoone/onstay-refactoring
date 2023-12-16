@@ -345,7 +345,6 @@ main.roomdetail_section {
               }
 
               @media (hover:hover) {
-
                 &:hover>svg,
                 &:hover>button {
                   color: #a28f72;
@@ -892,15 +891,17 @@ main.roomdetail_section {
       >div.content_wrap {
         div.btn_content_container {
           margin: 8rem 0;
-          div.review_container {
-            div.register_wrap {
-              div.bg_modal {
-                div.review_modal {
-                  width: 53%;
-
-                  div.logo_wrap {
-                    img {
-                      width: 20%;
+          div.container_content{
+            div.review_container {
+              div.register_wrap {
+                div.bg_modal {
+                  div.review_modal {
+                    width: 635px;
+                    
+                    div.logo_wrap {
+                      img {
+                        width: 23%;
+                      }
                     }
                   }
                 }
@@ -964,7 +965,7 @@ main.roomdetail_section {
 
                 div.bg_modal {
                   div.review_modal {
-                    width: 65%;
+                    width: 600px;
 
                     div.logo_wrap {
                       img {
@@ -1092,7 +1093,6 @@ main.roomdetail_section {
         // 리뷰 탭메뉴 + 모달
         div.btn_content_container {
           div.container_content {
-
             div.btn_title {
               button {
                 margin-bottom: 2rem;

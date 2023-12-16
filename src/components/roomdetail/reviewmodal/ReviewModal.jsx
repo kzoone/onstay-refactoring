@@ -100,7 +100,6 @@ export default function ReviewModal(props) {
           data : formData
         })
         .then(result => {
-          console.log(result);
           if(result.data === 'insert ok') {
             alert('리뷰 등록이 완료되었습니다');
             window.location.reload();
@@ -161,7 +160,8 @@ export default function ReviewModal(props) {
             <p>Rating</p>
             <div className='star_content'>
               <RegisterStar setClickRating={setClickRating} 
-                            handleClickRating={handleClickRating} />
+                            handleClickRating={handleClickRating} 
+                            initialRating={clickRating} />
               <span>{clickRating}점</span>
             </div>
           </div>
