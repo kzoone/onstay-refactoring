@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-export default function MemberSort({setPage, setFilterdUsers, filterdUsers}) {
-  const [sort, setSort] = useState({ sortBy: 'user_id', desc: false })
+export default function MemberSort({sort, setSort, setPage, setFilterdUsers}) {
 
   useEffect(() => {
     setFilterdUsers(filterdUsers => {
@@ -17,7 +16,7 @@ export default function MemberSort({setPage, setFilterdUsers, filterdUsers}) {
       })
       return copy
     })
-  }, [sort, filterdUsers]) // 소팅 (정렬)
+  }, [sort]) // 소팅 (정렬)
 
   const handleSort = (e) => {
     setPage(1)
@@ -27,7 +26,6 @@ export default function MemberSort({setPage, setFilterdUsers, filterdUsers}) {
         : { sortBy: e.target.dataset.sortby, desc: false } // 다른 정렬 기준으로 변경 (default는 오름차순)
     )
   }
-
 
   return (
     <ul className='sort_btns'>

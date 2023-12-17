@@ -13,8 +13,172 @@ div.adminpage_content {
         }
       }
     }
+    div.category_filter {
+      display: inline-block;
+      position: relative;
+      margin-bottom: .3em;
+      button {
+        font-size: .8em;
+        display: flex;
+        background-color: #fff;
+        border : 1px solid black;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        padding: .6em .2em;
+        box-sizing: border-box;
+        border-radius: 15px;
+        &.active {
+          color: #FFF;
+          background-color: #000;
+        }
+        svg {
+          margin-right: .3em;
+        }
+      }
+      form {
+        width: 150px;
+        padding: .5em .5em;
+        background-color: #FFF;
+        box-shadow: 0 0 1px #000;
+        top: 2.2em; left: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        display: none;
+        &.active {
+          display: block;
+        }
+        h4 {
+          text-align: center;
+          font-size: .9em;
+          font-weight: 600;
+          padding-bottom: .2em;
+          border-bottom: .5px solid #CCC;
+          margin-bottom: .5em;
+        }
+        p {
+          display: flex;
+          justify-content: space-between;
+          &:not(:last-child) {
+            margin-bottom: .5em;
+          }
+          label {
+            font-size: .9em;
+          }
+        }
+      }
+    }
+    table.qna_list_table {
+      text-align: center;
+      font-size: 0.8rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      th {
+        &.row_num {
+          width: 5%;
+        }
+        &.qna_category {
+          width: 20%;
+        }
+        &.qna_title {
+          width: 35%;
+        }
+        &.user_id {
+          width: 20%;
+        }
+        &.update_date {
+          width: 20%;
+        }
+        background-color: #555;
+        color: #eee;
+        font-weight: bold;
+        // padding: 0.8vh 0;
+        height: 25px;
+        line-height: 25px;
+        box-sizing: border-box;
+      }
+      tr {
+        &:nth-of-type(odd) {
+          background-color: #eee;
+        }
+      }
+      tbody {
+        height: 400px;
+        tr {
+          height: 40px;
+          line-height: 40px;
+        }
+      }
+      td {
+          padding: 0 0.25rem;
+          // box-sizing: border-box;
+          span {
+            max-width: 20vw;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis; 
+          }
+      }
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    
+    ul.pagination li {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #e2e2e2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+    }
+  
+    ul.pagination li:first-child{
+      border-radius: 5px 0 0 5px;
+    }
+  
+    ul.pagination li:last-child{
+      border-radius: 0 5px 5px 0;
+    }
+    
+    ul.pagination li a {
+      text-decoration: none;
+      color: #888;
+      font-size: 1rem;
+    }
+    
+    ul.pagination li.active a {
+      color: white;
+    }
+  
+    ul.pagination li.active {
+      background-color: #888;
+    }
+    
+    ul.pagination li a:hover,
+    ul.pagination li a.active {
+      color: blue;
+    }
+    
+    .page-selection {
+      width: 48px;
+      height: 30px;
+      color: #337ab7;
+    }
   }
 }
+
+
+
+
 
 
 @media screen and (min-width: $md-max-breakpoint) {
@@ -25,6 +189,7 @@ div.adminpage_content {
           margin-right: 3vh;
         }
       }
+
     } 
   }
 }
@@ -45,6 +210,9 @@ div.adminpage_content {
             border-bottom: 2px solid #000;
           }
         }
+      }
+      table.member_list_table {
+        font-size: 0.7em;
       }
     }
   }

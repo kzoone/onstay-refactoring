@@ -9,6 +9,7 @@ import MemberDateFilter from '../managemember/MemberDateFilter';
 
 export default function ManageMember() {
   const [users, setUsers] = useState([]); // 초기에만 가져오는 모든 유저 정보
+  const [sort, setSort] = useState({ sortBy: 'user_id', desc: false }) // 소팅 기준 (sortBy), 내림차순 여부(desc)
   const [filterdUsers, setFilterdUsers] = useState([]) // 필터링, 검색, 소팅 된 유저 정보
   const [search, setSearch] = useState({ terms: 'user_id', query: '' }) // 검색 기준(terms), 검색어(query)
   const [joinDateRange, setJoinDateRange] = useState({ min: '', max: '' }) // 가입 일자 범위 필터
@@ -46,6 +47,8 @@ export default function ManageMember() {
           copy = copy.filter(user => user.join_date <= joinDateRange.max)
         }
         setFilterdUsers(copy)
+        setSort({...sort}) // 필터링 이후에도 현재 정렬 기준을 그대로 유자하기 위함
+        setPage(1)
         setLoading(false)
       }, 500)
 
@@ -64,19 +67,20 @@ export default function ManageMember() {
       <MemberDateFilter joinDateRange={joinDateRange} setJoinDateRange={setJoinDateRange} />
 
       {/* 정렬 기능 */}
-      <MemberSort setPage={setPage} 
+      <MemberSort setPage={setPage} sort={sort} setSort={setSort}
       filterdUsers={filterdUsers} setFilterdUsers={setFilterdUsers}/>
 
       {/* 필터, 검색, 정렬 적용된 회원 리스트 */}
       {filterdUsers.length
-        ? <MemberList users={filterdUsers} page={page} />
-        : <div className='member_no_list'>검색 조건에 맞는 회원 정보가 없습니다.</div>
+        ? <MemberList users={filterdUsers} page={page} /> // 검색결과 1명 이상일 경우
+        : <div className='member_no_list'>검색 조건에 맞는 회원 정보가 없습니다.</div> // 검색결과 0명인 경우
       }
 
       {/* 회원 검색 폼 */}
       <MemberSearch search={search} setSearch={setSearch} isLoading={isLoading} searchedUserCnt={filterdUsers.length} />
 
-      <Pagination className='pagination'
+      {/* 페이지네이션 */}
+      <Pagination 
         activePage={page}
         itemsCountPerPage={10}
         totalItemsCount={filterdUsers.length}

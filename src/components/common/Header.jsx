@@ -17,7 +17,7 @@ import {DEFAULT_PROFILE_IMG} from '../../constants/constants.js'
 export default function Header() {
     const user = useUserInfo();
     let [showModal, setShowModal] = useState(false);
-    let [userProfile, setUserProfile] = useState({})
+    let [userProfile, setUserProfile] = useState('')
 
     useEffect(()=>{
         if (user.user_id) {
@@ -192,7 +192,7 @@ export default function Header() {
                         {(user.user_id && !user.isAdmin) && <>
                             <div className='profile_img'>
                                 <img 
-                                src={'http://localhost:8000/getimg/userprofile/' + userProfile || DEFAULT_PROFILE_IMG} alt="" />
+                                src={userProfile ? 'http://localhost:8000/getimg/userprofile/' + userProfile : DEFAULT_PROFILE_IMG} alt="" />
                             </div>
                             <div className='name'>{user.user_name} 님</div>
                         </>}
@@ -242,8 +242,8 @@ export default function Header() {
 
                     {(user.user_id && user.isAdmin) && <> 
                     <ul>
-                        <li><Link className='menu' to='/mypage'>회원 관리</Link></li>
-                        <li><Link className='menu' to='/mypage'>1:1 문의글 관리</Link></li>
+                        <li><a className='menu' href='/adminpage?showContent=ManageMember'>회원 관리</a></li>
+                        <li><a className='menu' href='/adminpage?showContent=ManageQNA'>1:1 문의글 관리</a></li>
                     </ul>
                     <div className='logout_area'>
                         <button type='button' className='logout' onClick={handleModal}>로그아웃</button>
