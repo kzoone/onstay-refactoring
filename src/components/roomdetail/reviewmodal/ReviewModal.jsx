@@ -91,8 +91,8 @@ export default function ReviewModal(props) {
         formData.append('review_img', imgFile);
         formData.append('review_content', contentText.content);
         formData.append('review_star', clickRating);
-        formData.append('checkin', selectdDateArr[0].slice(0, 10));
-        formData.append('checkout', selectdDateArr[1].slice(0, 10));
+        formData.append('checkin', selectdDateArr[0]);
+        formData.append('checkout', selectdDateArr[1]);
 
         axiosAuth({
           url : `http://localhost:8000/room/review`,
@@ -128,7 +128,7 @@ export default function ReviewModal(props) {
               onChange={handleChangeDate} >
             {props.registerData.map(list => 
               <option value={`${list.checkin}, ${list.checkout}`}>
-                {`${new Date(list.checkin).toISOString().split('T')[0]} ~ ${new Date(list.checkout).toISOString().split('T')[0]} ( D -${list.remaining_days}일 )`}
+                {`${list.checkin} ~ ${list.checkout} ( D -${list.remaining_days}일 )`}
               </option>
             )}
             </select>

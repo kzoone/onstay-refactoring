@@ -125,27 +125,32 @@ export default function ReservationContent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if ( isAgree && isValidDated ) {
-      axiosAuth({ 
-        method : 'post',
-        url: 'http://localhost:8000/reservation/booking',
-        data: {
-          userId : userInfo.user_id,
-          roomId : roomid,
-          startDate : startDate.toISOString().split('T')[0],
-          endDate : endDate.toISOString().split('T')[0],
-          selectedCouponId : selectedCouponId || null
-        }
-      })
-      .then(result => {
-        if(result.data.message === 'success') {
-          setIsModal(true);
-        }
-      })
-      .catch(error => console.log(error));
+      const confirmText = `${roomInfoData.acc_name}의 ${roomInfoData.room_name} |  ${nightCnt}박 : ₩${payPrice.toLocaleString()}`
+      const isConfirm = window.confirm(`${confirmText} 선택하셨습니다. 예약 하시겠습니까?`);
+      if(isConfirm) {
+        axiosAuth({ 
+          method : 'post',
+          url: 'http://localhost:8000/reservation/booking',
+          data: {
+            userId : userInfo.user_id,
+            roomId : roomid,
+            startDate : startDate.toISOString().split('T')[0],
+            endDate : endDate.toISOString().split('T')[0],
+            selectedCouponId : selectedCouponId || null
+          }
+        })
+        .then(result => {
+          if(result.data.message === 'success') {
+            setIsModal(true);
+          }
+        })
+        .catch(error => console.log(error));
+      }
     } else {
       setBtnText('약관 동의를 체크해주세요');
     }
   };
+
 
     // 모달창 확인 버튼 클릭
     const handleConfirm = (e) => {

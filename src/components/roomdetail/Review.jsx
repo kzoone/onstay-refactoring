@@ -23,17 +23,18 @@ export default function Review({roomid}) {
     .catch(error => console.log(error));
 
     // 리뷰 가능 여부 요청
-    axios.get(`http://localhost:8000/room/${roomid}/${userid}`)
-    .then(result => {
-      if (result.data.message === '일치하는 예약 정보가 없습니다') {
-        setRegisterData([]);
-      } else {
-        setRegisterData(result.data);
-      }
-    })
-    .catch(error => console.log(error));
+    if (userid) {
+      axios.get(`http://localhost:8000/room/${roomid}/${userid}`)
+      .then(result => {
+        if (result.data.message === '일치하는 예약 정보가 없습니다') {
+          setRegisterData([]);
+        } else {
+          setRegisterData(result.data);
+        }
+      })
+      .catch(error => console.log(error));
+    }
   }, [roomid, userid, currentPage]);
-
 
   // 리뷰 등록하기 버튼 클릭 핸들링
   const handleClickRegister = () => {
@@ -100,6 +101,22 @@ export default function Review({roomid}) {
   // 등록된 예약 내역이 없을 경우 보여지는 화면
   const emptyReview = (
     <div className='review_container'>
+      { ( registerData.length > 0 && userid ) ?
+        <div className='register_wrap'>
+          <div className='btn_wrap'>
+            <TbRectangularPrismPlus />
+            <button className='register_btn'
+                    type='button'
+                    onClick={handleClickRegister}>등록하기</button>
+          </div>
+          { reviewModal && <ReviewModal
+                              userid={userid}
+                              roomid={roomid}
+                              setReviewModal={setReviewModal}
+                              registerData={registerData} /> }
+        </div>
+        : null
+      }
       <div className='content_wrap'>
         <img src='/assets/images/logo_gray.png' alt='onstayhouse 로고 이미지' />
         <p>등록된 리뷰가 없습니다.</p>

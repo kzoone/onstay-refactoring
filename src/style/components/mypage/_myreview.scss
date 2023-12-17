@@ -397,42 +397,11 @@ main.mypage {
       >div.mypage_main_container {
         div.mypage_content {
           div.review_container {
-            >p {
-            }
             div.review_wrap {
               div.review_inner {
                 width: 100%;
                 &:nth-of-type(odd) {
                   margin-right: 0;
-                }
-    
-                div.btn_wrap {
-                  button {
-                    &:first-child {
-                    }
-                  }
-                }
-    
-                div.review_content {
-                  img {
-                  }
-    
-                  div.star_info {
-                    div.star_wrap {
-                    }
-                  }
-    
-                  div.review_info {
-                    p {
-                      &:first-child {
-                      }
-                      &:last-child {
-                      }
-                    }
-                  }
-      
-                  p.review_text {
-                  }
                 }
               }
             }
@@ -447,18 +416,10 @@ main.mypage {
       >div.mypage_main_container {
         div.mypage_content {
           div.review_container {
-            >p {
-            }
             div.review_wrap {
               div.review_inner {
-                &:nth-of-type(odd) {
-                }
     
                 div.btn_wrap {
-                  button {
-                    &:first-child {
-                    }
-                  }
                   // 수정 모달
                   div.bg_modal {
                     div.review_modal {
@@ -540,28 +501,6 @@ main.mypage {
                     }
                   }
                 }
-    
-                div.review_content {
-                  img {
-                  }
-    
-                  div.star_info {
-                    div.star_wrap {
-                    }
-                  }
-    
-                  div.review_info {
-                    p {
-                      &:first-child {
-                      }
-                      &:last-child {
-                      }
-                    }
-                  }
-      
-                  p.review_text {
-                  }
-                }
               }
             }
           }
@@ -575,8 +514,6 @@ main.mypage {
       >div.mypage_main_container {
         div.mypage_content {
           div.review_container {
-            >p {
-            }
             div.review_wrap {
               div.review_inner {
                 width: 100%;
@@ -630,28 +567,6 @@ main.mypage {
                         }
                       }
                     }
-                  }
-                }
-    
-                div.review_content {
-                  img {
-                  }
-    
-                  div.star_info {
-                    div.star_wrap {
-                    }
-                  }
-    
-                  div.review_info {
-                    p {
-                      &:first-child {
-                      }
-                      &:last-child {
-                      }
-                    }
-                  }
-      
-                  p.review_text {
                   }
                 }
               }

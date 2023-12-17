@@ -13,6 +13,7 @@ export default function startInput({setClickRating, handleClickRating, value, is
         name='rating'
         id={`star_${value}`}
         checked={isSelected}
+        readOnly
         value={value} />
       <label 
         htmlFor={`star_${value}`}

@@ -82,7 +82,6 @@ export default function MyReview({user_id}) {
                     <MyReviewModal 
                       setReviewModal={setReviewModal} 
                       reviewModalData={reviewModalData}
-                      review_id={review.review_id}
                       user_id={user_id} />
                   }
                   <button 
@@ -92,8 +91,7 @@ export default function MyReview({user_id}) {
                       <RiFileCloseLine />삭제</button>
                 </div>
                 <div className='review_content'>
-                  <img src={`/assets/images/room/${review.review_img}`} alt='숙소 리뷰 이미지' /> {/* ui 테스트 */}
-                  {/* <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' /> */}
+                  <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' />
                   <div className='star_info'>
                     <ReviewStar rating={review.review_star} />
                     <span>{review.review_star}</span>
@@ -122,7 +120,6 @@ export default function MyReview({user_id}) {
       />
     </div>
   )
-
 
   // 작성한 리뷰가 없을 경우 화면
   const emptyReview = (

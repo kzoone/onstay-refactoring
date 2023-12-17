@@ -5,7 +5,7 @@ import axiosAuth from '../../../../services/axiosAuth';
 import MyReviewImg from './MyReviewImg';
 import { FaImages } from 'react-icons/fa';
 
-export default function MyReviewModal({setReviewModal, reviewModalData, review_id, user_id}) {
+export default function MyReviewModal({setReviewModal, reviewModalData, user_id}) {
   const fileInputRef = useRef(null); // 이미지 파일 아이콘 연결
   const [ imgFile, setImgFile ] = useState(null); // 이미지 파일 선택
   const [ clickRating, setClickRating ] = useState(reviewModalData.review_star); // 리뷰 별점 평점
@@ -91,26 +91,25 @@ export default function MyReviewModal({setReviewModal, reviewModalData, review_i
     e.preventDefault();
     validateSubmit();
     if ( isValidRegistration ) {
-      const isRegisterConfirm = window.confirm('등록하시겠습니까?');
+      const isRegisterConfirm = window.confirm('수정하시겠습니까?');
       if ( isRegisterConfirm ) {
         // update 가능 : 리뷰 수정 진행 
         const formData = new FormData();
-        formData.append('review_id', review_id);
+        formData.append('review_id', reviewModalData.review_id);
         formData.append('room_id', reviewModalData.room_id);
         formData.append('user_id', user_id);
-        imgFile ? formData.append('review_file', imgFile) : formData.append('review_img', imgData);
+        imgFile ? formData.append('review_img', imgFile) : formData.append('review_img', imgData);
         formData.append('review_content', contentText.content);
         formData.append('review_star', clickRating);
         formData.append('checkin', reviewModalData.checkin);
         formData.append('checkout', reviewModalData.checkout);
 
         axiosAuth({
-          // url : `http://localhost:8000/room/review/mypage/update`,
-          method : 'post',
+          url : `http://localhost:8000/room/review/mypage/update`,
+          method : 'put',
           data : formData
         })
         .then(result => {
-          console.log(result);
           if(result.data === 'update ok') {
             alert('리뷰 수정이 완료되었습니다');
             window.location.reload();
@@ -134,7 +133,8 @@ export default function MyReviewModal({setReviewModal, reviewModalData, review_i
             <label htmlFor='reservation_date'>Date</label>
               <input 
                 id='reservation_date'
-                value={`${reviewModalData.checkin?.toLocaleString().split('T')[0]} ~ ${reviewModalData.checkout?.toLocaleString().split('T')[0]}`} />
+                readOnly
+                value={`${reviewModalData.checkin} ~ ${reviewModalData.checkout}`} />
           </div>
           <div className="img_wrap">
             { imgModal && <MyReviewImg setImgModal={setImgModal} review_image={imgData} />}
