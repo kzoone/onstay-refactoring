@@ -4,7 +4,7 @@ import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
 
 
-export default function ManageAccRegister({closeModal}){
+export default function ManageAccRegister({closeInsertModal}){
     
     const [accName, setAccName] = useState('');
     const [tel, setTel] = useState('');
@@ -149,14 +149,14 @@ export default function ManageAccRegister({closeModal}){
         })
         ;
     
-        closeModal();
+        closeInsertModal();
       };
 
     
     
 
     const close = () => {
-        closeModal();
+        closeInsertModal();
     }
 
     /* 주소 검색 */

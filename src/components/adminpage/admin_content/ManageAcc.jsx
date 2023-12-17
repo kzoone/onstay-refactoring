@@ -9,13 +9,19 @@ import { BiSolidEditAlt } from "react-icons/bi";
 import { TiDeleteOutline } from "react-icons/ti";
 import { BsHouseAddFill } from "react-icons/bs";
 import ManageAccRegister from "./ManageAccRegister";
+import ManageAccDetail from './ManageAccDetail';
 
 export default function ManageAcc() {
     const [accs, setAccs] = useState([]);
     const [page, setPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
-    const [isModal, setIsModal] = useState(false);
+    const [isInsertModal, setIsInsertModal] = useState(false);
+    const [isDetailModal, setIsDetailModal] = useState(false);
+    const [selectedAccId, setSelectedAccId] = useState('');
+    const [selectedRoomName, setSelectedRoomName] = useState('');
+    const [detail, setDetail] = useState([]);
 
+    /* 리스트, 페이지네이션 */
     const handlePageChange = (pageNumber) => {
         setPage(pageNumber);
     };
@@ -38,32 +44,80 @@ export default function ManageAcc() {
         getAccs();
     }, [page])
 
-    const openModal = () => {  
-        if(isModal){
-            closeModal();
+    /* 숙소 등록 모달 */
+    const openInsertModal = () => {  
+        if(isInsertModal){
+            closeInsertModal();
         }else{
-            setIsModal(true);
+            setIsInsertModal(true);
             document.querySelector('.accs_table').style.display = 'none';
             document.querySelector('.pagination_container').style.display = 'none';
             document.querySelector('.open_btn').style.display = 'none';
-            document.querySelector('.manage_accs_title').innerText = '새 숙소 등록';
+            document.querySelector('.manage_accs_title').innerText = '숙소 등록';
         }
     };
-    const closeModal = () => { 
-        setIsModal(false);
+    const closeInsertModal = () => { 
+        setIsInsertModal(false);
         document.querySelector('.accs_table').style.display = 'table';
         document.querySelector('.pagination_container').style.display = 'block';
         document.querySelector('.open_btn').style.display = 'flex';
         document.querySelector('.manage_accs_title').innerText = '숙소 관리';
     };
 
-    
+    /* 상세 정보 모달 */
+    const handleTrClick = (acc) => {
+        setSelectedAccId(acc.acc_id);
+        setSelectedRoomName(acc.room_name);
+    };
+
+    useEffect(() => {
+        if (selectedAccId && selectedRoomName) {
+            getDetail();
+            openDetailModal();
+        }
+    }, [selectedAccId, selectedRoomName]);
+
+    const openDetailModal = () => {
+        if(isDetailModal){
+            closeDetailModal();
+        }else{
+            setIsDetailModal(true);
+            document.querySelector('.accs_table').style.display = 'none';
+            document.querySelector('.pagination_container').style.display = 'none';
+            document.querySelector('.open_btn').style.display = 'none';
+            document.querySelector('.manage_accs_title').innerText = '상세 정보';
+        }
+    }
+    const closeDetailModal = () => { 
+        setIsDetailModal(false);
+        document.querySelector('.accs_table').style.display = 'table';
+        document.querySelector('.pagination_container').style.display = 'block';
+        document.querySelector('.open_btn').style.display = 'flex';
+        document.querySelector('.manage_accs_title').innerText = '숙소 관리';
+    };
+
+    const getDetail = () => {
+        axios({
+            url : `http://localhost:8000/adminpage/accs/detail/`,
+            method : 'get',
+            params: { accId: selectedAccId, roomName: selectedRoomName }
+        })
+        .then((res) => {
+            if(res.data){
+                setDetail(res.data);
+                console.log(res.data);
+            }
+        })
+        .catch((err) => {
+            console.error('axios 에러 발생 => ' + err);
+        })
+    }
 
     return (
         <div>
             <div className="manage_accs">
                 <span className="manage_accs_title">숙소 관리 ( {totalCount}개의 객실 )</span>
-                <button className='open_btn' onClick={openModal}>
+                <button className='open_btn' onClick={openInsertModal}>
                     <BsHouseAddFill />
                     <span>추가</span>
                 </button>
@@ -81,7 +135,7 @@ export default function ManageAcc() {
                 </thead>
                 <tbody>
                     {accs.map((acc, index) =>
-                        <tr key={index} style={index%2===0?{background:'rgb(234,234,234)'}:{background:'none'}}>
+                        <tr key={index} onClick={() => handleTrClick(acc)} style={index%2===0?{background:'rgb(234,234,234)'}:{background:'none'}}>
                             <td className='room_img'><img src={`assets/images/room/${acc.room_img1}`} /></td>
                             <td className="acc_name">{acc.acc_name}</td>
                             <td className='room_name'>{acc.room_name}</td>
@@ -110,7 +164,9 @@ export default function ManageAcc() {
                     itemClassNext='next_btn'
                 />
             </div>
-            {isModal && <ManageAccRegister closeModal={closeModal} />}
+            {isInsertModal && <ManageAccRegister closeInsertModal={closeInsertModal} />}
+            {isDetailModal && <ManageAccDetail closeDetailModal={closeDetailModal} detail={detail} />}
+            
         </div>
     ); 
 }
