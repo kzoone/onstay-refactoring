@@ -5,7 +5,7 @@ import DaumPostcode from 'react-daum-postcode';
 
 
 export default function ManageAccRegister({closeModal}){
-
+    
     const [accName, setAccName] = useState('');
     const [tel, setTel] = useState('');
     const [zipcode, setZipcode] = useState('');
@@ -24,7 +24,7 @@ export default function ManageAccRegister({closeModal}){
     const [areaCode, setAreaCode] = useState('');
     const [accSummary1, setAccSummary1] = useState('');
     const [accSummary2, setAccSummary2] = useState('');
-
+    
     const [roomName, setRoomName] = useState('');
     const [roomPrice, setRoomPrice] = useState('');
     const [featureCodesArr, setFeatureCodesArr] = useState([]);
@@ -33,9 +33,7 @@ export default function ManageAccRegister({closeModal}){
     const [maxCapa, setMaxCapa] = useState('');
     const [roomImg1, setRoomImg1] = useState('');
     const fileInputRef = useRef(null);
-
     
-
     const handleAccName = (e) => {
         setAccName(e.target.value);
     }
@@ -72,7 +70,7 @@ export default function ManageAccRegister({closeModal}){
     const handleAccSummary2 = (e) => {
         setAccSummary2(e.target.value);
     }
-
+    
     const handleRoomName = (e) => {
         setRoomName(e.target.value);
     }
@@ -97,32 +95,56 @@ export default function ManageAccRegister({closeModal}){
     }
     const handleRoomImg1 = (e) => {
         const file = e.target.files[0];
-        setRoomImg1(file);
-    };
-
-
+        setRoomImg1(file.name);
+    }; 
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         const sortedFeatureCodesArr = [...featureCodesArr].sort((a, b) => a - b);
         const featureCodes = sortedFeatureCodesArr.join(',');
-    
+        
+        const formData = new FormData();
+        
+        formData.append('accName', accName);
+        formData.append('tel', tel);
+        formData.append('zipcode', zipcode);
+        formData.append('address', address);
+        formData.append('latitude', latitude);
+        formData.append('longitude', longitude);
+        formData.append('parking', parking);
+        formData.append('cook', cook);
+        formData.append('pet', pet);
+        formData.append('breakfast', breakfast);
+        formData.append('accCheckin', accCheckin);
+        formData.append('accCheckout', accCheckout);
+        formData.append('homepage', homepage);
+        formData.append('registerDate', registerDate);
+        formData.append('only', only);
+        formData.append('areaCode', areaCode);
+        formData.append('accSummary1', accSummary1);
+        formData.append('accSummary2', accSummary2);
+        formData.append('roomName', roomName);
+        formData.append('roomPrice', roomPrice);
+        formData.append('featureCodesArr', featureCodesArr);
+        formData.append('amenities', amenities);
+        formData.append('minCapa', minCapa);
+        formData.append('maxCapa', maxCapa);
+        formData.append('roomImg1', roomImg1);
+        
         axios({
             url : 'http://localhost:8000/adminpage/accs/insert/',
             method : 'post',
-            data : {accName, tel, zipcode, address, latitude, longitude, parking, cook, pet, breakfast, accCheckin, accCheckout, 
-                    homepage, registerDate, only, areaCode, accSummary1, accSummary2,
-                    roomName, roomPrice, featureCodes, amenities, minCapa, maxCapa, roomImg1}
-        })
-        .then(res => {
-            if (res.data === 'ok') {
-                console.log(res.data);
-                alert('숙소 등록이 완료되었습니다.'); 
-                window.location.reload();
+            data : formData
+            })
+            .then(res => {
+                if (res.data === 'ok') {
+                    console.log(res.data);
+                    alert('숙소 등록이 완료되었습니다.'); 
+                    window.location.reload();
             }
         })
         .catch((err) => {
-            console.log(accName, tel, zipcode, address, latitude, longitude, parking, cook, pet, breakfast, accCheckin, accCheckout, homepage, registerDate, only, areaCode, accSummary1, accSummary2);
             console.error('axios 에러 발생 => ' + err);
         })
         ;
@@ -149,6 +171,7 @@ export default function ManageAccRegister({closeModal}){
         }
     }
     const handleComplete = (data) => {
+        setIsAddressModal(false);
         axios({
             url: `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(data.address)}`,
             method: 'get',
@@ -165,7 +188,7 @@ export default function ManageAccRegister({closeModal}){
             console.error('좌표 데이터를 가져오는 중 오류 발생:' +  err);
         });
         
-        document.querySelector('#searched_address').value = data.address;
+        document.querySelector('#address').value = data.address;
         setAddress(data.address);
         setZipcode(data.zonecode);
         if(data.sido==='서울'){
@@ -176,7 +199,7 @@ export default function ManageAccRegister({closeModal}){
         const currentDate = new Date();
 
         const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1을 해줌
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
         const day = String(currentDate.getDate()).padStart(2, '0');
         const hours = '00';
         const minutes = '00';
@@ -186,140 +209,148 @@ export default function ManageAccRegister({closeModal}){
         setRegisterDate(formattedDate);
     }
 
-    /* 파일 업로드 */
-
 
     return(
-        <div className="manage_acc_register">
+        <div className="new_register">
             <TfiClose className='close_btn' onClick={close} />
-            <div><img src="/assets/images/main_logo.png" /></div>  
-            <div>
-                <form className="acc_register_form">
-                    <div className='register_title'>1. 숙소 정보 등록</div>
-                    <p>
-                        <span>숙소명</span>
-                        <input type="text" onChange={handleAccName}/>
-                    </p>
-                    <p>
-                        <span>전화번호</span>
-                        <input type='tel' placeholder="- 를 포함해서 입력해주세요" onChange={handleTel}/>
-                    </p>
-                    <p>
-                        <span>숙소 주소</span>
-                        <input type='text' id='searched_address' readOnly />
-                        <button type='button' onClick={openAddressModal}>주소검색</button>
-                    </p>
-                    {isAddressModal && <DaumPostcode className='address_modal' onComplete={handleComplete}/>}
-                    <p>
-                        <span>주차</span>
-                        <input type='radio' className='radio' name='parking' value={1} onChange={handleParkingChange} /><span className='radio'>가능</span>
-                        <input type='radio' className='radio' name='parking' value={0} onChange={handleParkingChange} /><span className='radio'>불가능</span>
-                    </p>
-                    <p>
-                        <span>조리</span>
-                        <input type='radio' className='radio' name='cook' value={1} onChange={handleCookChange} /><span className='radio'>가능</span>
-                        <input type='radio' className='radio' name='cook' value={0} onChange={handleCookChange} /><span className='radio'>불가능</span>
-                    </p>
-                    <p>
-                        <span>반려동물</span>
-                        <input type='radio' className='radio' name='pet' value={1} onChange={handlePetChange} /><span className='radio'>가능</span>
-                        <input type='radio' className='radio' name='pet' value={0} onChange={handlePetChange} /><span className='radio'>불가능</span>
-                    </p>
-                    <p>
-                        <span>조식</span>
-                        <input type='radio' className='radio' name='breakfast' value={1} onChange={handleBreakfastChange} /><span className='radio'>가능</span>
-                        <input type='radio' className='radio' name='breakfast' value={0} onChange={handleBreakfastChange} /><span className='radio'>불가능</span>
-                    </p>
-                    <p>
-                        <span>체크인 가능 시간</span>
-                        <input type='time' onChange={handleCheckin} />
-                    </p>
-                    <p>
-                        <span>체크아웃 시간</span>
-                        <input type='time' onChange={handleCheckout} />
-                    </p>
-                    <p>
-                        <span>홈페이지</span>
-                        <input type='text' onChange={handleHomepage}/>
-                    </p>
-                    <p className='summary'>
-                        <span>숙소 개요1</span>
-                        <textarea name="" id="" cols="30" rows="10" onChange={handleAccSummary1}></textarea>
-                    </p>
-                    <p className='summary'>
-                        <span>숙소 개요2</span>
-                        <textarea name="" id="" cols="30" rows="10" onChange={handleAccSummary2}></textarea>
-                    </p>
-                    <p>
-                        <span>온스테이하우스에서만</span>
-                        <input type='checkbox' className='checkbox' onChange={handleOnly} />
-                    </p>
+            <div className='logo_img'><img src="/assets/images/main_logo.png" /></div>  
+            <div className='register_container'>
+                <form className="register_form">
+                    <div className='acc_register'>
+                        <div className='register_title'>숙소 정보를 입력해주세요</div>
+                        <div className='acc_name'>
+                            <label htmlFor='acc_name'>숙소명</label>
+                            <input type="text" id='acc_name' onChange={handleAccName}/>
+                        </div>
+                        <div className='tel'>
+                            <label htmlFor='tel'>전화번호</label>
+                            <input type='tel' id='tel' placeholder="- 를 포함해서 입력해주세요" onChange={handleTel}/>
+                        </div>
+                        <div className='address'>
+                            <label htmlFor='address'>숙소 주소</label>
+                            <input type='text' id='address' readOnly></input>
+                            <button type='button' onClick={openAddressModal}>주소검색</button>
+                        </div>
+                        {isAddressModal && <div className='address_modal'><DaumPostcode onComplete={handleComplete}/></div>}
+                        <div className='parking'>
+                            <span>주차</span>
+                            <input type='radio' id='parking_possible' name='parking' value={1} onChange={handleParkingChange} /><label htmlFor='parking_possible'>가능</label>
+                            <input type='radio' id='parking_impossible' name='parking' value={0} onChange={handleParkingChange} /><label htmlFor='parking_impossible'>불가능</label>
+                        </div>
+                        <div className='cook'>
+                            <span>조리</span>
+                            <input type='radio' id='cook_possible' name='cook' value={1} onChange={handleCookChange} /><label htmlFor='cook_possible'>가능</label>
+                            <input type='radio' id='cook_impossible' name='cook' value={0} onChange={handleCookChange} /><label htmlFor='cook_impossible'>불가능</label>
+                        </div>
+                        <div className='pet'>
+                            <span>반려동물</span>
+                            <input type='radio' id='pet_possible' name='pet' value={1} onChange={handlePetChange} /><label htmlFor='pet_possible'>가능</label>
+                            <input type='radio' id='pet_impossible' name='pet' value={0} onChange={handlePetChange} /><label htmlFor='pet_impossible'>불가능</label>
+                        </div>
+                        <div className='breakfast'>
+                            <span>조식</span>
+                            <input type='radio' id='breakfast_possible' name='breakfast' value={1} onChange={handleBreakfastChange} /><label htmlFor='breakfast_possible'>가능</label>
+                            <input type='radio' id='breakfast_impossible' name='breakfast' value={0} onChange={handleBreakfastChange} /><label htmlFor='breakfast_impossible'>불가능</label>
+                        </div>
+                        <div className='checkin'>
+                            <label htmlFor='checkin'>체크인 시간</label>
+                            <input type='time' id='checkin' onChange={handleCheckin} />
+                        </div>
+                        <div className='checkout'>
+                            <label htmlFor='checkout'>체크아웃 시간</label>
+                            <input type='time' id='checkout' onChange={handleCheckout} />
+                        </div>
+                        <div className='homepage'>
+                            <label htmlFor='homepage'>홈페이지</label>
+                            <input type='text' id='homepage' onChange={handleHomepage}/>
+                        </div>
+                        <div className='summary'>
+                            <label htmlFor='summary1'>숙소 개요1</label>
+                            <textarea id="summary1" cols="30" rows="5" onChange={handleAccSummary1}></textarea>
+                        </div>
+                        <div className='summary'>
+                            <label htmlFor='summary2'>숙소 개요2</label>
+                            <textarea id="summary2" cols="30" rows="5" onChange={handleAccSummary2}></textarea>
+                        </div>
+                        <div className='only'>
+                            <label htmlFor='only'>온스테이하우스에서만</label>
+                            <input type='checkbox' id='only' onChange={handleOnly} />
+                        </div>
+                    </div>
                     <div className='room_register'>
-                        <div className='register_title'>2. 객실 정보 등록</div>
-                        <p>
-                            <span>객실명</span>
-                            <input type='text' onChange={handleRoomName}/>
-                        </p>
-                        <p>
-                            <span>금액</span>
-                            <input type='text' onChange={handleRoomPrice}/>
-                        </p>
+                        <div className='register_title'>객실 정보를 입력해주세요</div>
+                        <div className='room_name'>
+                            <label htmlFor='room_name'>객실명</label>
+                            <input type='text' id='room_name' onChange={handleRoomName}/>
+                        </div>
+                        <div className='room_price'>
+                            <label htmlFor='room_price'>금액</label>
+                            <input type='text' id='room_price' onChange={handleRoomPrice}/>
+                        </div>
                         <div className='features'>
                             <span>부대시설</span>
                             <div>
                                 <p>
-                                    <input type='checkbox' value={1} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>빅테이블</label>
-                                    <input type='checkbox' value={2} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>수영장</label>
-                                    <input type='checkbox' value={3} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>오픈배스</label>
-                                    <input type='checkbox' value={4} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>정원</label>
-                                    <input type='checkbox' value={5} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>테라스</label>
+                                    <input type='checkbox' value={1} id='feature1' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature1'>빅테이블</label>
                                 </p>
                                 <p>
-                                    <input type='checkbox' value={6} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>독립 키친</label>
-                                    <input type='checkbox' value={7} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>독립 화장실</label>
-                                    <input type='checkbox' value={8} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>산책로</label>
-                                    <input type='checkbox' value={9} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>샤워실</label>
-                                    <input type='checkbox' value={10} className='checkbox' onChange={handleFeatureCodes} />
-                                    <label>BBQ</label>
+                                    <input type='checkbox' value={2} id='feature2' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature2'>정원</label>
+                                </p>
+                                <p>
+                                    <input type='checkbox' value={3} id='feature3' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature3'>테라스</label>
+                                </p>
+                                <p>
+                                    <input type='checkbox' value={4} id='feature4' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature4'>독립 키친</label>
+                                </p>
+                                <p>
+                                    <input type='checkbox' value={5} id='feature5' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature5'>독립 화장실</label>
+                                </p>
+                                <p>
+                                    <input type='checkbox' value={6} id='feature6' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature6'>산책로</label>
+                                </p>
+                                <p>
+                                    <input type='checkbox' value={7} id='feature7' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature7'>샤워실</label>
+                                </p>
+                                <p>
+                                    <input type='checkbox' value={8} id='feature8' onChange={handleFeatureCodes} />
+                                    <label htmlFor='feature8'>BBQ</label>
                                 </p>
                             </div>
                         </div>
-                        <p>
-                            <span>비품</span>
-                            <input type='text' onChange={handleAmenities} />
-                        </p>
-                        <p>
-                            <span>최소인원</span>
-                            <input type='text' placeholder='숫자만 입력해주세요' onChange={handleMinCapa} />
-                        </p>
-                        <p>
-                            <span>최대인원</span>
-                            <input type='text' placeholder='숫자만 입력해주세요' onChange={handleMaxCapa} />
-                        </p>
-                        <p>
-                            <label htmlFor='room_image'>객실이미지 : </label>
+                        <div className='amenities'>
+                            <label htmlFor='amenities'>비품</label>
+                            <input type='text' id='amenities' onChange={handleAmenities} />
+                        </div>
+                        <div className='min_capa'>
+                            <label htmlFor='min_capa'>최소인원</label>
+                            <input type='text' id='min_capa' placeholder='숫자만 입력해주세요' onChange={handleMinCapa} />
+                        </div>
+                        <div className='max_capa'>
+                            <label htmlFor='max_capa'>최대인원</label>
+                            <input type='text' id='max_capa' placeholder='숫자만 입력해주세요' onChange={handleMaxCapa} />
+                        </div>
+                        <div className='room_img'>
+                            <label htmlFor='room_img'>객실이미지</label>
                             <input
                                 type='file'
+                                name='myFile'
+                                id='room_img'
                                 ref={fileInputRef}
-                                style={{ display: 'none' }}
                                 onChange={handleRoomImg1}
                                 accept='image/png, image/jpg, image/jpeg'
                             />
-                        </p>
-
-                        <div className='form_btn'>
-                            <button type='reset'>취소</button>
-                            <button onClick={handleSubmit}>등록</button>
                         </div>
+                    </div>
+                    <div className='form_btn'>
+                        <button type='reset'>취소</button>
+                        <button onClick={handleSubmit}>등록</button>
                     </div>
                 </form>
             </div>

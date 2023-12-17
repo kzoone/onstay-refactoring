@@ -17,7 +17,6 @@ export default function ManageAcc() {
     const [isModal, setIsModal] = useState(false);
 
     const handlePageChange = (pageNumber) => {
-        console.log(pageNumber);
         setPage(pageNumber);
     };
 
@@ -63,7 +62,7 @@ export default function ManageAcc() {
     return (
         <div>
             <div className="manage_accs">
-                <span className="manage_accs_title">숙소 관리</span>
+                <span className="manage_accs_title">숙소 관리 ( {totalCount}개의 객실 )</span>
                 <button className='open_btn' onClick={openModal}>
                     <BsHouseAddFill />
                     <span>추가</span>
@@ -82,16 +81,16 @@ export default function ManageAcc() {
                 </thead>
                 <tbody>
                     {accs.map((acc, index) =>
-                        <tr key={index}>
-                            {index % 2 === 0 ? <td className='room_img' rowSpan={2}><img src={`assets/images/room/${acc.room_img1}`} /></td> : ''}
-                            {index % 2 === 0 ? <td className="acc_name" rowSpan={index % 2 === 0 ? 2 : ''}>{acc.acc_name}</td> : ''}
-                            <td className={index % 2 === 0 ? "room_name" : "room_name_anchae"}>{acc.room_name}</td>
-                            <td className={index % 2 === 0 ? "room_price" : "room_price_anchae"}>₩{acc.room_price}</td>
-                            <td className={index % 2 === 0 ? "acc_register_date" : "acc_register_date_anchae"}>{
+                        <tr key={index} style={index%2===0?{background:'rgb(234,234,234)'}:{background:'none'}}>
+                            <td className='room_img'><img src={`assets/images/room/${acc.room_img1}`} /></td>
+                            <td className="acc_name">{acc.acc_name}</td>
+                            <td className='room_name'>{acc.room_name}</td>
+                            <td className='room_price'>₩{acc.room_price}</td>
+                            <td className='acc_register_date'>{
                                 new Date(acc.register_date).toLocaleString()
                             }</td>
-                            <td className={index % 2 === 0 ? "edit" : "edit_anchae"}><button><BiSolidEditAlt /></button></td>
-                            <td className={index % 2 === 0 ? "delete" : "delete_anchae"}><button><TiDeleteOutline /></button></td>
+                            <td className='edit'><button><BiSolidEditAlt /></button></td>
+                            <td className='delete'><button><TiDeleteOutline /></button></td>
                         </tr>
                     )}
                 </tbody>

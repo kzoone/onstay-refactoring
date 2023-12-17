@@ -39,7 +39,7 @@ div{
                     vertical-align: middle;
                     &.room_img{
                         padding: 5px 10px 0 0;
-                        width: 150px;
+                        width: 100px;
                         img{
                             width: 100%;
                         }
@@ -47,9 +47,14 @@ div{
                     &.acc_name{
                         padding: 0 10px;
                         font-size: 14px;
-                        width: 160px;
+                        width: 200px;
                         text-align: center;
-                        border-bottom: 1px solid #000;
+                        border-bottom: 1px solid #DDD;
+                        border-right: 1px solid #DDD;
+                    }
+                    &.room_name,
+                    &.room_price{
+                        border-right: 1px solid #DDD;
                     }
                     &.room_name,
                     &.room_price,
@@ -60,19 +65,8 @@ div{
                         font-size: 14px;
                         border-bottom: 1px solid #DDD;
                     }
-                    &.room_name_anchae,
-                    &.room_price_anchae,
-                    &.acc_register_date_anchae,
-                    &.edit_anchae,
-                    &.delete_anchae{
-                        text-align: center;
-                        font-size: 14px;
-                        border-bottom: 1px solid #000;
-                    }
                     &.edit,
-                    &.delete,
-                    &.edit_anchae,
-                    &.delete_anchae{
+                    &.delete{
                         font-size: 16px;
                     }
                 }
@@ -91,9 +85,11 @@ div{
                 text-align: center;
                 &.prev_btn{
                     margin-right: 30px;
+                    width: 50px;
                 }
                 &.next_btn{
                     margin-left: 30px;
+                    width: 50px;
                 }
                 &.disabled{
                     pointer-events: none;
