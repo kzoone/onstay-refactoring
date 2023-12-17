@@ -4,6 +4,7 @@ import axios from 'axios';
 import Pagination from 'react-js-pagination';
 import { QUESTION_CATEGORY } from '../../../constants/constants.js';
 import { FaFilter } from "react-icons/fa";
+import ManageQNAModal from './../manageqna/ManageQNAModal';
 
 
 
@@ -15,8 +16,10 @@ export default function ManageQNA() {
   const [categoryFilter, setCategoryFilter] = useState({
     modalShow:false, 
     showCategory:{
-      1:true, 2:true, 3:true, 4:true
+      '1':true, '2':true, '3':true, '4':true
     }})
+
+const [modal, setModal] = useState({question : {}, show : false});
 
 
   useEffect(()=>{
@@ -25,6 +28,7 @@ export default function ManageQNA() {
       method : 'get'
     })
     .then(res => {
+      console.log(res.data);
       setQusetions(res.data);
       setFilterdQuestions(res.data);
     })
@@ -32,6 +36,14 @@ export default function ManageQNA() {
       console.log(err);
     })
   },[showContent])
+
+  useEffect(()=> {
+    let copy = questions.map(v=>({...v}));
+    let checkedCategories = Object.keys(categoryFilter.showCategory)
+                            .filter(n=>categoryFilter.showCategory[n]===true).map(v=>Number(v))
+    copy = copy.filter(v=>checkedCategories.includes(v.question_category))
+    setFilterdQuestions(copy)
+  },[categoryFilter.showCategory])
 
   const handleClick = e => setShowContent(e.target.dataset.content) 
 
@@ -42,9 +54,14 @@ export default function ManageQNA() {
   }
 
   const handleCategoryFilter = e => {
-    setCategoryFilter({...categoryFilter, showCategory:{...categoryFilter.showCategory, 
-      [e.target.dataset.category] : !categoryFilter.showCategory[e.target.dataset.category]}})
+    setCategoryFilter({
+      ...categoryFilter, 
+      showCategory:{...categoryFilter.showCategory, [e.target.dataset.category] : !categoryFilter.showCategory[e.target.dataset.category]}})
   }
+
+  const handleModal = (question) => () => setModal({show:true, question:question})
+  
+
   return (
     <div className='admin_qna'>
       <ul className="admin_qna_navbar">
@@ -54,30 +71,21 @@ export default function ManageQNA() {
       
       <div className='category_filter'>
         <button className={categoryFilter.modalShow ? 'active' : ''} type='button' onClick={handleFilterModal}>
-          <FaFilter/><span>카테고리</span>
+          <FaFilter/><span>문의 유형</span>
         </button>
         <form className={categoryFilter.modalShow ? 'active' : ''} action="">
           <h4>표시할 카테고리</h4>
-          <p>
-            <label htmlFor="cateogry_reservation">예약 문의</label>
-            <input type="checkbox" data-category='1' id='cateogry_reservation' 
-            checked={categoryFilter.showCategory['1']}/>
-          </p>
-          <p>
-            <label htmlFor="cateogry_service">서비스 문의</label>
-            <input type="checkbox" data-category='2' id='cateogry_service' 
-            checked={categoryFilter.showCategory['2']}/>
-          </p>
-          <p>
-            <label htmlFor="cateogry_error">오류 신고</label>
-            <input type="checkbox" data-category='3' id='cateogry_error' 
-            checked={categoryFilter.showCategory['3']}/>
-          </p>
-          <p>
-            <label htmlFor="cateogry_etc">기타</label>
-            <input type="checkbox" data-category='4' id='cateogry_etc' 
-            checked={categoryFilter.showCategory['4']}/>
-          </p>
+          
+          {Object.entries(QUESTION_CATEGORY).map(arr => {
+            let [code, title] = arr
+          return(
+            <p key={code}>
+              <label htmlFor={`cateogry${code}`}>{title}</label>
+              <input type="checkbox" data-category={code} id={`cateogry${code}`} onChange={handleCategoryFilter}
+              checked={categoryFilter.showCategory[code]}/>
+            </p>
+          )
+          })}
         </form>
       </div>
 
@@ -93,9 +101,9 @@ export default function ManageQNA() {
           </thead>
           <tbody>
             {Array.from({length : 10}, (_, index) => {
-              const question = questions[index + 10 * (page - 1)];
+              const question = filterdQuestions[index + 10 * (page - 1)];
               return (
-                <tr>
+                <tr onClick={handleModal(question)}>
                   <td><span className="row_num">{question ? question.rno : ''}</span></td>
                   <td><span className="qna_category">{question ? QUESTION_CATEGORY[question.question_category] : ''}</span></td>
                   <td><span className="qna_title">{question ? question.question_title : ''}</span></td>
@@ -122,6 +130,9 @@ export default function ManageQNA() {
         nextPageText={">"}
         onChange={handlePage}
       />
+      {modal.show && 
+        <ManageQNAModal question={modal.question} closeModal={()=>setModal({...modal, show:false})}/>
+      }
     </div>
   ); 
 }
