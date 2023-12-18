@@ -10,11 +10,9 @@ main.mypage {
         div.review_wrap {
           display: flex;
           flex-wrap: wrap;
+          justify-content: space-between;
           div.review_inner {
             width: 48%;
-            &:nth-of-type(odd) {
-              margin-right: 2%;
-            }
 
             div.btn_wrap {
               @include flexbox($jc: flex-end);
@@ -38,7 +36,7 @@ main.mypage {
                 position: fixed;
                 top: 0;
                 left: 0;
-                z-index: 1500;
+                z-index: 15;
                 width: 100vw;
                 height: 100vh;
                 background: rgba(0, 0, 0, 0.5);
@@ -62,7 +60,7 @@ main.mypage {
                   }
 
                   form.modal_form {
-                    @include flexbox($fd: column, $jc: normal);
+                    @include flexbox($fd: column, $jc: space-between);
                     padding: 1rem 2rem;
                     height: 82%;
                     color: #797979;
@@ -259,12 +257,13 @@ main.mypage {
                     div.text_length {
                       width: 70%;
                       text-align: right;
-                      margin-bottom: 2rem
+                      margin-bottom: 1rem;
                     }
 
                     div.btn_wrap {
                       @include flexbox;
                       width: 87%;
+                      margin-bottom: 1.5rem;
 
                       button {
                         width: 40%;
@@ -300,9 +299,14 @@ main.mypage {
 
             div.review_content {
               margin-bottom: 3rem;
-              img {
-                width: 100%;
+              div.review_img {
+                height: 280px;
                 margin-bottom: 1rem;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
               }
 
               div.star_info {
@@ -366,6 +370,17 @@ main.mypage {
           }
         }
       }
+      // 확인 modal
+      div.modal_container {
+        div.modal_content {
+          div.btn_wrap {
+            justify-content: center;
+            button {
+              align-items: center;
+            }
+          }
+        }
+      }
       // review x 
       div.empty_review_container {
         div.content_wrap {
@@ -392,7 +407,7 @@ main.mypage {
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1000px) {
     & {
       >div.mypage_main_container {
         div.mypage_content {
@@ -400,8 +415,10 @@ main.mypage {
             div.review_wrap {
               div.review_inner {
                 width: 100%;
-                &:nth-of-type(odd) {
-                  margin-right: 0;
+                div.review_content {
+                  div.review_img {
+                    height: 420px;
+                  }
                 }
               }
             }
@@ -509,7 +526,7 @@ main.mypage {
     }
   }
 
-  @include responsive(sm) {
+  @media screen and (max-width : 500px) {
     & {
       >div.mypage_main_container {
         div.mypage_content {
@@ -517,9 +534,6 @@ main.mypage {
             div.review_wrap {
               div.review_inner {
                 width: 100%;
-                &:nth-of-type(odd) {
-                  margin-right: 0;
-                }
     
                 div.btn_wrap {
                   button {
@@ -569,6 +583,62 @@ main.mypage {
                     }
                   }
                 }
+                div.review_content {
+                  div.review_img {
+                    height: 300px;
+                  }
+                }
+              }
+            }
+          }
+          div.modal_container {
+            div.modal_content {
+              width: 90%;
+              img {
+                width: 35%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive(sm) {
+    & {
+      >div.mypage_main_container {
+        div.mypage_content {
+          div.review_container {
+            div.review_wrap {
+              div.review_inner {
+                div.btn_wrap {
+                  // 수정 모달
+                  div.bg_modal {
+                    div.review_modal {
+                      div.logo_wrap {
+                        height: 15%;
+                      }
+      
+                      // form
+                      form.modal_form {
+                        div.text_length {
+                          margin-bottom: 1.2rem;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          div.modal_container {
+            div.modal_content {
+              img {
+                width: 40%;
+                margin-bottom: 8%;
+              }
+              div.text_wrap {
+                margin-bottom: 8%;
               }
             }
           }
