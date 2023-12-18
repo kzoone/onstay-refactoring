@@ -5,13 +5,15 @@ import Pagination from 'react-js-pagination';
 import { QUESTION_CATEGORY } from '../../../constants/constants.js';
 import { FaFilter } from "react-icons/fa";
 import ManageQNAModal from './../manageqna/ManageQNAModal';
-
-
+import { useLocation } from 'react-router-dom';
 
 export default function ManageQNA() {
-  const [showContent, setShowContent] = useState('Waiting')
+  const location = useLocation();
+  const defaultShowContent = new URLSearchParams(location.search).get('QNAContent')
+  const [showContent, setShowContent] = useState(defaultShowContent || 'Waiting')
   const [questions, setQusetions] = useState([])
   const [filterdQuestions, setFilterdQuestions] = useState([])
+  const [watingCnt, setWaitingCnt] = useState(0)
   const [page, setPage] = useState(1); // 페이지네이션 
   const [categoryFilter, setCategoryFilter] = useState({
     modalShow:false, 
@@ -37,6 +39,14 @@ const [modal, setModal] = useState({question : {}, show : false});
     })
   },[showContent])
 
+  useEffect(()=>{
+    axios.get('http://localhost:8000/adminpage/questions/Waiting')
+    .then(res => {
+      setWaitingCnt(res.data.length)
+    })
+    .catch(err => console.log(err))
+  },[])
+
   useEffect(()=> {
     let copy = questions.map(v=>({...v}));
     let checkedCategories = Object.keys(categoryFilter.showCategory)
@@ -45,7 +55,13 @@ const [modal, setModal] = useState({question : {}, show : false});
     setFilterdQuestions(copy)
   },[categoryFilter.showCategory])
 
-  const handleClick = e => setShowContent(e.target.dataset.content) 
+  const handleClick = e => {
+    setShowContent(e.target.dataset.content)
+    setCategoryFilter({
+      modalShow:false, 
+      showCategory:{'1':true, '2':true, '3':true, '4':true}
+    })
+  };
 
   const handlePage = page => setPage(page)
 
@@ -65,8 +81,12 @@ const [modal, setModal] = useState({question : {}, show : false});
   return (
     <div className='admin_qna'>
       <ul className="admin_qna_navbar">
-        <li onClick={handleClick} data-content='Waiting' className={showContent==='Waiting' ? 'active' : ''}>답변 대기</li>
-        <li onClick={handleClick} data-content='Complete' className={showContent==='Complete' ? 'active' : ''}>답변 완료</li>
+        <li onClick={handleClick} data-content='Waiting' className={showContent==='Waiting' ? 'active' : ''}>
+          답변 대기({watingCnt})
+          </li>
+        <li onClick={handleClick} data-content='Complete' className={showContent==='Complete' ? 'active' : ''}>
+          답변 완료
+          </li>
       </ul>
       
       <div className='category_filter'>
@@ -88,8 +108,8 @@ const [modal, setModal] = useState({question : {}, show : false});
           })}
         </form>
       </div>
-
-      <Table className='qna_list_table' striped bordered >
+      {filterdQuestions.length
+      ? <Table className='qna_list_table' striped bordered >
           <thead>
             <tr>
               <th className="row_num">#</th>
@@ -103,7 +123,7 @@ const [modal, setModal] = useState({question : {}, show : false});
             {Array.from({length : 10}, (_, index) => {
               const question = filterdQuestions[index + 10 * (page - 1)];
               return (
-                <tr onClick={handleModal(question)}>
+                <tr onClick={question ? handleModal(question) : ()=>{}} className={!question ? 'empty_row' : ''}>
                   <td><span className="row_num">{question ? question.rno : ''}</span></td>
                   <td><span className="qna_category">{question ? QUESTION_CATEGORY[question.question_category] : ''}</span></td>
                   <td><span className="qna_title">{question ? question.question_title : ''}</span></td>
@@ -120,6 +140,8 @@ const [modal, setModal] = useState({question : {}, show : false});
             })}
           </tbody>
         </Table>
+        : <div className='qna_no_list'>조건에 맞는 문의 내역이 없습니다.</div>
+        }
 
         <Pagination 
         activePage={page}

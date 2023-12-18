@@ -16,7 +16,7 @@ export function AdminPage() {
     return user.isAdmin && (
         <main className='adminpage mypage'>
             <PageTitle title='ADMIN PAGE' />
-            <MyPageGreet userName={'관리자'} isAdmin={true} />
+            <MyPageGreet userName={`${user.user_name} 관리자`} isAdmin={true} />
             <div className='mypage_main_container'>
                 <AdminPageNavbar setShowContent={setShowContent} showContent={showContent} />
                 <AdminPageContent showContent={showContent}/>

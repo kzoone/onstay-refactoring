@@ -102,6 +102,15 @@ div.adminpage_content {
         &:nth-of-type(odd) {
           background-color: #eee;
         }
+        &:not(.empty_row) {
+          cursor: pointer;
+          @media (hover: hover) {
+            &:hover {
+              background-color: #bbb;
+              color: #fff;
+            }
+          }
+        }
       }
       tbody {
         height: 400px;
@@ -121,8 +130,18 @@ div.adminpage_content {
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis; 
+            &.qna_title {
+              text-align: left;
+            }
           }
       }
+    }
+    div.qna_no_list {
+      height: 425px;
+      line-height: 425px;
+      text-align: center;
+      color: #888;
+      margin-bottom: 1rem;
     }
     .pagination {
       display: flex;
@@ -211,7 +230,7 @@ div.adminpage_content {
           }
         }
       }
-      table.member_list_table {
+      table.qna_list_table {
         font-size: 0.7em;
       }
     }
