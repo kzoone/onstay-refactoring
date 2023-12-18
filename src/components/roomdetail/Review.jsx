@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TbRectangularPrismPlus } from 'react-icons/tb';
+import { TbMoodHeart, TbMoodEdit } from 'react-icons/tb';
 import PagiNation from 'react-js-pagination';
 import axios from 'axios';
 import ReviewStar from './ReviewStar';
@@ -49,27 +50,48 @@ export default function Review({roomid}) {
   // 등록된 예약 내역이 있을 경우 보여지는 화면
   const reviewContainer = (
     <div className='review_container'>
-      { ( registerData.length > 0 && userid ) ?
-        <div className='register_wrap'>
-          <div className='btn_wrap'>
-            <TbRectangularPrismPlus />
-            <button className='register_btn'
-                    type='button'
-                    onClick={handleClickRegister}>등록하기</button>
-          </div>
-          { reviewModal && <ReviewModal
-                              userid={userid}
-                              roomid={roomid}
-                              setReviewModal={setReviewModal}
-                              registerData={registerData} /> }
+      <div className='total_review_register'>
+    { ( registerData.length > 0 && userid ) ?
+      <div className='register_wrap'>
+        <div className='btn_wrap'>
+          <TbRectangularPrismPlus />
+          <button className='register_btn'
+                  type='button'
+                  onClick={handleClickRegister}>등록하기</button>
         </div>
-        : null
+        { reviewModal && <ReviewModal
+                            userid={userid}
+                            roomid={roomid}
+                            setReviewModal={setReviewModal}
+                            registerData={registerData} /> }
+        </div>
+      : null
       }
+        <div className='total_review_info'>
+          <div className='total_review_inner'>
+            <div className='avg_wrap'>
+            <TbMoodHeart />
+              <p className='avg_text'>리뷰 평점</p>
+              <ReviewStar rating={reviewData[0]?.avg_star} />
+              <p className='total_avg'>{reviewData[0]?.avg_star}</p>
+            </div>
+            <span>﹒</span>
+            <div className='cnt_wrap'>
+              <TbMoodEdit />
+              <p className='cnt_text'>총 리뷰</p>
+              <p className='total_cnt'>{reviewData[0]?.total_cnt}개</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className='review_wrap'>
         { reviewData.map(review => (
           <React.Fragment key={review.review_id}>
             <div className='review_content'>
-              <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' />
+              <div className='review_img'>
+                <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' />
+              </div>
               <div className='star_info'>
                 <ReviewStar rating={review.review_star} />
                 <span>{review.review_star}</span>

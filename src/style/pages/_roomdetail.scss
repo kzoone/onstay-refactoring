@@ -303,8 +303,9 @@ main.roomdetail_section {
         @include flexbox($fd: column);
 
         div.btn_title {
+          margin-bottom: 5rem;
+
           button {
-            margin-bottom: 3rem;
             font-size: 1rem;
             font-weight: bold;
             color: #ccc;
@@ -324,273 +325,342 @@ main.roomdetail_section {
         div.review_container {
           @include flexbox($fd: column, $ai: center);
 
-          div.register_wrap {
+          div.total_review_register {
+            @include flexbox($jc: space-between, $ai: center);
             width: 90%;
-            padding-right: 3px;
-            margin-bottom: 0.8rem;
 
-            >div.btn_wrap {
-              display: flex;
-              flex-direction: row;
-              justify-content: flex-end;
+            div.register_wrap {
+              width: 20%;
+              padding-right: 3px;
+              margin-bottom: 0.8rem;
 
-              svg {
-                transition: all 0.1s;
-              }
+              >div.btn_wrap {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
 
-              button.register_btn {
-                margin-left: 0.3rem;
-                transition: all 0.1s;
-                border-bottom: 1px solid transparent;
-              }
-
-              @media (hover:hover) {
-                &:hover>svg,
-                &:hover>button {
-                  color: #a28f72;
+                svg {
+                  transition: all 0.1s;
                 }
 
-                &:hover button {
-                  font-weight: bold;
+                button.register_btn {
+                  margin-left: 0.3rem;
+                  border-bottom: 1px solid transparent;
+                  font-weight: 500;
+                  transition: all 0.1s;
+                }
+
+                @media (hover:hover) {
+
+                  &:hover>svg,
+                  &:hover>button {
+                    color: #a28f72;
+                  }
+
+                  &:hover button {
+                    font-weight: bold;
+                  }
+                }
+              }
+
+              // modal
+              div.bg_modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1500;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+
+                div.review_modal {
+                  @include pos-center($type: fixed);
+                  width: 70%;
+                  height: 88%;
+                  background: rgba(0, 0, 0, 0.8);
+                  border-radius: 10px;
+
+                  div.logo_wrap {
+                    @include flexbox;
+                    width: 100%;
+                    height: 18%;
+
+                    img {
+                      width: 25%;
+                    }
+                  }
+
+                  form.modal_form {
+                    @include flexbox($fd: column, $jc: normal);
+                    padding: 1rem 2rem;
+                    height: 82%;
+                    color: #797979;
+
+                    div.date_wrap {
+                      display: flex;
+                      align-items: center;
+                      width: 80%;
+                      margin-bottom: 2rem;
+
+                      label {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      select {
+                        width: 70%;
+                        padding: 0.2rem;
+                        border: 1px solid #797979;
+                        border-radius: 5px;
+                        font-size: 0.8rem;
+                        color: #797979;
+                      }
+                    }
+
+                    div.img_wrap {
+                      display: flex;
+                      width: 80%;
+                      margin-bottom: 2rem;
+
+                      label {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      input {
+                        display: none;
+                      }
+
+                      div.icon_wrap {
+                        @include flexbox($jc: space-between, $ai: center);
+                        width: 70%;
+                        padding: 0 4px;
+                        border-bottom: 1px solid #797979;
+
+                        p {
+                          font-size: 0.9rem;
+
+                          &.icon_text {
+                            font-size: 0.8rem;
+                          }
+                        }
+
+                        button.file_icon_btn {
+                          @media (hover:hover) {
+                            &:hover svg {
+                              fill: white;
+                            }
+                          }
+
+                          svg {
+                            fill: #797979;
+                          }
+                        }
+                      }
+                    }
+
+                    div.star_container {
+                      @include flexbox($jc: flex-start, $ai: flex-start);
+                      margin-bottom: 2rem;
+                      width: 80%;
+
+                      p {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      div.star_content {
+                        @include flexbox($jc: space-between);
+                        width: 70%;
+                        padding-right: 4px;
+                        border-bottom: 1px solid #797979;
+
+                        div.star_wrap {
+                          position: relative;
+                          display: flex;
+                          align-items: center;
+                          flex-direction: row-reverse;
+                          margin: 0 5px;
+
+                          input {
+                            display: none;
+                          }
+
+                          input:focus~label,
+                          label:hover,
+                          label:hover~label,
+                          input:checked~label {
+                            transition: 0.2s;
+                            color: rgb(226, 195, 70);
+                          }
+
+                          label {
+                            color: #aeaeae;
+                            color: #424242;
+                            cursor: pointer;
+
+                            &:nth-of-type(2n) {
+                              position: absolute;
+                              width: 8px;
+                              overflow: hidden;
+                            }
+
+                            &:nth-of-type(2) {
+                              transform: translateX(-8px);
+                            }
+
+                            &:nth-of-type(4) {
+                              transform: translateX(-24px);
+                            }
+
+                            &:nth-of-type(6) {
+                              transform: translateX(-40px);
+                            }
+
+                            &:nth-of-type(8) {
+                              transform: translateX(-56px);
+                            }
+
+                            &:nth-of-type(10) {
+                              transform: translateX(-72px);
+                            }
+                          }
+                        }
+
+                        span {
+                          font-weight: bold;
+                          color: rgb(226, 195, 70);
+                          text-align: right;
+                        }
+                      }
+                    }
+
+                    div.content_wrap {
+                      @include flexbox($jc: flex-start, $ai: flex-start);
+                      width: 80%;
+                      margin-bottom: 0.5rem;
+                      background: transparent;
+
+                      label {
+                        width: 25%;
+                        font-weight: bold;
+                      }
+
+                      textarea {
+                        width: 70%;
+                        height: 30vh;
+                        padding: 0.5rem;
+                        font-size: 0.8rem;
+                        border: 1px solid #797979;
+                        border-radius: 6px;
+                        color: #dadada;
+                        resize: none;
+
+                        &::placeholder {
+                          text-align: center;
+                        }
+                      }
+                    }
+
+                    div.text_length {
+                      width: 70%;
+                      text-align: right;
+                      margin-bottom: 2rem
+                    }
+
+                    div.btn_wrap {
+                      @include flexbox;
+                      width: 87%;
+
+                      button {
+                        width: 40%;
+                        padding: 0.6rem;
+                        border: 1px solid #797979;
+                        border-radius: 10px;
+                        background: rgba(100, 100, 100, 0.5);
+                        font-size: 0.8rem;
+                        color: #a7a6a6;
+
+                        &.close_btn {
+                          margin-right: 5%;
+                        }
+
+                        &:disabled {
+                          border-color: black;
+                          color: #797979;
+                        }
+
+                        @media (hover:hover) {
+                          &:not(:disabled):hover {
+                            border: 1px solid rgb(184, 184, 184);
+                            background: rgb(124, 124, 124);
+                            color: black;
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
 
-            // modal
-            div.bg_modal {
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 1500;
-              width: 100vw;
-              height: 100vh;
-              background: rgba(0, 0, 0, 0.5);
+            div.total_review_info {
+              width: 60%;
 
-              div.review_modal {
-                @include pos-center($type: fixed);
-                width: 70%;
-                height: 88%;
-                background: rgba(0, 0, 0, 0.8);
-                border-radius: 10px;
+              div.total_review_inner {
+                @include flexbox($jc: flex-end);
+                color: #333;
 
-                div.logo_wrap {
-                  @include flexbox;
-                  width: 100%;
-                  height: 18%;
+                // 공통
+                svg {
+                  margin: 0 3px 3px 0;
+                }
 
-                  img {
-                    width: 25%;
+                p.avg_text,
+                p.cnt_text {
+                  margin-right: 5px;
+                  font-weight: 600;
+                }
+
+                p.total_avg,
+                span {
+                  margin-right: 4px;
+                }
+
+                // 개별
+                div.avg_wrap {
+                  display: flex;
+
+                  p.avg_text {
+                    margin-bottom: 1px;
+                  }
+
+                  div.star_wrap {
+                    @include flexbox;
+                    margin: 0 5px 4px 0;
+
+                    svg {
+                      color: #867357;
+                      margin: 0;
+                    }
+                  }
+
+                  p.total_avg {
+                    padding-top: 1px;
+                    font-weight: bold;
+                    color: #867357;
                   }
                 }
 
-                form.modal_form {
-                  @include flexbox($fd: column, $jc: normal);
-                  padding: 1rem 2rem;
-                  height: 82%;
-                  color: #797979;
+                span {
+                  color: #979797;
+                }
 
-                  div.date_wrap {
-                    display: flex;
-                    align-items: center;
-                    width: 80%;
-                    margin-bottom: 2rem;
+                div.cnt_wrap {
+                  display: flex;
 
-                    label {
-                      width: 25%;
-                      font-weight: bold;
-                    }
-
-                    select {
-                      width: 70%;
-                      padding: 0.2rem;
-                      border: 1px solid #797979;
-                      border-radius: 5px;
-                      font-size: 0.8rem;
-                      color: #797979;
-                    }
-                  }
-
-                  div.img_wrap {
-                    display: flex;
-                    width: 80%;
-                    margin-bottom: 2rem;
-
-                    label {
-                      width: 25%;
-                      font-weight: bold;
-                    }
-
-                    input {
-                      display: none;
-                    }
-
-                    div.icon_wrap {
-                      @include flexbox($jc: space-between, $ai: center);
-                      width: 70%;
-                      padding: 0 4px;
-                      border-bottom: 1px solid #797979;
-
-                      p {
-                        font-size: 0.9rem;
-
-                        &.icon_text {
-                          font-size: 0.8rem;
-                        }
-                      }
-
-                      button.file_icon_btn {
-                        @media (hover:hover) {
-                          &:hover svg {
-                            fill: white;
-                          }
-                        }
-
-                        svg {
-                          fill: #797979;
-                        }
-                      }
-                    }
-                  }
-
-                  div.star_container {
-                    @include flexbox($jc: flex-start, $ai: flex-start);
-                    margin-bottom: 2rem;
-                    width: 80%;
-
-                    p {
-                      width: 25%;
-                      font-weight: bold;
-                    }
-
-                    div.star_content {
-                      @include flexbox($jc: space-between);
-                      width: 70%;
-                      padding-right: 4px;
-                      border-bottom: 1px solid #797979;
-
-                      div.star_wrap {
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                        flex-direction: row-reverse;
-                        margin: 0 5px;
-
-                        input {
-                          display: none;
-                        }
-
-                        input:focus~label,
-                        label:hover,
-                        label:hover~label,
-                        input:checked~label {
-                          transition: 0.2s;
-                          color: rgb(226, 195, 70);
-                        }
-
-                        label {
-                          color: #aeaeae;
-                          color: #424242;
-                          cursor: pointer;
-
-                          &:nth-of-type(2n) {
-                            position: absolute;
-                            width: 8px;
-                            overflow: hidden;
-                          }
-
-                          &:nth-of-type(2) {
-                            transform: translateX(-8px);
-                          }
-
-                          &:nth-of-type(4) {
-                            transform: translateX(-24px);
-                          }
-
-                          &:nth-of-type(6) {
-                            transform: translateX(-40px);
-                          }
-
-                          &:nth-of-type(8) {
-                            transform: translateX(-56px);
-                          }
-
-                          &:nth-of-type(10) {
-                            transform: translateX(-72px);
-                          }
-                        }
-                      }
-
-                      span {
-                        font-weight: bold;
-                        color: rgb(226, 195, 70);
-                        text-align: right;
-                      }
-                    }
-                  }
-
-                  div.content_wrap {
-                    @include flexbox($jc: flex-start, $ai: flex-start);
-                    width: 80%;
-                    margin-bottom: 0.5rem;
-                    background: transparent;
-
-                    label {
-                      width: 25%;
-                      font-weight: bold;
-                    }
-
-                    textarea {
-                      width: 70%;
-                      height: 30vh;
-                      padding: 0.5rem;
-                      font-size: 0.8rem;
-                      border: 1px solid #797979;
-                      border-radius: 6px;
-                      color: #dadada;
-                      resize: none;
-
-                      &::placeholder {
-                        text-align: center;
-                      }
-                    }
-                  }
-
-                  div.text_length {
-                    width: 70%;
-                    text-align: right;
-                    margin-bottom: 2rem
-                  }
-
-                  div.btn_wrap {
-                    @include flexbox;
-                    width: 87%;
-
-                    button {
-                      width: 40%;
-                      padding: 0.6rem;
-                      border: 1px solid #797979;
-                      border-radius: 10px;
-                      background: rgba(100, 100, 100, 0.5);
-                      font-size: 0.8rem;
-                      color: #a7a6a6;
-
-                      &.close_btn {
-                        margin-right: 5%;
-                      }
-
-                      &:disabled {
-                        border-color: black;
-                        color: #797979;
-                      }
-
-                      @media (hover:hover) {
-                        &:not(:disabled):hover {
-                          border: 1px solid rgb(184, 184, 184);
-                          background: rgb(124, 124, 124);
-                          color: black;
-                        }
-                      }
-                    }
+                  p.total_cnt {
+                    font-weight: 500;
                   }
                 }
               }
@@ -607,9 +677,17 @@ main.roomdetail_section {
               width: 48%;
               margin-bottom: 3rem;
 
-              img {
-                width: 100%;
+              div.review_img {
+                height: 400px;
                 margin-bottom: 1rem;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                  margin-bottom: 1rem;
+                  // object-fit: contain;
+                  object-fit: cover;
+                }
               }
             }
 
@@ -891,21 +969,27 @@ main.roomdetail_section {
       >div.content_wrap {
         div.btn_content_container {
           margin: 8rem 0;
-          div.container_content{
+
+          div.container_content {
             div.review_container {
-              div.register_wrap {
-                div.bg_modal {
-                  div.review_modal {
-                    width: 635px;
-                    
-                    div.logo_wrap {
-                      img {
-                        width: 23%;
+              div.total_review_register {
+                margin-bottom: 0.1rem;
+
+                div.register_wrap {
+                  div.bg_modal {
+                    div.review_modal {
+                      width: 635px;
+
+                      div.logo_wrap {
+                        img {
+                          width: 23%;
+                        }
                       }
                     }
                   }
                 }
               }
+
             }
           }
         }
@@ -959,22 +1043,44 @@ main.roomdetail_section {
         // 리뷰 탭메뉴 + 모달
         div.btn_content_container {
           div.container_content {
+            div.btn_title {
+              margin-bottom: 4rem;
+            }
+
             div.review_container {
-              div.register_wrap {
-                padding: 1%;
+              div.total_review_register {
+                margin-bottom: 1%;
 
-                div.bg_modal {
-                  div.review_modal {
-                    width: 600px;
+                div.register_wrap {
+                  margin-bottom: 0;
 
-                    div.logo_wrap {
-                      img {
-                        width: 23%;
+                  div.bg_modal {
+                    div.review_modal {
+                      width: 600px;
+
+                      div.logo_wrap {
+                        img {
+                          width: 23%;
+                        }
                       }
                     }
                   }
                 }
+
+                div.total_review_info {
+                  width: 80%;
+                }
               }
+
+
+              div.review_wrap {
+                div.review_content {
+                  div.review_img {
+                    height: 300px;
+                  }
+                }
+              }
+
             }
           }
         }
@@ -1094,8 +1200,47 @@ main.roomdetail_section {
         div.btn_content_container {
           div.container_content {
             div.btn_title {
-              button {
-                margin-bottom: 2rem;
+              margin-bottom: 3rem;
+            }
+
+            div.review_container {
+              div.total_review_register {
+                div.total_review_info {
+                  div.total_review_inner {
+
+                    p.avg_text,
+                    p.cnt_text {
+                      margin-right: 3px;
+                      font-size: 0.9rem;
+                      color: #797979;
+                    }
+
+                    p.total_avg,
+                    span {
+                      margin-right: 0;
+                    }
+
+                    p.total_avg,
+                    p.total_cnt {
+                      font-size: 0.9rem;
+                    }
+
+                    // 개별
+                    div.cnt_wrap {
+                      p.total_cnt {
+                        color: #797979;
+                      }
+                    }
+                  }
+                }
+              }
+
+              div.review_wrap {
+                div.review_content {
+                  div.review_img {
+                    height: 300px;
+                  }
+                }
               }
             }
 
@@ -1196,7 +1341,7 @@ main.roomdetail_section {
     }
   }
 
-  @media screen and (max-width : 670px) {
+  @media screen and (max-width : 700px) {
     & {
       >div.content_wrap {
         div.content_container {
@@ -1250,85 +1395,88 @@ main.roomdetail_section {
         div.btn_content_container {
           div.container_content {
             div.review_container {
-              div.register_wrap {
-                padding-right: 0.5rem;
+              div.total_review_register {
+                padding: 0 0.5rem;
 
-                // 모달
-                div.bg_modal {
-                  div.review_modal {
-                    width: 80%;
-                    height: 95%;
+                div.register_wrap {
 
-                    div.logo_wrap {
-                      height: 17%;
+                  // 모달
+                  div.bg_modal {
+                    div.review_modal {
+                      width: 80%;
+                      height: 95%;
 
-                      img {
-                        width: 28%;
-                      }
-                    }
+                      div.logo_wrap {
+                        height: 17%;
 
-                    // form 
-                    form.modal_form {
-                      height: 83%;
-                      padding: 0;
-
-                      div.date_wrap {
-                        flex-direction: column;
-                        align-items: normal;
-
-                        label {
-                          margin-bottom: 10px;
-                          font-size: 0.9rem;
-                        }
-
-                        select {
-                          width: 100%;
+                        img {
+                          width: 28%;
                         }
                       }
 
-                      div.img_wrap {
-                        flex-direction: column;
+                      // form 
+                      form.modal_form {
+                        height: 83%;
+                        padding: 0;
 
-                        label {
-                          margin-bottom: 10px;
-                          font-size: 0.9rem;
+                        div.date_wrap {
+                          flex-direction: column;
+                          align-items: normal;
+
+                          label {
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+
+                          select {
+                            width: 100%;
+                          }
                         }
 
-                        div.icon_wrap {
-                          width: 100%;
-                        }
-                      }
+                        div.img_wrap {
+                          flex-direction: column;
 
-                      div.star_container {
-                        flex-direction: column;
+                          label {
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
 
-                        p {
-                          margin-bottom: 10px;
-                          font-size: 0.9rem;
-                        }
-
-                        div.star_content {
-                          width: 100%;
-                        }
-                      }
-
-                      div.content_wrap {
-                        flex-direction: column;
-
-                        label {
-                          width: 50%;
-                          margin-bottom: 10px;
-                          font-size: 0.9rem;
+                          div.icon_wrap {
+                            width: 100%;
+                          }
                         }
 
-                        textarea {
-                          width: 100%;
-                        }
-                      }
+                        div.star_container {
+                          flex-direction: column;
 
-                      div.text_length {
-                        width: 80%;
-                        margin-bottom: 1.5rem;
+                          p {
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+
+                          div.star_content {
+                            width: 100%;
+                          }
+                        }
+
+                        div.content_wrap {
+                          flex-direction: column;
+
+                          label {
+                            width: 50%;
+                            margin-bottom: 10px;
+                            font-size: 0.9rem;
+                          }
+
+                          textarea {
+                            width: 100%;
+                          }
+                        }
+
+                        div.text_length {
+                          width: 80%;
+                          margin-bottom: 1.5rem;
+                        }
                       }
                     }
                   }
@@ -1343,6 +1491,10 @@ main.roomdetail_section {
                 div.review_content {
                   width: 100%;
                   padding: 0 0.5rem;
+
+                  div.review_img {
+                    height: 420px;
+                  }
                 }
               }
             }
@@ -1457,42 +1609,93 @@ main.roomdetail_section {
     }
   }
 
-  @include responsive(sm) {
+  @media screen and (max-width: 550px) {
     & {
       >div.content_wrap {
+        div.content_container {
+          div.room_info_container {
+            div.info_top_wrap {
+              p.room_name {
+                font-size: 1.3rem;
+              }
+            }
+          }
+        }
 
         div.btn_content_container {
+          margin: 5rem 0;
+
           div.container_content {
             div.review_container {
-              div.register_wrap {
+              div.total_review_register {
+                flex-direction: column;
                 width: 100%;
-                div.bg_modal {
-                  div.review_modal {
-                    width: 95%;
 
-                    div.logo_wrap {
-                      img {
-                        width: 35%;
+                div.register_wrap {
+                  width: 100%;
+                  margin-bottom: 0.5rem;
+
+                  div.btn_wrap {
+                    justify-content: flex-end;
+                    color: #333;
+
+                    button.register_btn {
+                      color: #333;
+                    }
+                  }
+
+                  div.bg_modal {
+                    div.review_modal {
+                      width: 95%;
+
+                      div.logo_wrap {
+                        img {
+                          width: 35%;
+                        }
+                      }
+
+                      // form
+                      form.modal_form {
+                        div.date_wrap {
+                          margin-bottom: 1.6rem;
+                        }
+
+                        div.img_wrap {
+                          margin-bottom: 1.6rem;
+                        }
+
+                        div.star_container {
+                          margin-bottom: 1.6rem;
+                        }
+
+                        div.text_length {
+                          margin-bottom: 1.5rem;
+                        }
                       }
                     }
+                  }
+                }
 
-                    // form
-                    form.modal_form {
-                      div.date_wrap {
-                        margin-bottom: 1.6rem;
-                      }
+                div.total_review_info {
+                  width: 100%;
 
-                      div.img_wrap {
-                        margin-bottom: 1.6rem;
-                      }
+                  div.total_review_inner {
+                    flex-direction: row-reverse;
+                    justify-content: space-between;
 
-                      div.star_container {
-                        margin-bottom: 1.6rem;
-                      }
+                    p.total_avg,
+                    span {
+                      margin-right: 0;
+                    }
 
-                      div.text_length {
-                        margin-bottom: 1.5rem;
-                      }
+                    p.total_avg,
+                    p.total_cnt {
+                      font-size: 0.9rem;
+                    }
+
+                    // 개별
+                    span {
+                      display: none;
                     }
                   }
                 }
@@ -1503,6 +1706,10 @@ main.roomdetail_section {
 
                 div.review_content {
                   width: 100%;
+
+                  div.review_img {
+                    height: 280px;
+                  }
                 }
               }
             }
