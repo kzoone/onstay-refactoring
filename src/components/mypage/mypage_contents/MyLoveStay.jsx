@@ -37,7 +37,7 @@ export function MyLoveStay({ user_id }) {
         let copy = accs.filter(acc=>acc.acc_id !== acc_id)
         setAccs([...copy])
         disappeardRef.current = null;
-      }, 800)
+      }, 1000)
     })
     .catch(err => {
       console.log(err);
