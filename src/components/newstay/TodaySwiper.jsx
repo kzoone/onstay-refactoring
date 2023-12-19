@@ -35,13 +35,12 @@ export default function TodaySwiper({ acc_imgs }) {
           </SwiperSlide>
         )}
         <div className='swiper_nav_btn'>
+          <button onClick={handlePrev}><MdArrowBackIos /></button>
           <div>
             <span>{swiperIndex + 1}</span>
             <span> / </span>
             <span>{acc_imgs.length}</span>
           </div>
-          <button onClick={handlePrev}><MdArrowBackIos /></button>
-          <div className='swiper_btn_middle'></div>
           <button onClick={handleNext}><MdArrowForwardIos /></button>
         </div>
       </Swiper>

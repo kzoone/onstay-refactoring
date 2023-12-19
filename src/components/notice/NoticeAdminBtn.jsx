@@ -14,7 +14,7 @@ export default function NoticeAdminBtn({ setAddModal, setDeletModal, checkedItem
 
   return (
     <div className="notice_admin_btn">
-      <p>| <b>{userInfo.user_name}</b> 관리자님</p>
+      <p>| <b>{userInfo.user_id}</b> 님</p>
       <div>
         <button type="button" onClick={openAddModal}>추가</button>
         <button type="button" onClick={openDeleteModal}>

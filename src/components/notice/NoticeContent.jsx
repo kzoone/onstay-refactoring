@@ -47,6 +47,7 @@ export default function NoticeContent(props) {
           setNoticeList(result.data);
           setTotalCount(result.data[0].total_rows);
           setNoSearchResults(false);
+          props.setCheckList(result.data);
         } else {
           setNoSearchResults(true);
         }
@@ -66,27 +67,37 @@ export default function NoticeContent(props) {
         fetchData();
       } else if (startDate && endDate) {
         fetchData();
-      } 
+      }
     }, 1000);
     return () => clearTimeout(delaySearch);
   }, [page, searchTerm, startDate, endDate]);
-  
+
   // selectOption 변경 시 초기 데이터 요청
-useEffect(() => {
-  fetchData();
-}, [selectOption]);
+  useEffect(() => {
+    fetchData();
+  }, [selectOption]);
 
   // 페이지 변경을 처리하는 함수
   const handleChange = (page) => {
     setPage(page);
-  }
+  };
+
+const handleAllCheckBoxChange = (e) => {
+  props.handleAllCheck(e.target.checked);
+};
 
   return (
     <>
       <table className='notice_table'>
         <thead>
           <tr>
-            {userInfo.isAdmin ? <th>CHECK</th> : <th>NO</th>}
+            {userInfo.isAdmin ?
+              <th>
+                <input type='checkbox' id={`notice_check_all`}
+                  onChange={handleAllCheckBoxChange}
+                  checked={props.checkedItems?.length === noticeList.length} />
+                <label htmlFor={`notice_check_all`} ></label>
+              </th> : <th>NO</th>}
             <th>TITLE</th>
             <th>DATE</th>
             {userInfo.isAdmin ? <th>ALTER</th> : <th>VIEW COUNT</th>}
@@ -131,7 +142,6 @@ useEffect(() => {
         startDate={startDate}
         setEndDate={setEndDate}
         endDate={endDate}
-        fetchData={fetchData}
       />
     </>
   );

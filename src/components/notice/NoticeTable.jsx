@@ -4,12 +4,12 @@ import { SlNote } from 'react-icons/sl';
 import { useState } from 'react';
 import NoticeUpdate from '../notice/NoticeUpdate';
 import useUserInfo from '../../util/useUserInfo';
+import { useEffect } from 'react';
 
 export default function NoticeTable(props) {
   const { notice_id, no, page, notice_title, notice_date,
     notice_views, notice_content, notice_img, handleCheckedItems, checkedItems } = props;
   const userInfo = useUserInfo();
-  const [isChecked, setIsChecked] = useState(checkedItems?.includes(notice_id || false));
   const [updateModal, setUpdateModal] = useState(false);
 
   const openUpdateModal = () => setUpdateModal(true);
@@ -20,18 +20,13 @@ export default function NoticeTable(props) {
       .catch(error => console.error(error));
   };
 
-  const handleCheckboxChange = (e) => {
-    setIsChecked(!isChecked);
-    // 체크 여부와 ID를 부모 컴포넌트로 전달
-    handleCheckedItems(notice_id, !isChecked);
-  };
-
   return (
     <tr>
       {userInfo.isAdmin ?
         <th>
           <input type='checkbox' id={`notice_check${no}`}
-            checked={isChecked} onChange={handleCheckboxChange} />
+            onChange={() => handleCheckedItems(notice_id)}
+            checked={checkedItems.includes(notice_id)}/>
           <label htmlFor={`notice_check${no}`} ></label>
         </th>
         : <th>{no}</th>}

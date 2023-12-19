@@ -19,12 +19,13 @@ export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_n
 
   const params = {
     user_id: userInfo.user_id,
-    coupon_name: `[${acc_name}] 10,000원 할인 쿠폰(오늘 공개)`,
+    coupon_name: `[${acc_name}] 10,000원 할인 쿠폰`,
     discount_price: 10000,
     acc_name: acc_name
   };
 
   const handleConfirm = () => {
+    if(userInfo.user_id) {
     axiosAuth.post('http://localhost:8000/newstay/today/coupon', params)
       .then(result => {
         if (result.data === 'ok') {
@@ -40,6 +41,9 @@ export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_n
         }
       })
       .catch(error => console.log(error));
+    } else if (!userInfo.user_id) {
+      navigate('/login');
+    };
   };
 
   return (
