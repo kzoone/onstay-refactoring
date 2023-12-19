@@ -58,7 +58,7 @@ export function RoomSwiper() {
                       <div className="room-name">{room.room_name}</div>
                       <div className="room-capa">기준 {room.min_capa}명 &#40;최대 {room.max_capa}명&#41;</div>
                       <div className="space-between">
-                        <div className="room-price">&#92;{room.room_price.toLocaleString()}&#126;</div>
+                        <div className="room-price">&#8361;{room.room_price.toLocaleString()}&#126;</div>
                         <div className="room-reserve">예약하기</div>
                       </div>
                     </div>

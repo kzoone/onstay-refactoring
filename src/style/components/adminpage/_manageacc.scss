@@ -1,4 +1,4 @@
-div{
+div.manage_acc{
     position: relative;
     div.manage_accs{
         margin-bottom: 20px;
@@ -140,39 +140,45 @@ div{
 }
 
 @media screen and (min-width: 1000px) {
-    td{
-        height: 70px;
+    table.accs_table{
+        td{
+            height: 70px;
+        }
     }
 }
 @media screen and (max-width: 1000px) {
-    th{
-        &.title_acc_name,
-        &.title_acc_register_date{
-            display: none;
+    table.accs_table{
+        th{
+            &.title_acc_name,
+            &.title_acc_register_date{
+                display: none;
+            }
+            &.title_acc_name_hidden{
+                display: table-cell !important;
+            }
         }
-        &.title_acc_name_hidden{
-            display: table-cell !important;
-        }
-    }
-    td{
-        padding: 10px 0;
-        &.room_img,
-        &.acc_register_date{
-            display: none;
+        td{
+            padding: 10px 0;
+            &.room_img,
+            &.acc_register_date{
+                display: none;
+            }
         }
     }
 }
 @media screen and (max-width: 765px) {
-    th{
-        &.title_edit,
-        &.title_delete{
-            display: none;
+    table.accs_table{
+        th{
+            &.title_edit,
+            &.title_delete{
+                display: none;
+            }
         }
-    }
-    td{
-        &.edit,
-        &.delete{
-            display: none;
+        td{
+            &.edit,
+            &.delete{
+                display: none;
+            }
         }
     }
 }

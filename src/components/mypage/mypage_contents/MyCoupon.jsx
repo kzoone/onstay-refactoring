@@ -50,7 +50,7 @@ export function MyCoupon ({user_id}) {
         </div>
       }
       </div>
-      
+      <div className='border_pagination'>
       <Pagination 
         activePage={page}
         itemsCountPerPage={4}
@@ -60,6 +60,7 @@ export function MyCoupon ({user_id}) {
         nextPageText={">"}
         onChange={handlePage}
       />
+      </div>
       
     </div>
   );

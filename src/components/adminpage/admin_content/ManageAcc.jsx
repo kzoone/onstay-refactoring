@@ -123,7 +123,7 @@ export default function ManageAcc() {
     };
 
     return (
-        <div>
+        <div className='manage_acc'>
             <div className="manage_accs">
                 <span className="manage_accs_title">숙소 관리 ( {totalCount}개의 객실 )</span>
                 <button className='open_btn' onClick={openInsertModal}>

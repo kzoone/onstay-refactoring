@@ -48,7 +48,8 @@ export default function Sort({onSort, onSortSubmit}){
         <div className='sort'>
             {/* 관리자 로그인 시 */}
             {(user.user_id && user.isAdmin) &&
-                <Link className='acc_management' to='/adminpage'>숙소관리<MdManageAccounts /></Link>
+                <Link className='acc_management' 
+                to='/adminpage?showContent=ManageAcc'>숙소관리<MdManageAccounts /></Link>
             }
             <ul className='sort_dt'>
                 <li><button type='button' className={`love ${sort === 'love' ? 'selected' : ''}`} onClick={() => handleSortSubmit('love')}>추천순</button></li>

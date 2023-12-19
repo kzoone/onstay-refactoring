@@ -128,7 +128,7 @@ export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
       </div> : null}
       {modal.show && <MyQNAModal closeModal={closeModal} question_id={modal.question_id} user_id={user_id} />}
 
-      {questions.length ? <Pagination 
+      {questions.length ? <div className='border_pagination'><Pagination
         activePage={page}
         itemsCountPerPage={10}
         totalItemsCount={questions.length}
@@ -136,7 +136,7 @@ export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
         prevPageText={"<"}
         nextPageText={">"}
         onChange={handlePage}
-      /> : null}
+      /></div> : null}
     </>
   );
 }

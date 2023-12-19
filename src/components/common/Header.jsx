@@ -221,6 +221,9 @@ export default function Header() {
                                 <a className='menu' href='/mypage?showContent=MyReservation'>예약 정보</a>
                             </li>
                             <li>
+                                <a className='menu' href='/mypage?showContent=MyReview'>리뷰 관리</a>
+                            </li>
+                            <li>
                                 <a className='menu' href='/mypage?showContent=MyCoupon'>보유 쿠폰</a>
                             </li>
                             <li>
@@ -244,6 +247,7 @@ export default function Header() {
                     <ul>
                         <li><a className='menu' href='/adminpage?showContent=ManageMember'>회원 관리</a></li>
                         <li><a className='menu' href='/adminpage?showContent=ManageQNA'>1:1 문의글 관리</a></li>
+                        <li><a className='menu' href='/adminpage?showContent=ManageAcc'>숙소 관리</a></li>
                     </ul>
                     <div className='logout_area'>
                         <button type='button' className='logout' onClick={handleModal}>로그아웃</button>

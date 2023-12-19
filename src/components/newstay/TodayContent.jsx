@@ -32,8 +32,6 @@ export default function TodayContent(props) {
 
   const [restTime, setRestTime] = useState(calculateTimeDifference());
 
-  console.log(restTime.restHour, restTime.restMin, restTime.restSec);
-
   
   // 24시간이 지날 때 has24HoursPassed를 true로 업데이트
   // 1초마다 상태를 업데이트하기 위한 인터벌

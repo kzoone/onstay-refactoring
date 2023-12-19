@@ -7,7 +7,6 @@ export default function ManageAccRegister({closeDetailModal, openDeleteModal, de
     const close = () => {
         closeDetailModal();
     }
-    console.log(detail.length);
     const openDelete = () => {
         openDeleteModal();
     }
