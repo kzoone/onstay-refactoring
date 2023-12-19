@@ -14,7 +14,7 @@ export default function NoticeSearch(props) {
       }
     } else if (selectOption === 'date') {
       if (!startDate || !endDate) {
-        alert('날짜를 선택해주세요.')
+        alert('날짜를 선택해주세요.');
       }
     }
   }
@@ -70,10 +70,7 @@ export default function NoticeSearch(props) {
           }
         </div>
       </form>
-      <div>
         <button type='button' onClick={handleCilck}>RESET</button>
-        <button>SEARCH</button>
-      </div>
     </div>
   );
 };

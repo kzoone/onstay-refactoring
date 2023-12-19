@@ -4,11 +4,13 @@ import { SlHourglass } from "react-icons/sl";
 import { SlQuestion } from "react-icons/sl";
 import TodayAccModal from "./TodayAccModal";
 import { Link } from 'react-router-dom';
+import useUserInfo from "../../util/useUserInfo";
 
 export default function TodayContent(props) {
   const { acc_id, register_date, acc_name, fetchData,
-    acc_summary1, area_code, min_capa, max_capa, room_price, page, setPage } = props;
+    acc_summary1, area_code, min_capa, max_capa, room_price } = props;
   const [modal, setModal] = useState(false);
+  const useInfo = useUserInfo(false);
 
   const date = new Date(register_date)
   const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -30,23 +32,24 @@ export default function TodayContent(props) {
 
   const [restTime, setRestTime] = useState(calculateTimeDifference());
 
+  console.log(restTime.restHour, restTime.restMin, restTime.restSec);
+
+  
+  // 24시간이 지날 때 has24HoursPassed를 true로 업데이트
   // 1초마다 상태를 업데이트하기 위한 인터벌
   useEffect(() => {
     const interval = setInterval(() => {
       setRestTime(calculateTimeDifference());
     }, 1000);
-
+    
     return () => clearInterval(interval);
   }, []);
 
-  // 숙소 등록일자로 부터 24시간 지나면 재렌더링
-  // useEffect(() => {
-  //   const shouldFetchData = (restTime.restHour === '00' && restTime.restMin === '00' && restTime.restSec === '00');
-
-  //   if(shouldFetchData) {
-  //     setPage(1);
-  //   }
-  // }, [page, restTime.restHour, restTime.restMin, restTime.restSec])
+  useEffect(() => {
+    if (restTime.restHour === '00' && restTime.restMin === '00' && restTime.restSec === '00') {
+      fetchData();
+    }
+  }, [restTime]);
 
   const openModal = () => {
     setModal(true);
@@ -72,7 +75,7 @@ export default function TodayContent(props) {
       <div>
         <AccCity area_code={area_code} />
         <span>|</span>
-        <p>{min_capa} ~ {max_capa}</p>
+        <p>{min_capa} ~ {max_capa}명</p>
         <span>|</span>
         <p>&#8361;{room_price.toLocaleString()} ~</p>
       </div>
@@ -81,9 +84,12 @@ export default function TodayContent(props) {
         <button type="button" onClick={openModal}>쿠폰 받기</button>
       </div>
       {modal && <TodayAccModal
-        btnText='받기'
-        noti_1='등록일로부터 24시간 동안 쿠폰 이벤트 진행 중입니다.'
-        noti_2='쿠폰을 받으려면 쿠폰 받기를 클릭해 주세요!'
+        btnText={useInfo.user_id ? '받기' : null}
+        noti_1={useInfo.user_id ?
+          '등록일로부터 24시간 동안 쿠폰 이벤트 진행 중입니다.' :
+        '로그인이 필요한 서비스입니다.'}
+        noti_2={useInfo.user_id ? '쿠폰을 받으려면 쿠폰 받기를 클릭해 주세요!' : 
+        '로그인 창으로 이동하시겠습니까?'}
         setModal={setModal}
         acc_name={acc_name} />}
     </div>
