@@ -28,7 +28,6 @@ export function FindPw() {
             data : {user_id : form.user_id}
         })
         .then(res => {
-            console.log(res);
             setIsLoading(false);
             setIsMailSent(true);
         })

@@ -92,7 +92,6 @@ export function FindId() {
             method : 'get'
         })
         .then(res => {
-            console.log(res.data);
             navigate('/find/id/result',{
                 state : {user_email : form.user_email , list : res.data}
             });
