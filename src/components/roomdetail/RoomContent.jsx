@@ -10,12 +10,16 @@ import Review from './Review';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import useUserInfo from '../../util/useUserInfo';
+
 
 export default function RoomContent() {
   const [ roomContent, setRoomContent ] = useState({});
   const [ otherContent, setOtherContent ] = useState({});
   const [ showContent, setShowContent ] = useState('review');
   let { roomid } = useParams();
+  const userInfo = useUserInfo();
+  const user_id = userInfo.user_id;
 
   // 객실 정보 리스트 조회
   useEffect(() => {
@@ -51,7 +55,7 @@ export default function RoomContent() {
             <RoomInfo data={roomContent} />
             <div className='room_swiper_container'>
             <RoomSwiper img1={roomContent.room_img1} img2={roomContent.room_img2} img3={roomContent.room_img3} name={roomContent.room_name} acc={roomContent.acc_name} />
-            <ReservationDate roomid={roomid} price={roomContent.room_price} />
+            <ReservationDate roomid={roomid} price={roomContent.room_price} user_id={user_id} />
             </div>
           </div>
           <AdditionalList featureCodes={roomContent.feature_codes} amenities={roomContent.amenities} />
@@ -61,7 +65,7 @@ export default function RoomContent() {
                 <button type='button' data-content='review' onClick={handleClickContent} className={showContent === 'review'? 'active' : ''}>REVIEW</button>
                 <button type='button' data-content='other' onClick={handleClickContent} className={showContent === 'other'? 'active' : ''}>OTHER  ROOM</button>
               </div>
-              { showContent === 'review' && <Review roomid={roomid} /> }
+              { showContent === 'review' && <Review roomid={roomid} user_id={user_id} /> }
               { showContent === 'other' && <OtherRoom data={otherContent} /> }
               </div>
           </div>
