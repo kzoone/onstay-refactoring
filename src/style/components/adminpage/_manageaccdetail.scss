@@ -110,7 +110,7 @@ div.manage_detail{
                 div.only{
                     display: flex;
                     align-items: center;
-                    margin-bottom: 100px;
+                    margin-bottom: 30px;
                     label{
                         min-width: 170px;
                         font-weight: bold;
@@ -118,6 +118,16 @@ div.manage_detail{
                     input{
                         margin-left: 10px;
                         accent-color: black;
+                    }
+                }
+                div.acc_imgs{
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    div.acc_img{
+                        margin: 2px;
+                        img{
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -173,96 +183,40 @@ div.manage_detail{
                         }
                     }
                 }
-                div.room_img{
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 15px;
-                    label{
-                        min-width: 110px;
-                        font-weight: bold;
-                    }
-                    input{
-                        width: 100%;
-                        padding: 5px 0;
+                div.room_imgs{
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    margin-top: 30px;
+                    div.room_img{
+                        margin: 2px;
+                        img{
+                            width: 100%;
+                        }
                     }
                 }
             }
             div.form_btn{
                 text-align: end;
+                display: flex;
+                justify-content: space-between;
                 button{
-                    background: #000;
-                    color: #FFF;
                     padding: 10px 0;
+                    border: 1px solid #000;
                     border-radius: 4px;
                     width: 100px;
                     margin: 50px 0 0 15px;
+                    &:hover{
+                        background: #000;
+                        color: #FFF;
+                    }
+                }
+                div.close{
+                    button{
+                        margin-left: 0;
+                    }
                 }
             }
         }
-
-        //     p,
-        //     div.features{
-        //         padding: 10px;
-        //         display: flex;
-        //         align-items: center;
-        //         span:not(.radio),
-        //         label.img_upload{
-        //             font-weight: bold;
-        //             width: 140px;
-        //             text-align: end;
-        //             margin-right: 20px;
-        //         }
-        //         span.radio{
-        //             margin: 0 20px 0 10px;
-        //         }
-        //         input.radio{
-        //             accent-color: black;
-        //         }
-        //         input:not(.radio, .checkbox),
-        //         textarea{
-        //             border-bottom: 1px solid #000;
-        //             width: 500px;
-        //             padding: 4px 5px;
-        //         }
-        //         button{
-        //             background: pink;
-        //             width: 100px;
-        //         }
-        //         div{
-        //             width: 500px;
-        //             p{
-        //                 padding: 0;
-        //                 label{
-        //                     width: 70px;
-        //                     font-size: 12px;
-        //                     margin: 10px;
-        //                 }
-        //                 input{
-        //                     accent-color: black;
-        //                 }
-        //             }
-        //         }
-        //         &.features,
-        //         &.summary{
-        //             align-items: flex-start;
-        //         }
-        //         input.room_image{
-        //             border: none;
-        //         }
-        //     }
-        //     div.form_btn{
-        //         text-align: end;
-        //         button{
-        //             background: #000;
-        //             color: #FFF;
-        //             padding: 10px 0;
-        //             border-radius: 4px;
-        //             width: 100px;
-        //             margin: 50px 0 0 15px;
-        //         }
-        //     }
-
-
     }
 }
 

@@ -32,7 +32,15 @@ export default function ManageAccRegister({closeInsertModal}){
     const [minCapa, setMinCapa] = useState('');
     const [maxCapa, setMaxCapa] = useState('');
     const [roomImg1, setRoomImg1] = useState('');
-    const fileInputRef = useRef(null);
+    const [roomImg2, setRoomImg2] = useState('');
+    const [roomImg3, setRoomImg3] = useState('');
+    const [accImg1, setAccImg1] = useState('');
+    const [accImg2, setAccImg2] = useState('');
+    const [accImg3, setAccImg3] = useState('');
+    const [accImg4, setAccImg4] = useState('');
+    const [accImg5, setAccImg5] = useState('');
+    const roomFileInputRef = useRef(null);
+    const accFileInputRef = useRef(null);
     
     const handleAccName = (e) => {
         setAccName(e.target.value);
@@ -93,65 +101,91 @@ export default function ManageAccRegister({closeInsertModal}){
     const handleMaxCapa = (e) => {
         setMaxCapa(e.target.value);
     }
-    const handleRoomImg1 = (e) => {
-        const file = e.target.files[0];
-        setRoomImg1(file.name);
+    const handleRoomImg = (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            setRoomImg1(files[0]);
+            setRoomImg2(files[1]);
+            setRoomImg3(files[2]);
+        }
     }; 
+    const handleAccImg = (e) => {
+        const files = e.target.files;
+        if(files.length > 0){
+            setAccImg1(files[0]);
+            setAccImg2(files[1]);
+            setAccImg3(files[2]);
+            setAccImg4(files[3]);
+            setAccImg5(files[4]);
+        }
+    }
     
     const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        const sortedFeatureCodesArr = [...featureCodesArr].sort((a, b) => a - b);
-        const featureCodes = sortedFeatureCodesArr.join(',');
-        
-        const formData = new FormData();
-        
-        formData.append('accName', accName);
-        formData.append('tel', tel);
-        formData.append('zipcode', zipcode);
-        formData.append('address', address);
-        formData.append('latitude', latitude);
-        formData.append('longitude', longitude);
-        formData.append('parking', parking);
-        formData.append('cook', cook);
-        formData.append('pet', pet);
-        formData.append('breakfast', breakfast);
-        formData.append('accCheckin', accCheckin);
-        formData.append('accCheckout', accCheckout);
-        formData.append('homepage', homepage);
-        formData.append('registerDate', registerDate);
-        formData.append('only', only);
-        formData.append('areaCode', areaCode);
-        formData.append('accSummary1', accSummary1);
-        formData.append('accSummary2', accSummary2);
-        formData.append('roomName', roomName);
-        formData.append('roomPrice', roomPrice);
-        formData.append('featureCodesArr', featureCodesArr);
-        formData.append('amenities', amenities);
-        formData.append('minCapa', minCapa);
-        formData.append('maxCapa', maxCapa);
-        formData.append('roomImg1', roomImg1);
-        
-        axios({
-            url : 'http://localhost:8000/adminpage/accs/insert/',
-            method : 'post',
-            data : formData
+        if (!accName || !tel || !address || !parking || !cook || !pet || !breakfast || !accCheckin || !accCheckout || !homepage || !accSummary1 || !accSummary2 || !roomName || !roomPrice || !minCapa || !maxCapa) {
+            alert('모든 입력 항목을 채워주세요.');
+        }else{
+            e.preventDefault();
+            
+            const sortedFeatureCodesArr = [...featureCodesArr].sort((a, b) => a - b);
+            const featureCodes = sortedFeatureCodesArr.join(',');
+            
+            const formData = new FormData();
+            
+            formData.append('accName', accName);
+            formData.append('tel', tel);
+            formData.append('zipcode', zipcode);
+            formData.append('address', address);
+            formData.append('latitude', latitude);
+            formData.append('longitude', longitude);
+            formData.append('parking', parking);
+            formData.append('cook', cook);
+            formData.append('pet', pet);
+            formData.append('breakfast', breakfast);
+            formData.append('accCheckin', accCheckin);
+            formData.append('accCheckout', accCheckout);
+            formData.append('homepage', homepage);
+            formData.append('registerDate', registerDate);
+            formData.append('only', only);
+            formData.append('areaCode', areaCode);
+            formData.append('accSummary1', accSummary1);
+            formData.append('accSummary2', accSummary2);
+            formData.append('roomName', roomName);
+            formData.append('roomPrice', roomPrice);
+            formData.append('featureCodes', featureCodes);
+            formData.append('amenities', amenities);
+            formData.append('minCapa', minCapa);
+            formData.append('maxCapa', maxCapa);
+            formData.append('roomImg', roomImg1);
+            formData.append('roomImg', roomImg2);
+            formData.append('roomImg', roomImg3);
+            formData.append('accImgs', accImg1);
+            formData.append('accImgs', accImg2);
+            formData.append('accImgs', accImg3);
+            formData.append('accImgs', accImg4);
+            formData.append('accImgs', accImg5);
+            
+            axios({
+                url : 'http://localhost:8000/adminpage/accs/insert/',
+                method : 'post',
+                data : formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                })
+                .then(res => {
+                    if (res.data === 'ok') {
+                        alert('숙소 등록이 완료되었습니다.'); 
+                        window.location.reload();
+                }
             })
-            .then(res => {
-                if (res.data === 'ok') {
-                    console.log(res.data);
-                    alert('숙소 등록이 완료되었습니다.'); 
-                    window.location.reload();
-            }
-        })
-        .catch((err) => {
-            console.error('axios 에러 발생 => ' + err);
-        })
-        ;
-    
-        closeInsertModal();
-      };
-
+            .catch((err) => {
+                console.error('axios 에러 발생 => ' + err);
+            })
+            ;
+        
+            closeInsertModal();
+        };
+    }
     
     
 
@@ -220,7 +254,7 @@ export default function ManageAccRegister({closeInsertModal}){
                         <div className='register_title'>숙소 정보를 입력해주세요</div>
                         <div className='acc_name'>
                             <label htmlFor='acc_name'>숙소명</label>
-                            <input type="text" id='acc_name' onChange={handleAccName}/>
+                            <input type="text" id='acc_name' onChange={handleAccName} />
                         </div>
                         <div className='tel'>
                             <label htmlFor='tel'>전화번호</label>
@@ -275,6 +309,17 @@ export default function ManageAccRegister({closeInsertModal}){
                         <div className='only'>
                             <label htmlFor='only'>온스테이하우스에서만</label>
                             <input type='checkbox' id='only' onChange={handleOnly} />
+                        </div>
+                        <div className='acc_img'>
+                            <label htmlFor='acc_img'>숙소이미지 업로드</label>
+                            <input
+                                type='file'
+                                name='accImgs'
+                                ref={accFileInputRef}
+                                onChange={handleAccImg}
+                                accept='image/png, image/jpg, image/jpeg'
+                                multiple
+                            />
                         </div>
                     </div>
                     <div className='room_register'>
@@ -340,17 +385,17 @@ export default function ManageAccRegister({closeInsertModal}){
                             <label htmlFor='room_img'>객실이미지</label>
                             <input
                                 type='file'
-                                name='myFile'
-                                id='room_img'
-                                ref={fileInputRef}
-                                onChange={handleRoomImg1}
+                                name='roomImg'
+                                ref={roomFileInputRef}
+                                onChange={handleRoomImg}
                                 accept='image/png, image/jpg, image/jpeg'
+                                multiple
                             />
                         </div>
                     </div>
                     <div className='form_btn'>
                         <button type='reset'>취소</button>
-                        <button onClick={handleSubmit}>등록</button>
+                        <button type='button' onClick={handleSubmit}>등록</button>
                     </div>
                 </form>
             </div>

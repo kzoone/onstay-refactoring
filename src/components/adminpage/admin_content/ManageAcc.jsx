@@ -3,13 +3,12 @@ import axios from "axios";
 import Pagination from 'react-js-pagination';
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { TiDeleteOutline } from "react-icons/ti";
 import { BsHouseAddFill } from "react-icons/bs";
 import ManageAccRegister from "./ManageAccRegister";
 import ManageAccDetail from './ManageAccDetail';
+import ManageAccDelete from './ManageAccDelete';
 
 export default function ManageAcc() {
     const [accs, setAccs] = useState([]);
@@ -17,6 +16,7 @@ export default function ManageAcc() {
     const [totalCount, setTotalCount] = useState(0);
     const [isInsertModal, setIsInsertModal] = useState(false);
     const [isDetailModal, setIsDetailModal] = useState(false);
+    const [isDeleteModal, setIsDeleteModal] = useState(false);
     const [selectedAccId, setSelectedAccId] = useState('');
     const [selectedRoomName, setSelectedRoomName] = useState('');
     const [detail, setDetail] = useState([]);
@@ -61,11 +61,12 @@ export default function ManageAcc() {
         document.querySelector('.accs_table').style.display = 'table';
         document.querySelector('.pagination_container').style.display = 'block';
         document.querySelector('.open_btn').style.display = 'flex';
-        document.querySelector('.manage_accs_title').innerText = '숙소 관리';
+        document.querySelector('.manage_accs_title').innerText = `숙소 관리 ( ${totalCount}개의 객실 )`;
     };
 
     /* 상세 정보 모달 */
     const handleTrClick = (acc) => {
+        openDetailModal();
         setSelectedAccId(acc.acc_id);
         setSelectedRoomName(acc.room_name);
     };
@@ -78,22 +79,18 @@ export default function ManageAcc() {
     }, [selectedAccId, selectedRoomName]);
 
     const openDetailModal = () => {
-        if(isDetailModal){
-            closeDetailModal();
-        }else{
-            setIsDetailModal(true);
-            document.querySelector('.accs_table').style.display = 'none';
-            document.querySelector('.pagination_container').style.display = 'none';
-            document.querySelector('.open_btn').style.display = 'none';
-            document.querySelector('.manage_accs_title').innerText = '상세 정보';
-        }
+        setIsDetailModal(true);
+        document.querySelector('.accs_table').style.display = 'none';
+        document.querySelector('.pagination_container').style.display = 'none';
+        document.querySelector('.open_btn').style.display = 'none';
+        document.querySelector('.manage_accs_title').innerText = '상세 정보';
     }
     const closeDetailModal = () => { 
         setIsDetailModal(false);
         document.querySelector('.accs_table').style.display = 'table';
         document.querySelector('.pagination_container').style.display = 'block';
         document.querySelector('.open_btn').style.display = 'flex';
-        document.querySelector('.manage_accs_title').innerText = '숙소 관리';
+        document.querySelector('.manage_accs_title').innerText = `숙소 관리 ( ${totalCount}개의 객실 )`;
     };
 
     const getDetail = () => {
@@ -113,6 +110,18 @@ export default function ManageAcc() {
         })
     }
 
+    /* 삭제 모달 */
+    const openDeleteModal = () => {  
+        if(isDeleteModal){
+            closeDeleteModal();
+        }else{
+            setIsDeleteModal(true);
+        }
+    };
+    const closeDeleteModal = () => { 
+        setIsDeleteModal(false);
+    };
+
     return (
         <div>
             <div className="manage_accs">
@@ -126,6 +135,7 @@ export default function ManageAcc() {
                 <thead>
                     <tr>
                         <th colSpan={2} className="title_acc_name">Accommodation</th>
+                        <th className="title_acc_name_hidden">Accommodation</th>
                         <th className="title_room_name">Room</th>
                         <th className="title_room_price">Price</th>
                         <th className="title_acc_register_date">Register date</th>
@@ -141,10 +151,10 @@ export default function ManageAcc() {
                             <td className='room_name'>{acc.room_name}</td>
                             <td className='room_price'>₩{acc.room_price}</td>
                             <td className='acc_register_date'>{
-                                new Date(acc.register_date).toLocaleString()
+                                acc.register_date
                             }</td>
                             <td className='edit'><button><BiSolidEditAlt /></button></td>
-                            <td className='delete'><button><TiDeleteOutline /></button></td>
+                            <td className='delete'><button onClick={openDeleteModal}><TiDeleteOutline /></button></td>
                         </tr>
                     )}
                 </tbody>
@@ -165,8 +175,8 @@ export default function ManageAcc() {
                 />
             </div>
             {isInsertModal && <ManageAccRegister closeInsertModal={closeInsertModal} />}
-            {isDetailModal && <ManageAccDetail closeDetailModal={closeDetailModal} detail={detail} />}
-            
+            {isDetailModal && <ManageAccDetail closeDetailModal={closeDetailModal} openDeleteModal={openDeleteModal} detail={detail} />}
+            {isDeleteModal && <ManageAccDelete closeDeleteModal={closeDeleteModal} detail={detail} />}
         </div>
     ); 
 }

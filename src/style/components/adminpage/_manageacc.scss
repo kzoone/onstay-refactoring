@@ -6,6 +6,7 @@ div{
         justify-content: space-between;
         align-items: flex-end;
         font-size: 22px;
+        min-width: 325px;
         button{
             display: flex;
             align-items: flex-end;
@@ -23,18 +24,39 @@ div{
                     padding: 7px 0;
                     background: #000;
                     color: #FFF;
+                    &.title_acc_name_hidden{
+                        min-width: 180px;
+                    }
+                    &.title_room_name{
+                        width: 80px;
+                        min-width: 70px;
+                    }
                     &.title_room_price{
                         width: 120px;
+                        min-width: 80px;
+                    }
+                    &.title_acc_register_date{
+                        width: 120px;
+                        min-width: 80px;
                     }
                     &.title_edit,
                     &.title_delete{
                         width: 30px;
+                    }
+                    &.title_acc_name_hidden{
+                        display: none;
                     }
                 }
             }
         }
         tbody{
             tr{
+                &:hover{
+                    td{
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
                 td{
                     vertical-align: middle;
                     &.room_img{
@@ -47,7 +69,6 @@ div{
                     &.acc_name{
                         padding: 0 10px;
                         font-size: 14px;
-                        width: 200px;
                         text-align: center;
                         border-bottom: 1px solid #DDD;
                         border-right: 1px solid #DDD;
@@ -69,6 +90,7 @@ div{
                     &.delete{
                         font-size: 16px;
                     }
+                    
                 }
             }
         }
@@ -113,6 +135,44 @@ div{
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    td{
+        height: 70px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    th{
+        &.title_acc_name,
+        &.title_acc_register_date{
+            display: none;
+        }
+        &.title_acc_name_hidden{
+            display: table-cell !important;
+        }
+    }
+    td{
+        padding: 10px 0;
+        &.room_img,
+        &.acc_register_date{
+            display: none;
+        }
+    }
+}
+@media screen and (max-width: 765px) {
+    th{
+        &.title_edit,
+        &.title_delete{
+            display: none;
+        }
+    }
+    td{
+        &.edit,
+        &.delete{
+            display: none;
         }
     }
 }

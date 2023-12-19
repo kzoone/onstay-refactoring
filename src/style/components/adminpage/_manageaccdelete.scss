@@ -1,0 +1,56 @@
+div.modal_container{
+    width: 100%;
+    height: 100%;
+    div.delete_confirm{
+        position: absolute;
+        opacity: 1;
+        background: #FFF;
+        left: calc(50% - 275px);
+        top: calc(50% - 175px);
+        width: 550px;
+        height: 350px;
+        border-radius: 10px;
+        div.logo_img{
+            width: 150px;
+            margin: 20px auto 0 auto;
+            img{
+                width: 100%;
+            }
+        }
+        div.delete{
+            padding:40px 0 20px 0;
+            p{
+                margin-bottom: 10px;
+                text-align: center;
+                font-size: 16px;
+                &:first-child{
+                    margin-bottom: 20px;
+                }
+                &:last-child{
+                    margin-top: 20px;
+                }
+                span{
+                    font-weight: bold;
+                    color: #000;
+                    font-size: 18px;
+                }
+            }
+        }
+        div.btns{
+            display: flex;
+            justify-content: center;
+            padding-bottom: 30px;
+            button{
+                padding: 10px 80px;
+                border: 1px solid #000;
+                color: #000;
+                border-radius: 4px;
+                margin: 10px;
+                &:hover{
+                    background: #000;
+                    color: #FFF;
+                }
+            }
+        }
+    }
+}
