@@ -1,22 +1,19 @@
 div.visual-section {
-  max-width: 1800px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   display: flex;
-  align-items: center; /* 세로 중앙 정렬 추가 */
   margin-bottom: 100px;
   div.img-container {
     width: 100%;
-    height: 60vh;
+    height: 50em;
     position: relative;
-
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-
   div.text-container {
     position: absolute;
     bottom:0;
@@ -27,144 +24,370 @@ div.visual-section {
     display: flex;
     justify-content: space-between;
     align-items: center; /* 세로 중앙 정렬 추가 */
-    background: rgb(0, 0, 0, 0.9);
-    color: white;
-    font-size: 1.7rem;
+    background: rgb(0, 0, 0, 0.7);
     padding: 20px;
     div.acc_name{
+      color: white;
+      font-size: 1.7rem;
       margin-left : 30px;
-      border-right: 3px solid gray;
+      border-right: 1px solid gray;
+      padding: 10px;
+      padding-right: 20px;
     }
     div.acc_address{
+      color: gray;
+      font-size: 1.3rem;
       margin-right: 30px;
-      border-left: 3px solid gray;
+      border-left: 1px solid gray;
+      padding: 10px;
+      padding-left: 20px
+    }
+  }
+  .gallery_link{
+    position: absolute;
+    border: 1px solid white;
+    background: rgba(0,0,0,0.6);
+    top : 5%;
+    right : 3%;
+    div{
+      color:  white;
+      font-size: 1.3rem;
+      padding : 20px 10px;
     }
   }
 }
 
-@media screen and (min-width : 1026px){
-  div.whole-frame{
-    max-width: 1800px;
-    margin: 0 auto;
-    background: linear-gradient(to right, #EEE 60%, transparent 50%);
-    .whole-container{
-    display: flex;
-    width: 100%;
-    margin:0 auto;
-    align-items: center;
-    margin-bottom: 100px;
-    padding-top: 100px;
-    padding-bottom:50px;
+div.whole-frame{
+  margin-bottom : 50px;
+  margin: 0 auto;
+  .swiper-pagination-clickable .swiper-pagination-bullet{
+    background: white;
+  }
+  .whole-container{
+    padding : 100px 0 50px 0;
     .title{
-      margin-bottom: 200px;
-      margin-left: 50px;
-      font-size: 3.6rem;
-      width: 20%;
+      font-size: 2.8rem;
+      font-weight: 500;
     }
     .border{
-      width: 50%;
-      border-top:5px solid black;
-      margin-top : 30px;
-    }
-    .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
-      width: 60%;
+      border-top:3px solid black;
+      margin-top:28px;
     }
     .room-swiper-container{
-      padding: 0 10px;
-      .slide {
-        position:relative;
-          .swiper-img {
-            width: 100%;
-            /* 이미지에 대한 다른 스타일을 추가하세요. */
-          }
+      .slide{
+        .swiper-img{
+          width: 100%;
+        }
         .text-container{
           position: absolute;
           bottom:0;
-          left:0;
           width: 100%;
           background: rgba(0,0,0,0.7);
           color: white;
           padding: 20px 20px;
-          .room-type{
-            margin-top:15px;
-            font-size: 0.7rem;
-            color:rgba(255,255,255,0.8);
-          }
           .room-name{
-            font-size : 1.6rem;
+            font-size: 1.3rem;
             font-weight: 500;
-            margin-top:8px;
-            margin-bottom: 30px;
-            
           }
           .room-capa{
-            font-size:0.9rem;
+            font-size: 0.9rem;
             opacity: 0.7;
-            margin-bottom:20px;
+            margin-bottom: 20px;
           }
           .space-between{
             display: flex;
             justify-content: space-between;
             .room-price{
-              font-size: 1.3rem;
+              font-size:1.3rem;
               font-weight: 500;
             }
             .room-reserve{
               text-decoration: underline;
-              font-size : 1.0rem;
-              color : gray;
+              font-size: 1.0rem;
             }
           }
-  
         }
       }
     }
-  }    
   }
-  div.summary-whole-container{
-    width: 100%;  
-    div.summary-container{
-      padding: 30px;
-      width: 100%;
+}
+
+div.summary-whole-container{
+  max-width: 1800px;
+  margin : 0 auto;
+  div.summary-container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 50px;
+    div.summary-title{
+      font-size: 2.0rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    div.border{
+      border-left: 1.5px solid black;
+      height: 40px;
+      margin-left: 50%;
+      margin-bottom: 30px;
+    }
+    div.summary-top,
+    div.summary-bottom{
+      width: 60%;
       margin: 0 auto;
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 2.3;
+    }
+    div.summary-top{
+      margin-bottom: 50px;
+    }
+  }
+}
+
+div.whole_point_section{
+  margin-bottom: 150px;
+  div.point_section{
+    position: relative;
+    max-width: 1800px;
+    margin: 0 auto;
+    div.img_container{
+      width: 100%;
+      height: 45em;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(70%); 
+      }
+    }
+    div.point_comment_box{
+      position: absolute;
+      background: black;
       text-align: center;
-      margin-bottom: 100px;
-        div.summary-title{
-          font-size: 2.0rem;
-          font-weight: 400;
-          margin-bottom: 10px;
+      color: white;
+      top: 60%;
+      left: 10%;
+      width: 21%;
+      padding: 33px 50px;
+      transform: translateY(-50%);
+      img{
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+      }
+      div.point_section_title{
+        width: 250px;
+        position: absolute;
+        letter-spacing: 1.3rem;
+        font-size: 1.4rem;
+        left: 53%;
+        top: -170px;
+        transform: translateX(-50%);
+      }
+      div.point_comment_title{
+        margin : 20px 0;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+      div.point_comment_summary{
+        font-size:0.8rem;
+        color : gray;
+      }
+    }
+    div.point_comment_box:nth-child(2) {
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+    }
+  
+    div.point_comment_box:nth-child(3) {
+      left: 70%;
+    }
+  }
+}
+
+div.map_container{
+  max-width: 1800px;
+  margin : 0 auto;
+  div.explain{
+    text-align: center;
+    font-size: 1.3rem;
+    padding-bottom: 50px;
+  }
+  div.map{
+    width: 100%;
+    height: 27em;
+  }
+  div.map_text_container{
+    div.text_address,
+    div.text_tel,
+    div.text_homepage{
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media screen and (min-width : 770px){
+  div.whole-frame{
+    background: linear-gradient(to right, #EEE 40%, transparent 50%);
+    .whole-container{
+      display:flex;
+      margin-bottom : 100px;
+      .title{
+        font-size:3.6rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 1025px){ //작은화면, 중간화면
+  div.visual-section {
+    .gallery_link{
+      div{
+        color:  white;
+        font-size: 0.9rem;
+        padding : 15px 10px;
+      }
+    }
+  }
+  
+  div.whole_point_section{
+    margin-bottom: 150px;
+    div.point_section{
+      position: relative;
+      max-width: 1800px;
+      margin: 0 auto;
+      div.img_container{
+        width: 100%;
+        height: 45em;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(70%); 
         }
-        div.border{
-          border-left : 3px solid black;
-          height : 50px;
-          margin-left: 50%;
-          margin-bottom: 70px;
-        }
-        div.summary-top,
-        div.summary-bottom{
-          width: 60%;
+      }
+      div.point_comment_box{
+        position: absolute;
+        background: black;
+        
+        color: white;
+        font-size : 0.9rem;
+        top: 60%;
+        left: 10%;
+        width: 80%;
+        padding: 0 30px;
+        transform: translateY(-50%);
+        img{
+          width: 35px;
+          height: 35px;
           margin: 0 auto;
-          font-size : 1.1rem;
-          font-weight: 400;
         }
-        div.summary-top{
-          margin-bottom: 50px;
+        div.point_section_title{
+          width: 250px;
+          position: absolute;
+          letter-spacing: 1.3rem;
+          font-size: 1.4rem;
+          left: 53%;
+          top: -170px;
+          transform: translateX(-50%);
+        }
+
+        div.point_section_flex{
+          display: flex;
+          padding-top : 30px;
+          div.point_small_frame{
+            margin-right: 20px;
+            div.point_comment_title{
+              margin : 20px 0;
+              font-size : 0.9rem;
+              font-weight: 500;
+              white-space: nowrap;
+            }
+          } 
+          div.point_comment_summary{
+            font-size:0.8rem;
+            text-align: left;
+            color : gray;
+          }
+
+        }
+      }
+      div.point_comment_box:nth-child(2) {
+        left: 50%;
+        top : 40%;
+        transform: translate(-50%, -50%);
+      }
+    
+      div.point_comment_box:nth-child(3) {
+        left: 10%;
+        top : 80%;
+      }
+    }
+  }
+
+
+  
+  div.map_container{
+    div.map_text_container{
+      div.mobile-title-container{
+        margin-right: 50px; 
+        div.text_title{
+          margin-bottom:10px;
+        }
+      }
+    }
+  }
+  
+  div.map_container{
+    div.explain{
+      display: none;
+    }
+    div.map_text_container{
+      display: flex;
+      background: #EEE;
+      padding:20px 20px;
+      margin : 20px;
+      font-size: 0.9rem;
+      div.text_tel,
+      div.text_homepage{
+        color: gray;
+      }
+    }
+  }
+}
+
+@media screen and (min-width : 1026px){ //큰 화면
+  div.whole-frame{
+    max-width: 1800px;
+    .whole-container{
+    .title{
+      margin-bottom: 200px;
+      margin-left: 50px;
+      width: 20%;
+      }
+      .border{
+        width: 25%;
+      }  
+    }    
+  }
+
+  div.summary-whole-container{
+    div.summary-container{
+      margin-bottom: 100px;
+        div.summary-subtitle{
+          font-size: 0.9rem;
+          margin-bottom: 20px;
+          letter-spacing : 5px;
         }
     }
   }
 
   div.map_container{
     position: relative;
-    margin-bottom: 100px;
-    div.explain{
-      text-align: center;
-      font-size: 1.3rem;
-      padding-bottom: 50px;  
-    }
-    div.map{
-      width: 100%;
-      height: 60vh;
-    }
     div.map_text_container{
       position: absolute;
       background: white;
@@ -186,9 +409,7 @@ div.visual-section {
       div.text_address,
       div.text_tel,
       div.text_homepage{
-        font-size: 0.9rem;
         color:gray;
-        margin-bottom: 10px;
       }
     }
     }
@@ -197,72 +418,39 @@ div.visual-section {
 
 @media screen and (min-width : 770px) and (max-width : 1026px){
   div.whole-frame{
-    width: 100%;
-    background: linear-gradient(to right, #EEE 60%, transparent 50%);
+    margin-bottom: 100px;
     .whole-container{
-      display: flex;
       width: 80%;
       margin:0 auto;
-      margin-bottom: 100px;
-      padding-top: 100px;
-      padding-bottom:50px;
       .title{
-        font-size: 3.6rem;
-        width: 60%;
+        width: 40%;
+        font-size: 2.1rem;
+        font-weight: 500;
       }
       .border{
-        width: 50%;
-        border-top:5px solid black;
-        margin-top : 30px;
-      }
-      .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
-        width: 60%;
+        width: 10%;
+        border-top:3px solid black;
+        margin-top:28px;
       }
       .room-swiper-container{
-        padding: 0 10px;
         .slide {
           position:relative;
-            .swiper-img {
-              width: 100%;
-              /* 이미지에 대한 다른 스타일을 추가하세요. */
+        }
+        div.text-container{
+          div.room-name{
+            font-size : 1.3rem;
+            margin-bottom : 7px;
+          }
+          div.room-capa{
+            font-size: 0.8rem;
+            margin-bottom : 33px;
+          }
+          div.space-between{
+            div.room-price{
+              font-size: 1rem;
             }
-          .text-container{
-            position: absolute;
-            bottom:0;
-            left:0;
-            width: 100%;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 20px 20px;
-            .room-type{
-              margin-top:15px;
-              font-size: 0.7rem;
-              color:rgba(255,255,255,0.8);
-            }
-            .room-name{
-              font-size : 1.6rem;
-              font-weight: 500;
-              margin-top:8px;
-              margin-bottom: 30px;
-              
-            }
-            .room-capa{
-              font-size:0.9rem;
-              opacity: 0.7;
-              margin-bottom:20px;
-            }
-            .space-between{
-              display: flex;
-              justify-content: space-between;
-              .room-price{
-                font-size: 1.3rem;
-                font-weight: 500;
-              }
-              .room-reserve{
-                text-decoration: underline;
-                font-size : 1.0rem;
-                color : gray;
-              }
+            div.room-reserve{
+              font-size: 0.95rem;
             }
           }
         }
@@ -270,12 +458,7 @@ div.visual-section {
     }
   }
   div.summary-whole-container{
-    width: 100%;  
     div.summary-container{
-      padding: 30px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
       margin-bottom: 50px;
       div.summary-title{
         font-size: 2.0rem;
@@ -283,113 +466,38 @@ div.visual-section {
         margin-bottom: 10px;
       }
       div.border{
-        border-left : 3px solid black;
-        height : 50px;
-        margin-left: 50%;
-        margin-bottom: 70px;
+        border-left: 1.5px solid black;
+        margin : 30px 0 30px 50%
       }
       div.summary-top,
       div.summary-bottom{
-        width: 60%;
-        margin: 0 auto;
-        font-size : 1.1rem;
-        font-weight: 400;
-      }
-      div.summary-top{
-        margin-bottom: 50px;
+        width: 73%;
+        font-size: 0.9rem;
+        line-height: 1.5;
       }
     }
   }
-  div.map_container{
-    margin-bottom: 100px;
-    div.explain{
-      display: none; 
-    }
-
-    div.map_text_container{
-      display: flex;
-      background: #EEE;
-      padding: 20px 20px;
-      z-index:100;
-      margin : 20px;
-      font-size: 0.9r em;
-      div.mobile-title-container{
-        margin-right: 50px; 
-        div.text_title{
-          margin-bottom:10px;
-        }
-      }
-
-      div.text_address,
-      div.text_tel,
-      div.text_homepage{
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-      }
-      div.text_tel,
-      div.text_homepage{
-        color: gray;
-      }
-    }
-    div.map{
-      width: 100%;
-      height: 60vh;
-    }
-    }
-    
 }
 
 @media screen and (max-width : 769px){
   div.visual-section {
-    max-width: 1800px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    align-items: center; /* 세로 중앙 정렬 추가 */
     margin-bottom: 50px;
     div.img-container {
-      width: 100%;
       height: 80vh;
-      position: relative;
-  
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
-  
-    div.text-container {
-      position: absolute;
-      bottom:0;
-      left: 50%;
-      transform: translate(-50%, -0%);
-      width: 80%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center; /* 세로 중앙 정렬 추가 */
-      background: rgb(0, 0, 0, 0.7);
-      color: white;
-      font-size: 1.2rem;
-      padding: 20px;
+    div.text-container{
       div.acc_name{
-        margin-left : 10px;
-      }
-      div.acc_address{
-        margin-right: 10px;
+        border : none;
+        padding: 5px;
+        font-size: 1.1rem;
       }
     }
   }
-  
+
   div.whole-frame{
     width: 100%;
     background: linear-gradient(to bottom, #EEE 80%, transparent 50%);
     .whole-container{
-      width: 100%;
-      margin:0 auto;
-      padding-top: 100px;
-      padding-bottom:50px;
       .title{
         font-size: 2.1rem;
         width: 30%;
@@ -397,30 +505,16 @@ div.visual-section {
         text-align: center;
       }
       .border{
-        width: 50%;
-        border-top:5px solid black;
-        margin-top : 30px;
-        margin-left : 25%;
         padding-bottom: 100px;
       }
-      .swiper-slide slide swiper-slide-active, swiper-slide slide swiper-slide-next{
-        width: 60%;
-      }
       .room-swiper-container{
-        padding: 0 10px;
+        width: 80%;
         .slide {
           position:relative;
-            .swiper-img {
-              width: 100%;
-              /* 이미지에 대한 다른 스타일을 추가하세요. */
-            }
-          .text-container{
-            position: absolute;
-            bottom:0;
-            left:0;
+          .swiper-img{
             width: 100%;
-            background: rgba(0,0,0,0.7);
-            color: white;
+          }
+          .text-container{
             padding: 10px 20px;
             .room-type{
               margin-top:15px;
@@ -428,29 +522,8 @@ div.visual-section {
               color:rgba(255,255,255,0.8);
             }
             .room-name{
-              font-size : 0.9rem;
-              font-weight: 500;
               margin-top:8px;
               margin-bottom: 10px;
-              
-            }
-            .room-capa{
-              font-size:0.5rem;
-              opacity: 0.7;
-              margin-bottom:10px;
-            }
-            .space-between{
-              display: flex;
-              justify-content: space-between;
-              .room-price{
-                font-size: 0.7rem;
-                font-weight: 500;
-              }
-              .room-reserve{
-                text-decoration: underline;
-                font-size : 0.6rem;
-                color : gray;
-              }
             }
           }
         }
@@ -458,167 +531,30 @@ div.visual-section {
     }
   }
   div.summary-whole-container{
-    width: 100%;  
+    width: 100%;
     div.summary-container{
-      padding: 30px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-      margin-bottom: 50px;
-      div.summary-title{
-        font-size: 2.0rem;
-        font-weight: 400;
-        margin-bottom: 10px;
-      }
       div.border{
-        border-left : 3px solid black;
-        height : 50px;
-        margin-left: 50%;
-        margin-bottom: 30px;
+        margin-top : 20px;
       }
       div.summary-top,
       div.summary-bottom{
         width: 100%;
-        font-size : 1.1rem;
-        font-weight: 400;
+        font-size : 0.7rem;
+        text-align: left;
+        margin:0; 
       }
       div.summary-top{
-        margin-bottom: 50px;
+        margin-bottom:30px;
       }
     }
   }
-  div.map_container{
-    margin-bottom: 100px;
-    div.explain{
-      display: none;
-    }
-    div.map_text_container{
-      display: flex;
-      background: #EEE;
-      padding: 20px 20px;
-      z-index:100;
-      margin : 20px;
-      font-size: 0.9r em;
-      div.mobile-title-container{
-        
-      }
 
-      div.text_address,
-      div.text_tel,
-      div.text_homepage{
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-      }
-      div.text_tel,
-      div.text_homepage{
-        color: gray;
+  div.whole_point_section{
+    div.point_section_flex{
+      padding-top : none;      
+      div.point_comment_summary{
+        padding-bottom : 20px;
       }
     }
-    div.map{
-      width: 100%;
-      height: 60vh;
-    }
-    }
-    
-
+  }
 }
-
-div.about_whole_frame{
-  max-width: 1800px;
-  div.about_frame{
-    width: 100%;
-    background: black;
-    div.about_title{
-      display: flex;
-      width: 80%;
-      color: white;
-      margin : 0 auto;
-      text-align: center;
-      padding-top : 30px;
-      margin-right: 50px;
-    }
-    div.about-section{
-    display: flex;
-    color: white;
-    width: 100%;
-    margin:0 auto;
-    padding: 40px;
-    .about_btn{
-      margin: 30px;
-      width: 20%;
-      .reserve_btn,
-      .usage_btn,
-      .refund_btn{
-        color: gray;
-        margin: 30px;
-        font-size: 1.6rem;
-        &.reserve_btn,
-        &.usage_btn,
-        &.refund_btn {
-          color: gray; // 여기에 기본 글자색을 설정하세요
-          &.selected {
-            color: white; // 여기에 선택된 버튼의 글자색을 설정하세요
-            font-weight: bold;
-          }
-        }
-      }
-    }
-    div.content_display{
-      text-align: left;
-      margin:60px;
-      font-size:1.3rem;
-      width: 80%;
-    }
-    }
-    }
-}
-
-div.content_whole_frame{
-  width: 100%;
-  div.content_title{
-    font-size:1.5rem;
-    margin-bottom : 20px;
-    color: white;
-    }
-    div.content_explain{
-    display: flex;
-    margin-bottom:30px;
-    color: gray;
-    div.content_subtitle{
-      margin-right:50px;
-      min-width: 20%;
-    }
-    .content_comment{
-      min-width: 70%;
-      margin-bottom:20px;
-      list-style: disc;
-    }
-    div.content_subtitle{
-      margin-bottom: 10px;
-    }
-    .content_table {
-      border-collapse: collapse;
-      margin-bottom:20px;
-    }
-    
-    /* 헤더 셀에 border를 추가합니다. */
-    .content_thead th {
-      border: 1px solid #BBB; /* 테두리 색을 설정할 수 있습니다. */
-      padding: 8px; /* 셀 안의 여백을 설정할 수 있습니다. */
-      text-align: center; /* 텍스트 정렬을 설정할 수 있습니다. */
-      font-size: 0.9rem;
-    }
-    
-    /* 본문 셀에 border를 추가합니다. */
-    .content_table td {
-      border: 1px solid #BBB; /* 테두리 색을 설정할 수 있습니다. */
-      white-space: nowrap;
-      padding: 8px 100px; /* 셀 안의 여백을 설정할 수 있습니다. */
-      text-align: center; /* 텍스트 정렬을 설정할 수 있습니다. */
-      font-size: 0.9rem;
-    }
-    }
-}
-
-
-

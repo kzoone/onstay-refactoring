@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-  import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from 'swiper/modules';
+import 'swiper/css/pagination';
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -14,7 +16,6 @@ export function RoomSwiper() {
     axios
       .get(`http://localhost:8000/findstay/acc/${accid}/room`)
       .then((result) => {
-        /* console.log(result.data); */
         setRoomInfo(result.data);
       })
       .catch((error) => console.log(error));
@@ -31,7 +32,8 @@ export function RoomSwiper() {
           <Swiper className="room-swiper-container" /* padding을 양쪽에만 준다 */
             spaceBetween={50}
             slidesPerView={2}
-            pagination={{ clickable: true }}
+            pagination={{ bullet : true, clickable: true }}
+            modules={[Pagination]}
             breakpoints = {{
               200:{
                 slidesPerView : 1,
@@ -53,7 +55,6 @@ export function RoomSwiper() {
                           alt={room.room_name}
                         />
                     <div className="text-container"> {/* absolute */}
-                      <div className="room-type">기본형</div>
                       <div className="room-name">{room.room_name}</div>
                       <div className="room-capa">기준 {room.min_capa}명 &#40;최대 {room.max_capa}명&#41;</div>
                       <div className="space-between">

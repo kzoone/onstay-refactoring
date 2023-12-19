@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export function AccName() {
     const [accInfo, setAccInfo] = useState({acc_name:'',address:'',acc_img:''});
@@ -9,7 +9,6 @@ export function AccName() {
     useEffect(() => {
         axios.get(`http://localhost:8000/findstay/acc/${accid}`)
         .then(result => {
-            // console.log(result.data);
             setAccInfo(result.data);
         })
         .catch(error => console.log(error));
@@ -22,7 +21,7 @@ export function AccName() {
                 <div className='acc_name'>{accInfo.acc_name}</div>
                 <div className='acc_address'>{accInfo.address}</div>
             </div>
+            <Link to={`/findstay/acc/gallery/${accid}`} className='gallery_link'><div>사진 모아보기</div></Link>
         </div>
-        
     );
 };

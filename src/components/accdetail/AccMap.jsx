@@ -7,35 +7,40 @@ const { kakao } = window;
 export function AccMap() {
   const [accMap, setAccMap] = useState({});
   const { accid } = useParams();
+  const [map, setMap] = useState(null); // 상태로 map 객체 추가
 
   useEffect(() => {
-    // 서버에서 데이터를 가져옴
     axios
       .get(`http://localhost:8000/findstay/acc/${accid}/map`)
       .then((result) => {
-        console.log(result.data);
         setAccMap(result.data);
 
-        // Kakao 지도 API 사용
         const container = document.getElementById('map');
         const options = {
           center: new kakao.maps.LatLng(result.data.latitude, result.data.longitude),
           level: 3,
         };
 
-        const map = new kakao.maps.Map(container, options);
-        map.setDraggable(false);
-        map.setZoomable(false);
+        // Set the map to the state
+        const newMap = new kakao.maps.Map(container, options);
+        setMap(newMap);
+
+        newMap.setDraggable(false);
+        newMap.setZoomable(false);
+
         const markerPosition = new kakao.maps.LatLng(result.data.latitude, result.data.longitude);
         const marker = new kakao.maps.Marker({
           position: markerPosition,
         });
-        marker.setMap(map);
+        marker.setMap(newMap);
 
-        // 지도 크기가 변경될 때마다 마커를 중앙에 위치시킴
-        kakao.maps.event.addListener(map, 'idle', function() {
-          map.setCenter(markerPosition);
+        kakao.maps.event.addListener(newMap, 'idle', function () {
+          newMap.setCenter(markerPosition);
         });
+
+        // Add ZoomControl after the map is created
+        const zoomControl = new kakao.maps.ZoomControl();
+        newMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       })
       .catch((error) => console.log(error));
   }, [accid]); // accid가 변경될 때마다 useEffect가 다시 실행됨
