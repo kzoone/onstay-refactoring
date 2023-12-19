@@ -9,7 +9,6 @@ export function AccName() {
     useEffect(() => {
         axios.get(`http://localhost:8000/findstay/acc/${accid}`)
         .then(result => {
-            console.log(result.data);
             setAccInfo(result.data);
         })
         .catch(error => console.log(error));

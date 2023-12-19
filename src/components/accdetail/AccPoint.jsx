@@ -9,7 +9,6 @@ export function AccPoint() {
   useEffect(() => {
     axios.get(`http://localhost:8000/findstay/acc/${accid}/point`)
     .then(result => {
-      console.log(result.data);
       setAccPoint(result.data);
     })
     .catch(error => console.log(error));

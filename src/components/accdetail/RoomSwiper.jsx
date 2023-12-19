@@ -16,7 +16,6 @@ export function RoomSwiper() {
     axios
       .get(`http://localhost:8000/findstay/acc/${accid}/room`)
       .then((result) => {
-        /* console.log(result.data); */
         setRoomInfo(result.data);
       })
       .catch((error) => console.log(error));

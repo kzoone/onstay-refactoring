@@ -9,7 +9,6 @@ export function AccGalleryTop() {
   useEffect(() => {
       axios.get(`http://localhost:8000/findstay/acc/gallery/${accid}`)
       .then(result => {
-          // console.log(result.data);
           setTopImage(result.data);
       })
       .catch(error => console.log(error));
