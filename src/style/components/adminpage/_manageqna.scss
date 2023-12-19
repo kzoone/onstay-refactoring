@@ -13,62 +13,6 @@ div.adminpage_content {
         }
       }
     }
-    div.category_filter {
-      display: inline-block;
-      position: relative;
-      margin-bottom: .3em;
-      button {
-        font-size: .8em;
-        display: flex;
-        background-color: #fff;
-        border : 1px solid black;
-        justify-content: center;
-        align-items: center;
-        width: 100px;
-        padding: .6em .2em;
-        box-sizing: border-box;
-        border-radius: 15px;
-        &.active {
-          color: #FFF;
-          background-color: #000;
-        }
-        svg {
-          margin-right: .3em;
-        }
-      }
-      form {
-        width: 150px;
-        padding: .5em .5em;
-        background-color: #FFF;
-        box-shadow: 0 0 1px #000;
-        top: 2.2em; left: 0;
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        display: none;
-        &.active {
-          display: block;
-        }
-        h4 {
-          text-align: center;
-          font-size: .9em;
-          font-weight: 600;
-          padding-bottom: .2em;
-          border-bottom: .5px solid #CCC;
-          margin-bottom: .5em;
-        }
-        p {
-          display: flex;
-          justify-content: space-between;
-          &:not(:last-child) {
-            margin-bottom: .5em;
-          }
-          label {
-            font-size: .9em;
-          }
-        }
-      }
-    }
     table.qna_list_table {
       text-align: center;
       font-size: 0.8rem;
@@ -136,13 +80,13 @@ div.adminpage_content {
           }
       }
     }
-    div.qna_no_list {
-      height: 425px;
-      line-height: 425px;
-      text-align: center;
-      color: #888;
-      margin-bottom: 1rem;
-    }
+    // div.qna_no_list {
+    //   height: 425px;
+    //   line-height: 425px;
+    //   text-align: center;
+    //   color: #888;
+    //   margin-bottom: 1rem;
+    // }
     .pagination {
       display: flex;
       justify-content: center;

@@ -3,9 +3,9 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Pagination from 'react-js-pagination';
 import { QUESTION_CATEGORY } from '../../../constants/constants.js';
-import { FaFilter } from "react-icons/fa";
 import ManageQNAModal from './../manageqna/ManageQNAModal';
 import { useLocation } from 'react-router-dom';
+import QNACategoryFilter from '../manageqna/QNACategoryFilter.jsx';
 
 export default function ManageQNA() {
   const location = useLocation();
@@ -19,7 +19,7 @@ export default function ManageQNA() {
     modalShow:false, 
     showCategory:{
       '1':true, '2':true, '3':true, '4':true
-    }})
+  }})
 
 const [modal, setModal] = useState({question : {}, show : false});
 
@@ -65,16 +65,6 @@ const [modal, setModal] = useState({question : {}, show : false});
 
   const handlePage = page => setPage(page)
 
-  const handleFilterModal = () => {
-    setCategoryFilter({...categoryFilter, modalShow : !categoryFilter.modalShow})
-  }
-
-  const handleCategoryFilter = e => {
-    setCategoryFilter({
-      ...categoryFilter, 
-      showCategory:{...categoryFilter.showCategory, [e.target.dataset.category] : !categoryFilter.showCategory[e.target.dataset.category]}})
-  }
-
   const handleModal = (question) => () => setModal({show:true, question:question})
   
 
@@ -88,26 +78,9 @@ const [modal, setModal] = useState({question : {}, show : false});
           답변 완료
           </li>
       </ul>
+
+      <QNACategoryFilter categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter}/>
       
-      <div className='category_filter'>
-        <button className={categoryFilter.modalShow ? 'active' : ''} type='button' onClick={handleFilterModal}>
-          <FaFilter/><span>문의 유형</span>
-        </button>
-        <form className={categoryFilter.modalShow ? 'active' : ''} action="">
-          <h4>표시할 카테고리</h4>
-          
-          {Object.entries(QUESTION_CATEGORY).map(arr => {
-            let [code, title] = arr
-          return(
-            <p key={code}>
-              <label htmlFor={`cateogry${code}`}>{title}</label>
-              <input type="checkbox" data-category={code} id={`cateogry${code}`} onChange={handleCategoryFilter}
-              checked={categoryFilter.showCategory[code]}/>
-            </p>
-          )
-          })}
-        </form>
-      </div>
       {filterdQuestions.length
       ? <Table className='qna_list_table' striped bordered >
           <thead>

@@ -44,6 +44,7 @@ export function MyQNAModal({closeModal, user_id, question_id}) {
         : 
         <div className='admin_answer'>
             <label htmlFor='answer'>관리자의 답변이 도착했어요 !</label>
+            <label htmlFor='answer'>(답변일 : {question?.answer_date})</label>
             <textarea readOnly className='answer_textbox'>
               {question?.answer_content}
             </textarea>

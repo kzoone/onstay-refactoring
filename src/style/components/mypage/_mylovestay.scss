@@ -7,11 +7,10 @@ div.mypage_content {
       div.my_lovestay_wrapper {
         display: flex;
         justify-content: space-between;
-        transition: max-height .8s ,opacity .5s;
-        max-height: 500px;
+        transition: height .8s ,opacity .3s;
         &.disappear {
           opacity: 0;
-          max-height: 0;
+          height: 0;
           margin-bottom: 0;
           button.acc_love_btn {
             transform: scale(0);

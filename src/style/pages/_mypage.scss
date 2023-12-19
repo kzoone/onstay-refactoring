@@ -16,7 +16,7 @@ main.mypage {
     border-bottom: 3px solid black;
     padding: 2vh 0 6vh 0;
     h3 {
-      font-size: 1.8em;
+      font-size: 1.5em;
       font-weight: 400;
       margin-bottom: 1.5vh;
     }
@@ -24,6 +24,10 @@ main.mypage {
     a {
       color: #888;
       font-size: 1em;
+    }
+    @media screen and (max-width:$sm-breakpoint) {
+      h3 { font-size: 1.2em;}
+      span,a {font-size: .8em;}
     }
   }
 
@@ -183,6 +187,5 @@ div.mypage_content {
   
  
   
-
 
 
