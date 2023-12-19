@@ -1,5 +1,7 @@
 .visual-section{
   margin-bottom: 30px;
+  max-width: 1800px;
+  margin: 0 auto;
   .swiper-slide {
     text-align: center;     
     /* Center slide text vertically */
@@ -7,13 +9,14 @@
   }
   .swiper-slide img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
   .link{
-    width: 100%;
+    height: 100%;
     div.bg-img-container{
       width: 100%;
-      height: 60vw;
+      height: 50em;
       .img-size{
         width: 100%;
         height: 100%;
@@ -26,26 +29,27 @@
   {
     background: black;
     position: absolute;
-    top: 97%;
+    top: 95%;
     z-index: 100;
-    color: white;  
+    color: white;
+    width: 4%;  
   }
   .swiper-button-prev{
-    left:48%;
+    left:5%;
   }
   .swiper-button-next{
-    left:51%;
+    left:9.1%;
   }      
   .swiper-button-next::after,
   .swiper-button-prev::after{
-    font-size :1rem;
+    font-size :1.5rem;
   }
   .swiper-pagination-fraction{
     color: white;
-    background-color: black;
-    width: 50px;
-    margin : 10 auto;
-    padding : 10px 0;
+    background-color: none;
+    width: 5%;
+    top:93.5%;
+    font-size: 1.3rem;
   }
   .swiper-text{
     position: absolute;
@@ -109,6 +113,17 @@
       margin-bottom: 20px;
     }
   }
+  @media screen and (max-width : 1025px){
+    .swiper-button-prev,
+    .swiper-button-next{
+      display: none;
+    }
+    
+    .swiper-pagination-fraction{
+      display: none;
+    }
+  }
+  
   @media screen and (max-width:500px) {
     .sm-swiper-text{
       margin: 43px 40px;
@@ -128,4 +143,6 @@
       }
     }
   }
+
+
 }
