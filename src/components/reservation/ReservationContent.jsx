@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios, { isCancel } from 'axios';
 import FixDate from './FixDate'
 import FormInfo from './FormInfo';
 import Agreement from './Agreement';
@@ -20,19 +20,20 @@ export default function ReservationContent() {
     navigate('/notfound');
   }
 
-  const [ reservationData, setReservationData ] = useState([]);
   const { roomid } = useParams();
+  const [ reservationData, setReservationData ] = useState([]);
   const [ startDate, setStartDate ] = useState(checkin);
   const [ endDate, setEndDate ] = useState(checkout);
   const [ roomInfoData, setRoomInfoData ] = useState([]);
   const [ isValidDated, setIsValidDated ] = useState(false);
   const [ btnText, setBtnText ] = useState('결제하기');
-  const [ nightCnt, setNightCnt ] = useState(nightCntparam);
-  const [ payPrice, setPayPrice ] = useState(0);
-  const [ totalPayPrice, setTotalPayPrice ] = useState(0);
-  const [ selectedCouponId, setSelectedCouponId ] = useState('');
-  const [ isAgree, setIsAgree ] = useState(false);
-  const [ isModal, setIsModal ] = useState(false);
+  const [ nightCnt, setNightCnt ] = useState(nightCntparam); // 숙박일 계산
+  const [ payPrice, setPayPrice ] = useState(0); // 숙박 계산 가격
+  const [ totalPayPrice, setTotalPayPrice ] = useState(0); // 최종 결제 가격
+  const [ selectedCouponId, setSelectedCouponId ] = useState(''); // 선택한 쿠폰
+  const [ isAgree, setIsAgree ] = useState(false); // 약관동의
+  const [ isReservationModal, setIsReservationModal ] = useState(false); // 예약 최종 확인 모달
+  const [ isCompleteModal, setIsCompleteModal ] = useState(false); // 예약 완료 알림 모달
 
   // 객실 정보 리스트 조회 
   useEffect(() => {
@@ -121,10 +122,23 @@ export default function ReservationContent() {
   };
 
 
-  // 최종 예약 버튼 클릭시 insert, delete
+  // 최종 예약 버튼 클릭
   const handleSubmit = (e) => {
     e.preventDefault();
     if ( isAgree && isValidDated ) {
+      setIsReservationModal(true);
+    } else {
+      setBtnText('약관 동의를 체크해주세요');
+    }
+  };
+
+    // 예약 확인 모달창 닫기 버튼
+    const handleReservationModal = (e) => {
+      setIsReservationModal(false);
+    }
+    
+    // 예약 확인 모달창 확인 버튼 insert, delete
+    const handleReservationConfirm = (e) => {
       axiosAuth({ 
         method : 'post',
         url: 'http://localhost:8000/reservation/booking',
@@ -138,23 +152,20 @@ export default function ReservationContent() {
       })
       .then(result => {
         if(result.data.message === 'success') {
-          setIsModal(true);
+          setIsCompleteModal(true);
         }
       })
       .catch(error => console.log(error));
-    } else {
-      setBtnText('약관 동의를 체크해주세요');
     }
-  };
 
-    // 모달창 확인 버튼 클릭
-    const handleConfirm = (e) => {
+    // 예약 완료 알림 모달창 확인 버튼 클릭
+    const handleCompleteConfirm = (e) => {
       navigate('/mypage');
     };
 
-    // 모달창 닫기 버튼 클릭
-    const handleModal = (e) => {
-        navigate('/');
+    // 예약 완료 알림 모달창 닫기 버튼 클릭
+    const handleCompleteModal = (e) => {
+      navigate('/');
     };
 
   return (
@@ -198,11 +209,21 @@ export default function ReservationContent() {
         </div>
       </form>
       {
-        isModal &&
-          <ConfirmModal handleModal={handleModal} 
-                      handleConfirm={handleConfirm} 
-                      noti_1='결제 완료 되었습니다!' 
-                      noti_2='예약내역으로 이동하시겠습니까?' />
+        isReservationModal &&
+        <ConfirmModal 
+              handleModal={handleReservationModal} 
+              handleConfirm={handleReservationConfirm} 
+              noti_1={`${roomInfoData.acc_name}의 ${roomInfoData.room_name} 객실( ${nightCnt}박 ) ₩${payPrice.toLocaleString()}원 선택하셨습니다.`}
+              noti_2='예약하시겠습니까?' 
+              btnText='예약하기' />
+      }
+      {
+        isCompleteModal &&
+          <ConfirmModal 
+              handleModal={handleCompleteModal} 
+              handleConfirm={handleCompleteConfirm} 
+              noti_1='결제 완료 되었습니다!' 
+              noti_2='예약내역으로 이동하시겠습니까?' />
       }
     </>
   );

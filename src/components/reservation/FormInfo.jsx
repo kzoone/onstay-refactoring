@@ -32,7 +32,6 @@ export default function FormInfo(props) {
   startDate && (startDate = formatData(startDate));
   endDate && (endDate = formatData(endDate));
 
-
   // select coupon change 이벤트
   const handleSelectChange = (e) => {
     if (isValidDated) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdOutlinePets } from 'react-icons/md';
 
 export default function RservationGuide({roomContent, otherContent}) {
   return(
@@ -37,7 +38,10 @@ export default function RservationGuide({roomContent, otherContent}) {
         <p className='title'>반려 동물</p>
         {
           roomContent.pet
-          ? <p className='info_text'>반려 동물 동반이 가능한 숙소입니다</p>
+          ? <p className='info_text'>
+              <MdOutlinePets />
+            반려 동물 동반이 가능한 숙소입니다
+            </p>
           : <p className='info_text'>반려 동물 동반이 불가능한 숙소입니다</p>
         }
       </div>

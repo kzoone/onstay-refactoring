@@ -571,15 +571,28 @@ main.reservation_section {
           }
         }
       }
+      div.modal_container {
+        div.modal_content {
+          width: 90%;
+        }
+      }
     }
   }
-}
 
-div.modal {
-  div.modal_container {
-    background-color: white;
-    div.modal_content {
-      border: 1px solid #a28f72;
+
+  @include responsive(sm) {
+    & {
+      div.modal_container {
+        div.modal_content {
+          img {
+            width: 40%;
+            margin-bottom: 8%;
+          }
+          div.text_wrap {
+            margin-bottom: 8%;
+          }
+        }
+      }
     }
   }
 }

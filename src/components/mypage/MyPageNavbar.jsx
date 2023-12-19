@@ -11,6 +11,9 @@ export function MyPageNavbar(props) {
       <li  onClick={handleClick} data-content='MyReservation' className={showContent==='MyReservation' ? 'active' : ''}>
         예약 정보
       </li>
+      <li  onClick={handleClick} data-content='MyReview' className={showContent==='MyReview' ? 'active' : ''}>
+        리뷰 관리
+      </li>
       <li onClick={handleClick} data-content='MyCoupon' className={showContent==='MyCoupon' ? 'active' : ''}>
         보유 쿠폰
       </li>
