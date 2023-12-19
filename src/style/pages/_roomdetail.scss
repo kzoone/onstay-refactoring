@@ -605,7 +605,8 @@ main.roomdetail_section {
             }
 
             div.total_review_info {
-              width: 60%;
+              width: 80%;
+              margin-left: auto;
 
               div.total_review_inner {
                 @include flexbox($jc: flex-end);
@@ -1065,10 +1066,6 @@ main.roomdetail_section {
                       }
                     }
                   }
-                }
-
-                div.total_review_info {
-                  width: 80%;
                 }
               }
 
