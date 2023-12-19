@@ -17,7 +17,7 @@ main.mypage {
     border-bottom: 3px solid black;
     padding: 2vh 0 6vh 0;
     h3 {
-      font-size: 1.8em;
+      font-size: 1.5em;
       font-weight: 400;
       margin-bottom: 1.5vh;
     }
@@ -25,6 +25,10 @@ main.mypage {
     a {
       color: #888;
       font-size: 1em;
+    }
+    @media screen and (max-width:$sm-breakpoint) {
+      h3 { font-size: 1.2em;}
+      span,a {font-size: .8em;}
     }
   }
 
@@ -57,6 +61,57 @@ main.mypage {
     div.mypage_content {
       width: 75%;
     }
+
+    // 페이지네이션
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    
+    ul.pagination li {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #e2e2e2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+    }
+  
+    ul.pagination li:first-child{
+      border-radius: 5px 0 0 5px;
+    }
+  
+    ul.pagination li:last-child{
+      border-radius: 0 5px 5px 0;
+    }
+    
+    ul.pagination li a {
+      text-decoration: none;
+      color: #888;
+      font-size: 1rem;
+    }
+    
+    ul.pagination li.active a {
+      color: white;
+    }
+  
+    ul.pagination li.active {
+      background-color: #888;
+    }
+    
+    ul.pagination li a:hover,
+    ul.pagination li a.active {
+      color: blue;
+    }
+    
+    .page-selection {
+      width: 48px;
+      height: 30px;
+      color: #337ab7;
+    }
   }
 }
 
@@ -75,6 +130,7 @@ main.mypage {
   main.mypage {
     width: 95%;
     div.mypage_main_container {
+      padding-top: 3vh;
       ul.mypage_navbar {
         display: none;
       }
@@ -133,6 +189,5 @@ div.mypage_content {
   
  
   
-
 
 

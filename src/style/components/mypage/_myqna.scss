@@ -14,8 +14,22 @@ div.mypage_content {
         }
       }
     }
+    div.qna_filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      div.only_completed_filter {
+        span {
+          font-size: .8em;
+        }
+        input {
+          font-size: .8em;
+          margin-left: 7px;
+        }
+      }
+    }
     div.my_qna_content {
-      form {
+      form.question_form {
         p {
           display: flex;
           flex-direction: column;
@@ -93,8 +107,6 @@ div.mypage_content {
           margin-right: 3vh;
         }
       }
-      form {
-      }
     } // 예약 내역 리스트 container
   }
 }
@@ -123,68 +135,73 @@ div.mypage_content {
 // qna 문의 리스트
 
 div.my_qna {
-  .qna_list_table {
+  table.qna_list_table {
     text-align: center;
-    width: 100%;
     font-size: 0.8rem;
+    width: 100%;
+    margin-bottom: 1rem;
     th {
+      &.row_num {
+        width: 5%;
+      }
+      &.qna_category {
+        width: 20%;
+      }
+      &.qna_title {
+        width: 35%;
+      }
+      &.update_date {
+        width: 20%;
+      }
+      &.answer_state {
+        width: 10%;
+      }
       background-color: #555;
       color: #eee;
       font-weight: bold;
-      padding: 0.8vh 0;
+      height: 25px;
+      line-height: 25px;
       box-sizing: border-box;
     }
     tr {
-      cursor: pointer;
       &:nth-of-type(odd) {
         background-color: #eee;
       }
-      @media (hover: hover) {
-        &:hover {
-          background-color: #bbb;
-          color: #fff;
+      &:not(.empty_row) {
+        cursor: pointer;
+        @media (hover: hover) {
+          &:hover {
+            background-color: #bbb;
+            color: #fff;
+          }
         }
       }
     }
-    td {
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
-      padding: 2vh 0.25rem;
-      box-sizing: border-box;
+    tbody {
+      height: 400px;
+      tr {
+        height: 40px;
+        line-height: 40px;
+      }
     }
-
-    th,
     td {
-      &.qna_title {
-        padding: 0 2rem;
-        max-width: 140px;
-        box-sizing: border-box;
+        padding: 0 0.25rem;
+        // box-sizing: border-box;
         span {
-          width: 100%;
-          margin: 0 auto;
+          max-width: 20vw;
+          text-align: center;
           display: block;
-          white-space: nowrap;
+          margin: 0 auto;
           overflow: hidden;
-          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-overflow: ellipsis; 
+          &.qna_title {
+            text-align: left;
+          }
         }
-      }
-      &.answer_state {
-        span.completed {
-          color: rgb(41, 41, 220);
-        }
-        span.waiting {
-          color: #777;
-        }
-      }
-    }
-    td.qna_title {
-      span {
-        text-align: left;
-      }
     }
   }
-  .qna_nolist {
+  .qna_no_question {
     div {
       text-align: center;
       padding: 1rem 0 2rem 0;
@@ -302,7 +319,10 @@ div.mypage_content {
         flex-direction: column;
         justify-content: space-between;
         label {
-          margin-bottom: 3vh;
+          margin-bottom: 1vh;
+          &:last-of-type {
+            margin-bottom: 3vh;
+          }
         }
         textarea.answer_textbox {
           padding: 1rem;
@@ -311,6 +331,75 @@ div.mypage_content {
           overflow: scroll;
           flex: 1;
         }
+      }
+    }
+  }
+}
+
+
+// 공통 (어드민 페이지에서도 사용)
+
+div.qna_no_list {
+  height: 425px;
+  line-height: 425px;
+  text-align: center;
+  color: #888;
+  margin-bottom: 1rem;
+} // qna 리스트 없는 경우
+
+div.qna_category_filter {
+  display: inline-block;
+  position: relative;
+  margin-bottom: .3em;
+  button {
+    font-size: .8em;
+    display: flex;
+    background-color: #fff;
+    border : 1px solid black;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: .6em .2em;
+    box-sizing: border-box;
+    border-radius: 15px;
+    &.active {
+      color: #FFF;
+      background-color: #000;
+    }
+    svg {
+      margin-right: .3em;
+    }
+  }
+  form {
+    width: 150px;
+    padding: .5em .5em;
+    background-color: #FFF;
+    box-shadow: 0 0 1px #000;
+    top: 2.2em; left: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    &.active {
+      display: block;
+    }
+    h4 {
+      text-align: center;
+      font-size: .9em;
+      font-weight: 600;
+      padding-bottom: .2em;
+      border-bottom: .5px solid #CCC;
+      margin-bottom: .5em;
+    }
+    p {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      &:not(:last-child) {
+        margin-bottom: .5em;
+      }
+      label {
+        font-size: .9em;
       }
     }
   }

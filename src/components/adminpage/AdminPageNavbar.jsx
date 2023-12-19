@@ -3,7 +3,7 @@ export default function AdminPageNavbar(props) {
 
   const handleClick = (e) => {
     setShowContent(e.target.dataset.content);
-    window.scrollTo({top : 0});
+    // window.scrollTo({top : 0});
   }
 
   return (

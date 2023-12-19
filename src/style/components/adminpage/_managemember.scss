@@ -1,0 +1,258 @@
+div.adminpage_content {
+    div.manage_member {
+        h3.content_title {
+            font-size: 1.4em;
+            margin-bottom: .5em;
+        }
+        div.join_date_filter {
+          padding: .5em 0;
+          display: flex;
+          align-items: center;
+          margin-bottom: .5em;
+          border-radius: 10px;
+          text-align: left;
+          div.filter_title {
+            background-color: #000;
+            padding: .3em .5em;
+            border-radius: 10px;
+            font-size: .75em;
+            color: #FFF;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: .2em;
+            svg {
+              margin-right: .3em;
+            }
+          }
+          input {
+            display: inline-block;
+            transform: scale(.7);
+          }
+        }
+      
+        ul.sort_btns {
+          display: flex;
+          margin-bottom: 1em;
+          li {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #EEE;
+            cursor: pointer;
+            color: #666;
+            border-radius: 10px;
+            font-size: .8em;
+            &:not(:last-child) {
+              margin-right: 1rem;
+            }
+          }
+          li.active {
+            font-weight: 600;
+            position: relative;
+            border: .8px solid #333;
+            background-color: #FFF;
+            user-select: none;
+            &.asc {
+              &::after {
+                content: " △";
+                display: inline;
+              }
+            }
+            &.desc {
+              &::after {
+                content: " ▽";
+                display: inline;
+              }
+            }
+          }
+        }
+        table.member_list_table {
+            text-align: center;
+            font-size: 0.8rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            th {
+              background-color: #555;
+              color: #eee;
+              font-weight: bold;
+              // padding: 0.8vh 0;
+              height: 25px;
+              line-height: 25px;
+              box-sizing: border-box;
+              &.user_id {
+                width: 15%;
+              }
+              &.user_email {
+                width: 35%;
+              }
+              &.user_name {
+                width: 20%;
+              }
+              &.join_date {
+                width: 15%;
+              }
+            }
+            tr {
+              &:nth-of-type(odd) {
+                background-color: #eee;
+              }
+            }
+            tbody {
+              height: 400px;
+              tr {
+                height: 40px;
+                line-height: 40px;
+              }
+            }
+            td {
+                padding: 0 0.25rem;
+                // box-sizing: border-box;
+                span {
+                  text-align: center;
+                  display: block;
+                  margin: 0 auto;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis; 
+                }
+            }
+          }
+          div.member_no_list {
+            height: 425px;
+            line-height: 425px;
+            text-align: center;
+            color: #888;
+            margin-bottom: 1rem;
+          }
+          div.search_result {
+            text-align: center;
+            font-size: .9em;
+            color: #333;
+            margin-bottom: 1rem;
+            &.loading {
+              color: #777;
+            }
+          }
+
+          .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+          }
+          
+          ul.pagination li {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #e2e2e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+          }
+        
+          ul.pagination li:first-child{
+            border-radius: 5px 0 0 5px;
+          }
+        
+          ul.pagination li:last-child{
+            border-radius: 0 5px 5px 0;
+          }
+          
+          ul.pagination li a {
+            text-decoration: none;
+            color: #888;
+            font-size: 1rem;
+          }
+          
+          ul.pagination li.active a {
+            color: white;
+          }
+        
+          ul.pagination li.active {
+            background-color: #888;
+          }
+          
+          ul.pagination li a:hover,
+          ul.pagination li a.active {
+            color: blue;
+          }
+          
+          .page-selection {
+            width: 48px;
+            height: 30px;
+            color: #337ab7;
+          }
+
+      form.search_form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        select#search_terms {
+          border-radius: 15px;
+          background-color: #000;
+          color: #FFF;
+          font-size: .9em;
+          padding: .5em .8em;
+          margin-right: 10px;
+        }
+        div.search_input {
+          width: 250px; 
+          border: 1px solid black;
+          position: relative;
+          padding: .3rem 2rem;
+          box-sizing: border-box;
+          border-radius: 15px;
+          input {
+            width: 100%;
+            font-size: .9em;
+            padding: .3rem;
+          }
+          .search_icon {
+            position: absolute;
+            font-size: 1.2em;
+            top: 50%; left: .6rem;
+            transform: translateY(-50%);
+          }
+        }
+      }
+          
+    }
+}
+
+
+@media screen and (max-width: $md-max-breakpoint) {
+    div.adminpage_content {
+     div.manage_member {
+         table.member_list_table {
+           font-size: 0.75rem;
+         }
+     }
+    }
+  }
+
+  @media screen and (max-width: $sm-breakpoint) {
+    div.adminpage_content {
+        div.manage_member {
+            table.member_list_table {
+              font-size: 0.7rem;
+              td {
+                 span {
+                     max-width: 100px;
+                 }
+              }
+            }
+            ul.sort_btns {
+              li {
+                font-size: .7em;
+              }
+            }
+        }
+       }
+  }
+
+  

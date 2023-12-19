@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-
+import MyContentNavbar from '../mypage_common/MyContentNavbar';
+import Pagination from 'react-js-pagination';
 
 export function MyCoupon ({user_id}) {
   let [category, setCategory] = useState('valid')
   let [coupons, setCoupons] = useState([])
+  let [page,setPage] = useState(1)
 
   useEffect(()=>{
     axios.get('http://localhost:8000/mypage/coupons/'  + user_id)
@@ -19,25 +20,24 @@ export function MyCoupon ({user_id}) {
     .catch(err => {
       console.log(err);
     })
-  },[user_id, category])
+  },[user_id, category]) 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     return alert('준비중입니다.')
   }
-  
-  const handleclick = e => setCategory(e.target.dataset.category)
+
+  const handlePage = page => setPage(page)
 
   return (
     <div className='my_coupon'>
-      <ul className="my_coupon_navbar mypage_content_navbar">
-        <li onClick={handleclick} data-category='valid' className={category==='valid' ? 'active' : ''}>보유 쿠폰</li>
-        <li onClick={handleclick} data-category='invalid' className={category==='invalid' ? 'active' : ''}>만료 쿠폰</li>
-      </ul>
+      <MyContentNavbar contents={['valid','invalid']} contents_string={['보유 쿠폰', '만료된 쿠폰']}
+      category={category} setCategory={setCategory}/>
+
       <div className='coupon_list_container'>
       {coupons.length 
       ? // 쿠폰 1개 이상 있는 경우
-      coupons.map(coupon => 
+      coupons.slice((page-1)*4, page*4).map(coupon => 
       <div className='coupon_wrapper' key={coupon.coupon_id}>
           <span className='discount_price'>{coupon.discount_price.toLocaleString()}원</span>
           <span className='coupon_name'>{coupon.coupon_name}</span>
@@ -48,8 +48,19 @@ export function MyCoupon ({user_id}) {
         <div className='coupon_nolist'>
           <div>{category==='valid' ? '보유한 쿠폰이 없습니다.' : '만료된 쿠폰 내역이 없습니다.'}</div>
         </div>
-        }
+      }
       </div>
+      
+      <Pagination 
+        activePage={page}
+        itemsCountPerPage={4}
+        totalItemsCount={coupons.length}
+        pageRangeDisplayed={5}
+        prevPageText={"<"}
+        nextPageText={">"}
+        onChange={handlePage}
+      />
+      
     </div>
   );
 }
