@@ -1,0 +1,404 @@
+div.manage_detail{
+    border: 1px solid #DDD;
+    svg.close_btn{
+        float: right;
+        font-size: 20px;
+        margin: 10px 10px 0 0;
+    }
+    div.logo_img{
+        img{
+            width: 130px;
+            margin: 30px auto 0 auto;
+        }
+    }
+    div.detail_container{
+        form.detail_form{
+            padding: 30px;
+            div.acc_detail{
+                div.acc_title{
+                    font-size: 20px;
+                    font-weight: bold;
+                    background-color: #000;
+                    border-radius: 4px;
+                    padding: 5px 10px;
+                    color: #FFF;
+                    margin: 20px 0;
+                }
+                div.acc_name,
+                div.tel,
+                div.checkin,
+                div.checkout,
+                div.homepage{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    label{
+                        min-width: 110px;
+                        font-weight: bold;
+                    }
+                    input{
+                        width: 100%;
+                        border-bottom: 1px solid #000;
+                        padding: 5px 10px;
+                    }
+                }
+                div.address{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    label{
+                        min-width: 110px;
+                        font-weight: bold;
+                    }
+                    input{
+                        width: 100%;
+                        border-bottom: 1px solid #000;
+                        padding: 5px 10px;
+                    }
+                    button{
+                        background: #666666;
+                        color: #FFF;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        min-width: 80px;
+                    }
+                }
+                div.address_modal{
+                    position: absolute;
+                    width: 500px !important;
+                    left: calc(50% - 250px);
+                    top: 90px;
+                    z-index: 9;
+                    div{
+                        background:#FFF;
+                        border: 1px solid #CCC;
+                    }
+                }
+                div.parking,
+                div.cook,
+                div.pet,
+                div.breakfast{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    span{
+                        min-width: 110px;
+                        font-weight: bold;
+                    }
+                    input{
+                        accent-color: black;
+                    }
+                    label{
+                        padding: 5px 10px;
+                        margin-right: 10px;
+                    }
+                }
+                div.summary{
+                    display: flex;
+                    margin-bottom: 15px;
+                    label{
+                        min-width: 110px;
+                        font-weight: bold;
+                    }
+                    textarea{
+                        background: #f0f0f0;
+                        width: 100%;
+                        padding: 10px;
+                    }
+                }
+                div.only{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 30px;
+                    label{
+                        min-width: 170px;
+                        font-weight: bold;
+                    }
+                    input{
+                        margin-left: 10px;
+                        accent-color: black;
+                    }
+                }
+                div.acc_imgs{
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    div.acc_img{
+                        margin: 2px;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            div.room_detail{
+                div.room_title{
+                    font-size: 20px;
+                    font-weight: bold;
+                    background-color: #000;
+                    border-radius: 4px;
+                    padding: 5px 10px;
+                    color: #FFF;
+                    margin: 20px 0;
+                }
+                div.room_name,
+                div.room_price,
+                div.amenities,
+                div.min_capa,
+                div.max_capa{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    label{
+                        min-width: 110px;
+                        font-weight: bold;
+                    }
+                    input{
+                        width: 100%;
+                        border-bottom: 1px solid #000;
+                        padding: 5px 10px;
+                    }
+                }
+                div.features{
+                    display: flex;
+                    margin-bottom: 15px;
+                    span{
+                        min-width: 110px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                    div{
+                        display: flex;
+                        flex-wrap: wrap;
+                        line-height: 30px;
+                        max-width: 430px;
+                        p{
+                            input{
+                                accent-color: black;
+                                margin-right: 5px;
+                            }
+                            label{
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+                div.room_imgs{
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    margin-top: 30px;
+                    div.room_img{
+                        margin: 2px;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            div.form_btn{
+                text-align: end;
+                display: flex;
+                justify-content: space-between;
+                button{
+                    padding: 10px 0;
+                    border: 1px solid #000;
+                    border-radius: 4px;
+                    width: 100px;
+                    margin: 50px 0 0 15px;
+                    &:hover{
+                        background: #000;
+                        color: #FFF;
+                    }
+                }
+                div.close{
+                    button{
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 765px) {
+    div.new_register{
+        svg.close_btn{}
+        div.logo_img{
+            img{}
+        }
+        div.register_container{
+            form.register_form{
+                div.acc_register{
+                    div.register_title{
+                    }
+                    div.acc_name,
+                    div.tel,
+                    div.checkin,
+                    div.checkout,
+                    div.homepage{
+                        label{}
+                        input{}
+                    }
+                    div.address{
+                        label{}
+                        input{}
+                        button{}
+                    }
+                    div.address_modal{}
+                    div.parking,
+                    div.cook,
+                    div.pet,
+                    div.breakfast{
+                        label{}
+                        input{}
+                        span{}
+                    }
+                    div.summary{
+                        label{}
+                        textarea{}
+                    }
+                    div.only{
+                        label{}
+                        input{}
+                    }
+                }
+                div.room_register{
+                    div.register_title{}
+                    div.room_name,
+                    div.room_price,
+                    div.amenities,
+                    div.min_capa,
+                    div.max_capa{
+                        label{}
+                        input{}
+                    }
+                    div.features{
+                        span{}
+                        div{
+                            input{}
+                            label{}
+                        }
+                    }
+                    div.room_img{
+                        label{}
+                        input{}
+                    }
+                }
+                div.form_btn{
+                    button{}
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+    div.new_register{
+        min-width: 325px;
+        svg.close_btn{}
+        div.logo_img{
+            img{}
+        }
+        div.register_container{
+            form.register_form{
+                div.acc_register{
+                    div.register_title{}
+                    div.acc_name,
+                    div.tel,
+                    div.checkin,
+                    div.checkout,
+                    div.homepage{
+                        display: block;
+                        margin-bottom: 25px;
+                        label{}
+                        input{
+                            margin-top: 10px;
+                        }
+                    }
+                    div.address{
+                        display: block;
+                        margin-bottom: 25px;
+                        label{}
+                        input{
+                            margin: 10px 0 4px 0;
+                        }
+                        button{
+                            margin-left: calc(100% - 80px);
+                        }
+                    }
+                    div.address_modal{
+                        left: -20px;
+                        width: 80vw !important;
+                        div{
+                            div{
+                            }
+                        }
+
+                    }
+                    div.parking,
+                    div.cook,
+                    div.pet,
+                    div.breakfast{
+                        margin-bottom: 15px;
+                        label{}
+                        input{}
+                        span{
+                            min-width: 80px;
+                        }
+                    }
+                    div.breakfast{
+                        margin-bottom: 30px;
+                    }
+                    div.summary{
+                        display: block;
+                        label{
+                        }
+                        textarea{
+                            margin-top: 5px;
+                        }
+                    }
+                    div.only{
+                        margin-bottom: 40px;
+                        label{}
+                        input{}
+                    }
+                }
+                div.room_register{
+                    div.register_title{}
+                    div.room_name,
+                    div.room_price,
+                    div.amenities,
+                    div.min_capa,
+                    div.max_capa{
+                        display: block;
+                        margin-bottom: 25px;
+                        label{}
+                        input{
+                            margin-top: 10px;
+                        }
+                    }
+                    div.features{
+                        display: block;
+                        margin-bottom: 25px;
+                        span{}
+                        div{
+                            margin-top: 10px;
+                            input{}
+                            label{}
+                        }
+                    }
+                    div.room_img{
+                        display: block;
+                        label{}
+                        input{
+                            margin-top: 10px;
+                        }
+                    }
+                }
+                div.form_btn{
+                    button{}
+                }
+            }
+        }
+    }
+}

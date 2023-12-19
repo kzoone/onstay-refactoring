@@ -572,7 +572,8 @@ main.findstay{
             a.acc{
                 div.acc_title{
                     font-size: 32px;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
+                    font-weight: 500;
                 }
                 div.acc_content{
                     display: flex;
@@ -600,7 +601,7 @@ main.findstay{
                         }
                     }
                     div.acc_imgs{
-                        width: 60%;
+                        width: 68%;
                         div.swiper{
                             div.swiper-wrapper{
                                 .swiper-slide{
@@ -806,6 +807,88 @@ main.findstay{
                 }
                 div.love{
                     bottom: 20px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 412px) {
+    main.findstay{
+        div.filter_container{
+            div.filter{
+                div.search,
+                div.location,
+                div.personnel{
+                }
+                div.price{
+                }
+                div.date{
+                    div.select_date{
+                    }
+                    div.checkin,
+                    div.checkout{
+                        div.react-datepicker-wrapper{ 
+                            div.react-datepicker__input-container{
+                                input{
+                                }
+                            }
+                        }
+                    }
+                }
+                div.service{
+                    div.service_select{
+                        button{
+                            &.pet{
+                            }
+                            svg{
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        div.sort{
+            ul.sort_dt{
+            }
+            div.select_box{
+                div.current_sort{
+                }
+            }
+            div.options{
+                div.option{
+                    &:hover{
+                    }
+                }
+            }
+        }
+        div.acc_list{
+            div.acc_container{
+                a.acc{
+                    div.acc_title{
+                    }
+                    div.acc_content{
+                        div.acc_info{
+                            div{
+                                p{
+                                }
+                            }
+                        }
+                        div.acc_imgs{
+                            div.swiper{
+                                div.swiper-wrapper{
+                                    .swiper-slide{
+                                        img{
+                                            width: 100%;
+                                            height: 240px;
+                                            object-fit: cover;
+                                            object-position: center;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

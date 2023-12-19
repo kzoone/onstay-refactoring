@@ -1,29 +1,178 @@
-div.manage_accs{
+div{
+    position: relative;
+    div.manage_accs{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-size: 22px;
+        min-width: 325px;
+        button{
+            display: flex;
+            align-items: flex-end;
+            span{
+                font-size: 14px;
+                margin: 0 4px;
+            }
+        }
+    }
     table.accs_table{
         width: 100%;
         thead{
             tr{
                 th{
-                    border: 1px solid #000;
+                    padding: 7px 0;
+                    background: #000;
+                    color: #FFF;
+                    &.title_acc_name_hidden{
+                        min-width: 180px;
+                    }
+                    &.title_room_name{
+                        width: 80px;
+                        min-width: 70px;
+                    }
+                    &.title_room_price{
+                        width: 120px;
+                        min-width: 80px;
+                    }
+                    &.title_acc_register_date{
+                        width: 120px;
+                        min-width: 80px;
+                    }
+                    &.title_edit,
+                    &.title_delete{
+                        width: 30px;
+                    }
+                    &.title_acc_name_hidden{
+                        display: none;
+                    }
                 }
             }
         }
         tbody{
             tr{
-                td{
-                    border: 1px solid #000;
-                    vertical-align: middle;
-                    &.acc_name{
-                        width: 300px;
+                &:hover{
+                    td{
+                        font-weight: bold;
+                        cursor: pointer;
                     }
-                    &.acc_img{
+                }
+                td{
+                    vertical-align: middle;
+                    &.room_img{
+                        padding: 5px 10px 0 0;
                         width: 100px;
                         img{
                             width: 100%;
                         }
                     }
+                    &.acc_name{
+                        padding: 0 10px;
+                        font-size: 14px;
+                        text-align: center;
+                        border-bottom: 1px solid #DDD;
+                        border-right: 1px solid #DDD;
+                    }
+                    &.room_name,
+                    &.room_price{
+                        border-right: 1px solid #DDD;
+                    }
+                    &.room_name,
+                    &.room_price,
+                    &.acc_register_date,
+                    &.edit,
+                    &.delete{
+                        text-align: center;
+                        font-size: 14px;
+                        border-bottom: 1px solid #DDD;
+                    }
+                    &.edit,
+                    &.delete{
+                        font-size: 16px;
+                    }
+                    
                 }
             }
+        }
+    }
+    div.pagination_container{
+        margin-top: 50px;
+        ul.pagination{
+            display: flex;
+            justify-content: center;
+            li{
+                margin: 0 2px;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                &.prev_btn{
+                    margin-right: 30px;
+                    width: 50px;
+                }
+                &.next_btn{
+                    margin-left: 30px;
+                    width: 50px;
+                }
+                &.disabled{
+                    pointer-events: none;
+                    a, svg{
+                        display: none;
+                    }
+                }
+                a{
+                    line-height: 30px;
+                    display: inline-block;
+                    width: 100%;
+                    svg{
+                        display: inline-block;
+                        vertical-align: middle;
+                        fill: #000;
+                    }
+                    &.undefined{
+                        font-weight: bold;
+                        background: #000;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    td{
+        height: 70px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    th{
+        &.title_acc_name,
+        &.title_acc_register_date{
+            display: none;
+        }
+        &.title_acc_name_hidden{
+            display: table-cell !important;
+        }
+    }
+    td{
+        padding: 10px 0;
+        &.room_img,
+        &.acc_register_date{
+            display: none;
+        }
+    }
+}
+@media screen and (max-width: 765px) {
+    th{
+        &.title_edit,
+        &.title_delete{
+            display: none;
+        }
+    }
+    td{
+        &.edit,
+        &.delete{
+            display: none;
         }
     }
 }
