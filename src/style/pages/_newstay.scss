@@ -79,9 +79,8 @@ div.new_stay_page {
       }
       a {
         .new_acc_content {
-          position: absolute;
-          top: 26%;
-          left: 20%;
+          @include pos_center;
+          margin: 5vh 0;
           width: 60%;
           height: 55%;
           background: white;
