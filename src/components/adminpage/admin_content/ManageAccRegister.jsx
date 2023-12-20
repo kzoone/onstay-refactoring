@@ -2,6 +2,7 @@ import { TfiClose } from 'react-icons/tfi';
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
+import RoomRegister from './RoomRegister';
 
 
 export default function ManageAccRegister({closeInsertModal}){
@@ -25,6 +26,7 @@ export default function ManageAccRegister({closeInsertModal}){
     const [accSummary1, setAccSummary1] = useState('');
     const [accSummary2, setAccSummary2] = useState('');
     
+    const [roomFormCount, setRoomFormCount] = useState([{ id: 1 }]);
     const [roomName, setRoomName] = useState('');
     const [roomPrice, setRoomPrice] = useState('');
     const [featureCodesArr, setFeatureCodesArr] = useState([]);
@@ -34,12 +36,12 @@ export default function ManageAccRegister({closeInsertModal}){
     const [roomImg1, setRoomImg1] = useState('');
     const [roomImg2, setRoomImg2] = useState('');
     const [roomImg3, setRoomImg3] = useState('');
+
     const [accImg1, setAccImg1] = useState('');
     const [accImg2, setAccImg2] = useState('');
     const [accImg3, setAccImg3] = useState('');
     const [accImg4, setAccImg4] = useState('');
     const [accImg5, setAccImg5] = useState('');
-    const roomFileInputRef = useRef(null);
     const accFileInputRef = useRef(null);
     
     const handleAccName = (e) => {
@@ -78,7 +80,16 @@ export default function ManageAccRegister({closeInsertModal}){
     const handleAccSummary2 = (e) => {
         setAccSummary2(e.target.value);
     }
-    
+
+    const handleAddRoomForm = () => {
+        const newRoomId = roomFormCount.length + 1;
+        setRoomFormCount(prevRooms => [...prevRooms, { id: newRoomId }]);
+    }
+    const handleRemoveRoomForm = (roomId) => {
+        const updatedRooms = roomFormCount.filter((room) => room.id !== roomId);
+        setRoomFormCount(updatedRooms);
+    };
+
     const handleRoomName = (e) => {
         setRoomName(e.target.value);
     }
@@ -109,6 +120,7 @@ export default function ManageAccRegister({closeInsertModal}){
             setRoomImg3(files[2]);
         }
     }; 
+
     const handleAccImg = (e) => {
         const files = e.target.files;
         if(files.length > 0){
@@ -186,8 +198,6 @@ export default function ManageAccRegister({closeInsertModal}){
             closeInsertModal();
         };
     }
-    
-    
 
     const close = () => {
         closeInsertModal();
@@ -311,7 +321,7 @@ export default function ManageAccRegister({closeInsertModal}){
                             <input type='checkbox' id='only' onChange={handleOnly} />
                         </div>
                         <div className='acc_img'>
-                            <label htmlFor='acc_img'>숙소이미지 업로드</label>
+                            <label htmlFor='acc_img'>숙소이미지</label>
                             <input
                                 type='file'
                                 name='accImgs'
@@ -322,79 +332,24 @@ export default function ManageAccRegister({closeInsertModal}){
                             />
                         </div>
                     </div>
-                    <div className='room_register'>
-                        <div className='register_title'>객실 정보를 입력해주세요</div>
-                        <div className='room_name'>
-                            <label htmlFor='room_name'>객실명</label>
-                            <input type='text' id='room_name' onChange={handleRoomName}/>
-                        </div>
-                        <div className='room_price'>
-                            <label htmlFor='room_price'>금액</label>
-                            <input type='text' id='room_price' onChange={handleRoomPrice}/>
-                        </div>
-                        <div className='features'>
-                            <span>부대시설</span>
-                            <div>
-                                <p>
-                                    <input type='checkbox' value={1} id='feature1' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature1'>빅테이블</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={2} id='feature2' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature2'>정원</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={3} id='feature3' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature3'>테라스</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={4} id='feature4' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature4'>독립 키친</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={5} id='feature5' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature5'>독립 화장실</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={6} id='feature6' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature6'>산책로</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={7} id='feature7' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature7'>샤워실</label>
-                                </p>
-                                <p>
-                                    <input type='checkbox' value={8} id='feature8' onChange={handleFeatureCodes} />
-                                    <label htmlFor='feature8'>BBQ</label>
-                                </p>
-                            </div>
-                        </div>
-                        <div className='amenities'>
-                            <label htmlFor='amenities'>비품</label>
-                            <input type='text' id='amenities' onChange={handleAmenities} />
-                        </div>
-                        <div className='min_capa'>
-                            <label htmlFor='min_capa'>최소인원</label>
-                            <input type='text' id='min_capa' placeholder='숫자만 입력해주세요' onChange={handleMinCapa} />
-                        </div>
-                        <div className='max_capa'>
-                            <label htmlFor='max_capa'>최대인원</label>
-                            <input type='text' id='max_capa' placeholder='숫자만 입력해주세요' onChange={handleMaxCapa} />
-                        </div>
-                        <div className='room_img'>
-                            <label htmlFor='room_img'>객실이미지</label>
-                            <input
-                                type='file'
-                                name='roomImg'
-                                ref={roomFileInputRef}
-                                onChange={handleRoomImg}
-                                accept='image/png, image/jpg, image/jpeg'
-                                multiple
-                            />
-                        </div>
-                    </div>
+                    {roomFormCount.map((room, index) => (
+                        <RoomRegister
+                            key={room.id}
+                            handleRoomName={handleRoomName}
+                            handleRoomPrice={handleRoomPrice}
+                            handleFeatureCodes={handleFeatureCodes}
+                            handleAmenities={handleAmenities}
+                            handleMinCapa={handleMinCapa}
+                            handleMaxCapa={handleMaxCapa}
+                            handleRoomImg={handleRoomImg}
+                            roomFormCount={room.id}
+                            onRemoveRoomForm={() => handleRemoveRoomForm(room.id)}
+                            showRemoveButton={index !== 0}
+                        />
+                    ))}
+                    <button type='button' className='room_add_btn' onClick={handleAddRoomForm}>객실 추가</button>
                     <div className='form_btn'>
-                        <button type='reset'>취소</button>
+                        <button type='button' onClick={close}>취소</button>
                         <button type='button' onClick={handleSubmit}>등록</button>
                     </div>
                 </form>

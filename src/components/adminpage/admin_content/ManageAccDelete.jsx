@@ -7,7 +7,6 @@ export default function ManageAccDelete({closeDeleteModal, detail}){
     const roomName = detail[0]?.room_name || '';
 
     const handleDelete = () => {
-        console.log(accId, roomName)
         axios  
         .delete('http://localhost:8000/adminpage/accs/delete',{
            data: {accId, roomName}
