@@ -19,13 +19,13 @@ export function AccPoint() {
     <div className='whole_point_section'>
       <div className='point_section'>
         <div className='img_container'>
-          <img src={`/assets/images/swiper/${accPoint.acc_img}`} alt="" />
+          <img src={`/assets/images/swiper/${accPoint.acc_img}`} alt='' />
         </div>
         <div className='point_comment_box'>
           <div className='point_section_title'>SPECIAL</div>
           <div className='point_section_flex'>
             <div className='point_small_frame'>
-              <img src="https://images.stayfolio.com/system/pictures/images/000/149/359/original/e24557bacb7bbb3df32a827802844d9388db209c.png?1666668208" alt="" />
+              <img src='https://images.stayfolio.com/system/pictures/images/000/149/359/original/e24557bacb7bbb3df32a827802844d9388db209c.png?1666668208' alt='다락 로고' />
               <div className='point_comment_title'>다락</div>
             </div>
             <div className='point_comment_summary'>
@@ -40,7 +40,7 @@ export function AccPoint() {
         <div className='point_comment_box'>
           <div className='point_section_flex'>
             <div className='point_small_frame'>
-              <img src="https://images.stayfolio.com/system/pictures/images/000/207/754/original/995a87bcbf42ddb61873e958f0a9916a4a784381.png?1701071998" alt="" />
+              <img src='https://images.stayfolio.com/system/pictures/images/000/207/754/original/995a87bcbf42ddb61873e958f0a9916a4a784381.png?1701071998' alt='디자인 로고' />
               <div className='point_comment_title'>디자인</div>
             </div>
             <div className='point_comment_summary'>
@@ -56,7 +56,7 @@ export function AccPoint() {
         <div className='point_comment_box'>
             <div className='point_section_flex'>
               <div className='point_small_frame'>
-                <img src="https://images.stayfolio.com/system/pictures/images/000/121/772/original/8efdf2464fe29d2d6a1226f1692160fefdb7d436.png?1652148013" alt="" />
+                <img src='https://images.stayfolio.com/system/pictures/images/000/121/772/original/8efdf2464fe29d2d6a1226f1692160fefdb7d436.png?1652148013' alt='마당 로고' />
                 <div className='point_comment_title'>마당</div>
               </div>
               <div className='point_comment_summary'>

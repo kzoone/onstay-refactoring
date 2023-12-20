@@ -59,7 +59,7 @@ export function AccMap() {
                 <div className='text_homepage'>{accMap.homepage}</div>
               </div>
           </div>
-        <div className='map' id="map"></div>
+        <div className='map' id='map'></div>
       </div>
     ); 
   

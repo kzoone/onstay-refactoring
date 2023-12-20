@@ -4,9 +4,6 @@
   margin: 0 auto 100px auto;
   .swiper_slide {
     text-align: center;
-    height: 60%;     
-    /* Center slide text vertically */
-    /* display: flex; */  //한번 확인해보기 크기 줄일 때 문제
   }
   .swiper_slide img {
     width: 100%;
@@ -17,11 +14,10 @@
     height: 100%;
     div.bg_img_container{
       width: 100%;
-      height: 30%;
-      /* height: 50em; */
+      max-height: 56em;
       .img_size{
         width: 100%;
-        /* height: 100%; */
+        height: 100%;
       }
     }
   }
@@ -78,7 +74,8 @@
         font-size:0.9rem;
         text-decoration: underline;
         text-underline-offset: 10px;
-    }
+        text-align: center;
+      }
   }
   a.sm_link{
     margin-bottom: 20px;
