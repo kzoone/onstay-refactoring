@@ -2,11 +2,6 @@
 
 export const UNKNOWN_ERROR_ALERT = '알 수 없는 오류가 발생하였습니다.'
 
-// 회원 프로필 디폴트 이미지 경로
-
-export const DEFAULT_PROFILE_IMG = 'http://localhost:3000/assets/images/etc/user_profile_default.jpg';
-
-
 /** JOIN (회원가입) 관련 constants */
 
 // 유저 아이디 및 비밀번호 최소, 최대치 설정

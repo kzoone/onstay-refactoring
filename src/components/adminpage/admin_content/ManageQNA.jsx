@@ -30,7 +30,6 @@ const [modal, setModal] = useState({question : {}, show : false});
       method : 'get'
     })
     .then(res => {
-      console.log(res.data);
       setQusetions(res.data);
       setFilterdQuestions(res.data);
     })

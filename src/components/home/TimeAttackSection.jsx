@@ -3,6 +3,7 @@ import { LuAlarmClock } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 import Timer from './Timer';
 import axios from "axios";
+import getImgPath from '../../util/getImgPath';
 
 export default function TimeAttackSection() {
   const now = new Date()
@@ -43,7 +44,7 @@ export default function TimeAttackSection() {
           </div>
         </div>
         <Link to={`/findstay/acc/${acc.acc_id}`} className='timeattack_img'> 
-          <img src={`assets/images/swiper/${acc.acc_image}`} alt="" />
+          <img src={getImgPath.acc(acc.acc_image)} alt="" />
         </Link> 
       </div>
     </section>

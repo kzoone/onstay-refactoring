@@ -12,7 +12,7 @@ import useUserInfo from '../../util/useUserInfo.js'
 import $ from 'jquery';
 import ConfirmModal from './ConfirmModal.jsx';
 import axios from 'axios';
-import {DEFAULT_PROFILE_IMG} from '../../constants/constants.js'
+import getImgPath from '../../util/getImgPath.js';
 
 export default function Header() {
     const user = useUserInfo();
@@ -192,7 +192,7 @@ export default function Header() {
                         {(user.user_id && !user.isAdmin) && <>
                             <div className='profile_img'>
                                 <img 
-                                src={userProfile ? 'http://localhost:8000/getimg/userprofile/' + userProfile : DEFAULT_PROFILE_IMG} alt="" />
+                                src={getImgPath.userProfile(userProfile)} alt="" />
                             </div>
                             <div className='name'>{user.user_name} 님</div>
                         </>}

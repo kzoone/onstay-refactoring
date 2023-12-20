@@ -8,9 +8,7 @@ const useUserInfo = (option = {blockAccessByAuth : false, adminRequired : false}
   const [userInfo, setUserInfo] = useState({user_id:null, user_name:null, isAdmin:null});
   const navigate = useNavigate();
   useEffect(()=>{
-    if(localStorage.getItem('isLoggedIn')
-       || (!localStorage.getItem('isLoggedIn') && getCookie('auth_access_token')) 
-       || option.blockAccessByAuth) {
+    if(localStorage.getItem('isLoggedIn') || getCookie('auth_access_token') || option.blockAccessByAuth) {
       axios({
        url : 'http://localhost:8000/member/tokenCheck',
        method : 'get',

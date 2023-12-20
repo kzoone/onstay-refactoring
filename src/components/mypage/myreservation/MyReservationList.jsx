@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axiosAuth from '../../../services/axiosAuth';
+import getImgPath from '../../../util/getImgPath';
 
 
 export default function MyReservationList ({reservations, setModal, category}) {
@@ -43,7 +44,7 @@ export default function MyReservationList ({reservations, setModal, category}) {
                 <h4 className="acc_name">{res.acc_name}</h4>
                 <span className="room_name">{res.room_name}</span>
                 <div className="acc_img_mobile">
-                  <img src={`assets/images/acc/${res.images[0].acc_img}`} alt="" />
+                  <img src={getImgPath.acc(res.images[0].acc_img)} alt="" />
                 </div>
                 <div className='detail_infos'>
                   <div className="stay_info">
@@ -67,19 +68,19 @@ export default function MyReservationList ({reservations, setModal, category}) {
                   {(category === 'upcoming' && res.isCancelable) ? (
                     <button onClick={showModal} data-rid={res.reservation_id} data-acc_name={res.acc_name} data-room_name={res.room_name}>예약 취소</button>
                   ) : null}
-                  {(category === 'upcoming' && !res.isCancelable) && (
+                  {(category === 'upcoming' && !res.isCancelable) ? (
                     <button onClick={()=>alert('취소 불가능 상태입니다. 1:1 문의를 이용해주세요.')} className='disabled'>취소 불가능</button>
-                  )}
-                  {(category === 'complete' && res.isReviewable) && (
+                  ) : null}
+                  {(category === 'complete' && res.isReviewable) ? (
                     <button onClick={()=>navigate(`/findstay/room/${res.room_id}`)}>후기 남기기</button>
-                  )}
-                  {(category === 'complete' && !res.isReviewable) && (
+                  ) : null}
+                  {(category === 'complete' && !res.isReviewable) ? (
                     <button className='disabled'>이미 후기를 남겼어요!</button>
-                  )}
+                  ) : ''}
                 </div>
               </div>
               <div className="acc_img_pc">
-                <img src={`assets/images/acc/${res.images[0].acc_img}`} alt="" />
+                <img src={getImgPath.acc(res.images[0].acc_img)} alt="" />
               </div>
             </div>
           ))
