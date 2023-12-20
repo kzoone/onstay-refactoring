@@ -133,7 +133,7 @@ export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
       {questions.length ? <div className='border_pagination'><Pagination
         activePage={page}
         itemsCountPerPage={10}
-        totalItemsCount={questions.length}
+        totalItemsCount={filterdQuestions.length}
         pageRangeDisplayed={5}
         prevPageText={"<"}
         nextPageText={">"}
