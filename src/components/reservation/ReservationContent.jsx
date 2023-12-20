@@ -8,6 +8,8 @@ import ConfirmModal from '../common/ConfirmModal';
 import useUserInfo from '../../util/useUserInfo';
 import axiosAuth from '../../services/axiosAuth';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ReservationContent() {
   const userInfo = useUserInfo();
   const location = useLocation();
@@ -37,7 +39,7 @@ export default function ReservationContent() {
 
   // 객실 정보 리스트 조회 
   useEffect(() => {
-    axios.get(`http://localhost:8000/reservation/${roomid}`)
+    axios.get(`${apiBaseUrl}/reservation/${roomid}`)
       .then(result => {
         setRoomInfoData(result.data);
       })
@@ -47,7 +49,7 @@ export default function ReservationContent() {
 
   // 예약 정보 가져오기
   useEffect(() => {
-    axios.get(`http://localhost:8000/room/date/${roomid}`)
+    axios.get(`${apiBaseUrl}/room/date/${roomid}`)
       .then(result => {
         if(result.data.length > 0) {
           let mapArr = result.data.map(date => ({
@@ -141,7 +143,7 @@ export default function ReservationContent() {
     const handleReservationConfirm = (e) => {
       axiosAuth({ 
         method : 'post',
-        url: 'http://localhost:8000/reservation/booking',
+        url: `${apiBaseUrl}/reservation/booking`,
         data: {
           userId : userInfo.user_id,
           roomId : roomid,

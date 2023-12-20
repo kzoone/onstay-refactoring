@@ -1,6 +1,8 @@
 import useUserInfo from '../../util/useUserInfo';
 import axiosAuth from '../../services/axiosAuth';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NoticeDelete({ btnText, setDeletModal, checkedItems }) {
   const userInfo = useUserInfo();
   const handleModalBackground = (e) => {
@@ -17,7 +19,7 @@ export default function NoticeDelete({ btnText, setDeletModal, checkedItems }) {
 
     if(deleteConfirm) {
       // 확인 버튼을 누르면 삭제 동작을 수행
-      axiosAuth.delete('http://localhost:8000/notice/delete', { data: { checkedItems }, })
+      axiosAuth.delete(`${apiBaseUrl}/notice/delete`, { data: { checkedItems }, })
         .then(result => {
           if (result.data === 'ok') {
             alert('삭제가 완료되었습니다!')

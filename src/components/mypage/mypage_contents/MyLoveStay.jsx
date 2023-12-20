@@ -8,7 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import getImgPath from '../../../util/getImgPath';
 
-
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function MyLoveStay({ user_id }) {
   let [accs, setAccs] = useState([]);
@@ -17,7 +17,7 @@ export function MyLoveStay({ user_id }) {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/mypage/lovestay/' + user_id)
+    axios.get(`${apiBaseUrl}/mypage/lovestay/${user_id}`)
       .then(res => {
         setAccs(res.data)
       })
@@ -28,7 +28,7 @@ export function MyLoveStay({ user_id }) {
   const removeLove = acc_id => () => {
     disappeardRef.current = document.getElementById(acc_id)
     axios({
-      url : 'http://localhost:8000/findstay/love',
+      url : `${apiBaseUrl}/findstay/love`,
       method : 'delete',
       data : {userId : user_id, accId : acc_id}
     })

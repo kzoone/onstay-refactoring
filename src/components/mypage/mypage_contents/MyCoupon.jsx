@@ -3,13 +3,15 @@ import axios from 'axios';
 import MyContentNavbar from '../mypage_common/MyContentNavbar';
 import Pagination from 'react-js-pagination';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function MyCoupon ({user_id}) {
   let [category, setCategory] = useState('valid')
   let [coupons, setCoupons] = useState([])
   let [page,setPage] = useState(1)
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/mypage/coupons/'  + user_id)
+    axios.get(`${apiBaseUrl}/mypage/coupons/${user_id}`)
     .then(res => {
       if (category==='valid') {
         setCoupons(res.data)

@@ -5,6 +5,8 @@ import NewStayAvata from './NewStayAvata';
 import { SlArrowRight } from 'react-icons/sl';
 import NewStayContent from './NewStayContent';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NewStaySection() {
   const [newStayList, setNewStayList] = useState([]);
 
@@ -24,7 +26,7 @@ export default function NewStaySection() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8000/newstay/home')
+    axios.get(`${apiBaseUrl}/newstay/home`)
       .then(result => {
         const newArr = shuffle(result.data, 6);
         setNewStayList(newArr);

@@ -7,6 +7,8 @@ import RegisterStar from '../../../roomdetail/reviewmodal/RegisterStar';
 import MyReviewImg from './MyReviewImg';
 import ConfirmModal from '../../../common/ConfirmModal';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function MyReviewModal({setReviewModal, reviewModalData, user_id}) {
   const fileInputRef = useRef(null); // 이미지 파일 아이콘 연결
   const [ imgFile, setImgFile ] = useState(null); // 이미지 파일 선택
@@ -128,7 +130,7 @@ export default function MyReviewModal({setReviewModal, reviewModalData, user_id}
       formData.append('checkout', reviewModalData.checkout);
 
       axiosAuth({
-        url : `http://localhost:8000/room/review/mypage/update`,
+        url : `${apiBaseUrl}/room/review/mypage/update`,
         method : 'put',
         data : formData
       })

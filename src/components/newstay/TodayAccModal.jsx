@@ -4,6 +4,8 @@ import axiosAuth from '../../services/axiosAuth';
 import { useNavigate } from 'react-router-dom';
 import TodayAccSection from './TodayAccSection';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_name }) {
   const userInfo = useUserInfo(false);
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_n
 
   const handleConfirm = () => {
     if(userInfo.user_id) {
-    axiosAuth.post('http://localhost:8000/newstay/today/coupon', params)
+    axiosAuth.post(`${apiBaseUrl}/newstay/today/coupon`, params)
       .then(result => {
         if (result.data === 'ok') {
           const confirm = window.confirm('쿠폰이 발급되었습니다. 마이페이지로 이동하시겠습니까?');

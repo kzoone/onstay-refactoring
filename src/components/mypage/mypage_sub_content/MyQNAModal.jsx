@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import MyQNAForm from './MyQNAForm';
 import axios from 'axios';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function MyQNAModal({closeModal, user_id, question_id}) {
   let [showContent, setShowContent] = useState('question')
   let [question, setQuestion] = useState({})
@@ -10,7 +12,7 @@ export function MyQNAModal({closeModal, user_id, question_id}) {
   
   useEffect(()=>{
     axios({
-      url : 'http://localhost:8000/mypage/question/' + question_id,
+      url : `${apiBaseUrl}/mypage/question/${question_id}`,
       method : 'get'
     })
     .then(res => {

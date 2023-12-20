@@ -4,21 +4,23 @@ const DEFAULT_IMG = {
     userProfile : '/assets/images/etc/user_profile_default.jpg'
 }
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN;
+
 const getImgPath = {
     acc : filename => 
-    filename ? `http://localhost:8000/getimg/acc/${filename}` : DEFAULT_IMG.noImage,
+    filename ? `${apiBaseUrl}/getimg/acc/${filename}` : DEFAULT_IMG.noImage,
 
     room : filename => 
-    filename ? `http://localhost:8000/getimg/room/${filename}` : DEFAULT_IMG.noImage,
+    filename ? `${apiBaseUrl}/getimg/room/${filename}` : DEFAULT_IMG.noImage,
 
     notice : filename =>  
-    filename ? `http://localhost:8000/getimg/notice/${filename}` : DEFAULT_IMG.notice,
+    filename ? `${apiBaseUrl}/getimg/notice/${filename}` : DEFAULT_IMG.notice,
 
     review : filename => 
-    filename ? `http://localhost:8000/getimg/review/${filename}` : DEFAULT_IMG.noImage,
+    filename ? `${apiBaseUrl}/getimg/review/${filename}` : DEFAULT_IMG.noImage,
 
     userProfile : filename => 
-    filename ? `http://localhost:8000/getimg/userprofile/${filename}` : DEFAULT_IMG.userProfile
+    filename ? `${apiBaseUrl}/getimg/userprofile/${filename}` : DEFAULT_IMG.userProfile
 }
 
 export default getImgPath;

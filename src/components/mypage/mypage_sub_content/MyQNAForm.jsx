@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { IoArrowBackOutline } from "react-icons/io5";
 import ConfirmModal from '../../common/ConfirmModal';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, question_id}) {
   let [form, setForm] = useState({user_id : user_id, 
@@ -42,7 +43,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
     else if (form.question_title.length>100) return alert('문의 제목은 100자 이내로 작성해주세요.')
 
     axiosAuth({
-      url : 'http://localhost:8000/mypage/question',
+      url : `${apiBaseUrl}/mypage/question`,
       method : 'post',
       data : form
     })
@@ -67,7 +68,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
     const body = {...form, question_id}
 
     axiosAuth({
-      url : 'http://localhost:8000/mypage/question',
+      url : `${apiBaseUrl}/mypage/question`,
       method : 'put',
       data : body
     })
@@ -93,7 +94,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
   const deleteQuestion = () => {
     axiosAuth({
       method : 'delete',
-      url : 'http://localhost:8000/mypage/question',
+      url : `${apiBaseUrl}/mypage/question`,
       data : {question_id}
     })
     .then(res => {

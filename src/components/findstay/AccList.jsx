@@ -3,6 +3,8 @@ import Acc from './Acc';
 import axios from "axios";
 import useUserInfo from '../../util/useUserInfo'
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function AccList({accs, location, codeinfo, locationName }){
 
     const user = useUserInfo()
@@ -11,7 +13,7 @@ export default function AccList({accs, location, codeinfo, locationName }){
 
     const getUserIsLovedAccs = () => {
         axios
-        .get(`http://localhost:8000/findstay/love/${userId}`)
+        .get(`${apiBaseUrl}/findstay/love/${userId}`)
         .then((res) => {
             const accIds = res.data.map(accs => accs.acc_id);
             setUserLovedAccs(accIds);

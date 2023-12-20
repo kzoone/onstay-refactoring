@@ -7,6 +7,8 @@ import ManageQNAModal from './../manageqna/ManageQNAModal';
 import { useLocation } from 'react-router-dom';
 import QNACategoryFilter from '../manageqna/QNACategoryFilter.jsx';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ManageQNA() {
   const location = useLocation();
   const defaultShowContent = new URLSearchParams(location.search).get('QNAContent')
@@ -26,7 +28,7 @@ const [modal, setModal] = useState({question : {}, show : false});
 
   useEffect(()=>{
     axios({
-      url : 'http://localhost:8000/adminpage/questions/' + showContent,
+      url : `${apiBaseUrl}/adminpage/questions/${showContent}`,
       method : 'get'
     })
     .then(res => {
@@ -39,7 +41,7 @@ const [modal, setModal] = useState({question : {}, show : false});
   },[showContent])
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/adminpage/questions/Waiting')
+    axios.get(`${apiBaseUrl}/adminpage/questions/Waiting`)
     .then(res => {
       setWaitingCnt(res.data.length)
     })
@@ -78,7 +80,8 @@ const [modal, setModal] = useState({question : {}, show : false});
           </li>
       </ul>
 
-      <QNACategoryFilter categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter}/>
+      {questions.length 
+      ? <QNACategoryFilter categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter}/> : null}
       
       {filterdQuestions.length
       ? <Table className='qna_list_table' striped bordered >
@@ -112,10 +115,12 @@ const [modal, setModal] = useState({question : {}, show : false});
             })}
           </tbody>
         </Table>
-        : <div className='qna_no_list'>조건에 맞는 문의 내역이 없습니다.</div>
+        : (questions.length ? <div className='qna_no_list'>
+          조건에 맞는 문의 내역이 없습니다.
+          </div> : null)
         }
 
-        <Pagination 
+       {questions.length ? <Pagination 
         activePage={page}
         itemsCountPerPage={10}
         totalItemsCount={filterdQuestions.length}
@@ -123,10 +128,16 @@ const [modal, setModal] = useState({question : {}, show : false});
         prevPageText={"<"}
         nextPageText={">"}
         onChange={handlePage}
-      />
+      /> : null}
       {modal.show && 
         <ManageQNAModal question={modal.question} closeModal={()=>setModal({...modal, show:false})}/>
       }
+      {!questions.length ? 
+      <div className='qna_no_question'>
+          <div>
+            {showContent==='Waiting' ? '답변 대기 중인' : '답변이 완료된'} 문의 내역이 없습니다.
+          </div>
+      </div> : null}
     </div>
   ); 
 }

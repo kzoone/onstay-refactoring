@@ -7,6 +7,8 @@ import axios from 'axios';
 import ConfirmModal from '../common/ConfirmModal';
 import 'react-datepicker/dist/react-datepicker.css';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ReservationDate({roomid, price, user_id}) {
   const [ reservationData, setReservationData ] = useState([]);
   const [ startDate, setStartDate ] = useState(null);
@@ -18,7 +20,7 @@ export default function ReservationDate({roomid, price, user_id}) {
 
   // 예약 정보 가져오기
   useEffect(() => {
-    axios.get(`http://localhost:8000/room/date/${roomid}`)
+    axios.get(`${apiBaseUrl}/room/date/${roomid}`)
       .then(result => {
         if(result.data.length > 0) {
           let mapArr = result.data.map(date => ({

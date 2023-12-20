@@ -5,6 +5,8 @@ import RegisterStar from './RegisterStar';
 import ConfirmModal from '../../common/ConfirmModal';
 import { useNavigate } from 'react-router-dom';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ReviewModal(props) {
   const [ selectedDate, setSelectedDate ] = useState(`${props.registerData[0].checkin},${props.registerData[0].checkout}`) // 리뷰 등록 숙소 이용일 선택
   const [ clickRating, setClickRating ] = useState(0); // 별점 평점
@@ -110,7 +112,7 @@ export default function ReviewModal(props) {
     formData.append('checkout', selectdDateArr[1]);
 
     axiosAuth({
-      url : `http://localhost:8000/room/review`,
+      url : `${apiBaseUrl}/room/review`,
       method : 'post',
       data : formData
     })

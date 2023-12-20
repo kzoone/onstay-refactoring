@@ -9,6 +9,8 @@ import axiosAuth from '../../../services/axiosAuth';
 import ConfirmModal from '../../common/ConfirmModal';
 import getImgPath from '../../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function MyReview({user_id}) {
   const [ reviewData, setRivewData ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -21,7 +23,7 @@ export default function MyReview({user_id}) {
 
   // 회원이 작성한 리뷰 리스트 조회
   useEffect(() => {
-    axios.get(`http://localhost:8000/mypage/review/${user_id}/${currentPage}`)
+    axios.get(`${apiBaseUrl}/mypage/review/${user_id}/${currentPage}`)
     .then(result => {
       setRivewData(result.data);
       window.scroll({
@@ -37,7 +39,7 @@ export default function MyReview({user_id}) {
   // 수정하기 버튼 핸들링
   const handleClickUpdate = (review_id) => {
     // 해당하는 리뷰 조회 ( 모달 )
-    axiosAuth.get(`http://localhost:8000/mypage/review/${review_id}`)
+    axiosAuth.get(`${apiBaseUrl}/mypage/review/${review_id}`)
     .then(result => {
       setReviewModalData(result.data);
     })
@@ -64,7 +66,7 @@ export default function MyReview({user_id}) {
   // 삭제 확인 모달창 삭제 버튼 : delete
   const handleDeleteConfirm = () => {
     axiosAuth({
-      url : 'http://localhost:8000/mypage/review/delete',
+      url : `${apiBaseUrl}/mypage/review/delete`,
       method : 'delete',
       data : {user_id, review_id : reviewId}
     })

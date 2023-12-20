@@ -1,6 +1,8 @@
 import axios from 'axios';
 import useUserInfo from '../../../util/useUserInfo';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ManageAccDelete({closeDeleteModal, detail}){
     const userName = useUserInfo().user_name;
     const accId = detail[0]?.acc_id || '';
@@ -8,7 +10,7 @@ export default function ManageAccDelete({closeDeleteModal, detail}){
 
     const handleDelete = () => {
         axios  
-        .delete('http://localhost:8000/adminpage/accs/delete',{
+        .delete(`${apiBaseUrl}/adminpage/accs/delete`,{
            data: {accId, roomName}
         })
         .then((res) => {

@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axiosAuth from '../../../services/axiosAuth';
 import getImgPath from '../../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export default function MyReservationList ({reservations, setModal, category}) {
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ export default function MyReservationList ({reservations, setModal, category}) {
     // 에약 취소
     const cancelReservation = rid => () => {
         axiosAuth({
-          url : 'http://localhost:8000/mypage/reservation',
+          url : `${apiBaseUrl}/mypage/reservation`,
           method : 'delete',
           data : {reservation_id : rid}
         })

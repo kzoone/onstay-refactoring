@@ -5,12 +5,14 @@ import PageTitle from "../components/common/PageTitle";
 import NoticeAvata from '../components/noticedetail/NoticeAvata';
 import NoticeDetailContent from '../components/noticedetail/NoticeDetailContent';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function NoticeDetail() {
   const { noticeid, page } = useParams();
   const [detailNotice, setDetailNotice] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/notice/${noticeid}/${page}`)
+    axios.get(`${apiBaseUrl}/notice/${noticeid}/${page}`)
       .then(result => {
         setDetailNotice(result.data)
       })

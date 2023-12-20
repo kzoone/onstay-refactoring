@@ -7,6 +7,9 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css/pagination';
 import "swiper/css";
 import "swiper/css/pagination";
+import getImgPath from '../../util/getImgPath';
+
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function RoomSwiper() {
   const [roomInfo, setRoomInfo] = useState([]);
@@ -14,7 +17,7 @@ export function RoomSwiper() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/findstay/acc/${accid}/room`)
+      .get(`${apiBaseUrl}/findstay/acc/${accid}/room`)
       .then((result) => {
         setRoomInfo(result.data);
       })
@@ -51,7 +54,7 @@ export function RoomSwiper() {
               <SwiperSlide className="slide" key={index}> {/* relative */} 
                   <Link to={`/findstay/room/${room.room_id}`}>
                     <img className="swiper_img" /* width:100% */ 
-                          src={`/assets/images/room/${room.room_img1}`}
+                          src={getImgPath.room(room.room_img1)}
                           alt={room.room_name}
                         />
                     <div className="text_container"> {/* absolute */}

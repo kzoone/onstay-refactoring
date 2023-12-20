@@ -5,6 +5,8 @@ import PageTitle from '../components/common/PageTitle';
 import { MEMBER_REGEX, INVALID_NOTI_TEXT, INVALID_NOTI_ALERT} from '../constants/constants';
 import axios from 'axios';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function FindPwReset() {
   let [isTokenExpired, setTokenExpired] = useState(true);
   let [form, setForm] = useState({user_pw : '', user_pw_repeat : ''})
@@ -49,7 +51,7 @@ export default function FindPwReset() {
     } // 입력 데이터 유효성 검사
     
     axios({
-        url : 'http://localhost:8000/member/find/pw/reset',
+        url : `${apiBaseUrl}/member/find/pw/reset`,
         method : 'post',
         data : {...form, token : token} 
     })

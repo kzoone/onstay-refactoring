@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 const source = axios.CancelToken.source();
 
 /**
@@ -13,7 +14,7 @@ const axiosAuth = axios.create({
 axiosAuth.interceptors.request.use(
   (config) => {
     return axios({
-      url: 'http://localhost:8000/member/tokenCheck',
+      url: `${apiBaseUrl}/member/tokenCheck`,
       method: 'get',
       withCredentials : true
     })

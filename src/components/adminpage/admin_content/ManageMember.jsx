@@ -7,6 +7,8 @@ import MemberSearch from '../managemember/MemberSearch';
 import MemberSort from '../managemember/MemberSort';
 import MemberDateFilter from '../managemember/MemberDateFilter';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ManageMember() {
   const [users, setUsers] = useState([]); // 초기에만 가져오는 모든 유저 정보
   const [sort, setSort] = useState({ sortBy: 'user_id', desc: false }) // 소팅 기준 (sortBy), 내림차순 여부(desc)
@@ -18,7 +20,7 @@ export default function ManageMember() {
   
   useEffect(() => {
     axios({
-      url: 'http://localhost:8000/adminpage/users',
+      url: `${apiBaseUrl}/adminpage/users`,
       method: 'get'
     })
       .then(res => {

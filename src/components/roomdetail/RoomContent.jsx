@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import useUserInfo from '../../util/useUserInfo';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export default function RoomContent() {
   const [ roomContent, setRoomContent ] = useState({});
@@ -24,7 +25,7 @@ export default function RoomContent() {
   // 객실 정보 리스트 조회
   useEffect(() => {
     setShowContent('review');
-    axios.get(`http://localhost:8000/room/${roomid}`)
+    axios.get(`${apiBaseUrl}/room/${roomid}`)
       .then(result => {
         if(result.data[0].room_id === roomid) {
           setRoomContent(result.data[0]);

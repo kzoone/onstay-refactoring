@@ -3,6 +3,8 @@ import axiosAuth from "../../services/axiosAuth";
 import { SlCamera } from 'react-icons/sl';
 import NoticeImgModal from './NoticeImgModal';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NoticeUpdate(props) {
   const { btnText, setUpdateModal, notice_title, notice_content, notice_img, notice_id } = props;
   const titleMaxLength = 100;
@@ -34,7 +36,7 @@ export default function NoticeUpdate(props) {
     formData.append('content', form['content']);
 
     if(updateConfirm) {
-      axiosAuth.post(`http://localhost:8000/notice/update/`, formData)
+      axiosAuth.post(`${apiBaseUrl}/notice/update/`, formData)
         .then(result => {
           if (result.data === 'ok') {
             alert('공지사항 수정이 완료되었습니다.');
