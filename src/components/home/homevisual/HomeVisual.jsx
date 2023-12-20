@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -8,24 +9,18 @@ import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import '../../../style/components/home/_homeVisual.scss';
 
-
 const HomeVisual = () => {
-  // Define getRandomImages function first
-  const getRandomImages = (count) => {
-    const selectedImages = [];
-    while (selectedImages.length < count) {
-      const randomIndex = Math.floor(Math.random() * imageNames.length);
-      const randomImage = imageNames[randomIndex];
-      if (!selectedImages.includes(randomImage)) {
-        selectedImages.push(randomImage);
-      }
-    }
-    return selectedImages;
-  };
+  const [accVisual, setAccVisual] = useState([]);
 
-  const imageNames = Array.from({ length: 200 }, (_, index) => `swiperImage${index + 1}.webp`);
+  useEffect(() => {
+      axios.get(`http://localhost:8000/visual`)
+      .then(result => {
+          setAccVisual(result.data);
+      })
+      .catch(error => console.log(error));
+  }, [])
 
-  const randomImages = getRandomImages(5);
+
   return (
     <>
       <section className='visual-section'>
@@ -39,11 +34,11 @@ const HomeVisual = () => {
             modules={[Pagination, Navigation]}
             className="visualSwiper"
           >
-            {randomImages.map((imageName, index) => (
+            {accVisual.map((imageName, index) => (
               <SwiperSlide className='slide' key={index}>
                 <Link className="link"to="/findstay">
                   <div>
-                    <div className='bg-img-container'><img className='img-size' src={`./assets/images/swiper/${imageName}`} alt={`Slide ${index + 1}`} /></div>
+                    <div className='bg-img-container'><img className='img-size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} /></div>
                     <div className='swiper-text'>
                       <div><img className='text-img' src="./assets/images/main_logo.png" alt="" /></div>
                       <div className='content'>마음에 드는 한옥 숙소를 예약해 보세요</div>
@@ -66,11 +61,11 @@ const HomeVisual = () => {
             modules={[Pagination]}
             className="visualSwiper"
           >
-            {randomImages.map((imageName, index) => (
+            {accVisual.map((imageName, index) => (
               <SwiperSlide className='slide' key={index}>
                 <Link className='sm-link' to="/findstay">
                     <div className='sm-img-container'>
-                      <img className='img-size' src={`./assets/images/swiper/${imageName}`} alt={`Slide ${index + 1}`} />
+                      <img className='img-size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} />
                     </div>
                     <div className='sm-swiper-text'>
                       <div className='comment'>마음에 드는 한옥 숙소를 예약해 보세요</div>
