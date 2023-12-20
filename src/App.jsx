@@ -16,7 +16,7 @@ function App() {
     <Outlet/>
     <Footer/>
     <TopButton />
-    <DevTools />
+    <DevTools /> {/** 개발 편의용 유저권한 설정 컴포넌트 (임시) */}
     </>
   );
 }

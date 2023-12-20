@@ -32,10 +32,10 @@ export const INVALID_NOTI_ALERT = {
 
 // 회원가입 폼 onChange 시 띄워주는 유효성 체크 메시지
 export const INVALID_NOTI_TEXT = {
-  user_id : `${USERID_LENGTH_MIN}자 이상 ${USERID_LENGTH_MAX}자 이하의 영문 및 숫자 조합만 가능합니다.`,
+  user_id : `${USERID_LENGTH_MIN}~${USERID_LENGTH_MAX}자 영문 및 숫자 조합만 가능합니다.`,
   user_email : '이메일 형식이 올바르지 않습니다',
   user_name : '1자 이상 30자 이하의 한글 및 영문으로 입력해주세요',
-  user_pw : `영문, 숫자, 특수문자를 모두 포함하여 ${USERPW_LENGTH_MIN}~${USERPW_LENGTH_MAX}자로 입력해주세요.`,
+  user_pw : `영문, 숫자, 특수문자를 포함한 ${USERPW_LENGTH_MIN}~${USERPW_LENGTH_MAX}자로 입력해주세요.`,
   user_pw_repeat : '비밀번호가 일치하지 않습니다.',
   phone : '휴대전화 형식이 올바르지 않습니다'
 }

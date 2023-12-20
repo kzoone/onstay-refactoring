@@ -98,7 +98,7 @@ const [modal, setModal] = useState({question : {}, show : false});
             {Array.from({length : 10}, (_, index) => {
               const question = filterdQuestions[index + 10 * (page - 1)];
               return (
-                <tr onClick={question ? handleModal(question) : ()=>{}} className={!question ? 'empty_row' : ''}>
+                <tr key={question ? question.question_id : `empty_row${index}`} onClick={question ? handleModal(question) : ()=>{}} className={!question ? 'empty_row' : ''}>
                   <td><span className="row_num">{question ? question.rno : ''}</span></td>
                   <td><span className="qna_category">{question ? QUESTION_CATEGORY[question.question_category] : ''}</span></td>
                   <td><span className="qna_title">{question ? question.question_title : ''}</span></td>
