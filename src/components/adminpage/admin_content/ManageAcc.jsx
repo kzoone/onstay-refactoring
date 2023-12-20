@@ -145,12 +145,12 @@ export default function ManageAcc() {
                 </thead>
                 <tbody>
                     {accs.map((acc, index) =>
-                        <tr key={index} onClick={() => handleTrClick(acc)} style={index%2===0?{background:'rgb(234,234,234)'}:{background:'none'}}>
-                            <td className='room_img'><img src={getImgPath.room(acc.room_img1)}/></td>
-                            <td className="acc_name">{acc.acc_name}</td>
-                            <td className='room_name'>{acc.room_name}</td>
-                            <td className='room_price'>₩{acc.room_price}</td>
-                            <td className='acc_register_date'>{
+                        <tr key={index} style={index%2===0?{background:'rgb(234,234,234)'}:{background:'none'}}>
+                            <td onClick={() => handleTrClick(acc)} className='room_img'><img src={getImgPath.room(acc.room_img1)} /></td>
+                            <td onClick={() => handleTrClick(acc)} className="acc_name">{acc.acc_name}</td>
+                            <td onClick={() => handleTrClick(acc)} className='room_name'>{acc.room_name}</td>
+                            <td onClick={() => handleTrClick(acc)} className='room_price'>₩{acc.room_price}</td>
+                            <td onClick={() => handleTrClick(acc)} className='acc_register_date'>{
                                 acc.register_date
                             }</td>
                             <td className='edit'><button><BiSolidEditAlt /></button></td>
