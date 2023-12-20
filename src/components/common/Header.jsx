@@ -14,6 +14,8 @@ import ConfirmModal from './ConfirmModal.jsx';
 import axios from 'axios';
 import getImgPath from '../../util/getImgPath.js';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function Header() {
     const user = useUserInfo();
     let [showModal, setShowModal] = useState(false);
@@ -21,7 +23,7 @@ export default function Header() {
 
     useEffect(()=>{
         if (user.user_id) {
-            axios.get('http://localhost:8000/member/userinfo/' + user.user_id)
+            axios.get(`${apiBaseUrl}/member/userinfo/${user.user_id}`)
             .then(res=>{
                 setUserProfile(res.data.user_img)
             })
@@ -76,7 +78,7 @@ export default function Header() {
     
     const handleLogout = () => {
         axios({
-            url : 'http://localhost:8000/member/logout/',
+            url : `${apiBaseUrl}/member/logout/`,
             method : 'post',
             data : { user_id :user.user_id},
             withCredentials : true

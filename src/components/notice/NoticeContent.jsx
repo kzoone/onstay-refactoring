@@ -7,6 +7,8 @@ import NoticeSearch from './NoticeSearch';
 import NoticeTable from './NoticeTable';
 import useUserInfo from '../../util/useUserInfo';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NoticeContent(props) {
   const userInfo = useUserInfo();
   const location = useLocation();
@@ -41,7 +43,7 @@ export default function NoticeContent(props) {
   // 데이터 요청을 처리하는 함수
   const fetchData = () => {
     axios
-      .post('http://localhost:8000/notice/', searchParams)
+      .post(`${apiBaseUrl}/notice/`, searchParams)
       .then((result) => {
         if (result.data && result.data.length > 0) {
           setNoticeList(result.data);

@@ -7,6 +7,7 @@ import axiosAuth from '../../../services/axiosAuth';
 import ConfirmModal from './../../common/ConfirmModal';
 import LoadingSpinner from './../../common/LoadingSpinner';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export default function ManageQNAModal({question, closeModal}) {
   let [showContent, setShowContent] = useState('question');
@@ -44,7 +45,7 @@ export default function ManageQNAModal({question, closeModal}) {
       setPostLoading(true);
     } // 등록일때 (이메일 보내는 시간이 걸려서 로딩 설정)
     axiosAuth({
-      url : 'http://localhost:8000/adminpage/answer',
+      url : `${apiBaseUrl}/adminpage/answer`,
       method : question.answer_id ? 'put' : 'post',
       data : {question_id, question_title, answer_id, user_id, answer_content : answer}
     })
@@ -61,7 +62,7 @@ export default function ManageQNAModal({question, closeModal}) {
 
   const removeAnswer = () => {
     axiosAuth({
-      url : 'http://localhost:8000/adminpage/answer',
+      url : `${apiBaseUrl}/adminpage/answer`,
       method : 'delete',
       data : {question_id : question.question_id}
     })

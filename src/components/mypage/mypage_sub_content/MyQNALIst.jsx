@@ -6,6 +6,8 @@ import axios from 'axios';
 import Pagination from 'react-js-pagination';
 import QNACategoryFilter from '../../adminpage/manageqna/QNACategoryFilter';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
   let [questions, setQuestions] = useState([]);
   let [filterdQuestions, setFilterdQuestions] = useState([]);
@@ -20,7 +22,7 @@ export function MyQNAList({ user_id, setShowQnaContent, showQnacontent }) {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8000/mypage/questions/' + user_id,
+      url: `${apiBaseUrl}/mypage/questions/${user_id}`,
       method: 'get',
     })
       .then((res) => {

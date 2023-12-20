@@ -8,6 +8,7 @@ import axiosAuth from '../../../services/axiosAuth';
 import ConfirmModal from '../../../components/common/ConfirmModal'
 import getImgPath from '../../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function MyEdit({ user_id }) {
   let [userInfo, setUserInfo] = useState({});
@@ -26,7 +27,7 @@ export function MyEdit({ user_id }) {
 
 
   useEffect(()=>{
-      axios.get('http://localhost:8000/member/userinfo/' + user_id)
+      axios.get(`${apiBaseUrl}/member/userinfo/${user_id}`)
       .then(res => {
         setForm({
           ...form,
@@ -85,7 +86,7 @@ export function MyEdit({ user_id }) {
     if (!valid.new_pw_repeat) return alert('변경할 비밀번호와 동일한 비밀번호를 확인란에 입력해주세요')
 
     axiosAuth({
-      url : 'http://localhost:8000/mypage/edit/pw',
+      url : `${apiBaseUrl}/mypage/edit/pw`,
       method : 'post',
       data : {user_id : user_id , current_pw : form.current_pw, new_pw : form.new_pw}
     })
@@ -130,7 +131,7 @@ export function MyEdit({ user_id }) {
     body.append('isProfileDefault', profileView ? 'false' : 'true')
 
     axiosAuth({
-      url : 'http://localhost:8000/mypage/edit/userinfo',
+      url : `${apiBaseUrl}/mypage/edit/userinfo`,
       method : 'post',
       data : body
     })
@@ -151,7 +152,7 @@ export function MyEdit({ user_id }) {
   // 회원 탈퇴
   const quitMember = () => {
     axiosAuth({
-      url : 'http://localhost:8000/mypage/quit',
+      url : `${apiBaseUrl}/mypage/quit`,
       method : 'delete',
       data : {user_id}
     })

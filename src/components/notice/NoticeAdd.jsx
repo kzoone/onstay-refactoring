@@ -4,6 +4,8 @@ import { SlCamera } from 'react-icons/sl';
 import axiosAuth from '../../services/axiosAuth';
 import { useRef } from 'react';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NoticeAdd({ btnText, setAddModal }) {
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
@@ -26,7 +28,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
     formData.append('title', form['title']);
     formData.append('content', form['content']);
 
-    axiosAuth.post('http://localhost:8000/notice/insert/', formData)
+    axiosAuth.post(`${apiBaseUrl}/notice/insert/`, formData)
       .then(result => {
         if (result.data === 'ok') {
           alert('공지사항 등록이 완료되었습니다.');

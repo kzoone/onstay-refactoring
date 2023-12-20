@@ -5,6 +5,8 @@ import MyContentNavbar from '../mypage_common/MyContentNavbar';
 import axios from 'axios';
 import MyReservationList from '../myreservation/MyReservationList';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function MyReservation({ user_id }) {
   let [category, setCategory] = useState('upcoming');
   let [reservations, setReservations] = useState([]);
@@ -13,7 +15,7 @@ export function MyReservation({ user_id }) {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8000/mypage/reservation/' + category + '/' + user_id,
+      url: `${apiBaseUrl}/mypage/reservation/${category}/${user_id}`,
       method: 'get'
     })
     .then((res) => {

@@ -5,6 +5,7 @@ import JoinTerm from '../components/join/JoinTerm';
 import { MEMBER_REGEX, INVALID_NOTI_ALERT, INVALID_NOTI_TEXT, UNKNOWN_ERROR_ALERT } from '../constants/constants';
 import axios from 'axios';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function Join() {
     const [form, setForm] = useState({
@@ -31,7 +32,7 @@ export function Join() {
     const userIdDuplicateCheck = () => {
         if (!valid.user_id) return alert(INVALID_NOTI_ALERT.user_id) // 아이디 형식 안맞으면 중지
 
-        axios.get('http://localhost:8000/member/duplication/' + form.user_id)
+        axios.get(`${apiBaseUrl}/member/duplication/${form.user_id}`)
             .then(res => {
                 let { isUnique } = res.data
                 if (isUnique) {
@@ -83,7 +84,7 @@ export function Join() {
         // 회원가입 가능한 경우 (valid 안의 항목들이 모두 true)
         let { user_id, user_email, user_name, user_pw, phone } = form
         axios({
-            url: 'http://localhost:8000/member/join',
+            url: `${apiBaseUrl}/member/join`,
             method: 'post',
             data: { user_id, user_email, user_name, user_pw, phone }
         })

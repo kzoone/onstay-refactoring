@@ -1,6 +1,8 @@
 import React, { useState, useEffect }  from 'react';
 import axiosAuth from '../../services/axiosAuth.js';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function FormInfo(props) {
   let { userInfo, roomInfoData, isValidDated, startDate, endDate, price, nightCnt, payPrice,
         totalPayPrice, setTotalPayPrice, selectedCouponId, setSelectedCouponId } = props;
@@ -10,7 +12,7 @@ export default function FormInfo(props) {
 
   // user﹒user coupon 리스트 조회
   useEffect(() => {
-    axiosAuth.get(`http://localhost:8000/reservation/user/${userInfo.user_id}`)
+    axiosAuth.get(`${apiBaseUrl}/reservation/user/${userInfo.user_id}`)
       .then(result => {
         setUserData(result.data);
       })

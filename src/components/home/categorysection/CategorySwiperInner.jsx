@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import getImgPath from '../../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function CategorySwiperInner({list}) {
   const [ accimg, setAccImg ] = useState('');
 
@@ -25,7 +27,7 @@ export default function CategorySwiperInner({list}) {
   };
   
   useEffect(() => {
-    axios.get(`http://localhost:8000/img/${list.acc_id}`)
+    axios.get(`${apiBaseUrl}/img/${list.acc_id}`)
       .then(result => {
         setAccImg(result.data.acc_img);
       })

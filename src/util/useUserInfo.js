@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { getCookie } from "./cookie"
 import { useNavigate } from "react-router-dom";
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 // 유저 정보를 가져오는 커스텀 훅
 const useUserInfo = (option = {blockAccessByAuth : false, adminRequired : false}) => {
   const [userInfo, setUserInfo] = useState({user_id:null, user_name:null, isAdmin:null});
@@ -10,7 +12,7 @@ const useUserInfo = (option = {blockAccessByAuth : false, adminRequired : false}
   useEffect(()=>{
     if(localStorage.getItem('isLoggedIn') || getCookie('auth_access_token') || option.blockAccessByAuth) {
       axios({
-       url : 'http://localhost:8000/member/tokenCheck',
+       url : `${apiBaseUrl}/member/tokenCheck`,
        method : 'get',
        withCredentials : true
      })

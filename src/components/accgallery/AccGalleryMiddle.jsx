@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import getImgPath from '../../util/getImgPath';
+
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function AccGalleryMiddle() {
   const [middleImages, setMiddleImages] = useState([]);
   const { accid } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/findstay/acc/gallery/${accid}/middle`)
+    axios.get(`${apiBaseUrl}/findstay/acc/gallery/${accid}/middle`)
       .then(result => {
         // 응답이 이미지 배열인 것으로 가정합니다.
         setMiddleImages(result.data);
@@ -21,7 +24,7 @@ export function AccGalleryMiddle() {
         <div className="gallery_title"></div>
         <div className="gallery_img">
           {middleImages.map((image, index) => (
-            <img className="acc_img" key={index} src={`/assets/images/acc/${image.acc_img}`} alt={`이미지 ${index + 1}`} />
+            <img className="acc_img" key={index} src={getImgPath.acc(image.acc_img)} alt={`이미지 ${index + 1}`} />
           ))}
         </div>
       </div>

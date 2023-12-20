@@ -4,6 +4,8 @@ import { useState } from "react";
 import ConfirmModal from '../common/ConfirmModal';
 import { useNavigate } from 'react-router-dom';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function LoveButton({ acc, userId, userLoved, getUserIsLovedAccs, onLoveCount }){
     const [ isModal, setIsModal ] = useState(false);
     const navigate = useNavigate();
@@ -17,7 +19,7 @@ export default function LoveButton({ acc, userId, userLoved, getUserIsLovedAccs,
             if(userLoved === true){ //유저가 좋아요 한 숙소 리스트에 이미 있다면
                 //관심스테이 테이블에서 삭제
                 axios  
-                .delete('http://localhost:8000/findstay/love',{
+                .delete(`${apiBaseUrl}/findstay/love`,{
                     data : {
                         userId,
                         accId
@@ -36,7 +38,7 @@ export default function LoveButton({ acc, userId, userLoved, getUserIsLovedAccs,
             }else{  //유저가 좋아요 한 숙소리스트에 없으면
                 //관심스테이 테이블에 추가 && 숙소테이블의 좋아요 수 +1
                 axios({
-                    url : 'http://localhost:8000/findstay/love',
+                    url : `${apiBaseUrl}/findstay/love`,
                     method : 'post',
                     data : {userId, accId}
                 })

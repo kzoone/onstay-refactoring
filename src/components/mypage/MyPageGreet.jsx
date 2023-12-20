@@ -2,13 +2,15 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function MyPageGreet({user_id, userName, isAdmin}) {
   let [reserveCount, setReserveCount] = useState(0);
   let location = useLocation();
 
   useEffect(()=>{
     if (!isAdmin) {
-      axios.get('http://localhost:8000/mypage/reservation/upcoming/' + user_id)
+      axios.get(`${apiBaseUrl}/mypage/reservation/upcoming/${user_id}`)
       .then(res => {
         setReserveCount(res.data.length)
       })

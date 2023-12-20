@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function AccSummary() {
     const [accSummary, setAccSummary] = useState({});
@@ -9,7 +10,7 @@ export function AccSummary() {
 
     useEffect(() =>{
         axios
-        .get(`http://localhost:8000/findstay/acc/${accid}/summary`)
+        .get(`${apiBaseUrl}/findstay/acc/${accid}/summary`)
         .then((result) => {
             setAccSummary(result.data);
         })

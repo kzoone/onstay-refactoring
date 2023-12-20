@@ -10,13 +10,15 @@ import 'swiper/scss';
 import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function CategorySwiper({type}){
   const [ accList, setAccList ] = useState([]);
   const categoryTitle = { only : '오직 온스테이하우스에서만' , price : '20만원 이하 가성비 하우스' };
   
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/${type}`)
+    axios.get(`${apiBaseUrl}/${type}`)
       .then(result => {
         setAccList(result.data);
       })

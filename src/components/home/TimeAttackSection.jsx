@@ -5,6 +5,8 @@ import Timer from './Timer';
 import axios from "axios";
 import getImgPath from '../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function TimeAttackSection() {
   const now = new Date()
   let [day, setDay] = useState(now.getDate())
@@ -19,7 +21,7 @@ export default function TimeAttackSection() {
   // 현재 날짜에 해당하는 숙소id 정보를 가져옴 (예를들어 3일이면 "AC0003" 숙소가 이벤트 숙소인것)
   // 익일 0시가 되어, 날짜가 달라지면 숙소 정보를 새로운 숙소로 리렌더링하도록 함
   useEffect(()=>{
-    axios.get('http://localhost:8000/acc/' + accIdFormat(day))
+    axios.get(`${apiBaseUrl}/acc/` + accIdFormat(day))
     .then(res=>{
       const {acc_id, acc_name} = res.data.acc_info
       const acc_image = res.data.acc_images.filter(image=>image.img_size==='big')[0]?.acc_img

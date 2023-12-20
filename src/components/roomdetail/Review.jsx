@@ -7,6 +7,8 @@ import ReviewStar from './ReviewStar';
 import ReviewModal from './reviewmodal/ReviewModal';
 import getImgPath from '../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function Review({roomid, user_id}) {
   const [ reviewData, setReviewData ] = useState([]);
   const [ registerData, setRegisterData ] = useState([]);
@@ -15,7 +17,7 @@ export default function Review({roomid, user_id}) {
 
   useEffect(() => {
     // 페이지네이션 요청할 리뷰 리스트 요청 : 작성일 최신순
-    axios.get(`http://localhost:8000/room/review/${roomid}/${currentPage}`)
+    axios.get(`${apiBaseUrl}/room/review/${roomid}/${currentPage}`)
     .then(result => {
         setReviewData(result.data);
     })
@@ -23,7 +25,7 @@ export default function Review({roomid, user_id}) {
 
     // 리뷰 가능 여부 요청
     if (user_id) {
-      axios.get(`http://localhost:8000/room/${roomid}/${user_id}`)
+      axios.get(`${apiBaseUrl}/room/${roomid}/${user_id}`)
       .then(result => {
         if (result.data.message === '일치하는 예약 정보가 없습니다') {
           setRegisterData([]);

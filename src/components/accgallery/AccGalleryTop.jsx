@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
+import getImgPath from '../../util/getImgPath';
+
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function AccGalleryTop() {
   const [topImage, setTopImage] = useState({acc_name:'',address:'',acc_img:''});
   const {accid} = useParams();
 
   useEffect(() => {
-      axios.get(`http://localhost:8000/findstay/acc/gallery/${accid}`)
+      axios.get(`${apiBaseUrl}/findstay/acc/gallery/${accid}`)
       .then(result => {
           setTopImage(result.data);
       })
@@ -23,7 +26,7 @@ export function AccGalleryTop() {
           <div className="acc_address">{topImage.address}</div>
         </div>
         <div className="gallery_img">
-          <img src={`/assets/images/swiper/${topImage.acc_img}`} alt="" />
+          <img src={getImgPath.acc(topImage.acc_img)} alt="" />
         </div>
       </div>
     </div>

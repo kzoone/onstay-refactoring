@@ -6,6 +6,8 @@ import NoticeUpdate from '../notice/NoticeUpdate';
 import useUserInfo from '../../util/useUserInfo';
 import { useEffect } from 'react';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NoticeTable(props) {
   const { notice_id, no, page, notice_title, notice_date,
     notice_views, notice_content, notice_img, handleCheckedItems, checkedItems } = props;
@@ -16,7 +18,7 @@ export default function NoticeTable(props) {
 
   // 조회 수 업데이트 요청
   const handleViewCount = (noticeId) => {
-    axios.get(`http://localhost:8000/notice/increase/${noticeId}`)
+    axios.get(`${apiBaseUrl}/notice/increase/${noticeId}`)
       .catch(error => console.error(error));
   };
 

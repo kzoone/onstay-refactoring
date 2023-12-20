@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import getImgPath from '../../util/getImgPath';
+
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN;
 
 export function AccPoint() {
   const [accPoint, setAccPoint] = useState({acc_img:''})
   const {accid} = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/findstay/acc/${accid}/point`)
+    axios.get(`${apiBaseUrl}/findstay/acc/${accid}/point`)
     .then(result => {
       setAccPoint(result.data);
     })
@@ -19,7 +22,7 @@ export function AccPoint() {
     <div className='whole_point_section'>
       <div className='point_section'>
         <div className='img_container'>
-          <img src={`/assets/images/swiper/${accPoint.acc_img}`} alt="" />
+          <img src={getImgPath.acc(accPoint.acc_img)} alt="" />
         </div>
         <div className='point_comment_box'>
           <div className='point_section_title'>SPECIAL</div>

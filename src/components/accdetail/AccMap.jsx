@@ -3,15 +3,17 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const { kakao } = window;
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN;
 
 export function AccMap() {
   const [accMap, setAccMap] = useState({});
   const { accid } = useParams();
   const [map, setMap] = useState(null); // 상태로 map 객체 추가
 
+
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/findstay/acc/${accid}/map`)
+      .get(`${apiBaseUrl}/findstay/acc/${accid}/map`)
       .then((result) => {
         setAccMap(result.data);
 

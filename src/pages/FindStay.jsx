@@ -5,6 +5,8 @@ import Filter from '../components/findstay/Filter';
 import Sort from '../components/findstay/Sort';
 import AccList from '../components/findstay/AccList';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function FindStay() {
     /**
      * 입력한 검색어
@@ -153,7 +155,7 @@ export function FindStay() {
     }
     const handleSubmit = () => {
         axios
-        .get('http://localhost:8000/findstay/',{params})
+        .get(`${apiBaseUrl}/findstay/`,{params})
         .then((res) => {
             if(res.data){
                 setAccList((prevData) => {

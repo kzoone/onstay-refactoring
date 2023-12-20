@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import useUserInfo from '../util/useUserInfo';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export function Login() {
     const [form, setForm] = useState({ user_id: '', user_pw: '' })
     const navigate = useNavigate()
@@ -24,7 +26,7 @@ export function Login() {
         else if (form.user_pw === '') return alert('비밀번호를 입력해주세요.')
 
         axios({
-            url: 'http://localhost:8000/member/login/',
+            url: `${apiBaseUrl}/member/login/`,
             method: 'post',
             data: form,
             withCredentials: true

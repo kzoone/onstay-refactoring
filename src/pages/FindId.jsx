@@ -4,6 +4,7 @@ import PageTitle from '../components/common/PageTitle';
 import axios from 'axios';
 import { MEMBER_REGEX, INVALID_NOTI_TEXT} from '../constants/constants.js'
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function FindId() {
     const [certification, setCertification] = useState({isWaiting : false, timer : null, sendCnt:0})
@@ -64,7 +65,7 @@ export function FindId() {
             sendCnt : certification.sendCnt+1
         })
         axios({
-            url : 'http://localhost:8000/member/find/certification',
+            url : `${apiBaseUrl}/member/find/certification`,
             method : 'post',
             data : {user_email:form.user_email}
         })
@@ -88,7 +89,7 @@ export function FindId() {
         }
 
         axios({
-            url : 'http://localhost:8000/member/find/id/' + form.user_email,
+            url : `${apiBaseUrl}/member/find/id/${form.user_email}`,
             method : 'get'
         })
         .then(res => {

@@ -7,6 +7,8 @@ import ManageQNAModal from './../manageqna/ManageQNAModal';
 import { useLocation } from 'react-router-dom';
 import QNACategoryFilter from '../manageqna/QNACategoryFilter.jsx';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ManageQNA() {
   const location = useLocation();
   const defaultShowContent = new URLSearchParams(location.search).get('QNAContent')
@@ -26,7 +28,7 @@ const [modal, setModal] = useState({question : {}, show : false});
 
   useEffect(()=>{
     axios({
-      url : 'http://localhost:8000/adminpage/questions/' + showContent,
+      url : `${apiBaseUrl}/adminpage/questions/${showContent}`,
       method : 'get'
     })
     .then(res => {
@@ -39,7 +41,7 @@ const [modal, setModal] = useState({question : {}, show : false});
   },[showContent])
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/adminpage/questions/Waiting')
+    axios.get(`${apiBaseUrl}/adminpage/questions/Waiting`)
     .then(res => {
       setWaitingCnt(res.data.length)
     })

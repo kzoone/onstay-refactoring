@@ -8,12 +8,15 @@ import 'swiper/css/navigation';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import '../../../style/components/home/_homeVisual.scss';
+import getImgPath from '../../../util/getImgPath';
+
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 const HomeVisual = () => {
   const [accVisual, setAccVisual] = useState([]);
 
   useEffect(() => {
-      axios.get(`http://localhost:8000/visual`)
+      axios.get(`${apiBaseUrl}/visual`)
       .then(result => {
           setAccVisual(result.data);
       })
@@ -38,7 +41,7 @@ const HomeVisual = () => {
               <SwiperSlide className='slide' key={index}>
                 <Link className="link"to="/findstay">
                   <div>
-                    <div className='bg_img_container'><img className='img_size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} /></div>
+                    <div className='bg_img_container'><img className='img_size' src={getImgPath.acc(imageName.acc_img)} alt={`Slide ${index + 1}`} /></div>
                     <div className='swiper_text'>
                       <div><img className='text_img' src="./assets/images/main_logo.png" alt="" /></div>
                       <div className='content'>마음에 드는 한옥 숙소를 예약해 보세요</div>
@@ -65,7 +68,7 @@ const HomeVisual = () => {
               <SwiperSlide className='slide' key={index}>
                 <Link className='sm_link' to="/findstay">
                     <div className='sm_img_container'>
-                      <img className='img_size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} />
+                      <img className='img_size' src={getImgPath.acc(imageName.acc_img)} alt={`Slide ${index + 1}`} />
                     </div>
                     <div className='sm_swiper_text'>
                       <div className='comment'>마음에 드는 한옥 숙소를 예약해 보세요</div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import DaumPostcode from 'react-daum-postcode';
 import RoomRegister from './RoomRegister';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export default function ManageAccRegister({closeInsertModal}){
     
@@ -177,7 +178,7 @@ export default function ManageAccRegister({closeInsertModal}){
             formData.append('accImgs', accImg5);
             
             axios({
-                url : 'http://localhost:8000/adminpage/accs/insert/',
+                url : `${apiBaseUrl}/adminpage/accs/insert/`,
                 method : 'post',
                 data : formData,
                 headers: {

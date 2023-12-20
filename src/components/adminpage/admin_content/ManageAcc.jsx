@@ -11,6 +11,8 @@ import ManageAccDetail from './ManageAccDetail';
 import ManageAccDelete from './ManageAccDelete';
 import getImgPath from '../../../util/getImgPath';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function ManageAcc() {
     const [accs, setAccs] = useState([]);
     const [page, setPage] = useState(1);
@@ -29,7 +31,7 @@ export default function ManageAcc() {
 
     const getAccs = () => {
         axios
-        .get(`http://localhost:8000/adminpage/accs/${page}`)
+        .get(`${apiBaseUrl}/adminpage/accs/${page}`)
         .then((res) => {
             if(res.data){
                 setAccs(res.data);
@@ -96,7 +98,7 @@ export default function ManageAcc() {
 
     const getDetail = () => {
         axios({
-            url : `http://localhost:8000/adminpage/accs/detail/`,
+            url : `${apiBaseUrl}/adminpage/accs/detail/`,
             method : 'get',
             params: { accId: selectedAccId, roomName: selectedRoomName }
         })

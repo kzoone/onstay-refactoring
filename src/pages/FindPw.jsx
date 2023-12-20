@@ -4,7 +4,7 @@ import axios from 'axios';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
 
-
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function FindPw() {
     let [form, setForm] = useState({user_id : ''});
@@ -23,7 +23,7 @@ export function FindPw() {
         setIsLoading(true)
 
         axios({
-            url : 'http://localhost:8000/member/find/pw/sendmail',
+            url : `${apiBaseUrl}/member/find/pw/sendmail`,
             method : 'post',
             data : {user_id : form.user_id}
         })

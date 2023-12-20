@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import NewStayAvata from '../home/newstaysection/NewStayAvata';
 import NewAccContent from './NewAccContent';
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function NewAcc() {
   const [newAccList, setNewAccList] = useState([]);
   const [page, setPage] = useState(1);
@@ -13,7 +15,7 @@ export default function NewAcc() {
 
   useEffect(() => {
     if (isMounted.current) {
-      axios.post('http://localhost:8000/newstay/', pageData)
+      axios.post(`${apiBaseUrl}/newstay/`, pageData)
         .then(result => {
           setNewAccList(prevData => [...prevData, ...result.data]);
         }).catch(error => console.log(error));

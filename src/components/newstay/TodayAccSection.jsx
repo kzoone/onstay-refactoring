@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import TodayContent from "./TodayContent";
 
+const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
+
 export default function TodayAccSection() {
   const [todayAccList, setTodayAccList] = useState([]);
 
   const fetchData = () => {
-    axios.get(`http://localhost:8000/newstay/today/`)
+    axios.get(`${apiBaseUrl}/newstay/today/`)
       .then(result => {
         setTodayAccList(result.data)
       })
