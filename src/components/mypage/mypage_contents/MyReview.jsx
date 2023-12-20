@@ -80,7 +80,7 @@ export default function MyReview({user_id}) {
 
   // 삭제 완료 알림 모달창 : 닫기 
   const handleCompleteModal = () => {
-    window.location.reload();
+    window.location.href= '/mypage?showContent=MyReview';
   }
 
   // 삭제 완료 알림 모달창 : 홈으로

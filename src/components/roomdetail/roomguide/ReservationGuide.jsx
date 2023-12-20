@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdOutlinePets } from 'react-icons/md';
 
-export default function RservationGuide({roomContent, otherContent}) {
+export default function ReservationGuide({roomContent, otherContent}) {
   return(
     <div className='guide_content_wrap reservation_guide'>
       <div className='content_box price'>
@@ -20,12 +20,12 @@ export default function RservationGuide({roomContent, otherContent}) {
               <tr>
                 <td>{otherContent.room_name}</td>
                 <td>인원({otherContent.min_capa}/{otherContent.max_capa})</td>
-                <td>{otherContent.room_price ? `${otherContent.room_price.toLocaleString()}~` : '직접 문의'}</td>
+                <td>{otherContent.room_price ? `₩${otherContent.room_price.toLocaleString()}~` : '직접 문의'}</td>
               </tr>
               <tr>
                 <td>{roomContent.room_name}</td>
                 <td>인원({roomContent.min_capa}/{roomContent.max_capa})</td>
-                <td>{otherContent.room_price ?  `${roomContent.room_price.toLocaleString()}~` : '직접 문의'}</td>
+                <td>{otherContent.room_price ?  `₩${roomContent.room_price.toLocaleString()}~` : '직접 문의'}</td>
               </tr>
             </tbody>
           </table>

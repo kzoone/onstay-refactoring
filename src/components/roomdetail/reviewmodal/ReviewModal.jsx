@@ -25,7 +25,7 @@ export default function ReviewModal(props) {
       return setIsValidRegistration(false);
     } else if (contentText.content.length < 50 || contentText.content.length > 500 ) {
       return setIsValidRegistration(false);
-    } else if ( clickRating < 0 ) {
+    } else if ( clickRating <= 0 ) {
       return setIsValidRegistration(false);
     } else {
       return setIsValidRegistration(true);
@@ -45,7 +45,7 @@ export default function ReviewModal(props) {
     } else if (contentText.content.length < 50 || contentText.content.length > 500 ) {
       alert('리뷰 내용은 50자 이상 500자 이하로 작성해주세요')
       return setIsValidRegistration(false);
-    } else if ( clickRating < 0 ) {
+    } else if ( clickRating <= 0 ) {
       alert('별점을 선택해주세요');
       return setIsValidRegistration(false);
     } else {
@@ -124,12 +124,12 @@ export default function ReviewModal(props) {
     .catch(error => console.log(error));
   }
 
-  // 예약 완료 알림 모달창 닫기 버튼 클릭
+  // 등록 완료 알림 모달창 닫기 버튼 클릭
   const handleCompleteModal = (e) => {
-    navigate('/');
+    window.location.href = `/findstay/room/${props.roomid}`;
   }
   
-  // 예약 완료 알림 모달창 확인 버튼 클릭
+  // 등록 완료 알림 모달창 확인 버튼 클릭
   const handleCompleteConfirm = (e) => {
     navigate('/mypage?showContent=MyReview');
   }
@@ -184,9 +184,9 @@ export default function ReviewModal(props) {
             <div className='star_container'>
               <p>Rating</p>
               <div className='star_content'>
-                <RegisterStar setClickRating={setClickRating} 
-                              handleClickRating={handleClickRating} 
-                              initialRating={clickRating} />
+                <RegisterStar
+                      handleClickRating={handleClickRating} 
+                      initialRating={clickRating} />
                 <span>{clickRating}점</span>
               </div>
             </div>
