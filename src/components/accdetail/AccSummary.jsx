@@ -16,13 +16,13 @@ export function AccSummary() {
         .catch((error) => console.log(error));
     }, [accid]);
     return(
-        <div className="summary-whole-container">
-            <div className="summary-container">
-                <div className="summary-title">{accSummary.acc_name}</div>
-                <div className="summary-subtitle">온스테이</div>
+        <div className="summary_whole_container">
+            <div className="summary_container">
+                <div className="summary_title">{accSummary.acc_name}</div>
+                <div className="summary_subtitle">온스테이</div>
                 <div className="border"></div>
-                <div className="summary-top">{accSummary.acc_summary1}</div>
-                <div className="summary-bottom">{accSummary.acc_summary2}</div>
+                <div className="summary_top">{accSummary.acc_summary1}</div>
+                <div className="summary_bottom">{accSummary.acc_summary2}</div>
             </div>
         </div>
     );

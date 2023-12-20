@@ -49,7 +49,7 @@ export function AccMap() {
       <div className='map_container'>
           <div className='explain'>{accMap.acc_name}의 위치는 {accMap.address}입니다.</div>
           <div className='map_text_container'>
-              <div className='mobile-title-container'>
+              <div className='mobile_title_container'>
                 <div className='text_title'>HELLO</div>
                 <div className='text_name'>{accMap.acc_name}</div>
               </div>

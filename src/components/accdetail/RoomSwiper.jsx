@@ -22,14 +22,14 @@ export function RoomSwiper() {
   }, [accid]);
 
   return (
-    <div className="whole-frame">
-      <div className="whole-container">
+    <div className="whole_frame">
+      <div className="whole_container">
           <div className="title">
             ROOM
             <div className="border"></div>  
           </div>{/* width를 준다 */}
           
-          <Swiper className="room-swiper-container" /* padding을 양쪽에만 준다 */
+          <Swiper className="room_swiper_container" /* padding을 양쪽에만 준다 */
             spaceBetween={50}
             slidesPerView={2}
             pagination={{ bullet : true, clickable: true }}
@@ -50,16 +50,16 @@ export function RoomSwiper() {
             {roomInfo.map((room, index) => (
               <SwiperSlide className="slide" key={index}> {/* relative */} 
                   <Link to={`/findstay/room/${room.room_id}`}>
-                    <img className="swiper-img" /* width:100% */ 
+                    <img className="swiper_img" /* width:100% */ 
                           src={`/assets/images/room/${room.room_img1}`}
                           alt={room.room_name}
                         />
-                    <div className="text-container"> {/* absolute */}
-                      <div className="room-name">{room.room_name}</div>
-                      <div className="room-capa">기준 {room.min_capa}명 &#40;최대 {room.max_capa}명&#41;</div>
-                      <div className="space-between">
-                        <div className="room-price">&#8361;{room.room_price.toLocaleString()}&#126;</div>
-                        <div className="room-reserve">예약하기</div>
+                    <div className="text_container"> {/* absolute */}
+                      <div className="room_name">{room.room_name}</div>
+                      <div className="room_capa">기준 {room.min_capa}명 &#40;최대 {room.max_capa}명&#41;</div>
+                      <div className="space_between">
+                        <div className="room_price">&#8361;{room.room_price.toLocaleString()}&#126;</div>
+                        <div className="room_reserve">예약하기</div>
                       </div>
                     </div>
                   </Link>

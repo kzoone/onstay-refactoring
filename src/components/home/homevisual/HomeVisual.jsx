@@ -23,8 +23,8 @@ const HomeVisual = () => {
 
   return (
     <>
-      <section className='visual-section'>
-        <MediaQuery className='lg-size' minWidth={767}>
+      <section className='visual_section'>
+        <MediaQuery className='lg_size' minWidth={767}>
           {/* 화면 너비가 767px 이상일 때 보이는 내용 */}
           <Swiper
             pagination={{
@@ -38,9 +38,9 @@ const HomeVisual = () => {
               <SwiperSlide className='slide' key={index}>
                 <Link className="link"to="/findstay">
                   <div>
-                    <div className='bg-img-container'><img className='img-size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} /></div>
-                    <div className='swiper-text'>
-                      <div><img className='text-img' src="./assets/images/main_logo.png" alt="" /></div>
+                    <div className='bg_img_container'><img className='img_size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} /></div>
+                    <div className='swiper_text'>
+                      <div><img className='text_img' src="./assets/images/main_logo.png" alt="" /></div>
                       <div className='content'>마음에 드는 한옥 숙소를 예약해 보세요</div>
                       <div className='more'>read me</div>
                     </div>
@@ -63,11 +63,11 @@ const HomeVisual = () => {
           >
             {accVisual.map((imageName, index) => (
               <SwiperSlide className='slide' key={index}>
-                <Link className='sm-link' to="/findstay">
-                    <div className='sm-img-container'>
-                      <img className='img-size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} />
+                <Link className='sm_link' to="/findstay">
+                    <div className='sm_img_container'>
+                      <img className='img_size' src={`./assets/images/swiper/${imageName.acc_img}`} alt={`Slide ${index + 1}`} />
                     </div>
-                    <div className='sm-swiper-text'>
+                    <div className='sm_swiper_text'>
                       <div className='comment'>마음에 드는 한옥 숙소를 예약해 보세요</div>
                       <div className='more'>read me</div>
                     </div>
