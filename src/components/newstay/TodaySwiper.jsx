@@ -1,10 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState } from 'react';
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-
 import 'swiper/scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import getImgPath from '../../util/getImgPath';
 
 export default function TodaySwiper({ acc_imgs }) {
   const [swiperIndex, setSwiperIndex] = useState(0); // -> 페이지네이션용
@@ -30,7 +30,7 @@ export default function TodaySwiper({ acc_imgs }) {
         {acc_imgs.map(img =>
           <SwiperSlide key={img}>
             <figcaption>
-              <img src={`/assets/images/acc/${img}`} alt='' />
+              <img src={getImgPath.acc(img)} alt='' />
             </figcaption>
           </SwiperSlide>
         )}

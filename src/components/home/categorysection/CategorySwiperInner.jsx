@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import getImgPath from '../../../util/getImgPath';
 
 export default function CategorySwiperInner({list}) {
   const [ accimg, setAccImg ] = useState('');
@@ -33,7 +34,7 @@ export default function CategorySwiperInner({list}) {
 
   return(                         
     <>
-      <Link to={`findstay/acc/${list.acc_id}`}><img src={`/assets/images/acc/${accimg}`} alt={`${list.acc_name} 숙소 이미지}`} /></Link>
+      <Link to={`findstay/acc/${list.acc_id}`}><img src={getImgPath.acc(accimg)} alt={`${list.acc_name} 숙소 이미지}`} /></Link>
       <div className='acc_info'>
         <p className='name'>{list.acc_name}</p>
         <p className='area_price'>

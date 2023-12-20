@@ -5,6 +5,7 @@ import PagiNation from 'react-js-pagination';
 import axios from 'axios';
 import ReviewStar from './ReviewStar';
 import ReviewModal from './reviewmodal/ReviewModal';
+import getImgPath from '../../util/getImgPath';
 
 export default function Review({roomid, user_id}) {
   const [ reviewData, setReviewData ] = useState([]);
@@ -82,7 +83,7 @@ export default function Review({roomid, user_id}) {
           <React.Fragment key={review.review_id}>
             <div className='review_content'>
               <div className='review_img'>
-                <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' />
+                <img src={getImgPath.review(review.review_img)} alt='숙소 리뷰 이미지' />
               </div>
               <div className='star_info'>
                 <ReviewStar rating={review.review_star} />

@@ -9,6 +9,7 @@ import { BsHouseAddFill } from "react-icons/bs";
 import ManageAccRegister from "./ManageAccRegister";
 import ManageAccDetail from './ManageAccDetail';
 import ManageAccDelete from './ManageAccDelete';
+import getImgPath from '../../../util/getImgPath';
 
 export default function ManageAcc() {
     const [accs, setAccs] = useState([]);
@@ -145,7 +146,7 @@ export default function ManageAcc() {
                 <tbody>
                     {accs.map((acc, index) =>
                         <tr key={index} onClick={() => handleTrClick(acc)} style={index%2===0?{background:'rgb(234,234,234)'}:{background:'none'}}>
-                            <td className='room_img'><img src={`assets/images/room/${acc.room_img1}`} /></td>
+                            <td className='room_img'><img src={getImgPath.room(acc.room_img1)}/></td>
                             <td className="acc_name">{acc.acc_name}</td>
                             <td className='room_name'>{acc.room_name}</td>
                             <td className='room_price'>₩{acc.room_price}</td>

@@ -1,4 +1,5 @@
 import React from 'react';
+import getImgPath from '../../../../util/getImgPath';
 
 export default function MyReviewImg({review_image, setImgModal}) {
 
@@ -10,7 +11,7 @@ export default function MyReviewImg({review_image, setImgModal}) {
   return(
     <div className='img_modal_container'>
       <div className='modal_content'>
-        { <img src={`http://localhost:8000/getimg/reviewimg/${review_image}`} alt='리뷰 이미지' /> }
+        { <img src={getImgPath.review(review_image)} alt='리뷰 이미지' /> }
         <div className='btn_wrap'>
           <button
               type='button'

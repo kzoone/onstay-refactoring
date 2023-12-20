@@ -12,10 +12,10 @@ const getImgPath = {
     filename ? `http://localhost:8000/getimg/room/${filename}` : DEFAULT_IMG.noImage,
 
     notice : filename =>  
-    filename ? `http://localhost:8000/getimg/noticeimg/${filename}` : DEFAULT_IMG.notice,
+    filename ? `http://localhost:8000/getimg/notice/${filename}` : DEFAULT_IMG.notice,
 
     review : filename => 
-    filename ? `http://localhost:8000/getimg/reviewimg/${filename}` : DEFAULT_IMG.noImage,
+    filename ? `http://localhost:8000/getimg/review/${filename}` : DEFAULT_IMG.noImage,
 
     userProfile : filename => 
     filename ? `http://localhost:8000/getimg/userprofile/${filename}` : DEFAULT_IMG.userProfile
