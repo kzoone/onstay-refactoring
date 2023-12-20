@@ -39,7 +39,7 @@ export default function RoomRegister({handleRoomName, handleRoomPrice, handleFea
             </div>
             <div className='room_price'>
                 <label htmlFor='room_price'>금액</label>
-                <input type='text' id='room_price' onChange={onRoomPrice}/>
+                <input type='text' id='room_price' placeholder='숫자만 입력해주세요 (500,000원 이하)' onChange={onRoomPrice} />
             </div>
             <div className='features'>
                 <span>부대시설</span>
@@ -88,7 +88,7 @@ export default function RoomRegister({handleRoomName, handleRoomPrice, handleFea
             </div>
             <div className='max_capa'>
                 <label htmlFor='max_capa'>최대인원</label>
-                <input type='text' id='max_capa' placeholder='숫자만 입력해주세요' onChange={onMaxCapa} />
+                <input type='text' id='max_capa' placeholder='숫자만 입력해주세요.(8명 이하)' onChange={onMaxCapa} />
             </div>
             <div className='room_img'>
                 <label htmlFor='room_img'>객실이미지</label>

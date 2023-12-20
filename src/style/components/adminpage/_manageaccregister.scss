@@ -121,16 +121,35 @@ div.new_register{
                     }
                 }
                 div.acc_img{
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 80px;
-                    label{
-                        min-width: 110px;
-                        font-weight: bold;
+                    margin-bottom: 30px;
+                    div.acc_img_upload{
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        label{
+                            min-width: 110px;
+                            font-weight: bold;
+                        }
+                        input{
+                            width: 100%;
+                            padding: 5px 0;
+                        }
                     }
-                    input{
-                        width: 100%;
-                        padding: 5px 0;
+                    div.acc_img_names{
+                        display: block;
+                        display: flex;
+                        span{
+                            min-width: 110px;
+                            font-weight: bold;
+                        }
+                        p.file_names{
+                            display: flex;
+                            flex-direction: column;
+                            span.name{
+                                font-weight: normal;
+                                margin-bottom: 5px;
+                            }
+                        }
                     }
                 }
             }
