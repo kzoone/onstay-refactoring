@@ -18,15 +18,15 @@ export function AccGalleryTop() {
   }, [])
 
   return(
-    <div className="gallery_whole_frame"> {/* w: 100p */}
-      <div className="gallery_frame"> {/* max-width:1800px , flex*/}
-        <div className="gallery_title">
-          <div className="border"></div>
-          <div className="acc_name">{topImage.acc_name}</div>
-          <div className="acc_address">{topImage.address}</div>
+    <div className='gallery_whole_frame'> {/* w: 100p */}
+      <div className='gallery_frame'> {/* max-width:1800px , flex*/}
+        <div className='gallery_title'>
+          <div className='border'></div>
+          <div className='acc_name'>{topImage.acc_name}</div>
+          <div className='acc_address'>{topImage.address}</div>
         </div>
-        <div className="gallery_img">
-          <img src={getImgPath.acc(topImage.acc_img)} alt="" />
+        <div className='gallery_img'>
+          <img src={getImgPath.acc(topImage.acc_img)} alt={`${topImage.acc_name} swiper 이미지`} />
         </div>
       </div>
     </div>

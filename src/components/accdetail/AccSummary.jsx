@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import axios from 'axios';
+import { useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
@@ -17,13 +17,13 @@ export function AccSummary() {
         .catch((error) => console.log(error));
     }, [accid]);
     return(
-        <div className="summary_whole_container">
-            <div className="summary_container">
-                <div className="summary_title">{accSummary.acc_name}</div>
-                <div className="summary_subtitle">온스테이</div>
-                <div className="border"></div>
-                <div className="summary_top">{accSummary.acc_summary1}</div>
-                <div className="summary_bottom">{accSummary.acc_summary2}</div>
+        <div className='summary_whole_container'>
+            <div className='summary_container'>
+                <div className='summary_title'>{accSummary.acc_name}</div>
+                <div className='summary_subtitle'>온스테이</div>
+                <div className='border'></div>
+                <div className='summary_top'>{accSummary.acc_summary1}</div>
+                <div className='summary_bottom'>{accSummary.acc_summary2}</div>
             </div>
         </div>
     );

@@ -19,7 +19,7 @@ export function AccName() {
 
     return (
         <div className='visual_section'>
-            <div className='img_container'><img src={getImgPath.acc(accInfo.acc_img)} alt="" /></div>
+            <div className='img_container'><img src={getImgPath.acc(accInfo.acc_img)} alt="숙소 Swiper 이미지" /></div>
             <div className='text_container'>
                 <div className='acc_name'>{accInfo.acc_name}</div>
                 <div className='acc_address'>{accInfo.address}</div>

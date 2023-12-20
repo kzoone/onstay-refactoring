@@ -19,12 +19,12 @@ export function AccGalleryMiddle() {
   }, [accid]);
 
   return (
-    <div className="gallery_whole_frame">
-      <div className="gallery_frame">
-        <div className="gallery_title"></div>
-        <div className="gallery_img">
+    <div className='gallery_whole_frame'>
+      <div className='gallery_frame'>
+        <div className='gallery_title'></div>
+        <div className='gallery_img'>
           {middleImages.map((image, index) => (
-            <img className="acc_img" key={index} src={getImgPath.acc(image.acc_img)} alt={`이미지 ${index + 1}`} />
+            <img className='acc_img' key={index} src={getImgPath.acc(image.acc_img)} alt={`이미지 ${index + 1}`} />
           ))}
         </div>
       </div>

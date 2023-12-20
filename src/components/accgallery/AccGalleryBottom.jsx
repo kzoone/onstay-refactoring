@@ -19,17 +19,17 @@ export function AccGalleryBottom() {
   }, [accid]);
 
   return (
-    <div className="gallery_whole_frame">
+    <div className='gallery_whole_frame'>
       {bottomImages && bottomImages.map((room, index) => (
-        <div className="gallery_frame" key={index}>
-          <div className="gallery_title">
-            <div className="border"></div>
-            <div>{room.room_name}</div>
+        <div className='gallery_frame' key={index}>
+          <div className='gallery_title'>
+            <div className='border'></div>
+            <div className='room_name'>{room.room_name}</div>
           </div>
           <div className="gallery_img room_img">
-            <img src={getImgPath.room(room.room_img1)} alt="" />
-            <img src={getImgPath.room(room.room_img2)} alt="" />
-            <img src={getImgPath.room(room.room_img3)} alt="" />
+            <img src={getImgPath.room(room.room_img1)} alt={`${room.room_name}이미지1`} />
+            <img src={getImgPath.room(room.room_img2)} alt={`${room.room_name}이미지2`} />
+            <img src={getImgPath.room(room.room_img3)} alt={`${room.room_name}이미지3`} />
           </div>        
         </div>
       ))}
