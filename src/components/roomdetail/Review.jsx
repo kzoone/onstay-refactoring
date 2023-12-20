@@ -5,15 +5,12 @@ import PagiNation from 'react-js-pagination';
 import axios from 'axios';
 import ReviewStar from './ReviewStar';
 import ReviewModal from './reviewmodal/ReviewModal';
-import useUserInfo from '../../util/useUserInfo';
 
-export default function Review({roomid}) {
+export default function Review({roomid, user_id}) {
   const [ reviewData, setReviewData ] = useState([]);
   const [ registerData, setRegisterData ] = useState([]);
   const [ reviewModal, setReviewModal ] = useState(false);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const userInfo = useUserInfo();
-  const userid = userInfo.user_id;
 
   useEffect(() => {
     // 페이지네이션 요청할 리뷰 리스트 요청 : 작성일 최신순
@@ -24,8 +21,8 @@ export default function Review({roomid}) {
     .catch(error => console.log(error));
 
     // 리뷰 가능 여부 요청
-    if (userid) {
-      axios.get(`http://localhost:8000/room/${roomid}/${userid}`)
+    if (user_id) {
+      axios.get(`http://localhost:8000/room/${roomid}/${user_id}`)
       .then(result => {
         if (result.data.message === '일치하는 예약 정보가 없습니다') {
           setRegisterData([]);
@@ -35,23 +32,23 @@ export default function Review({roomid}) {
       })
       .catch(error => console.log(error));
     }
-  }, [roomid, userid, currentPage]);
-
-  // 리뷰 등록하기 버튼 클릭 핸들링
-  const handleClickRegister = () => {
-    setReviewModal(true);
-  };
+  }, [roomid, user_id, currentPage]);
 
   // 페이지네이션 페이지 클릭 핸들링
   const handlePageChange = (pageClickNum) => {
     setCurrentPage(pageClickNum);
   }
 
+  // 리뷰 등록하기 버튼 클릭 핸들링
+  const handleClickRegister = () => {
+    setReviewModal(true);
+  };
+
   // 등록된 예약 내역이 있을 경우 보여지는 화면
   const reviewContainer = (
     <div className='review_container'>
       <div className='total_review_register'>
-    { ( registerData.length > 0 && userid ) ?
+    { ( registerData.length > 0 && user_id ) ?
       <div className='register_wrap'>
         <div className='btn_wrap'>
           <TbRectangularPrismPlus />
@@ -59,12 +56,7 @@ export default function Review({roomid}) {
                   type='button'
                   onClick={handleClickRegister}>등록하기</button>
         </div>
-        { reviewModal && <ReviewModal
-                            userid={userid}
-                            roomid={roomid}
-                            setReviewModal={setReviewModal}
-                            registerData={registerData} /> }
-        </div>
+      </div>
       : null
       }
         <div className='total_review_info'>
@@ -117,25 +109,25 @@ export default function Review({roomid}) {
         prevPageText='<'
         nextPageText='>'
       />
+    { reviewModal && <ReviewModal
+                  user_id={user_id}
+                  roomid={roomid}
+                  setReviewModal={setReviewModal}
+                  registerData={registerData} /> }
     </div>
   );
 
   // 등록된 예약 내역이 없을 경우 보여지는 화면
   const emptyReview = (
-    <div className='review_container'>
-      { ( registerData.length > 0 && userid ) ?
-        <div className='register_wrap'>
+    <div className='review_container empty'>
+      { ( registerData.length > 0 && user_id ) ?
+        <div className='register_wrap empty'>
           <div className='btn_wrap'>
             <TbRectangularPrismPlus />
             <button className='register_btn'
                     type='button'
                     onClick={handleClickRegister}>등록하기</button>
           </div>
-          { reviewModal && <ReviewModal
-                              userid={userid}
-                              roomid={roomid}
-                              setReviewModal={setReviewModal}
-                              registerData={registerData} /> }
         </div>
         : null
       }
@@ -144,6 +136,11 @@ export default function Review({roomid}) {
         <p>등록된 리뷰가 없습니다.</p>
         <p>숙소 이용 후 리뷰를 남겨보세요 :)</p>
       </div>
+      { reviewModal && <ReviewModal
+                              user_id={user_id}
+                              roomid={roomid}
+                              setReviewModal={setReviewModal}
+                              registerData={registerData} /> }
     </div>
   );
 

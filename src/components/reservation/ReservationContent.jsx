@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import axios, { isCancel } from 'axios';
+import axios from 'axios';
 import FixDate from './FixDate'
 import FormInfo from './FormInfo';
 import Agreement from './Agreement';
@@ -182,6 +182,7 @@ export default function ReservationContent() {
         btnText={btnText} />
       <form className='payment_form' onSubmit={handleSubmit} >
         <FormInfo 
+          userInfo={userInfo}
           roomInfoData={roomInfoData} 
           isValidDated={isValidDated}
           startDate={startDate} 

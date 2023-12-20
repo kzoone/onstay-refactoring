@@ -325,7 +325,7 @@ main.mypage {
                 margin-bottom: 10px;
                 padding-bottom: 4px;
                 border-bottom: 1px solid black;
-  
+
                 p {
                   font-size: 0.9rem;
                   &:first-child {
@@ -336,12 +336,23 @@ main.mypage {
                   }
                 }
               }
-  
+
               p.review_text {
                 width: 100%;
                 font-size: 0.9rem;
                 line-height: 1.2rem;
                 color: #7b7a7a;
+              }
+            }
+          }
+           // 확인 modal
+          div.modal_container {
+            div.modal_content {
+              div.btn_wrap {
+                justify-content: center;
+                button {
+                  align-items: center;
+                }
               }
             }
           }
@@ -370,17 +381,7 @@ main.mypage {
           }
         }
       }
-      // 확인 modal
-      div.modal_container {
-        div.modal_content {
-          div.btn_wrap {
-            justify-content: center;
-            button {
-              align-items: center;
-            }
-          }
-        }
-      }
+
       // review x 
       div.empty_review_container {
         div.content_wrap {

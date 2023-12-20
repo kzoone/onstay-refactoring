@@ -5,10 +5,9 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import axios from 'axios';
 import ConfirmModal from '../common/ConfirmModal';
-import useUserInfo from '../../util/useUserInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function ReservationDate({roomid, price}) {
+export default function ReservationDate({roomid, price, user_id}) {
   const [ reservationData, setReservationData ] = useState([]);
   const [ startDate, setStartDate ] = useState(null);
   const [ endDate, setEndDate ] = useState(null);
@@ -16,7 +15,6 @@ export default function ReservationDate({roomid, price}) {
   const [ btnDisabled, setBtnDisabled ] = useState(false);
   const [ textBtn, setTextBtn ] = useState('예 약 하 기');
   const navigate = useNavigate();
-  const userInfo = useUserInfo();
 
   // 예약 정보 가져오기
   useEffect(() => {
@@ -119,7 +117,7 @@ export default function ReservationDate({roomid, price}) {
   // 예약하기 버튼 클릭
   const handleClick = () => {
     if ( !btnDisabled ) {
-      if ( userInfo.user_id ) { 
+      if ( user_id ) { 
         if ( startDate && endDate ) {
             const nightCnt = fnNightCnt(startDate, endDate);
             navigate(`/reservation/${roomid}`, { state: { 'checkin': startDate, 'checkout': endDate, 'nightCntparam': nightCnt, price }});

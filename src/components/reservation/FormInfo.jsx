@@ -1,14 +1,12 @@
 import React, { useState, useEffect }  from 'react';
 import axiosAuth from '../../services/axiosAuth.js';
-import useUserInfo from '../../util/useUserInfo.js';
 
 export default function FormInfo(props) {
-  let { roomInfoData, isValidDated, startDate, endDate, price, nightCnt, payPrice,
+  let { userInfo, roomInfoData, isValidDated, startDate, endDate, price, nightCnt, payPrice,
         totalPayPrice, setTotalPayPrice, selectedCouponId, setSelectedCouponId } = props;
   const [ userData, setUserData ] = useState([]);
   const [ couponPrice, setCouponPrice ] = useState('');
   const isValidDateText = <p>-</p>;
-  const userInfo = useUserInfo();
 
   // user﹒user coupon 리스트 조회
   useEffect(() => {
