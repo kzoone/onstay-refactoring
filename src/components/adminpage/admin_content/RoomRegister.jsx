@@ -30,7 +30,7 @@ export default function RoomRegister({handleRoomName, handleRoomPrice, handleFea
             <div className='register_title'>
                 <p>객실 <span className="room_form_count">{roomFormCount}</span> 정보를 입력해주세요</p>
                 {showRemoveButton && (
-                    <button type="button" className="room_remove_btn" onClick={onRemoveRoomForm}>삭제</button>
+                    <button type="button" className="room_remove_btn" onClick={onRemoveRoomForm}>닫기</button>
                 )}
             </div>
             <div className='room_name'>

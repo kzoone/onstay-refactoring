@@ -52,7 +52,11 @@ div.manage_acc{
         tbody{
             tr{
                 &:hover{
-                    td{
+                    td.room_img,
+                    td.acc_name,
+                    td.room_name,
+                    td.room_price,
+                    td.acc_register_date{
                         font-weight: bold;
                         cursor: pointer;
                     }

@@ -237,6 +237,34 @@ export default function ManageAccRegister({closeInsertModal}){
         setZipcode(data.zonecode);
         if(data.sido==='서울'){
             setAreaCode(1);
+        }else if(data.sido==='강원특별자치도'){
+            setAreaCode(2);
+        }else if(data.sido==='부산'){
+            setAreaCode(3);
+        }else if(data.sido==='경기'){
+            setAreaCode(4);
+        }else if(data.sido==='충북'){
+            setAreaCode(5);
+        }else if(data.sido==='충남'){
+            setAreaCode(6);
+        }else if(data.sido==='경북'){
+            setAreaCode(7);
+        }else if(data.sido==='경남'){
+            setAreaCode(8);
+        }else if(data.sido==='전북'){
+            setAreaCode(9);
+        }else if(data.sido==='전남'){
+            setAreaCode(10);
+        }else if(data.sido==='인천'){
+            setAreaCode(11);
+        }else if(data.sido==='광주'){
+            setAreaCode(12);
+        }else if(data.sido==='대전'){
+            setAreaCode(13);
+        }else if(data.sido==='대구'){
+            setAreaCode(14);
+        }else if(data.sido==='제주특별자치도'){
+            setAreaCode(15);
         }
 
         /* 날짜 형식 변환 */
