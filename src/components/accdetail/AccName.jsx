@@ -15,9 +15,9 @@ export function AccName() {
     }, [])
 
     return (
-        <div className='visual-section'>
-            <div className='img-container'><img src={`/assets/images/swiper/${accInfo.acc_img}`} alt="" /></div>
-            <div className='text-container'>
+        <div className='visual_section'>
+            <div className='img_container'><img src={`/assets/images/swiper/${accInfo.acc_img}`} alt="" /></div>
+            <div className='text_container'>
                 <div className='acc_name'>{accInfo.acc_name}</div>
                 <div className='acc_address'>{accInfo.address}</div>
             </div>

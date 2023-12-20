@@ -57,13 +57,13 @@ div.visual_section {
   }
 }
 
-div.whole-frame{
+div.whole_frame{
   margin-bottom : 50px;
   margin: 0 auto;
   .swiper-pagination-clickable .swiper-pagination-bullet{
     background: white;
   }
-  .whole-container{
+  .whole_container{
     padding : 100px 0 50px 0;
     .title{
       font-size: 2.8rem;
@@ -73,35 +73,35 @@ div.whole-frame{
       border-top:3px solid black;
       margin-top:28px;
     }
-    .room-swiper-container{
+    .room_swiper_container{
       .slide{
-        .swiper-img{
+        .swiper_img{
           width: 100%;
         }
-        .text-container{
+        .text_container{
           position: absolute;
           bottom:0;
           width: 100%;
           background: rgba(0,0,0,0.7);
           color: white;
           padding: 20px 20px;
-          .room-name{
+          .room_name{
             font-size: 1.3rem;
             font-weight: 500;
           }
-          .room-capa{
+          .room_capa{
             font-size: 0.9rem;
             opacity: 0.7;
             margin-bottom: 20px;
           }
-          .space-between{
+          .space_between{
             display: flex;
             justify-content: space-between;
-            .room-price{
+            .room_price{
               font-size:1.3rem;
               font-weight: 500;
             }
-            .room-reserve{
+            .room_reserve{
               text-decoration: underline;
               font-size: 1.0rem;
             }
@@ -112,16 +112,16 @@ div.whole-frame{
   }
 }
 
-div.summary-whole-container{
+div.summary_whole_container{
   max-width: 1800px;
   margin : 0 auto;
-  div.summary-container{
+  div.summary_container{
     width: 100%;
     margin: 0 auto;
     padding: 30px;
     text-align: center;
     margin-bottom: 50px;
-    div.summary-title{
+    div.summary_title{
       font-size: 2.0rem;
       font-weight: 400;
       margin-bottom: 10px;
@@ -132,15 +132,15 @@ div.summary-whole-container{
       margin-left: 50%;
       margin-bottom: 30px;
     }
-    div.summary-top,
-    div.summary-bottom{
+    div.summary_top,
+    div.summary_bottom{
       width: 60%;
       margin: 0 auto;
       font-size: 1.2rem;
       font-weight: 400;
       line-height: 2.3;
     }
-    div.summary-top{
+    div.summary_top{
       margin-bottom: 50px;
     }
   }
@@ -231,9 +231,9 @@ div.map_container{
 }
 
 @media screen and (min-width : 770px){
-  div.whole-frame{
+  div.whole_frame{
     background: linear-gradient(to right, #EEE 40%, transparent 50%);
-    .whole-container{
+    .whole_container{
       display:flex;
       margin-bottom : 100px;
       .title{
@@ -273,7 +273,6 @@ div.map_container{
       div.point_comment_box{
         position: absolute;
         background: black;
-        
         color: white;
         font-size : 0.9rem;
         top: 60%;
@@ -295,7 +294,6 @@ div.map_container{
           top: -170px;
           transform: translateX(-50%);
         }
-
         div.point_section_flex{
           display: flex;
           padding-top : 30px;
@@ -313,7 +311,6 @@ div.map_container{
             text-align: left;
             color : gray;
           }
-
         }
       }
       div.point_comment_box:nth-child(2) {
@@ -361,9 +358,9 @@ div.map_container{
 }
 
 @media screen and (min-width : 1026px){ //큰 화면
-  div.whole-frame{
+  div.whole_frame{
     max-width: 1800px;
-    .whole-container{
+    .whole_container{
     .title{
       margin-bottom: 200px;
       margin-left: 50px;
@@ -375,10 +372,10 @@ div.map_container{
     }    
   }
 
-  div.summary-whole-container{
-    div.summary-container{
+  div.summary_whole_container{
+    div.summary_container{
       margin-bottom: 100px;
-        div.summary-subtitle{
+        div.summary_subtitle{
           font-size: 0.9rem;
           margin-bottom: 20px;
           letter-spacing : 5px;
@@ -417,9 +414,9 @@ div.map_container{
 }
 
 @media screen and (min-width : 770px) and (max-width : 1026px){
-  div.whole-frame{
+  div.whole_frame{
     margin-bottom: 100px;
-    .whole-container{
+    .whole_container{
       width: 80%;
       margin:0 auto;
       .title{
@@ -432,24 +429,24 @@ div.map_container{
         border-top:3px solid black;
         margin-top:28px;
       }
-      .room-swiper-container{
+      .room_swiper_container{
         .slide {
           position:relative;
         }
-        div.text-container{
-          div.room-name{
+        div.text_container{
+          div.room_name{
             font-size : 1.3rem;
             margin-bottom : 7px;
           }
-          div.room-capa{
+          div.room_capa{
             font-size: 0.8rem;
             margin-bottom : 33px;
           }
-          div.space-between{
-            div.room-price{
+          div.space_between{
+            div.room_price{
               font-size: 1rem;
             }
-            div.room-reserve{
+            div.room_reserve{
               font-size: 0.95rem;
             }
           }
@@ -457,10 +454,10 @@ div.map_container{
       }
     }
   }
-  div.summary-whole-container{
-    div.summary-container{
+  div.summary_whole_container{
+    div.summary_container{
       margin-bottom: 50px;
-      div.summary-title{
+      div.summary_title{
         font-size: 2.0rem;
         font-weight: 400;
         margin-bottom: 10px;
@@ -469,8 +466,8 @@ div.map_container{
         border-left: 1.5px solid black;
         margin : 30px 0 30px 50%
       }
-      div.summary-top,
-      div.summary-bottom{
+      div.summary_top,
+      div.summary_bottom{
         width: 73%;
         font-size: 0.9rem;
         line-height: 1.5;
@@ -494,10 +491,10 @@ div.map_container{
     }
   }
 
-  div.whole-frame{
+  div.whole_frame{
     width: 100%;
     background: linear-gradient(to bottom, #EEE 80%, transparent 50%);
-    .whole-container{
+    .whole_container{
       .title{
         font-size: 2.1rem;
         width: 30%;
@@ -511,17 +508,17 @@ div.map_container{
         width: 80%;
         .slide {
           position:relative;
-          .swiper-img{
+          .swiper_img{
             width: 100%;
           }
-          .text-container{
+          .text_container{
             padding: 10px 20px;
-            .room-type{
+            .room_type{
               margin-top:15px;
               font-size: 0.7rem;
               color:rgba(255,255,255,0.8);
             }
-            .room-name{
+            .room_name{
               margin-top:8px;
               margin-bottom: 10px;
             }
@@ -530,20 +527,20 @@ div.map_container{
       }
     }
   }
-  div.summary-whole-container{
+  div.summary_whole_container{
     width: 100%;
-    div.summary-container{
+    div.summary_container{
       div.border{
         margin-top : 20px;
       }
-      div.summary-top,
-      div.summary-bottom{
+      div.summary_top,
+      div.summary_bottom{
         width: 100%;
         font-size : 0.7rem;
         text-align: left;
         margin:0; 
       }
-      div.summary-top{
+      div.summary_top{
         margin-bottom:30px;
       }
     }
