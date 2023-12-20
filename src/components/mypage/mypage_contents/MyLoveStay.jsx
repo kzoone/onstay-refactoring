@@ -6,6 +6,7 @@ import { AREA_STRING } from '../../../constants/constants';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import getImgPath from '../../../util/getImgPath';
 
 
 
@@ -55,7 +56,7 @@ export function MyLoveStay({ user_id }) {
               <div className="lovestay_info">
                 <h4 className="acc_name">{acc.acc_name}</h4>
                 <div className="acc_img_mobile">
-                  <img src={`assets/images/acc/${acc.images.filter(img=>img.img_size==='small')[0].acc_img}`} alt="" />
+                  <img src={getImgPath.acc(acc.images.filter(img=>img.img_size==='small')[0].acc_img)} alt="" />
                   <button onClick={removeLove(acc.acc_id)} className='acc_love_btn'>
                     <FaHeart /> 
                   </button>
@@ -78,7 +79,7 @@ export function MyLoveStay({ user_id }) {
                 >
                   {acc.images.filter(img=>img.img_size==='small').map(img => 
                   <SwiperSlide key={img.acc_img}>
-                    <img src={`assets/images/acc/${img.acc_img}`} alt="" />
+                    <img src={getImgPath.acc(img.acc_img)} alt="" />
                   </SwiperSlide>
                   )} 
                 </Swiper>

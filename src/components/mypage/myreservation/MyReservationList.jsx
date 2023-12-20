@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axiosAuth from '../../../services/axiosAuth';
+import getImgPath from '../../../util/getImgPath';
 
 
 export default function MyReservationList ({reservations, setModal, category}) {
@@ -43,7 +44,7 @@ export default function MyReservationList ({reservations, setModal, category}) {
                 <h4 className="acc_name">{res.acc_name}</h4>
                 <span className="room_name">{res.room_name}</span>
                 <div className="acc_img_mobile">
-                  <img src={`assets/images/acc/${res.images[0].acc_img}`} alt="" />
+                  <img src={getImgPath.acc(res.images[0].acc_img)} alt="" />
                 </div>
                 <div className='detail_infos'>
                   <div className="stay_info">
@@ -79,7 +80,7 @@ export default function MyReservationList ({reservations, setModal, category}) {
                 </div>
               </div>
               <div className="acc_img_pc">
-                <img src={`assets/images/acc/${res.images[0].acc_img}`} alt="" />
+                <img src={getImgPath.acc(res.images[0].acc_img)} alt="" />
               </div>
             </div>
           ))

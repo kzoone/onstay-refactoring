@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { IoCamera } from "react-icons/io5";
 import  axios  from 'axios';
-import { MEMBER_REGEX, TERM_DETAIL_EVENT, INVALID_NOTI_ALERT, INVALID_NOTI_TEXT, DEFAULT_PROFILE_IMG } from '../../../constants/constants';
+import { MEMBER_REGEX, TERM_DETAIL_EVENT, INVALID_NOTI_ALERT, INVALID_NOTI_TEXT} 
+from '../../../constants/constants';
 import { IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
 import axiosAuth from '../../../services/axiosAuth';
 import ConfirmModal from '../../../components/common/ConfirmModal'
+import getImgPath from '../../../util/getImgPath';
 
 
 export function MyEdit({ user_id }) {
@@ -33,11 +35,8 @@ export function MyEdit({ user_id }) {
           user_name : res.data.user_name,
           phone : res.data.user_phone,
         })
-
         setUserInfo(res.data)
-        if (res.data.user_img) {
-          setProfileView(res.data.user_img ? 'http://localhost:8000/getimg/userprofile/' + res.data.user_img : null) 
-        }
+        setProfileView(res.data.user_img ? getImgPath.userProfile(res.data.user_img) : null) 
       })
       .catch((err)=>{
         console.log(err);
@@ -209,7 +208,7 @@ export function MyEdit({ user_id }) {
             <div className='edit_photo_wrapper'>
               <h3>프로필 사진</h3>
               <div className='profile_img'>
-                <img src={profileView || DEFAULT_PROFILE_IMG} alt="" />
+                <img src={profileView || getImgPath.userProfile(null)} alt="" />
               </div>
               <label className='profile_img_select'htmlFor="profile_img_input">
                   <IoCamera/>
