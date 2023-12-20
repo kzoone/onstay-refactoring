@@ -1,0 +1,36 @@
+div.dev_tools_container {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    z-index: 30;
+    &.unloggedin {
+        display: none;
+    }
+    div.dev_tools {
+        opacity: 1;
+        position: absolute;
+        bottom: 0;
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        padding-left: .5em;
+        &:hover {
+            button {
+                transform: translateX(0);
+            }
+        }
+        button {
+            padding: 10px 10px;
+            background-color: #CCC;
+            color: #666;
+            margin-bottom: 5px;
+            transform: translateX(-100px);
+            transition: all .5s;
+            border-radius: 15px;
+            &.active {
+                background-color: #000;
+                color: #FFF;
+            }
+        }        
+    }
+}
