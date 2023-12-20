@@ -1,10 +1,10 @@
-div.visual-section {
+div.visual_section {
   width: 100%;
   margin: 0 auto;
   position: relative;
   display: flex;
   margin-bottom: 100px;
-  div.img-container {
+  div.img_container {
     width: 100%;
     height: 50em;
     position: relative;
@@ -14,7 +14,7 @@ div.visual-section {
       object-fit: cover;
     }
   }
-  div.text-container {
+  div.text_container {
     position: absolute;
     bottom:0;
     left: 50%;
@@ -244,7 +244,7 @@ div.map_container{
 }
 
 @media screen and (max-width : 1025px){ //작은화면, 중간화면
-  div.visual-section {
+  div.visual_section {
     .gallery_link{
       div{
         color:  white;
@@ -333,7 +333,7 @@ div.map_container{
   
   div.map_container{
     div.map_text_container{
-      div.mobile-title-container{
+      div.mobile_title_container{
         margin-right: 50px; 
         div.text_title{
           margin-bottom:10px;
@@ -480,12 +480,12 @@ div.map_container{
 }
 
 @media screen and (max-width : 769px){
-  div.visual-section {
+  div.visual_section {
     margin-bottom: 50px;
-    div.img-container {
+    div.img_container {
       height: 80vh;
     }
-    div.text-container{
+    div.text_container{
       div.acc_name{
         border : none;
         padding: 5px;
