@@ -16,7 +16,7 @@ div.new_register{
             padding: 30px;
             div.acc_register{
                 div.register_title{
-                    font-size: 20px;
+                    font-size: 18px;
                     font-weight: bold;
                     background-color: #000;
                     border-radius: 4px;
@@ -110,7 +110,7 @@ div.new_register{
                 div.only{
                     display: flex;
                     align-items: center;
-                    margin-bottom: 100px;
+                    margin-bottom: 15px;
                     label{
                         min-width: 170px;
                         font-weight: bold;
@@ -120,16 +120,46 @@ div.new_register{
                         accent-color: black;
                     }
                 }
+                div.acc_img{
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 80px;
+                    label{
+                        min-width: 110px;
+                        font-weight: bold;
+                    }
+                    input{
+                        width: 100%;
+                        padding: 5px 0;
+                    }
+                }
             }
             div.room_register{
                 div.register_title{
-                    font-size: 20px;
-                    font-weight: bold;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     background-color: #000;
-                    border-radius: 4px;
                     padding: 5px 10px;
-                    color: #FFF;
+                    border-radius: 4px;
                     margin: 20px 0;
+                    p{
+                        color: #FFF;
+                        font-size: 18px;
+                        font-weight: bold;
+                        span.room_form_count{
+                            border: 1px solid #FFF;
+                            border-radius: 50%;
+                            width: 22px;
+                            height: 22px;
+                            display: inline-block;
+                            text-align: center;
+                        }
+                    }
+                    button{
+                        color: #FFF;
+                        font-size: 18px;
+                    }
                 }
                 div.room_name,
                 div.room_price,
@@ -176,7 +206,7 @@ div.new_register{
                 div.room_img{
                     display: flex;
                     align-items: center;
-                    margin-bottom: 15px;
+                    margin-bottom: 35px;
                     label{
                         min-width: 110px;
                         font-weight: bold;
@@ -186,6 +216,11 @@ div.new_register{
                         padding: 5px 0;
                     }
                 }
+            }
+            button.room_add_btn{
+                border: 1px solid #000;
+                padding: 10px 20px;
+                margin: 0 auto;
             }
             div.form_btn{
                 text-align: end;

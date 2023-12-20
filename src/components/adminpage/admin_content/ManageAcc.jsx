@@ -102,7 +102,6 @@ export default function ManageAcc() {
         .then((res) => {
             if(res.data){
                 setDetail(res.data);
-                console.log(res.data);
             }
         })
         .catch((err) => {
