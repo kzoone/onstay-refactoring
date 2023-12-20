@@ -114,15 +114,19 @@ export default function ManageAccRegister({closeInsertModal}){
     }
     const handleRoomImg = (e) => {
         const files = e.target.files;
-        if (files.length > 0) {
-            setRoomImg1(files[0]);
-            setRoomImg2(files[1]);
-            setRoomImg3(files[2]);
-        }
+        setRoomImg1(files[0]);
+        setRoomImg2(files[1]);
+        setRoomImg3(files[2]);
     }; 
 
     const handleAccImg = (e) => {
+        /* 파일 선택 갯수 제한 */
         const files = e.target.files;
+        const accImgs = document.getElementById('accImgs');
+        if( accImgs.files.length > 5 ){
+            alert('최대 5개까지 선택 가능합니다.');
+            accImgs.value = "";
+        }
         if(files.length > 0){
             setAccImg1(files[0]);
             setAccImg2(files[1]);
@@ -130,11 +134,20 @@ export default function ManageAccRegister({closeInsertModal}){
             setAccImg4(files[3]);
             setAccImg5(files[4]);
         }
+        document.querySelector('.file_names').innerHTML = `${files[0]?"<span class='name'>" + files[0].name + '</span>':''}
+                                                           ${files[1]?"<span class='name'>" + files[1].name + '</span>':''}
+                                                           ${files[2]?"<span class='name'>" + files[2].name + '</span>':''}
+                                                           ${files[3]?"<span class='name'>" + files[3].name + '</span>':''}
+                                                           ${files[4]?"<span class='name'>" + files[4].name + '</span>':''}`;
     }
     
     const handleSubmit = (e) => {
         if (!accName || !tel || !address || !parking || !cook || !pet || !breakfast || !accCheckin || !accCheckout || !homepage || !accSummary1 || !accSummary2 || !roomName || !roomPrice || !minCapa || !maxCapa) {
             alert('모든 입력 항목을 채워주세요.');
+        }else if (!accImg1){
+            alert('최소 1개의 숙소 이미지를 등록해주세요.');
+        }else if (!roomImg1){
+            alert('최소 1개의 객실 이미지를 등록해주세요');
         }else{
             e.preventDefault();
             
@@ -281,6 +294,7 @@ export default function ManageAccRegister({closeInsertModal}){
         setRegisterDate(formattedDate);
     }
 
+    
 
     return(
         <div className="new_register">
@@ -349,15 +363,22 @@ export default function ManageAccRegister({closeInsertModal}){
                             <input type='checkbox' id='only' onChange={handleOnly} />
                         </div>
                         <div className='acc_img'>
-                            <label htmlFor='acc_img'>숙소이미지</label>
-                            <input
-                                type='file'
-                                name='accImgs'
-                                ref={accFileInputRef}
-                                onChange={handleAccImg}
-                                accept='image/png, image/jpg, image/jpeg'
-                                multiple
-                            />
+                            <div className='acc_img_upload'>
+                                <label htmlFor='acc_img'>숙소이미지</label>
+                                <input
+                                    type='file'
+                                    name='accImgs'
+                                    id='accImgs'
+                                    ref={accFileInputRef}
+                                    onChange={handleAccImg}
+                                    accept='image/png, image/jpg, image/jpeg'
+                                    multiple
+                                />
+                            </div>
+                            <div className='acc_img_names'>
+                                <span>파일명 : </span>
+                                <p className='file_names'></p>
+                            </div>
                         </div>
                     </div>
                     {roomFormCount.map((room, index) => (

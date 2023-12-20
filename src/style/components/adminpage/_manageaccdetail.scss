@@ -122,11 +122,14 @@ div.manage_detail{
                 }
                 div.acc_imgs{
                     display: grid;
-                    grid-template-columns: repeat(3, auto);
+                    grid-template-columns: repeat(3, 3fr);
+                    grid-template-rows: repeat(2, 165px);
                     div.acc_img{
                         margin: 2px;
                         img{
                             width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                         }
                     }
                 }
@@ -185,12 +188,15 @@ div.manage_detail{
                 }
                 div.room_imgs{
                     display: grid;
-                    grid-template-columns: repeat(3, auto);
+                    grid-template-columns: repeat(3, 3fr);
+                    grid-template-rows: repeat(1, 165px);
                     margin-top: 30px;
                     div.room_img{
                         margin: 2px;
                         img{
                             width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                         }
                     }
                 }
