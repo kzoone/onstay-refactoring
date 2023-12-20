@@ -7,6 +7,7 @@ import ReviewStar from '../../roomdetail/ReviewStar';
 import MyReviewModal from './mypage_review/MyReviewModal';
 import axiosAuth from '../../../services/axiosAuth';
 import ConfirmModal from '../../common/ConfirmModal';
+import getImgPath from '../../../util/getImgPath';
 
 export default function MyReview({user_id}) {
   const [ reviewData, setRivewData ] = useState([]);
@@ -116,7 +117,7 @@ export default function MyReview({user_id}) {
                   </div>
                   <div className='review_content'>
                     <div className='review_img'>
-                      <img src={`http://localhost:8000/getimg/reviewimg/${review.review_img}`} alt='숙소 리뷰 이미지' />
+                      <img src={getImgPath.review(review.review_img)} alt='숙소 리뷰 이미지' />
                     </div>
                     <div className='star_info'>
                       <ReviewStar rating={review.review_star} />

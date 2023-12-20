@@ -1,6 +1,7 @@
 import { TfiClose } from 'react-icons/tfi';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import getImgPath from '../../../util/getImgPath';
 
 
 export default function ManageAccRegister({closeDetailModal, openDeleteModal, detail}){
@@ -84,7 +85,7 @@ export default function ManageAccRegister({closeDetailModal, openDeleteModal, de
                             .filter(acc => !acc.acc_img.endsWith('.webp'))
                             .map((acc, index) => (
                                 <div className='acc_img' key={index}>
-                                    <img src={`/assets/images/acc/${detail[index].acc_img}`} />
+                                    <img src={getImgPath.acc(detail[index].acc_img)} />
                                 </div>
                             ))}
                         </div>
@@ -150,13 +151,13 @@ export default function ManageAccRegister({closeDetailModal, openDeleteModal, de
                         </div>
                         <div className='room_imgs'>
                             <div className='room_img'>
-                                <img src={`/assets/images/room/${detail[0]?.room_img1 || ''}`} />
+                                <img src={getImgPath.room(detail[0]?.room_img1)} />
                             </div>
                             <div className='room_img'>
-                                <img src={`/assets/images/room/${detail[0]?.room_img2 || ''}`} />
+                                <img src={getImgPath.room(detail[0]?.room_img2)} />
                             </div>
                             <div className='room_img'>
-                                <img src={`/assets/images/room/${detail[0]?.room_img3 || ''}`} />
+                                <img src={getImgPath.room(detail[0]?.room_img3)} />
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import { PiNotePencil } from "react-icons/pi";
 import { LiaWalletSolid } from "react-icons/lia";
 import { BiSolidChevronLeft } from "react-icons/bi";
 import { BiSolidChevronRight } from "react-icons/bi";
+import getImgPath from '../../util/getImgPath';
 
 
 export default function Acc({acc, locationName, userId, userLoved, getUserIsLovedAccs }){
@@ -59,7 +60,7 @@ export default function Acc({acc, locationName, userId, userLoved, getUserIsLove
                         >
                             {acc.acc_img.split(',').filter(img => !img.startsWith('swiperImage')).map((img, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={`assets/images/acc/${img}`} />
+                                    <img src={getImgPath.acc(img)} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
