@@ -1,6 +1,6 @@
-import { FaStar, FaStarHalf, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaStarHalf } from 'react-icons/fa';
 
-export default function startInput({setClickRating, handleClickRating, value, isHalf, isSelected}) {
+export default function StarInput({handleClickRating, value, isHalf, isSelected}) {
 
   const handleClickStar = () => {
     handleClickRating(value);

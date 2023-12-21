@@ -36,7 +36,7 @@ export default function CategorySwiperInner({list}) {
 
   return(                         
     <>
-      <Link to={`findstay/acc/${list.acc_id}`}><img src={getImgPath.acc(accimg)} alt={`${list.acc_name} 숙소 이미지}`} /></Link>
+      <Link to={`findstay/acc/${list.acc_id}`}><img src={getImgPath.acc(accimg)} alt={`${list.acc_name} 숙소 이미지`} /></Link>
       <div className='acc_info'>
         <p className='name'>{list.acc_name}</p>
         <p className='area_price'>

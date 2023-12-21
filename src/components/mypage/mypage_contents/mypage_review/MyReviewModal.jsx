@@ -109,7 +109,7 @@ export default function MyReviewModal({setReviewModal, reviewModalData, user_id}
 
   // 수정 완료 알림 모달창 닫기
   const handleCompleteModal = () => {
-    window.location.reload();
+    window.location.href= '/mypage?showContent=MyReview';
   }
 
   // 수정 완료 알림 모달창 : 홈으로
@@ -192,9 +192,9 @@ export default function MyReviewModal({setReviewModal, reviewModalData, user_id}
             <div className='star_container'>
               <p>Rating</p>
               <div className='star_content'>
-                <RegisterStar setClickRating={setClickRating} 
-                              handleClickRating={handleClickRating} 
-                              initialRating={clickRating} />
+                <RegisterStar
+                    handleClickRating={handleClickRating} 
+                    initialRating={clickRating} />
                 <span>{clickRating}점</span>
               </div>
             </div>
