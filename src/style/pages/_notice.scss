@@ -128,7 +128,7 @@
         width: 15%;
       }
       @include responsive("sm") {
-        width: 20%;
+        width: 15%;
       }
     }
 
@@ -149,6 +149,9 @@
     & > thead > tr > th:nth-child(4),
     & > tbody > tr > td:nth-child(4) {
       width: 15%;
+    }
+    & > thead > tr > th:nth-child(4) {
+      word-break: break-word;
     }
     & > tbody > tr > td:nth-child(2) {
       overflow: hidden;
