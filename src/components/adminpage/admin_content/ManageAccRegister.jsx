@@ -26,18 +26,39 @@ export default function ManageAccRegister({closeInsertModal}){
     const [areaCode, setAreaCode] = useState('');
     const [accSummary1, setAccSummary1] = useState('');
     const [accSummary2, setAccSummary2] = useState('');
-    
-    const [roomFormCount, setRoomFormCount] = useState([{ id: 1 }]);
-    const [roomName, setRoomName] = useState('');
-    const [roomPrice, setRoomPrice] = useState('');
-    const [featureCodesArr, setFeatureCodesArr] = useState([]);
-    const [amenities, setAmenities] = useState('');
-    const [minCapa, setMinCapa] = useState('');
-    const [maxCapa, setMaxCapa] = useState('');
-    const [roomImg1, setRoomImg1] = useState('');
-    const [roomImg2, setRoomImg2] = useState('');
-    const [roomImg3, setRoomImg3] = useState('');
 
+    // State를 배열로 변경
+    const [rooms, setRooms] = useState([
+        {
+        roomName: "",
+        roomPrice: "",
+        featureCodesArr: [],
+        amenities: "",
+        minCapa: "",
+        maxCapa: "",
+        roomImg: []
+        },
+    ]);
+    
+    // 객실 추가 버튼 클릭 시 호출되는 함수
+    const handleAddRoomForm = () => {
+        // 새로운 객실 정보를 추가한 배열 생성
+        const newRooms = [...rooms, { roomName: "", roomPrice: "", featureCodesArr: [], amenities: "", minCapa: "", maxCapa: "", roomImg: [] }];
+        setRooms(newRooms);
+    };
+    const handleRemoveRoomForm = (index) => {
+        const newRooms = [...rooms];
+        newRooms.splice(index, 1);
+        setRooms(newRooms);
+      };
+    
+    // 객실 정보 변경 시 호출되는 함수
+    const handleRoomChange = (index, field, value) => {
+        const newRooms = [...rooms];
+        newRooms[index] = {...newRooms[index], [field]: value,};
+        setRooms(newRooms);
+    };
+    
     const [accImg1, setAccImg1] = useState('');
     const [accImg2, setAccImg2] = useState('');
     const [accImg3, setAccImg3] = useState('');
@@ -82,44 +103,6 @@ export default function ManageAccRegister({closeInsertModal}){
         setAccSummary2(e.target.value);
     }
 
-    const handleAddRoomForm = () => {
-        const newRoomId = roomFormCount.length + 1;
-        setRoomFormCount(prevRooms => [...prevRooms, { id: newRoomId }]);
-    }
-    const handleRemoveRoomForm = (roomId) => {
-        const updatedRooms = roomFormCount.filter((room) => room.id !== roomId);
-        setRoomFormCount(updatedRooms);
-    };
-
-    const handleRoomName = (e) => {
-        setRoomName(e.target.value);
-    }
-    const handleRoomPrice = (e) => {
-        setRoomPrice(e.target.value);
-    }
-    const handleFeatureCodes = (e) => {
-        if (e.target.checked) {
-            setFeatureCodesArr(prevCodes => [...prevCodes, e.target.value]);
-        } else {
-            setFeatureCodesArr(prevCodes => prevCodes.filter(code => code !== e.target.value));
-        }
-    }
-    const handleAmenities = (e) => {
-        setAmenities(e.target.value);
-    }
-    const handleMinCapa = (e) => {
-        setMinCapa(e.target.value);
-    }
-    const handleMaxCapa = (e) => {
-        setMaxCapa(e.target.value);
-    }
-    const handleRoomImg = (e) => {
-        const files = e.target.files;
-        setRoomImg1(files[0]);
-        setRoomImg2(files[1]);
-        setRoomImg3(files[2]);
-    }; 
-
     const handleAccImg = (e) => {
         /* 파일 선택 갯수 제한 */
         const files = e.target.files;
@@ -143,17 +126,14 @@ export default function ManageAccRegister({closeInsertModal}){
     }
     
     const handleSubmit = (e) => {
-        if (!accName || !tel || !address || !parking || !cook || !pet || !breakfast || !accCheckin || !accCheckout || !homepage || !accSummary1 || !accSummary2 || !roomName || !roomPrice || !minCapa || !maxCapa) {
-            alert('모든 입력 항목을 채워주세요.');
-        }else if (!accImg1){
-            alert('최소 1개의 숙소 이미지를 등록해주세요.');
-        }else if (!roomImg1){
-            alert('최소 1개의 객실 이미지를 등록해주세요');
-        }else{
+        // if (!accName || !tel || !address || !parking || !cook || !pet || !breakfast || !accCheckin || !accCheckout || !homepage || !accSummary1 || !accSummary2 || !roomName || !roomPrice || !minCapa || !maxCapa) {
+        //     alert('모든 입력 항목을 채워주세요.');
+        // }else if (!accImg1){
+        //     alert('최소 1개의 숙소 이미지를 등록해주세요.');
+        // }else if (!roomImg1){
+        //     alert('최소 1개의 객실 이미지를 등록해주세요');
+        // }else{
             e.preventDefault();
-            
-            const sortedFeatureCodesArr = [...featureCodesArr].sort((a, b) => a - b);
-            const featureCodes = sortedFeatureCodesArr.join(',');
             
             const formData = new FormData();
             
@@ -175,15 +155,7 @@ export default function ManageAccRegister({closeInsertModal}){
             formData.append('areaCode', areaCode);
             formData.append('accSummary1', accSummary1);
             formData.append('accSummary2', accSummary2);
-            formData.append('roomName', roomName);
-            formData.append('roomPrice', roomPrice);
-            formData.append('featureCodes', featureCodes);
-            formData.append('amenities', amenities);
-            formData.append('minCapa', minCapa);
-            formData.append('maxCapa', maxCapa);
-            formData.append('roomImg', roomImg1);
-            formData.append('roomImg', roomImg2);
-            formData.append('roomImg', roomImg3);
+            formData.append('rooms', JSON.stringify(rooms));
             formData.append('accImgs', accImg1);
             formData.append('accImgs', accImg2);
             formData.append('accImgs', accImg3);
@@ -211,7 +183,7 @@ export default function ManageAccRegister({closeInsertModal}){
         
             closeInsertModal();
         };
-    }
+    // }
 
     const close = () => {
         closeInsertModal();
@@ -377,24 +349,19 @@ export default function ManageAccRegister({closeInsertModal}){
                                 />
                             </div>
                             <div className='acc_img_names'>
-                                <span>파일명 : </span>
+                                <span>파일명</span>
                                 <p className='file_names'></p>
                             </div>
                         </div>
                     </div>
-                    {roomFormCount.map((room, index) => (
+                    {rooms.map((room, index) => (
                         <RoomRegister
-                            key={room.id}
-                            handleRoomName={handleRoomName}
-                            handleRoomPrice={handleRoomPrice}
-                            handleFeatureCodes={handleFeatureCodes}
-                            handleAmenities={handleAmenities}
-                            handleMinCapa={handleMinCapa}
-                            handleMaxCapa={handleMaxCapa}
-                            handleRoomImg={handleRoomImg}
-                            roomFormCount={room.id}
-                            onRemoveRoomForm={() => handleRemoveRoomForm(room.id)}
+                            key={index}
+                            index={index}
+                            room={room}
+                            handleRoomChange={handleRoomChange}
                             showRemoveButton={index !== 0}
+                            handleRemoveRoomForm={handleRemoveRoomForm}
                         />
                     ))}
                     <button type='button' className='room_add_btn' onClick={handleAddRoomForm}>객실 추가</button>

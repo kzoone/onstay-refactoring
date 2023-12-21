@@ -141,8 +141,6 @@ export default function ManageAcc() {
                         <th className="title_room_name">Room</th>
                         <th className="title_room_price">Price</th>
                         <th className="title_acc_register_date">Register date</th>
-                        <th className="title_edit" />
-                        <th className="title_delete" />
                     </tr>
                 </thead>
                 <tbody>
@@ -155,8 +153,8 @@ export default function ManageAcc() {
                             <td onClick={() => handleTrClick(acc)} className='acc_register_date'>{
                                 acc.register_date
                             }</td>
-                            <td className='edit'><button><BiSolidEditAlt /></button></td>
-                            <td className='delete'><button onClick={openDeleteModal}><TiDeleteOutline /></button></td>
+                            {/* <td className='edit'><button><BiSolidEditAlt /></button></td> */}
+                            {/* <td className='delete'><button><TiDeleteOutline /></button></td> */}
                         </tr>
                     )}
                 </tbody>
