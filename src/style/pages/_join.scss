@@ -1,6 +1,6 @@
 main.member {
   @include pageTitle($ft-size: 1.2rem, $mb: 5rem);
-  padding: 0 2rem;
+  padding: 0 1rem;
   margin: 0 auto;
   form, > div.find_result_container {
     display: flex;
@@ -51,7 +51,7 @@ main.member {
       }
       small {
         font-size: 0.8em;
-        text-wrap: nowrap;
+        // text-wrap: nowrap;
         &.invalid_noti {
           color: rgba(231, 17, 17, 0.912);
         }
@@ -68,8 +68,11 @@ main.join {
     p {
       margin-bottom: 2.5vh;
       small {
+        @media screen and (max-width: $sm-breakpoint) {
+          font-size: .75em;
+        }
         font-size: 0.9em;
-        text-wrap: nowrap;
+        // text-wrap: nowrap;
         &.invalid_noti {
           color: rgba(231, 17, 17, 0.912);
         }
@@ -95,6 +98,9 @@ main.join {
       li {  
         padding: 0.3rem;
         font-size: 0.9rem;
+        @media screen and (max-width:$sm-breakpoint) {
+          font-size: 0.8rem;
+        }
         &.term_agree_all {
           font-size: 1.03rem;
           font-weight: 600;
