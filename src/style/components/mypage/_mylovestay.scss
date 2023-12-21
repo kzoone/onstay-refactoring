@@ -8,7 +8,7 @@ div.mypage_content {
         display: flex;
         justify-content: space-between;
         max-height: 450px;
-        min-height: 230px;
+        // min-height: 230px;
         transition: max-height 1s ,opacity .4s;
         &.disappear {
           opacity: 0;
