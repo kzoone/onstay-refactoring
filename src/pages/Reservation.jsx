@@ -1,5 +1,5 @@
 import PageTitle from '../components/common/PageTitle';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useUserInfo from '../util/useUserInfo';
 import ReservationContent from '../components/reservation/ReservationContent';
 import ConfirmModal from '../components/common/ConfirmModal';

@@ -54,7 +54,7 @@ export function MyLoveStay({ user_id }) {
         accs.map(acc => 
             <div className="my_lovestay_wrapper" key={acc.acc_id} id={acc.acc_id}>
               <div className="lovestay_info">
-                <h4 className="acc_name">{acc.acc_name}</h4>
+                <h4 className="acc_name"><span>{acc.acc_name}</span></h4>
                 <div className="acc_img_mobile">
                   <img src={getImgPath.acc(acc.images.filter(img=>img.img_size==='small')[0].acc_img)} alt="" />
                   <button onClick={removeLove(acc.acc_id)} className='acc_love_btn'>
