@@ -151,13 +151,13 @@ export default function ManageAccRegister({closeDetailModal, openDeleteModal, de
                         </div>
                         <div className='room_imgs'>
                             <div className='room_img'>
-                                <img src={detail[0]?getImgPath.room(detail[0]?.room_img1):'/assets/images/etc/no_image.jpeg'} />
+                                <img src={getImgPath.room(detail[0]?.room_img1)} />
                             </div>
                             <div className='room_img'>
-                                <img src={detail[1]?getImgPath.room(detail[0]?.room_img2):'/assets/images/etc/no_image.jpeg'} />
+                                <img src={getImgPath.room(detail[0]?.room_img2)} />
                             </div>
                             <div className='room_img'>
-                                <img src={detail[2]?getImgPath.room(detail[0]?.room_img3):'/assets/images/etc/no_image.jpeg'} />
+                                <img src={getImgPath.room(detail[0]?.room_img3)} />
                             </div>
                         </div>
                     </div>
