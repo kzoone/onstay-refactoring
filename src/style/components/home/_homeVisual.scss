@@ -138,8 +138,11 @@
       top:85%;
     }
   }
-  
-  @media screen and (max-width:500px) {
+}
+
+@media screen and (max-width:500px) { 
+  .visual_section{
+    height: 40em;
     .sm_swiper_text{
       margin: 43px 40px;
       div{
@@ -157,7 +160,12 @@
         margin-bottom: 20px;
       }
     }
+    .swiper-pagination-fraction, 
+    .swiper-pagination-custom, 
+    .swiper-horizontal > .swiper-pagination-bullets, 
+    .swiper-pagination-bullets.swiper-pagination-horizontal{
+      top:63%;
+    }
   }
-
-
 }
+
