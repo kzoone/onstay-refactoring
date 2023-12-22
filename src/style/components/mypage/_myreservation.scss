@@ -64,6 +64,7 @@ div.mypage_content {
               font-size: 0.8rem;
               &.disabled {
                 border-bottom: none;
+                cursor: default;
               }
             }
           }

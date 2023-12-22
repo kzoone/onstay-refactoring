@@ -95,6 +95,7 @@ export default function Header() {
 
     /* 스크롤 모션 */
     const location = useLocation();
+    const curPage = location.pathname;
 
     $(function(){
         var scrollMotion = function(){
@@ -159,10 +160,10 @@ export default function Header() {
             <div className='header_right'>
                 <nav>
                     <ul>
-                        <li><a className='menu' href='/findstay'>FIND STAY</a></li>
-                        <li><a className='menu' href='/newstay'>NEW-STAY</a></li>
+                        <li><a className={`menu ${curPage==='/findstay' ? 'active' : ''}`} href='/findstay'>FIND STAY</a></li>
+                        <li><a className={`menu ${curPage==='/newstay' ? 'active' : ''}`} href='/newstay'>NEW-STAY</a></li>
                         <li><Link className='menu' to='#'>JOURNAL</Link></li>
-                        <li><Link className='menu' to='/notice'>NOTICE</Link></li>
+                        <li><Link className={`menu ${curPage==='/notice' ? 'active' : ''}`} to='/notice'>NOTICE</Link></li>
                     </ul>
                 </nav>
                 <div className='my'>
