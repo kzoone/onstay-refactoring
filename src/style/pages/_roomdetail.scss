@@ -374,7 +374,8 @@ main.roomdetail_section {
 
                 // 공통
                 svg {
-                  margin: 0 3px 3px 0;
+                  margin: 0 3px 0 0;
+                  // margin: 0 3px 3px 0;
                 }
 
                 p.avg_text,
@@ -398,7 +399,7 @@ main.roomdetail_section {
 
                   div.star_wrap {
                     @include flexbox;
-                    margin: 0 5px 4px 0;
+                    margin: 0 5px 1px 0;
 
                     svg {
                       color: #867357;
@@ -407,7 +408,8 @@ main.roomdetail_section {
                   }
 
                   p.total_avg {
-                    padding-top: 1px;
+                    // padding-top: 1px;
+                    padding-bottom: 3px;
                     font-weight: bold;
                     color: #867357;
                   }
@@ -467,7 +469,8 @@ main.roomdetail_section {
               }
 
               span {
-                margin-bottom: -4px;
+                margin-bottom: -2px;
+                // margin-bottom: -4px;
                 color: #867357;
               }
             }

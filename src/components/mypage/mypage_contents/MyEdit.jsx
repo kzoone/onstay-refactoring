@@ -214,7 +214,7 @@ export function MyEdit({ user_id }) {
               <label className='profile_img_select'htmlFor="profile_img_input">
                   <IoCamera/>
               </label>
-              <input id='profile_img_input' type="file" accept='image/png,image/jpg,image/jpeg' name='profile_img' onChange={handleFileChange}/>
+              <input id='profile_img_input' type="file" accept='image/*' name='profile_img' onChange={handleFileChange}/>
             </div>
             {profileView && 
             <button onClick={setProfileImgDefault} className='profile_set_default_btn' type='button' style={{display:'block', margin : '0 auto'}}>기본 이미지로 변경</button>}

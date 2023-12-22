@@ -5,7 +5,7 @@ div.mypage_content {
     }
 
     div.coupon_list_container {
-      height: calc(600px + 3.2rem);
+      height: calc(450px + 3.2rem);
         div.coupon_wrapper {
             padding: 1rem;
             border: 1px solid #CCC;
@@ -26,13 +26,12 @@ div.mypage_content {
                 margin-bottom: .1rem;
             }
         }
-        div.coupon_nolist {
-          line-height: 600px;
-            div {
-                text-align: center;
-                padding: 1rem 0 1rem 0;
-            }
-        }
-    }
+      }
+      div.coupon_nolist {
+          div {
+              text-align: center;
+              padding: 3rem 0;
+          }
+      }
   }
 }
