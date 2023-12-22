@@ -1,6 +1,6 @@
 import React, { forwardRef }  from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import axios from 'axios';
@@ -17,6 +17,7 @@ export default function ReservationDate({roomid, price, user_id}) {
   const [ btnDisabled, setBtnDisabled ] = useState(false);
   const [ textBtn, setTextBtn ] = useState('예 약 하 기');
   const navigate = useNavigate();
+  const location = useLocation();
 
   // 예약 정보 가져오기
   useEffect(() => {
@@ -166,6 +167,7 @@ export default function ReservationDate({roomid, price, user_id}) {
 
   // 모달 함수 : 로그인 버튼 클릭시
   const handleConfirm = (e) => {
+    localStorage.setItem('prev_page', location.pathname)
     navigate('/login');
   };
   

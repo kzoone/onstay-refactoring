@@ -59,6 +59,7 @@ export default function LoveButton({ acc, userId, userLoved, getUserIsLovedAccs,
 
      // 모달 함수 : 로그인 버튼 클릭시
     const handleConfirm = (e) => {
+        localStorage.setItem('prev_page','/findstay')
         navigate('/login');
     };
     

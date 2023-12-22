@@ -34,7 +34,9 @@ export function Login() {
         .then(res => {
             localStorage.setItem('isLoggedIn', 1)
             alert('로그인 성공하였습니다.')
-            window.location.href = '/'
+            const prevPage = localStorage.getItem('prev_page');
+            localStorage.removeItem('prev_page')
+            window.location.href = prevPage || '/'
         })
         .catch((err) => {
             if (err.response.data === 'not exist') {

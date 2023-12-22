@@ -1,7 +1,7 @@
 import React from 'react';
 import useUserInfo from '../../util/useUserInfo';
 import axiosAuth from '../../services/axiosAuth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TodayAccSection from './TodayAccSection';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
@@ -9,6 +9,7 @@ const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN;
 export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_name }) {
   const userInfo = useUserInfo(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleModalBackground = (e) => {
     handleModal();
@@ -44,6 +45,7 @@ export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_n
       })
       .catch(error => console.log(error));
     } else if (!userInfo.user_id) {
+      localStorage.setItem('prev_page', location.pathname)
       navigate('/login');
     };
   };
