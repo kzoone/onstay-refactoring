@@ -1,11 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
-import axiosAuth from '../../../services/axiosAuth';
+import useAxiosAuth from '../../../hooks/useAxiosAuth';
 import getImgPath from '../../../util/getImgPath';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export default function MyReservationList ({reservations, setModal, category}) {
     const navigate = useNavigate()
+    const axiosAuth = useAxiosAuth();
    
     const dateFormatWithDay = (date) => {
         return date + ' (' + ['일','월','화','수','목','금','토'][new Date(date).getDay()] + ')'

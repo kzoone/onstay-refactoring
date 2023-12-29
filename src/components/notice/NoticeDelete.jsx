@@ -1,5 +1,5 @@
 import useUserInfo from '../../util/useUserInfo';
-import axiosAuth from '../../services/axiosAuth';
+import useAxiosAuth from '../../hooks/useAxiosAuth';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
@@ -9,6 +9,8 @@ export default function NoticeDelete({ btnText, setDeletModal, checkedItems }) {
     handleModal();
     e.stopPropagation();
   }
+  const axiosAuth = useAxiosAuth();
+
 
   const handleModal = (e) => {
     setDeletModal(false)

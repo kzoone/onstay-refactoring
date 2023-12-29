@@ -3,9 +3,9 @@ import { FaPencil } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { QUESTION_CATEGORY } from './../../../constants/constants';
-import axiosAuth from '../../../services/axiosAuth';
 import ConfirmModal from './../../common/ConfirmModal';
 import LoadingSpinner from './../../common/LoadingSpinner';
+import useAxiosAuth from './../../../hooks/useAxiosAuth';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
@@ -16,6 +16,7 @@ export default function ManageQNAModal({question, closeModal}) {
   let [contentLength, setContentLength] = useState(0);
   let [showModal, setShowModal] =  useState(false);
   let [postLoading, setPostLoading] = useState(false);
+  const axiosAuth = useAxiosAuth();
 
 
   useEffect(()=>{

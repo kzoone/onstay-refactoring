@@ -4,7 +4,7 @@ import  axios  from 'axios';
 import { MEMBER_REGEX, TERM_DETAIL_EVENT, INVALID_NOTI_ALERT, INVALID_NOTI_TEXT} 
 from '../../../constants/constants';
 import { IoIosArrowDown, IoIosArrowUp} from 'react-icons/io';
-import axiosAuth from '../../../services/axiosAuth';
+import useAxiosAuth from './../../../hooks/useAxiosAuth';
 import ConfirmModal from '../../../components/common/ConfirmModal'
 import getImgPath from '../../../util/getImgPath';
 
@@ -24,6 +24,7 @@ export function MyEdit({ user_id }) {
   const [imgFile, setImgFile] = useState(null)
   let [showQuitModal, setShowQuitModal] = useState(false)
   let refElement = useRef(null);
+  const axiosAuth = useAxiosAuth();
 
 
   useEffect(()=>{

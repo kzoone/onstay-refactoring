@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsCameraFill } from 'react-icons/bs';
 import { FaImages } from 'react-icons/fa';
-import axiosAuth from '../../../../services/axiosAuth';
+import useAxiosAuth from '../../../../hooks/useAxiosAuth';
 import RegisterStar from '../../../roomdetail/reviewmodal/RegisterStar';
 import MyReviewImg from './MyReviewImg';
 import ConfirmModal from '../../../common/ConfirmModal';
@@ -20,6 +20,7 @@ export default function MyReviewModal({setReviewModal, reviewModalData, user_id}
   const [ isUpdateModal, setUpdateModal ] = useState(false); // 수정하기 최종 확인 모달
   const [ isCompleteModal, setCompleteModal ] = useState(false); // 수정완료 알림 모달
   const navigate = useNavigate();
+  const axiosAuth = useAxiosAuth();
 
   useEffect(() => {
     // 처음 undefined로 useState 초기 세팅 필요

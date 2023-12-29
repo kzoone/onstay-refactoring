@@ -6,7 +6,7 @@ import FormInfo from './FormInfo';
 import Agreement from './Agreement';
 import ConfirmModal from '../common/ConfirmModal';
 import useUserInfo from '../../util/useUserInfo';
-import axiosAuth from '../../services/axiosAuth';
+import useAxiosAuth from '../../hooks/useAxiosAuth';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
@@ -14,6 +14,7 @@ export default function ReservationContent() {
   const userInfo = useUserInfo();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosAuth = useAxiosAuth();
   let [checkin, checkout, nightCntparam, price] = [null, null, null, null];
 
   try {

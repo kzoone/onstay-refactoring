@@ -1,18 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../components/common/PageTitle';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import useUserInfo from '../util/useUserInfo';
+import { LoginContext } from '../global/LoginContext';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
 export function Login() {
     const [form, setForm] = useState({ user_id: '', user_pw: '' })
     const navigate = useNavigate()
-    const userInfo = useUserInfo()
+    // const userInfo = useUserInfo()
+    const {userInfo, setAccessToken} = useContext(LoginContext)
 
     const alreadyLogin = () => {
-        alert('이미 로그인 상태입니다.')
         window.location.href = '/'
     }
 
@@ -33,9 +34,10 @@ export function Login() {
         })
         .then(res => {
             localStorage.setItem('isLoggedIn', 1)
+            setAccessToken(res.data.accessToken);
             alert('로그인 성공하였습니다.')
             const prevPage = localStorage.getItem('prev_page');
-            localStorage.removeItem('prev_page')
+            localStorage.removeItem('prev_page');
             window.location.href = prevPage || '/'
         })
         .catch((err) => {

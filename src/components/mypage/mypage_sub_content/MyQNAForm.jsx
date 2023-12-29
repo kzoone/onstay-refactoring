@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import axiosAuth from './../../../services/axiosAuth';
+import useAxiosAuth from "../../../hooks/useAxiosAuth";
 import { FaPencil } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -15,6 +15,7 @@ export function MyQNAForm({isAnswerExist, isModal, defaultQuestion, user_id, que
   let [contentLength, setContentLength] = useState(0)
   let [isEditable, setEditable] = useState(isModal ? false : true) // modal 이면 기본 값을 수정 불가능으로
   let [showDeleteModal, setShowDeleteModal] = useState(false)
+  const axiosAuth = useAxiosAuth();
 
   useEffect(()=>{
     if (defaultQuestion) {

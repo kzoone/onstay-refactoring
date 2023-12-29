@@ -11,11 +11,12 @@ const axiosAuth = axios.create({
   withCredentials : true
 });
 
+
 axiosAuth.interceptors.request.use(
   (config) => {
     return axios({
       url: `${apiBaseUrl}/member/tokenCheck`,
-      method: 'get',
+      method: 'post',
       withCredentials : true
     })
       .then(res => {
