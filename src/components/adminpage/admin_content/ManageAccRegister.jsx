@@ -6,8 +6,7 @@ import RoomRegister from './RoomRegister';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
-export default function ManageAccRegister({closeInsertModal}){
-    
+export default function ManageAccRegister({closeInsertModal}){    
     const [accName, setAccName] = useState('');
     const [tel, setTel] = useState('');
     const [zipcode, setZipcode] = useState('');
@@ -27,45 +26,6 @@ export default function ManageAccRegister({closeInsertModal}){
     const [accSummary1, setAccSummary1] = useState('');
     const [accSummary2, setAccSummary2] = useState('');
 
-    // State를 배열로 변경
-    const [rooms, setRooms] = useState([
-        {
-        roomName: "",
-        roomPrice: "",
-        featureCodesArr: [],
-        amenities: "",
-        minCapa: "",
-        maxCapa: "",
-        roomImg: []
-        },
-    ]);
-    
-    // 객실 추가 버튼 클릭 시 호출되는 함수
-    const handleAddRoomForm = () => {
-        // 새로운 객실 정보를 추가한 배열 생성
-        const newRooms = [...rooms, { roomName: "", roomPrice: "", featureCodesArr: [], amenities: "", minCapa: "", maxCapa: "", roomImg: [] }];
-        setRooms(newRooms);
-    };
-    const handleRemoveRoomForm = (index) => {
-        const newRooms = [...rooms];
-        newRooms.splice(index, 1);
-        setRooms(newRooms);
-      };
-    
-    // 객실 정보 변경 시 호출되는 함수
-    const handleRoomChange = (index, field, value) => {
-        const newRooms = [...rooms];
-        newRooms[index] = {...newRooms[index], [field]: value,};
-        setRooms(newRooms);
-    };
-    
-    const [accImg1, setAccImg1] = useState('');
-    const [accImg2, setAccImg2] = useState('');
-    const [accImg3, setAccImg3] = useState('');
-    const [accImg4, setAccImg4] = useState('');
-    const [accImg5, setAccImg5] = useState('');
-    const accFileInputRef = useRef(null);
-    
     const handleAccName = (e) => {
         setAccName(e.target.value);
     }
@@ -103,8 +63,14 @@ export default function ManageAccRegister({closeInsertModal}){
         setAccSummary2(e.target.value);
     }
 
+    const [accImg1, setAccImg1] = useState('');
+    const [accImg2, setAccImg2] = useState('');
+    const [accImg3, setAccImg3] = useState('');
+    const [accImg4, setAccImg4] = useState('');
+    const [accImg5, setAccImg5] = useState('');
+    const accFileInputRef = useRef(null);
+
     const handleAccImg = (e) => {
-        /* 파일 선택 갯수 제한 */
         const files = e.target.files;
         const accImgs = document.getElementById('accImgs');
         if( accImgs.files.length > 5 ){
@@ -124,15 +90,45 @@ export default function ManageAccRegister({closeInsertModal}){
                                                            ${files[3]?"<span class='name'>" + files[3].name + '</span>':''}
                                                            ${files[4]?"<span class='name'>" + files[4].name + '</span>':''}`;
     }
+
+    const [rooms, setRooms] = useState([
+        {
+        roomName: "",
+        roomPrice: "",
+        featureCodesArr: [],
+        amenities: "",
+        minCapa: "",
+        maxCapa: "",
+        roomImg: []
+        },
+    ]);
+    
+    const handleAddRoomForm = () => {
+        if (rooms.length < 3) {
+        const newRooms = [...rooms, { roomName: "", roomPrice: "", featureCodesArr: [], amenities: "", minCapa: "", maxCapa: "", roomImg: [] }];
+        setRooms(newRooms);
+        }else{
+            alert('객실은 최대 3개까지 등록할 수 있습니다.');
+        }
+    };
+    const handleRemoveRoomForm = (index) => {
+        const newRooms = [...rooms];
+        newRooms.splice(index, 1);
+        setRooms(newRooms);
+      };
+    
+    const handleRoomChange = (index, field, value) => {
+        const newRooms = [...rooms];
+        newRooms[index] = {...newRooms[index], [field]: value,};
+        setRooms(newRooms);
+    };
     
     const handleSubmit = (e) => {
-        // if (!accName || !tel || !address || !parking || !cook || !pet || !breakfast || !accCheckin || !accCheckout || !homepage || !accSummary1 || !accSummary2 || !roomName || !roomPrice || !minCapa || !maxCapa) {
-        //     alert('모든 입력 항목을 채워주세요.');
-        // }else if (!accImg1){
-        //     alert('최소 1개의 숙소 이미지를 등록해주세요.');
-        // }else if (!roomImg1){
-        //     alert('최소 1개의 객실 이미지를 등록해주세요');
-        // }else{
+        if (!accName || !tel || !address || !parking || !cook || !pet || !breakfast || !accCheckin || !accCheckout || !homepage || !accSummary1 || !accSummary2) {
+            alert('모든 입력 항목을 채워주세요.');
+        }else if (!accImg1){
+            alert('최소 1개의 숙소 이미지를 등록해주세요.');
+        }else{
             e.preventDefault();
             
             const formData = new FormData();
@@ -156,6 +152,11 @@ export default function ManageAccRegister({closeInsertModal}){
             formData.append('accSummary1', accSummary1);
             formData.append('accSummary2', accSummary2);
             formData.append('rooms', JSON.stringify(rooms));
+            rooms.map((room, index) => {
+                formData.append(`roomImg${index}`, rooms[index].roomImg[0]);
+                formData.append(`roomImg${index}`, rooms[index].roomImg[1]);
+                formData.append(`roomImg${index}`, rooms[index].roomImg[2]);
+            })
             formData.append('accImgs', accImg1);
             formData.append('accImgs', accImg2);
             formData.append('accImgs', accImg3);
@@ -178,19 +179,16 @@ export default function ManageAccRegister({closeInsertModal}){
             })
             .catch((err) => {
                 console.error('axios 에러 발생 => ' + err);
-            })
-            ;
-        
+            });
             closeInsertModal();
         };
-    // }
+    }
 
     const close = () => {
         closeInsertModal();
     }
 
     /* 주소 검색 */
-
     const [isAddressModal, setIsAddressModal] = useState(false);
 
     const openAddressModal = () => {
@@ -266,8 +264,6 @@ export default function ManageAccRegister({closeInsertModal}){
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         setRegisterDate(formattedDate);
     }
-
-    
 
     return(
         <div className="new_register">

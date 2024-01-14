@@ -18,5 +18,5 @@ export function MyPageContent(props) {
       {showContent==='MyEdit' && <MyEdit user_id={user_id}/>}
       {showContent==='MyQNA' && <MyQNA user_id={user_id}/>}
     </div>
-  ); 
+  );
 }
