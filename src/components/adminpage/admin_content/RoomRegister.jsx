@@ -16,9 +16,9 @@ export default function RoomRegister({index, room, handleRoomChange, handleRemov
 
     const handleRoomImg = (e, index) => {
         const files = e.target.files;
-        const roomImg1 = files[0]?.name || '';
-        const roomImg2 = files[1]?.name || '';
-        const roomImg3 = files[2]?.name || '';
+        const roomImg1 = files[0];
+        const roomImg2 = files[1];
+        const roomImg3 = files[2];
         onRoomChange(index, "roomImg", [roomImg1, roomImg2, roomImg3]);
     };
     
@@ -45,7 +45,7 @@ export default function RoomRegister({index, room, handleRoomChange, handleRemov
             </div>
             <div className='room_price'>
                 <label htmlFor='room_price'>금액</label>
-                <input type='text' id='room_price' placeholder='숫자만 입력해주세요 (500,000원 이하)'
+                <input type='text' id='room_price' placeholder='숫자만 입력해주세요'
                     onChange={(e) => onRoomChange(index, "roomPrice", e.target.value)}
                 />
             </div>
@@ -53,36 +53,36 @@ export default function RoomRegister({index, room, handleRoomChange, handleRemov
                 <span>부대시설</span>
                 <div>
                     <p>
-                        <input type='checkbox' value={1} id='feature1' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature1'>빅테이블</label>
+                        <input type='checkbox' value={1} id={`feature1_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature1_${index}`}>빅테이블</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={2} id='feature2' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature2'>정원</label>
+                        <input type='checkbox' value={2} id={`feature2_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature2_${index}`}>정원</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={3} id='feature3' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature3'>테라스</label>
+                        <input type='checkbox' value={3} id={`feature3_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature3_${index}`}>테라스</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={4} id='feature4' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature4'>독립 키친</label>
+                        <input type='checkbox' value={4} id={`feature4_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature4_${index}`}>독립 키친</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={5} id='feature5' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature5'>독립 화장실</label>
+                        <input type='checkbox' value={5} id={`feature5_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature5_${index}`}>독립 화장실</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={6} id='feature6' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature6'>산책로</label>
+                        <input type='checkbox' value={6} id={`feature6_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature6_${index}`}>산책로</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={7} id='feature7' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature7'>샤워실</label>
+                        <input type='checkbox' value={7} id={`feature7_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature7_${index}`}>샤워실</label>
                     </p>
                     <p>
-                        <input type='checkbox' value={8} id='feature8' onChange={(e) => handleFeatureCodes(e, index)} />
-                        <label htmlFor='feature8'>BBQ</label>
+                        <input type='checkbox' value={8} id={`feature8_${index}`} onChange={(e) => handleFeatureCodes(e, index)} />
+                        <label htmlFor={`feature8_${index}`}>BBQ</label>
                     </p>
                 </div>
             </div>
@@ -100,7 +100,7 @@ export default function RoomRegister({index, room, handleRoomChange, handleRemov
             </div>
             <div className='max_capa'>
                 <label htmlFor='max_capa'>최대인원</label>
-                <input type='text' id='max_capa' placeholder='숫자만 입력해주세요.(8명 이하)'
+                <input type='text' id='max_capa' placeholder='숫자만 입력해주세요.'
                     onChange={(e) => onRoomChange(index, "maxCapa", e.target.value)}
                 />
             </div>

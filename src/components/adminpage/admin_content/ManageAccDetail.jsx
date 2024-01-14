@@ -2,28 +2,43 @@ import { TfiClose } from 'react-icons/tfi';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import getImgPath from '../../../util/getImgPath';
+import ManageAccUpdate from './ManageAccUpdate';
 
 
 export default function ManageAccRegister({closeDetailModal, openDeleteModal, detail}){
+    const [isUpdateModal, setIsUpdateModal] = useState(false);
     const close = () => {
         closeDetailModal();
     }
     const openDelete = () => {
         openDeleteModal();
     }
+    const openUpdateModal = () => {  
+        if(isUpdateModal){
+            closeUpdateModal();
+        }else{
+            setIsUpdateModal(true);
+            document.querySelector('.new_register').style.display= 'none';
+        }
+    };
+    const closeUpdateModal = () => { 
+        setIsUpdateModal(false);
+        document.querySelector('.new_register').style.display= 'block';
+    };
 
     const handleClick = (e) => {
         e.preventDefault();
     };
-
+    
     return(
-        <div className="manage_detail">
+        <>
+        <div className="new_register">
             <TfiClose className='close_btn' onClick={close} />
             <div className='logo_img'><img src="/assets/images/main_logo.png" /></div>  
-            <div className='detail_container'>
-                <form className="detail_form">
-                    <div className='acc_detail'>
-                        <div className='acc_title'>숙소 정보</div>
+            <div className='register_container'>
+                <form className="register_form">
+                    <div className='acc_register'>
+                        <div className='register_title'>숙소 정보</div>
                         <div className='acc_name'>
                             <label>숙소명</label>
                             <input type="text" readOnly value={detail[0]?.acc_name || ''} />
@@ -90,8 +105,8 @@ export default function ManageAccRegister({closeDetailModal, openDeleteModal, de
                             ))}
                         </div>
                     </div>
-                    <div className='room_detail'>
-                        <div className='room_title'>객실 정보</div>
+                    <div className='room_register'>
+                        <div className='register_title'>객실 정보</div>
                         <div className='room_name'>
                             <label>객실명</label>
                             <input type='text' readOnly value={detail[0]?.room_name || ''} />
@@ -166,12 +181,14 @@ export default function ManageAccRegister({closeDetailModal, openDeleteModal, de
                             <button type='button' onClick={close}>닫기</button>
                         </div>
                         <div className='edit_delete'>
-                            <button type='button'>수정</button>
+                            <button type='button' onClick={() => openUpdateModal()}>수정</button>
                             <button type='button' onClick={openDelete}>삭제</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        {isUpdateModal && <ManageAccUpdate closeUpdateModal={closeUpdateModal} openUpdateModal={openUpdateModal} detail={detail} />}
+        </>
     );
 }
