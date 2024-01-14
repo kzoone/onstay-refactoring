@@ -5,7 +5,7 @@ import axios from 'axios';
 import PagiNation from 'react-js-pagination';
 import ReviewStar from '../../roomdetail/ReviewStar';
 import MyReviewModal from './mypage_review/MyReviewModal';
-import axiosAuth from '../../../services/axiosAuth';
+import useAxiosAuth from '../../../hooks/useAxiosAuth';
 import ConfirmModal from '../../common/ConfirmModal';
 import getImgPath from '../../../util/getImgPath';
 
@@ -20,6 +20,7 @@ export default function MyReview({user_id}) {
   const [ isCompleteModal, setIsCompleteModal] = useState(false); // 삭제 완료 알림 모달
   const [ reviewId, setReviewId ] = useState(''); // 삭제할 review id
   const navigate = useNavigate();
+  const axiosAuth = useAxiosAuth();
 
   // 회원이 작성한 리뷰 리스트 조회
   useEffect(() => {

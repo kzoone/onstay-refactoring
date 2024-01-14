@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import axiosAuth from '../../services/axiosAuth.js';
+import useAxiosAuth from '../../hooks/useAxiosAuth.js';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
@@ -9,6 +9,7 @@ export default function FormInfo(props) {
   const [ userData, setUserData ] = useState([]);
   const [ couponPrice, setCouponPrice ] = useState('');
   const isValidDateText = <p>-</p>;
+  const axiosAuth = useAxiosAuth();
 
   // user﹒user coupon 리스트 조회
   useEffect(() => {

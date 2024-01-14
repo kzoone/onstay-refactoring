@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { SlCamera } from 'react-icons/sl';
-import axiosAuth from '../../services/axiosAuth';
+import useAxiosAuth from '../../hooks/useAxiosAuth';
 import { useRef } from 'react';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
@@ -15,6 +15,7 @@ export default function NoticeAdd({ btnText, setAddModal }) {
 
   const titleMaxLength = 100;
   const contentMaxLength = 2000;
+  const axiosAuth = useAxiosAuth();
 
   const handleModal = (e) => {
     setAddModal(false)

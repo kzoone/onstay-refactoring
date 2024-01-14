@@ -25,6 +25,7 @@ import { CookiesProvider } from 'react-cookie';
 import NoAccess from './pages/NoAccess';
 import FindIdResult from './pages/FindIdResult';
 import FindPwReset from './pages/FindPwReset';
+import { LoginProvider } from './global/LoginContext';
 
 
 
@@ -62,11 +63,14 @@ const router = createBrowserRouter([
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <CookiesProvider>
-      <RouterProvider router={router} />
-    </CookiesProvider>
+    <LoginProvider>
+      <CookiesProvider>
+        <RouterProvider router={router} />
+      </CookiesProvider>
+    </LoginProvider>
   </React.StrictMode>
 );
 

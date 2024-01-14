@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import useUserInfo from './../../util/useUserInfo';
-import axiosAuth from './../../services/axiosAuth';
+import useAxiosAuth from '../../hooks/useAxiosAuth';
 import { useLocation } from 'react-router-dom';
+
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN
 
 export default function DevTools() {
   const location = useLocation()
   const user = useUserInfo();
-  
+  const axiosAuth = useAxiosAuth();
   
   const handleClick = e => {
     if (e.target.getAttribute('class')==='active') return alert(`이미 ${e.target.innerText} 권한입니다.`)

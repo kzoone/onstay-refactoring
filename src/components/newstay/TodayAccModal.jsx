@@ -1,6 +1,6 @@
 import React from 'react';
 import useUserInfo from '../../util/useUserInfo';
-import axiosAuth from '../../services/axiosAuth';
+import useAxiosAuth from '../../hooks/useAxiosAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import TodayAccSection from './TodayAccSection';
 
@@ -10,6 +10,7 @@ export default function TodayAccModal({ setModal, noti_1, noti_2, btnText, acc_n
   const userInfo = useUserInfo(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosAuth = useAxiosAuth();
 
   const handleModalBackground = (e) => {
     handleModal();

@@ -25,6 +25,7 @@ export default function Review({roomid, user_id}) {
 
     // 리뷰 가능 여부 요청
     if (user_id) {
+      console.log(user_id);
       axios.get(`${apiBaseUrl}/room/${roomid}/${user_id}`)
       .then(result => {
         if (result.data.message === '일치하는 예약 정보가 없습니다') {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa6';
 import { SlMagnifier } from 'react-icons/sl';
@@ -13,6 +13,7 @@ import $ from 'jquery';
 import ConfirmModal from './ConfirmModal.jsx';
 import axios from 'axios';
 import getImgPath from '../../util/getImgPath.js';
+import { LoginContext } from '../../global/LoginContext.jsx';
 
 const apiBaseUrl = process.env.REACT_APP_BACKEND_ORIGIN; 
 
@@ -20,6 +21,7 @@ export default function Header() {
     const user = useUserInfo();
     let [showModal, setShowModal] = useState(false);
     let [userProfile, setUserProfile] = useState('')
+    const {setUserInfo, setAccessToken} = useContext(LoginContext);
 
     useEffect(()=>{
         if (user.user_id) {
@@ -85,6 +87,8 @@ export default function Header() {
         })
         .then(res => {
             localStorage.removeItem('isLoggedIn')
+            setAccessToken('');
+            setUserInfo({user_id : null, user_name : null, isAdmin : null})
             alert('로그아웃 되었습니다.')
             window.location.href = '/'
         })

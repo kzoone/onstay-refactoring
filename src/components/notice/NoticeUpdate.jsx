@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import axiosAuth from "../../services/axiosAuth";
+import useAxiosAuth from "../../hooks/useAxiosAuth";
 import { SlCamera } from 'react-icons/sl';
 import NoticeImgModal from './NoticeImgModal';
 
@@ -18,6 +18,7 @@ export default function NoticeUpdate(props) {
   const [inputCountContent, setInputCountContent] = useState(contentInputLength);
   const [isEditMode, setIsEditMode] = useState(false); // 수정 모드 여부
   const [imgModal, setImgModal] = useState(false);
+  const axiosAuth = useAxiosAuth();
 
   const openImgModal = () => setImgModal(true);
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { BsCameraFill } from 'react-icons/bs';
-import axiosAuth from '../../../services/axiosAuth';
+import useAxiosAuth from '../../../hooks/useAxiosAuth';
 import RegisterStar from './RegisterStar';
 import ConfirmModal from '../../common/ConfirmModal';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ export default function ReviewModal(props) {
   const [ isCreateModal, setIsCreateModal ] = useState(false); // 등록 최종 확인 모달
   const [ isCompleteModal, setIsCompleteModal ] = useState(false); // 등록 완료 알림 모달
   const navigate = useNavigate();
+  const axiosAuth = useAxiosAuth();
 
 
   // 리뷰 등록 form 유효성 + 버튼 활성화 체크
